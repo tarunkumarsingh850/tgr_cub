@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+        <template id="product_activity_template">
+            <t t-call="web.html_container">
+                <div class="page">
+                    <div class="text-center">
+                        <h3>
+                            Product Activity Analysis
+                        </h3>
+                        <h5>
+                            <t t-if="product_name">
+                                <t t-esc="product_name"/>
+                            </t>
+                        </h5>
+                    </div>
+                    <br/>
+                    <t t-if="location_id">
+                        <table width="100%" style="border-collapse: collapse;"  border="1">
+                            <thead>
+                                <tr class="text-center" style="height:30px;color:#D6D6D;">
+                                        <th  colspan="6" class="text-center" style="padding-top:5px;font-size:12px;border-bottom:1px solid black;border-top:1px solid black;border-left:1px solid black;border-right:1px solid black;">
+                                            <t t-if="location">
+                                                <t t-esc="location"/>
+                                            </t>
+                                        </th>
+                                    </tr>
+                                <tr class="text-center" style="height:30px;color:#17375e">
+                                    <th  width="15%" style="padding-top:5px;font-size:12px;border-bottom:1px solid black;border-left:1px solid black;border-right:1px solid black;border-top:1px solid black">
+                                        Date
+                                    </th>
+                                    <th  width="12.5%" style="padding-top:5px;font-size:12px;border-bottom:1px solid black;border-left:1px solid black;border-right:1px solid black;border-top:1px solid black">
+                                        Transfer ID
+                                    </th>
+                                    <th  width="12.5%" style="padding-top:5px;font-size:12px;border-bottom:1px solid black;border-left:1px solid black;border-right:1px solid black;border-top:1px solid black">
+                                        Origin
+                                    </th>
+                                    <th  width="12.5%" style="padding-top:5px;font-size:12px;border-bottom:1px solid black;border-left:1px solid black;border-right:1px solid black;border-top:1px solid black">
+                                        Move Type
+                                    </th>
+                                    <th  width="12.5%" style="padding-top:5px;font-size:12px;border-bottom:1px solid black;border-left:1px solid black;border-right:1px solid black;border-top:1px solid black">
+                                        Qty Done
+                                    </th>
+                                    <th  width="12.5%" style="padding-top:5px;font-size:12px;border-bottom:1px solid black;border-left:1px solid black;border-right:1px solid black;border-top:1px solid black">
+                                        Qty On Hand
+                                    </th>
+                                </tr>
+                            </thead>
+                            <t t-foreach="move_dict.items()" t-as="o">
+                                <tr class="text-center" style="height:25px;">
+                                    <td  width="15%" style="font-size:12px;padding-top:5px;border-bottom:1px solid black;border-left:1px solid black;border-right:1px solid black;border-top:1px solid black">
+                                        <t if="o[0].date">
+                                            <t t-esc="o[0].date"/>
+                                        </t>
+                                    </td>
+                                    <td  width="12.5%" style="font-size:12px;padding-top:5px;border-bottom:1px solid black;border-left:1px solid black;border-right:1px solid black;border-top:1px solid black">
+                                        <t t-if="o[0].reference">
+                                            <t t-esc="o[0].reference"/>
+                                        </t>
+                                    </td>
+                                    <td  width="12.5%" style="font-size:12px;padding-top:5px;border-bottom:1px solid black;border-left:1px solid black;border-right:1px solid black;border-top:1px solid black">
+                                        <t if="o[0].origin">
+                                            <t t-esc="o[0].origin"/>
+                                        </t>
+                                    </td>
+                                    <td  width="12.5%" style="font-size:12px;padding-top:5px;border-bottom:1px solid black;border-left:1px solid black;border-right:1px solid black;border-top:1px solid black">
+                                        <t if="o[0].picking_code">
+                                            <t t-esc="move_type.get(o[0].picking_code)"/>
+                                        </t>
+                                    </td>
+                                    <td  width="12.5%" style="font-size:12px;padding-top:5px;border-bottom:1px solid black;border-left:1px solid black;border-right:1px solid black;border-top:1px solid black">
+                                        <t if="o[0].qty_done">
+                                            <t t-esc="o[0].qty_done"/>
+                                        </t>
+                                    </td>
+                                    <td  width="12.5%" style="font-size:12px;padding-top:5px;border-bottom:1px solid black;border-left:1px solid black;border-right:1px solid black;border-top:1px solid black">
+                                        <t if="o[1]">
+                                            <t t-esc="o[1]"/>
+                                        </t>
+                                    </td>
+                                </tr>
+                            </t>
+                        </table>
+                    </t>
+                    <t t-else="">
+                        <t t-foreach="move_dict.items()" t-as="o">
+                            <div style='padding:2px 0;'></div>
+                            <table width="100%" style="border-collapse: collapse;"  border="1">
+                                <thead>
+                                    <tr class="text-center" style="height:30px;color:#D6D6D;">
+                                        <th  colspan="6" class="text-center" style="padding-top:5px;font-size:12px;border-bottom:2px solid black;border-top:2px solid black;border-left:2px solid black;border-right:2px solid black;">
+                                            <t t-if="o[0].display_name">
+                                                <t t-esc="o[0].display_name"/>
+                                            </t>
+                                        </th>
+                                    </tr>
+                                    <tr class="text-center" style="height:30px;color:#17375e">
+                                        <th  width="15%" style="padding-top:5px;font-size:12px;border-bottom:1px solid black;border-left:1px solid black;border-right:1px solid black;border-top:1px solid black">
+                                            Date
+                                        </th>
+                                        <th  width="12.5%" style="padding-top:5px;font-size:12px;border-bottom:1px solid black;border-left:1px solid black;border-right:1px solid black;border-top:1px solid black">
+                                            Transfer ID
+                                        </th>
+                                        <th  width="12.5%" style="padding-top:5px;font-size:12px;border-bottom:1px solid black;border-left:1px solid black;border-right:1px solid black;border-top:1px solid black">
+                                            Origin
+                                        </th>
+                                        <th  width="12.5%" style="padding-top:5px;font-size:12px;border-bottom:1px solid black;border-left:1px solid black;border-right:1px solid black;border-top:1px solid black">
+                                            Move Type
+                                        </th>
+                                        <th  width="12.5%" style="padding-top:5px;font-size:12px;border-bottom:1px solid black;border-left:1px solid black;border-right:1px solid black;border-top:1px solid black">
+                                            Qty Done
+                                        </th>
+                                        <th  width="12.5%" style="padding-top:5px;font-size:12px;border-bottom:1px solid black;border-left:1px solid black;border-right:1px solid black;border-top:1px solid black">
+                                            Qty On Hand
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <t t-foreach="o[1]" t-as="lines">
+                                    <t t-foreach="lines.items()" t-as="line">
+                                        <tr class="text-center" style="height:25px;">
+                                            <td  width="15%" style="font-size:12px;padding-top:5px;border-left:1px solid black;border-right:1px solid black;border-top:1px solid black">
+                                                <t if="line[0].date">
+                                                    <t t-esc="line[0].date"/>
+                                                </t>
+                                            </td>
+                                            <td  width="12.5%" style="font-size:12px;padding-top:5px;border-left:1px solid black;border-right:1px solid black;border-top:1px solid black">
+                                                <t t-if="line[0].reference">
+                                                    <t t-esc="line[0].reference"/>
+                                                </t>
+                                            </td>
+                                            <td  width="12.5%" style="font-size:12px;padding-top:5px;border-left:1px solid black;border-right:1px solid black;border-top:1px solid black">
+                                                <t if="line[0].origin">
+                                                    <t t-esc="line[0].origin"/>
+                                                </t>
+                                            </td>
+                                            <td  width="12.5%" style="font-size:12px;padding-top:5px;border-left:1px solid black;border-right:1px solid black;border-top:1px solid black">
+                                                <t if="line[0].picking_code">
+                                                    <t t-esc="move_type.get(line[0].picking_code)"/>
+                                                </t>
+                                            </td>
+                                            <td  width="12.5%" style="font-size:12px;padding-top:5px;border-left:1px solid black;border-right:1px solid black;border-top:1px solid black">
+                                                <t if="line[0].qty_done">
+                                                    <t t-esc="line[0].qty_done"/>
+                                                </t>
+                                            </td>
+                                            <td  width="12.5%" style="font-size:12px;padding-top:5px;border-left:1px solid black;border-right:1px solid black;border-top:1px solid black">
+                                                <t if="line[1]">
+                                                    <t t-esc="line[1]"/>
+                                                </t>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </t>
+                            </table>
+                        </t>
+                    </t>
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>

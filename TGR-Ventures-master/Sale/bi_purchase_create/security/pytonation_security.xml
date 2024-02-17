@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<odoo>
+    <data noupdate="0">
+    <record model="ir.module.category" id="module_is_phytonation_groups">
+        <field name="name">Is PhytoNational</field>
+        <field name="description">Is PhytoNational</field>
+        <field name="sequence">17</field>
+    </record>
+
+    <record model="res.groups" id="group_phytonation">
+        <field name="name">Yes</field>
+        <field name="category_id" ref="module_is_phytonation_groups"/>
+    </record>
+  </data>
+  </odoo>

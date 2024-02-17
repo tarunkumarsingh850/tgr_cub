@@ -1,0 +1,14 @@
+<odoo>
+	<data>
+		<record id="purchase_order_line_tree_view" model="ir.ui.view">
+            <field name="name">purchase.order.line.tree.view</field>
+            <field name="model">purchase.order.line</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="order_id" string="Purchase Order"/>
+                    <field name="product_qty"/>
+                </tree>
+            </field>
+        </record>
+	</data>
+</odoo>

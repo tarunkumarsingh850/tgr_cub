@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="product_vendor_import_template" model="ir.actions.report">
+        <field name="name">Product Vendor Import Template</field>
+        <field name="model">product.vendor.import.wizard</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">bi_product_vendor_import.product_vendor_import_template</field>
+        <field name="report_file">bi_product_vendor_import.product_vendor_import_template</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_taxjar_account_tree" model="ir.ui.view">
+            <field name="name">view.taxjar.account.tree</field>
+            <field name="model">taxjar.account</field>
+            <field name="arch" type="xml">
+                <tree string="TaxJar Account">
+                    <field name="name"/>
+                    <field name="refresh_rate_interval"/>
+                    <field name="refresh_rate_interval_type"/>
+                    <field name="state" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_taxjar_account_form" model="ir.ui.view">
+            <field name="name">view.taxjar.account.form</field>
+            <field name="model">taxjar.account</field>
+            <field name="arch" type="xml">
+                <form string="TaxJar Account">
+                    <header>
+                        <button name="account_confirm"
+                                attrs="{'invisible':[('state','=','confirm')]}"
+                                string="Confirm" type="object" class="oe_highlight"/>
+                        <button name="taxjar_sync_categories" attrs="{'invisible':[('state','=','draft')]}"
+                                string="Sync Category" type="object" class="oe_highlight"/>
+                        <button name="taxjar_sync_state" attrs="{'invisible':[('state','=','draft')]}"
+                                string="Sync State" type="object" class="oe_highlight"/>
+                        <button name="%(taxjar_integration_ts.sync_transaction_taxjar_form_action)d" attrs="{'invisible':[('state','=','draft')]}"
+                                string="Backfill Transactions" type="action" class="oe_highlight"/>
+                        <button name="reset_draft" attrs="{'invisible':[('state','=','draft')]}"
+                                string="Reset to Draft" type="object" class="btn btn-secondary"/>
+                        <field name="state" widget="statusbar" nolabel="1" statusbar_visible="draft,confirm"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="toggle_prod_environment" attrs="{'invisible': [('prod_environment', '=', False)]}" class="oe_stat_button" type="object" icon="fa-play">
+                                <div class="o_stat_info o_field_widget">
+                                    <span class="text-success">Production</span>
+                                    <span class="o_stat_text">Environment</span>
+                                </div>
+                            </button>
+                            <button name="toggle_prod_environment" attrs="{'invisible': [('prod_environment', '=', True)]}" class="oe_stat_button" type="object" icon="fa-stop">
+                                <div class="o_stat_info o_field_widget">
+                                    <span class="o_warning_text">Test</span>
+                                    <span class="o_stat_text">Environment</span>
+                                </div>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1><field name="name" class="oe_inline" placeholder="e.g. TaxJar Account"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="prod_environment" invisible="1"/>
+                                <field name="api_key" required="1" attrs="{'readonly': [('state', '=', 'confirm')]}"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                            </group>
+                            <group/>
+                        </group>
+                        <notebook>
+                            <page string="Configuration">
+                                <group>
+                                    <group string="Taxes">
+                                        <field name="tax_breakdown"/>
+                                        <label for="refresh_rate_interval" string="Refresh Rate"/>
+                                        <div>
+                                            <field name="refresh_rate_interval" class="oe_inline"/>
+                                            <field name="refresh_rate_interval_type" class="oe_inline"/>
+                                        </div>
+                                    </group>
+                                    <group string="Invoice">
+                                        <field name="transaction_sync"/>
+                                    </group>
+                                </group>
+                                <group>
+                                    <group string="Taxes Account">
+                                        <field name="default_invoice_tax_account_id" domain="[('deprecated', '=', False), ('company_id', '=', company_id), ('internal_type', 'not in', ('receivable', 'payable'))]" options="{'no_create': True}"/>
+                                        <field name="default_credit_tax_account_id" domain="[('deprecated', '=', False), ('company_id', '=', company_id), ('internal_type', 'not in', ('receivable', 'payable'))]" options="{'no_create': True}"/>
+                                    </group>
+                                    <group/>
+                                </group>
+                            </page>
+                            <page string="Your States with Nexus">
+                                <field name="state_ids" nolabel="1"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_taxjar_account_action" model="ir.actions.act_window">
+            <field name="name">TaxJar Account</field>
+            <field name="res_model">taxjar.account</field>
+            <!--<field name="view_type">form</field>-->
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="main_menu_taxjar" parent="account.menu_finance_configuration" name="Taxjar" sequence="2"/>
+        <menuitem id="menu_taxjar_account" parent="taxjar_integration_ts.main_menu_taxjar" action="taxjar_integration_ts.view_taxjar_account_action" sequence="1"/>
+    </data>
+</odoo>

@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+odoo_ecommerce_api.access_ecommerce_api_log,access_ecommerce_api_log,odoo_ecommerce_api.model_ecommerce_api_log,base.group_user,1,1,1,1

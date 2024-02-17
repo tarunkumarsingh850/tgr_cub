@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_logistics_wizard_user,bi_logistics_report.logistics.wizard,model_logistics_wizard,base.group_user,1,1,1,1
+access_logistic_scheduler_user,bi_logistics_report.logistic.scheduler,model_logistic_scheduler,base.group_user,1,1,1,1

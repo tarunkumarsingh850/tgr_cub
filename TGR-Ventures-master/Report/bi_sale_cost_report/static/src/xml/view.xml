@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+    <t t-name="report.print">
+        <button type="button" style="display:none !important" class="btn btn-primary ml8 o_item_report_xlsx">print xlsx</button>
+    </t>
+</templates>

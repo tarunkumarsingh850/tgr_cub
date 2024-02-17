@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+
+        <record id="stock_quantity_update_wizard_view_form" model="ir.ui.view">
+            <field name="name">quantity.update.wizard.view.form</field>
+            <field name="model">update.quantity.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Update Stock Quantity">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="magento_location_id" required="1"/>
+                                <!-- <field name="product_id"/> -->
+                                <field name="brand_ids" widget="many2many_tags"/>
+                            </group>
+                        </group>
+                        <footer>
+                            <button string="Update" name="update_quantity" type="object" class="oe_highlight"/>
+                            <button string="Export Stock" name="export_stock_data" type="object"/>
+                            <button string="Cancel" special="cancel"/>
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="update_stock_quantity_wizard_action" model="ir.actions.act_window">
+            <field name="name">Update Stock Quantity</field>
+            <field name="res_model">update.quantity.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem
+            id="stock_quantity_update_wizard_menu"
+            name="Update Stock Quantity"
+            action="update_stock_quantity_wizard_action"
+            parent="stock.menu_stock_config_settings"
+            groups="update_product_menu_group"
+            sequence="5"/>
+
+
+    </data>
+
+
+</odoo>

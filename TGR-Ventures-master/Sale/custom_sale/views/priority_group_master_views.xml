@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="priority_group_view_form" model="ir.ui.view">
+        <field name="name">priority.group.view.form</field>
+        <field name="model">priority.group</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" required="1"/>
+                            <field name="check_priority"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="priority_group_view_tree" model="ir.ui.view">
+        <field name="name">priority.group.view.tree</field>
+        <field name="model">priority.group</field>
+        <field name="arch" type="xml">
+            <tree string="Priority Group">
+                <field name="name" />
+                <field name="check_priority" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- search -->
+    <record id="priority_group_search_view" model="ir.ui.view">
+        <field name="name">priority.group.search</field>
+        <field name="model">priority.group</field>
+        <field name="arch" type="xml">
+            <search string="Priority Group">
+                <field name="name" string="Name" />
+            </search>
+        </field>
+    </record>
+
+    <record id="action_priority_group" model="ir.actions.act_window">
+        <field name="name">Priority Group</field>
+        <field name="res_model">priority.group</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <menuitem
+        id="priority_group_master_menu"
+        name="Priority Group"
+        action="action_priority_group"
+        parent="stock.menu_stock_config_settings"
+        sequence="6"/>
+
+</odoo>

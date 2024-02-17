@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+        <record id="view_sale_warehouse_update" model="ir.ui.view">
+            <field name="name">Switch Warehouse</field>
+            <field name="model">sale.warehouse.update</field>
+            <field name="arch" type="xml">
+             <form string="Stock Warehouse">
+                <group>
+                    <group>
+                        <field name="warehouse_id"/>
+                    </group>
+                    <group>
+                        <field name="current_warehouse_ids" widget="many2many_tags" readonly="1"/>
+                        <field name="sale_ids" invisible="1"/>
+                    </group>
+                </group>
+                <footer>
+                    <button string="Confirm" name="confirm" type="object" class="oe_highlight"/>
+                    <button string="Cancel" class="btn btn-default" special="cancel"/>
+                </footer>
+            </form>
+            </field>
+        </record>
+
+        <record id="action_sale_warehouse_update" model="ir.actions.act_window">
+            <field name="name">Switch Warehouse</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.warehouse.update</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+</odoo>

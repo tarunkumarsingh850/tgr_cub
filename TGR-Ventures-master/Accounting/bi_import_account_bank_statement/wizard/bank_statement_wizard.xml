@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="transaction_line_wizard_model" model="ir.ui.view">
+        <field name="name">transaction.wizard.line.view</field>
+        <field name="model">transaction.line.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Transaction Lines Import">
+                <group>
+                    <field name="excel_file"/>
+                    <field name="bank_statement_line_id" invisible="1"/>
+                </group>
+                <group>
+                    <button string="Download Transaction Line Template" name="export_template" type="object"/>
+                </group>
+                <footer>
+                    <button name="load_lines" string="Import" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

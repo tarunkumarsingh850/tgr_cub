@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="0">
+    <data>
+        <!-- Security for send mail from picking -->
+        <record model="res.groups" id="send_mail_from_shipment">
+            <field name="name">Shipment Mail Access</field>
+        </record>
+
+    </data>
+</odoo>

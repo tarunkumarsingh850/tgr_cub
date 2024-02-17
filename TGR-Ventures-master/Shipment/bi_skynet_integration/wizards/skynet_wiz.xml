@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="skynet_report_wizard" model="ir.ui.view">
+      <field name="name">skynet.report.wiz.view</field>
+      <field name="model">skynet.report.wiz</field>
+      <field name="arch" type="xml">
+        <form string="skynet Report">
+          <group>
+            <group>
+                <field name="start_date"/>
+            </group>
+            <group>
+                <field name="end_date"/>
+            </group>
+          </group>
+          <footer>
+            <button name="print_report" string="PDF" type="object" class="btn-primary"/>
+            <button string="Cancel" class="btn-default" special="cancel"/>
+          </footer>
+        </form>
+      </field>
+    </record>
+
+    <record id="skynet_report_wizard_action" model="ir.actions.act_window">
+      <field name="name">Skynet Report</field>
+      <field name="res_model">skynet.report.wiz</field>
+      <field name="view_mode">form</field>
+      <field name="target">new</field>
+  </record>
+
+    <menuitem
+        id="menu_manifest_report"
+        name="Manifest Report"
+        parent="stock.menu_warehouse_report"
+        sequence='100'
+        />
+
+    <menuitem
+        id="menu_skynet_report"
+        name="Skynet Report"
+        action="skynet_report_wizard_action"
+        parent="bi_mrw_report.menu_manifest_report"
+        />
+
+</odoo>

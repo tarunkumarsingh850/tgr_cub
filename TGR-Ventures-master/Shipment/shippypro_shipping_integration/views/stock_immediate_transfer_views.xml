@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_immediate_transfer_carrier" model="ir.ui.view">
+        <field name="model">stock.immediate.transfer</field>
+        <field name="inherit_id" ref="stock.view_immediate_transfer" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='picking_id']" position="after">
+                <field name="carrier_id" required="1"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

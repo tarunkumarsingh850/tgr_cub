@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="purchase_order_form_dimension" model="ir.ui.view">
+            <field name="name">purchase.order.dimension</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='button_unlock']" position="after">
+                    <button string ="Import Lines" name="action_import" type="object" class="oe_highlight" states="draft"/>
+                    <button string="Download Template" name="export_lpo_template" type="object"
+                        help="Download the template of excel file that is can be used to
+                        import the product details" states="draft"
+                    />
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

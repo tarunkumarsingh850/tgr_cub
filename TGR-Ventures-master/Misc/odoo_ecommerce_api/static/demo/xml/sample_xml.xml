@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<data>
+    <orderReference>123456</orderReference>
+    <customerDetails>
+        <code>123456</code>
+        <name>Test Customer</name>
+        <addressLine1>Test address 1</addressLine1>
+        <addressLine2>test address 2</addressLine2>
+        <city>Test City</city>
+        <state>Test State</state>
+        <zip>21490</zip>
+        <country>United States</country>
+        <email>test@gmail.com</email>
+        <phone>2093784390392</phone>
+        <mobile>2928398239933</mobile>
+        <warehouse_code>DROP1MALAG</warehouse_code>
+    </customerDetails>
+    <orderDetails>
+        <orderLine>
+            <productDetails>
+                <code>FURN_6666</code>
+                <name>TV</name>
+                <productType>consu</productType>
+                <salePrice>50000</salePrice>
+                <productCategory>All</productCategory>
+            </productDetails>
+            <currency>USD</currency>
+            <quantity>2</quantity>
+            <unitPrice>50000</unitPrice>
+            <taxes></taxes>
+        </orderLine>
+        <orderLine>
+            <productDetails>
+                <code>E-COM11</code>
+                <name>Drawer</name>
+                <productType>consu</productType>
+                <salePrice>50500</salePrice>
+                <productCategory>All</productCategory>
+            </productDetails>
+            <currency>USD</currency>
+            <quantity>3</quantity>
+            <unitPrice>50500</unitPrice>
+            <taxes></taxes>
+        </orderLine>
+    </orderDetails>
+</data>

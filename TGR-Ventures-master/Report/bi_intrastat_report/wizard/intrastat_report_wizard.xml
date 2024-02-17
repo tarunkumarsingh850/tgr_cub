@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_intrastat_report_wizard_report" model="ir.ui.view">
+        <field name="name">intrastat.report.wizard.name</field>
+        <field name="model">intrastat.report.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="date_start"/>
+                            <field name="date_end"/>
+                        </group>
+                        <group>
+                            <field name="move_type"/>
+                        </group>
+                    </group>
+                </sheet>
+                <footer>
+                    <button string="Generate" name="generate_xlsx_report" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+<record id="action_intrastat_report_wizard" model="ir.actions.act_window">
+    <field name="name">New Intrastat Report</field>
+    <field name="res_model">intrastat.report.wizard</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="view_mode">form</field>
+    <field name="view_id" ref="view_intrastat_report_wizard_report"/>
+    <field name="target">new</field>
+</record>
+
+<menuitem name="New Intrastat Report" id="menu_intrastat_report" action="action_intrastat_report_wizard"
+          parent="account_reports.account_reports_audit_reports_menu"/>
+
+</odoo>

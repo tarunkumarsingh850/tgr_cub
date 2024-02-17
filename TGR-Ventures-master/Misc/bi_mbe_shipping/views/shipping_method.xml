@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="mbe_shippment_customization" model="ir.ui.view">
+        <field name="name">delivery.carrier.mbe.view.inherit.form</field>
+        <field name="model">delivery.carrier</field>
+        <field name="inherit_id" ref="delivery.view_delivery_carrier_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='company_id']" position="before">
+              <field name="is_mbe"/>
+          </xpath>
+        </field>
+    </record>
+</odoo>

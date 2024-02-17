@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data noupdate="1">
+
+        <record id="hold_reason_credit_limit" model="hold.reason">
+            <field name="name">Credit limit exceeded</field>
+            <field name="is_credit_limit_exceeded">1</field>
+        </record>
+
+    </data>
+
+
+</odoo>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="batch_report_header">
+            <div class="header">
+                <div class="row" style="text-align:left;">
+                    <div class="col-2" style="margin-left:-10px;">
+                        <t t-set="magento_website_id" t-value="o.env['magento.website'].search([('id','=',website_id)])"/>
+                        <img t-if="magento_website_id.website_logo" t-att-src="image_data_uri(magento_website_id.website_logo)" style="width:130px;height:60px;" alt="Logo"/>
+                    </div>
+                    <div class="col-3" style="padding-left:45px;">
+                        <div class="row" style="font-size:9px;">
+                            <span t-field="o.company_id.name"/>
+                        </div>
+                        <div class="row" style="font-size:9px;padding-bottom:0px;">
+                            <span t-field="o.company_id.street2"/>
+                            <span t-field="o.company_id.city"/>
+                        </div>
+                        <div class="row" style="font-size:9px;padding-bottom:0px;">
+                            <span t-field="o.company_id.country_id"/>
+                        </div>
+                        <div class="row" style="font-size:9px;padding-bottom:0px;">
+                            Phone:<span t-field="o.company_id.phone"/>
+                        </div>
+                        <div class="row" style="font-size:9px;padding-bottom:0px;">
+                            VAT Number:<span t-field="o.company_id.vat"/>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <!-- <div t-field="o.name" t-options="{'widget': 'barcode', 'width': 500, 'height': 150, 'img_style': 'width:250px;height:50px;'}"/> -->
+                    </div>
+                    <div class="col-4" style="padding-left:60px;">
+                        <div class="row" style="font-size:9px;">
+                            Account Holder:
+                            Tigre Uno Distribucion S.L
+                        </div>
+                        <div class="row" style="font-size:9px;padding-bottom:1px;">
+                            Bank Name: La Caixa
+                        </div>
+                        <div class="row" style="font-size:9px;padding-bottom:1px;">
+                            Bank Address: Avenida Diagonal, 621-629, 08028,
+                            Barcelona, Spain
+                        </div>
+                        <div class="row" style="font-size:9px;padding-bottom:1px;">
+                            IBAN:ES1021001810400200088098
+                        </div>
+                        <div class="row" style="font-size:9px;padding-bottom:1px;">
+                            BIC:CAIXESBBXXX
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="article o_report_layout_standard" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+                <t t-call="web.address_layout"/>
+                <t t-raw="0"/>
+            </div>
+            <div class="footer">
+            </div>
+        </template>
+    </data>
+</odoo>

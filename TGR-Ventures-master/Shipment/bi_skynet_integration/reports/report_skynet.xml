@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_skynet">
+        <t t-call="web.basic_layout">
+        <t t-foreach="docs" t-as="o">
+        <t t-call="bi_skynet_integration.skynet_report_header"/>
+            <br/>
+            <table width="100%" style="border-top:1px solid black;border-right:0px solid black;border-bottom:1px solid black">
+                <tr>
+                    <th class="text-center" style="border-right:1px solid black;border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;font-size: 12px;;width:30px;">Connote From #</th>
+                    <th class="text-center" style="border-right:1px solid black;border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;font-size: 12px;;width:50px;">Receiver</th>
+                    <th class="text-center" style="border-right:1px solid black;border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;font-size: 12px;;width:30px;">Referencia</th>
+                    <th class="text-center" style="border-right:1px solid black;border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;font-size: 12px;;width:30px;">Serv</th>
+                    <th class="text-center" style="border-right:1px solid black;border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;font-size: 12px;;width:30px;">Goods Desc</th>
+                    <th class="text-center" style="border-right:1px solid black;border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;font-size: 12px;;width:30px;">Pcs</th>
+                    <th class="text-center" style="border-right:1px solid black;border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;font-size: 12px;;width:30px;">Weight (Kg)</th>
+                    <th class="text-center" style="border-right:1px solid black;border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;font-size: 12px;;width:30px;">Dest</th>
+                    <th class="text-center" style="border-right:1px solid black;border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;font-size: 12px;;width:30px;">Cust Val.</th>
+                    <th class="text-center" style="border-right:1px solid black;border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;font-size: 12px;width:30px;">Info</th>
+                </tr>
+
+                <t t-set="sl_no" t-value='1'></t>
+                <t t-set="total_pcs" t-value='0'></t>
+                <t t-set="total_pcs_line" t-value='0'></t>
+                <t t-set="total_weight" t-value="0"/>
+                <t t-set="total_pcs" t-value='0'></t>
+                <t t-set="total_weight" t-value="total_weight+total_pcs_line"/>
+                <t t-foreach="o.get_picking_value()" t-as="l">
+                    <t t-set="total_pcs_line" t-value='o.get_picking_weight(l)'></t>
+                <tr>
+                    <td class="text-center" style="border-right:1px solid black;border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;font-size: 12px"><span t-esc="l.carrier_tracking_ref"/></td>
+                    <td class="text-left" style="border-right:1px solid black;border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;font-size: 12px;">
+                    <t if="o.company_id.name">
+                            <t t-esc="l.partner_id.name"/><br/>
+                            </t>
+                            <t if="l.partner_id.street">
+                                <t t-esc="l.partner_id.street"></t><br/>
+                            </t>
+                            <t if="l.partner_id.street2">
+                                <t t-esc="l.partner_id.street2"></t><br/>
+                            </t>
+                            <t if="l.partner_id.state_id.name">
+                                <t t-esc="l.partner_id.state_id.name"></t><br/>
+                            </t>
+                            <t if="l.partner_id.city">
+                                <t t-esc="l.partner_id.city"></t><br/>
+                            </t>
+                            Ph:
+                            <t if="l.partner_id.name">
+                                <t t-esc="l.partner_id.phone"></t>
+                            </t><br/>
+                            Email:
+                            <t if="l.partner_id.email">
+                                <t t-esc="l.partner_id.email"></t><br/>
+                            </t>
+                    </td>
+                    <td class="text-center" style="border-right:1px solid black;border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;font-size: 12px"><span t-esc="l.carrier_id.name"/></td>
+                    <td class="text-center" style="border-right:1px solid black;border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;font-size: 12px">SKYSAV</td>
+                    <td class="text-center" style="border-right:1px solid black;border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;font-size: 12px">SEEDS</td>
+                    <td class="text-center" style="border-right:1px solid black;border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;font-size: 12px"><span t-esc="total_pcs"/></td>
+
+                    <td class="text-center" style="border-right:1px solid black;border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;font-size: 12px"><span t-esc="total_pcs_line"/></td>
+                    <td class="text-center" style="border-right:1px solid black;border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;font-size: 12px"><span t-esc="l.partner_id.city and l.partner_id.city or ''"/></td>
+                    <td class="text-center" style="border-right:1px solid black;border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;font-size: 12px"><span t-esc="l.product_id.lst_price"/></td>
+                    <td class="text-center" style="border-right:1px solid black;border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;font-size: 12px"><span t-esc="l.origin"/></td>
+
+                </tr>
+                </t>
+            </table>
+              <br/>
+              <br/>
+            <div>
+                <div class="col-12 mb4">
+                    <span style="font-size: 12px;"><strong>Drivers Signature: :</strong>_____________</span>
+
+                    <span style="font-size: 12px;padding-left:20px"><strong>Collected date/time : </strong>_______________</span>
+                </div>
+            </div>
+        <!-- </t> -->
+        </t>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,19 @@
+<odoo>
+    <data>
+
+        <record id="invoice_sale_proforma_report_action" model="ir.actions.report">
+                <field name="name">PHYTO NATION Invoice</field>
+                <field name="model">account.move</field>
+                <field name="report_type">qweb-pdf</field>
+                <field name="report_name">bi_sale_proforma_printout.report_saleorder_document</field>
+                <field name="report_file">bi_sale_proforma_printout.report_saleorder_document</field>
+                <field name="binding_model_id" ref="account.model_account_move" />
+                <field name="binding_type">report</field>
+                <field name="paperformat_id" ref="bi_sale_proforma_printout.proforma_report_main" />
+        </record>
+
+        <!-- <record id="sale.action_report_pro_forma_invoice" model="ir.actions.report">
+            <field name="binding_model_id" eval="False"/>
+        </record> -->
+</data>
+</odoo>

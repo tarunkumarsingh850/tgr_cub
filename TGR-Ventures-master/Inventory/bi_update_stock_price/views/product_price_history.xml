@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="product_price_history_view_tree" model="ir.ui.view">
+        <field name="name">product.price.history.view.tree</field>
+        <field name="model">product.price.history</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="product_id" />
+                <field name="date" />
+                <field name="user_id" />
+                <field name="retail_uk_price" />
+                <field name="retail_us_price" />
+                <field name="retail_default_price" />
+                <field name="retail_special_price" />
+                <field name="wholesale_special_price" />
+                <field name="wholesale_price_value" />
+                <field name="za_price" />
+                <field name="wholesale_special_us" />
+                <field name="wholesale_special_za" />
+                <field name="wholesale_special_uk" />
+                <field name="wholesale_us" />
+                <field name="wholesale_za" />
+                <field name="wholesale_uk" />
+                <field name="retail_special_us" />
+                <field name="retail_special_za" />
+                <field name="retail_special_uk" />
+                <field name="retail_za_price" />
+                <field name="is_send_to_magento" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="product_price_history_action" model="ir.actions.act_window">
+        <field name="name">Product Price History</field>
+        <field name="res_model">product.price.history</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <menuitem
+        id="product_price_history_menu"
+        name="Product Price History"
+        action="product_price_history_action"
+        parent="stock.menu_stock_config_settings"
+        sequence="10"/>
+
+</odoo>

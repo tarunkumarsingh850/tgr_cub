@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="sale_order_view_form_inherit" model="ir.ui.view">
+        <field name="name">sale.order.view.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='sale_info']/field[@name='invoice_status']" position="after">
+                <field name="is_diamond_logistic_order" readonly="1"/>
+                <field name="is_diamond_logistic_order_send" readonly="1"/>
+                <field name="diamond_logistic_order_id" readonly="1"/>
+                <field name="diamond_logistic_response_message" readonly="1" attrs="{'invisible':[('diamond_logistic_response_message','=',False)]}"/>
+            </xpath>
+            <xpath expr="//header" position="after">
+                <div class="alert alert-info" role="alert" style="height: 80px; margin-bottom:0px;" attrs="{'invisible':['|','|',('state','in',['draft','cancel']),('is_diamond_logistic_order','=',False),('is_diamond_logistic_order_send','=',True)]}">
+                    Sending order to diamond logistics failed.<br/>
+                    <button string="Retry" name="create_despatchlab_order" type="object"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sale_order_view_tree_inherit" model="ir.ui.view">
+        <field name="name">sale.order.view.tree.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="inside">
+                <field name="is_diamond_logistic_order_send" optional="hide"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="diamond_logistic_orders_action" model="ir.actions.act_window">
+        <field name="name">Diamond Logistics Orders</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('is_diamond_logistic_order','=',True)]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+
+            </p>
+        </field>
+    </record>
+
+    <menuitem name="Diamond Logistics Orders" id="menu_diamond_logistic_orders" sequence="2" parent="sale.sale_order_menu" action="diamond_logistic_orders_action"/>
+
+    <record id="diamond_order_compute_action_server" model="ir.actions.server">
+        <field name="name">Compute Diamond Order</field>
+        <field name="model_id" ref="model_sale_order"/>
+        <field name="binding_model_id" ref="model_sale_order"/>
+        <field name="state">code</field>
+        <field name="code">records.create_despatchlab_order()</field>
+    </record>
+
+    <record id="despatchlab_shipment_tracking_action_server" model="ir.actions.server">
+        <field name="name">Fetch Despatchlab Shipment Reference</field>
+        <field name="model_id" ref="model_sale_order"/>
+        <field name="binding_model_id" ref="model_sale_order"/>
+        <field name="state">code</field>
+        <field name="code">records.fetch_despatchlab_shipment()</field>
+    </record>
+
+</odoo>

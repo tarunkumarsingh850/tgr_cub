@@ -1,0 +1,55 @@
+{
+  "customer_code": 49901,
+  "invoice_address": {
+    "name": "Test Customer",
+    "address_line_1": "Test address 1",
+    "address_line_2": "test address 2",
+    "city": "Test City",
+    "state": "Test State",
+    "zip": 21490,
+    "country": "United States",
+    "email": "test@gmail.com",
+    "phone": 2093784390392,
+    "mobile": 2928398239933,
+  },
+  "delivery_address": {
+    "name": "Test Customer Delivery",
+    "address_line_1": "Test address 3",
+    "address_line_2": "test address 4",
+    "city": "Test City",
+    "state": "Test State",
+    "zip": 21490,
+    "country": "United States",
+    "email": "test2@gmail.com",
+    "phone": 2093784390392,
+    "mobile": 2928398239933,
+  },
+  "payment_method_code": "zion",
+  "shipping_cost": "100",
+  "warehouse_code": "MALAG",
+  "order_details": [{
+    "product_details": {
+      "code": "FURN_6666",
+      "name": "TV",
+      "product_type": "consu",
+      "sale_price": 50000,
+      "product_category": "All"
+    },
+    "currency": "USD",
+    "quantity": 2,
+    "unit_price": 50000,
+    "taxes": false
+  }, {
+    "product_details": {
+      "code": "E-COM11",
+      "name": "Drawer",
+      "product_type": "consu",
+      "sale_price": 50500,
+      "product_category": "All"
+    },
+    "currency": "USD",
+    "quantity": 3,
+    "unit_price": 50500,
+    "taxes": false
+  }]
+}

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <report id="action_product_html"
+                model="product.activity.report"
+                string="Product Activity"
+                report_type="qweb-html"
+                name="x_product_move_report.product_activity_template"
+                paperformat="x_product_move_report.pma_paperformat"
+        />
+        <report id="product_act_report_id"
+                model="product.activity.report"
+                string="Product Activity Analysis"
+                report_type="xlsx"
+                file="x_product_move_report.product_activity_report_xl"
+                name="x_product_move_report.product_activity_report_xl"
+                print_report_name="Product Activity Report"/>
+</odoo>

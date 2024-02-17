@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="sync_transaction_taxjar_form_view" model="ir.ui.view">
+        <field name="name">sync.transaction.taxjar.form.view</field>
+        <field name="model">sync.multi.transaction.taxjar</field>
+        <field name="arch" type="xml">
+            <form string="Backfill Transactions">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="from_date"/>
+                        </group>
+                        <group>
+                            <field name="to_date"/>
+                        </group>
+                    </group>
+                </sheet>
+                <footer>
+                    <group>
+                        <span>
+                            <button string="Export" type="object" class="oe_highlight" name="export_transaction_taxjar"/>
+                            <button string="Cancel" class="oe_link" special="cancel" />
+                        </span>
+                    </group>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="sync_transaction_taxjar_form_action" model="ir.actions.act_window">
+        <field name="name">Export Invoice Odoo to TaxJar</field>
+        <field name="res_model">sync.multi.transaction.taxjar</field>
+<!--        <field name="view_type">form</field>-->
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

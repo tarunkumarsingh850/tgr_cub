@@ -1,0 +1,14 @@
+<odoo>
+    <data>
+        <report
+            id="action_view_sale_order_excel1"
+            model="sale.order"
+            string="Sale Order Excel Report"
+            report_type="xlsx"
+            name="bi_sale_excel_report.sale_order_rpt"
+            file="bi_sale_excel_report.sale_order_rpt"
+            print_report_name="Sale Order Excel Report"
+            menu='False'
+        />
+    </data>
+</odoo>

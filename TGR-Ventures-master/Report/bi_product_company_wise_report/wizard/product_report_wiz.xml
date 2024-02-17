@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="product_report_wiz_form" model="ir.ui.view" >
+        <field name="name">product.report.wiz.form</field>
+        <field name="model">product.report.wiz</field>
+        <field name="arch" type="xml">
+            <form string="Product Company Wise Report">
+                <group>
+                    <group>
+                        <field name="product_breeder_id"/>
+                        <field name="company_id" required="1" domain="[('id','in',[10,11])]"/>
+                    </group>
+                    <group>
+                        <field name="categ_id"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="get_report_csv" string="Print Report" type="object" class="oe_highlight"/>
+                    <button string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_product_report_wiz_form" model="ir.actions.act_window">
+        <field name="name">Product Company Wise Report</field>
+        <field name="res_model">product.report.wiz</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="product_report_wiz_form"/>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem action="action_product_report_wiz_form"
+        name="Product Company Wise Report"
+        id="menu_product_report_wiz"
+        parent="stock.menu_warehouse_report"/>
+
+</odoo>

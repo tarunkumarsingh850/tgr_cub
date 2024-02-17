@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="stamps_deleivery_method_configuration" model="ir.ui.view">
+        <field name="name">delivery.carrier.configuration</field>
+        <field name="model">delivery.carrier</field>
+        <field name="inherit_id" ref="delivery.view_delivery_carrier_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='destination']" position='before'>
+                <page string="Stamps.com Configuration" name="stamps_configuration"
+                      attrs="{'invisible': [('delivery_type', '!=', 'stamps')]}">
+                    <group>
+                        <group>
+                            <field name="company_name" attrs="{'invisible': [('delivery_type', '!=', 'stamps')]}"/>
+                            <field name="po_box" attrs="{'invisible': [('delivery_type', '!=', 'stamps')]}"/>
+                            <field name="city" attrs="{'invisible': [('delivery_type', '!=', 'stamps')]}"/>
+                            <field name="state" attrs="{'invisible': [('delivery_type', '!=', 'stamps')]}"/>
+                            <field name="zip_code" attrs="{'invisible': [('delivery_type', '!=', 'stamps')]}"/>
+                            <field name="country" attrs="{'invisible': [('delivery_type', '!=', 'stamps')]}"/>
+                            <field name="company_id"
+                                   attrs="{'required': [('delivery_type', '=', 'stamps')]}"/>
+                            <field name="stamps_packaging_id"
+                                   attrs="{'required': [('delivery_type', '=', 'stamps')]}"/>
+                            <field name="stamps_package_type"
+                                   attrs="{'required': [('delivery_type', '=', 'stamps')]}"/>
+                            <field name="stam_service_info" attrs="{'required': [('delivery_type', '=', 'stamps')]}"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

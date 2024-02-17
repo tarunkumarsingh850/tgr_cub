@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+        <record id="update_shipping_tracking_view_form" model="ir.ui.view">
+            <field name="name">update.shipping.tracking.view.form</field>
+            <field name="model">shipping.tracking.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Update Tracking Reference">
+                    <sheet>
+                        <group>
+                            <field name="filename" invisible="1"/>
+                            <field name="csv_file" filename="filename"/>
+                        </group>
+                        <footer>
+                            <button string="Upload File" name="generate_update" type="object" class="oe_highlight"/>
+                            <button string="Cancel" special="cancel"/>
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="update_shipping_tracking_action" model="ir.actions.act_window">
+            <field name="name">Update Shipment Tracking</field>
+            <field name="res_model">shipping.tracking.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+
+</odoo>

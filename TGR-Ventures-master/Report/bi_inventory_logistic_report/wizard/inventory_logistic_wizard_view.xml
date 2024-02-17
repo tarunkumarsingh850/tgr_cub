@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="inventory_logistic_wizard_wizard" model="ir.ui.view">
+        <field name="name">logistics.wizard.view</field>
+        <field name="model">inventory.logistic.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Export">
+                <group>
+                    <group>
+                        <field name="start_date" required="1"/>
+                    </group>
+                    <group>
+                        <field name="end_date" required="1"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="print_inventory_logistic_report" string="Export" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="inventory_logistic_wizard_action" model="ir.actions.act_window">
+        <field name="name">Logistic Inventory Report</field>
+        <field name="res_model">inventory.logistic.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem
+            id="menu_inventory_logistic_report"
+            name="Inventory Logistic Report"
+            action="inventory_logistic_wizard_action"
+            parent="stock.menu_warehouse_report"
+            sequence="120"
+    />
+</odoo>

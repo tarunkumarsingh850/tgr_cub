@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+
+    <record id="hold_reason_view_form" model="ir.ui.view">
+      <field name="name">hold.reason.view.form</field>
+      <field name="model">hold.reason</field>
+      <field name="arch" type="xml">
+        <form string="Hold Reason">
+          <header>
+          </header>
+          <sheet>
+            <group>
+                <group>
+                  <field name="name"/>
+                  <field name="is_credit_limit_exceeded" />
+                  <field name="is_fraud_score"/>
+                </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="hold_reason_view_tree" model="ir.ui.view">
+      <field name="name">hold.reason.view.tree</field>
+      <field name="model">hold.reason</field>
+      <field name="arch" type="xml">
+            <tree default_order="create_date desc">
+                <field name="name"/>
+            </tree>
+        </field>
+      </record>
+
+    <record id="hold_reason_action" model="ir.actions.act_window">
+      <field name="name">Hold Reason</field>
+      <field name="res_model">hold.reason</field>
+      <field name="view_mode">tree,form</field>
+      <field name="help" type="html">
+        <p class="o_view_nocontent_smiling_face">
+          Create a record
+        </p>
+      </field>
+    </record>
+
+    <menuitem
+      id="hold_reason_menu"
+      name="Hold Reason"
+      action="hold_reason_action"
+      parent="sale.menu_sale_config"
+      sequence="100"/>
+
+      <menuitem
+        id="stock_hold_reason"
+        name="Hold Reason"
+        action="hold_reason_action"
+        parent="stock.menu_stock_config_settings"
+        sequence="15"/>
+
+  </data>
+</odoo>

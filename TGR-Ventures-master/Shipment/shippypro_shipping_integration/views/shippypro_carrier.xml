@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <record id="view_shippypro_form" model="ir.ui.view">
+        <field name="name">shippypro.carrier.form</field>
+        <field name="model">shippypro.carrier</field>
+        <field name="arch" type="xml">
+            <form string="shippypro">
+                <sheet>
+                    <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="carrier_label"/>
+                    </group>
+                    <group>
+                        <field name="carrier_id"/>
+                        <field name="carrier_service"/>
+                    </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_shippypro_list" model="ir.ui.view">
+        <field name="name">shippypro.carrier.list</field>
+        <field name="model">shippypro.carrier</field>
+        <field name="arch" type="xml">
+            <tree string="Shippypro list">
+            <field name="name"/>
+            <field name="carrier_id"/>
+            <field name="carrier_label"/>
+            <field name="carrier_service"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="shippypro_view_form" model="ir.actions.act_window">
+        <field name="name">Shippypro Carrier</field>
+        <field name="res_model">shippypro.carrier</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+            id="menu_view_shippypro_form"
+            name="Shippypro Carrier"
+            action="shippypro_view_form"
+            parent="stock.menu_stock_config_settings"
+            sequence="30"
+            />
+</odoo>

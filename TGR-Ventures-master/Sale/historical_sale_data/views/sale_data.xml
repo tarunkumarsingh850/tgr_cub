@@ -1,0 +1,70 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="historical_sale_data_tree">
+      <field name="name">historical.sale.data.tree</field>
+      <field name="model">historical.sale.data</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="date"/>
+          <field name="number"/>
+          <field name="customer"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="historical_sale_data_form">
+      <field name="name">historical_sale_data list</field>
+      <field name="model">historical.sale.data</field>
+      <field name="arch" type="xml">
+        <form>
+          <header>
+            <field name="state" widget="statusbar" statusbar_visible="draft,sent,sale"/>
+          </header>
+          <sheet>
+              <!-- <div class="oe_title"> -->
+                <h1>
+                    <field name="number"/>
+                </h1>
+              <!-- </div> -->
+            <group>
+              <group>
+                <field name="customer"/>
+              </group>
+              <group>
+                <field name="date"/>
+              </group>
+            </group>
+            <notebook>
+              <page name="order_line" string="Order Lines">
+                <field name="line_ids">
+                  <tree editable="bottom">
+                    <field name="product_id"/>
+                    <field name="quantity"/>
+                    <field name="sale_price"/>
+                    <field name="product"/>
+                  </tree>
+                </field>
+              </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="historical_sale_data_action">
+      <field name="name">Historical Sale Data</field>
+      <field name="res_model">historical.sale.data</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <menuitem name="Historical Sale Data" id="historical_sale_data_menu" groups="base.group_no_one"/>
+    <menuitem name="Historical Sale Data" id="historical_sale_data_sub_menu" parent="historical_sale_data_menu" action="historical_sale_data_action" sequence="1"/>
+
+  </data>
+</odoo>

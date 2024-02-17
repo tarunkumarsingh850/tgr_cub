@@ -1,0 +1,33 @@
+<odoo>
+    <data>
+        <!-- Email Template -->
+        <record id="email_template_name" model="mail.template">
+            <field name="name">Example Email Template</field>
+            <field name="model_id" ref="bi_partner_outstanding_statement.model_outstanding_statement_report_wiz"/>
+            <field name="subject">Partner Outstanding Statement Report</field>
+            <field name="email_from">demo1bassam0@gmail.com</field>
+            <field name="email_to">demo1@bassaminfotech.com</field>
+            <field name="body_html" type="html">
+
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        Dear sir/Ma'am
+                        <br/>
+                        I hope this email finds you well. I am writing to provide you with the outstanding statement report for your account with <t t-out="object.company_id.name"/>.
+                        <br/>
+                        This report contains the details of your outstanding payments as of <t t-out="object.date_end"/>.
+                        <br/>
+                        <br/>
+                        Please find attached the Customer Outstanding Statement Report
+                        <br/>
+                        <br/>
+                        Thank you,
+                    </p>
+                </div>
+
+            </field>
+            <!-- <field name="report_template" ref="action_print_outstanding_statement_report"/> -->
+            <field name="report_name">Statement</field>
+        </record>
+    </data>
+</odoo>

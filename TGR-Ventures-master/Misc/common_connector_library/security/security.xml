@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="0">
+    <data>
+        <!-- Sale Auto Rules -->
+        <!-- <record model="ir.rule" id="sale_auto_comp_rule">
+            <field name="name">Sale Auto Work Flow multi-company</field>
+            <field name="model_id" ref="model_sale_workflow_process_ept"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">[('company_id', '=', company_id)]</field>
+        </record> -->
+
+        <!-- Multi - Company Log Book Data Queue Rules -->
+        <!-- <record model="ir.rule" id="magento_log_book_queue_comp_rule">
+            <field name="name">Magento Log Book data queue multi-company</field>
+            <field name="model_id" ref="model_common_log_book_ept"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">[('company_id', '=', company_id)]</field>
+        </record> -->
+
+        <!-- Multi - Company Log Lines Data Queue Rules -->
+        <!-- <record model="ir.rule" id="magento_log_lines_queue_comp_rule">
+            <field name="name">Magento Log Lines data queue multi-company</field>
+            <field name="model_id" ref="model_common_log_lines_ept"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">[('company_id', '=', company_id)]</field>
+        </record> -->
+
+    </data>
+</odoo>

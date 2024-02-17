@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="module_upgrade_wizard_view_form" model="ir.ui.view">
+            <field name="name">module.upgrade.wizard.view.form</field>
+            <field name="model">module.upgrade.wizard</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="module_ids" widget="many2many_tags"/>
+                            </group>
+                        </group>
+                        <footer>
+                            <button string="Upgrade" name="upgrade_selected_modules" type="object" class="oe_highlight"/>
+                            <button string="Cancel" class="btn btn-default" special="cancel"/>
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="module_upgrade_wizard_action" model="ir.actions.act_window">
+            <field name="name">Upgrade Multiple Modules</field>
+            <field name="res_model">module.upgrade.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        <menuitem
+            id="module_upgrade_menu"
+            name="Upgrade Multiple Modules"
+            action="module_upgrade_wizard_action"
+            groups="base.group_no_one"
+            parent="base.menu_management"
+            sequence="10"/>
+    </data>
+</odoo>

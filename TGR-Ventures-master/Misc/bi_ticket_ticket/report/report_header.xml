@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="ticket_invoice_memo_report_header">
+            <div class="header">
+                <div class="row" style="padding-left:400px;">
+                    Ticket Sale
+                </div>
+                <div class="row">
+                    <div class="col-2" style="display: flex;justify-content: center;align-items: center;">
+                        <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)"  style="width:130px;height:60px;"/>
+                    </div>
+                    <div class="col-6" style="font-size:10px;padding-left:50px;">
+                        <div >
+                            <t if="o.company_id.name">
+                                <t t-esc="o.company_id.name"/><br/>
+                            </t>
+                            <t if="o.company_id.street">
+                                <t t-esc="o.company_id.street"></t><br/>
+                            </t>
+                            <t if="o.company_id.street2">
+                                <t t-esc="o.company_id.street2"></t><br/>
+                            </t>
+                            <t if="o.company_id.state_id.name">
+                                <t t-esc="o.company_id.state_id.name"></t><br/>
+                            </t>
+                            Phone:
+                            <t if="o.company_id.name">
+                                <t t-esc="o.company_id.phone"></t>
+                            </t><br/>
+                            VAT Number:
+                            <t if="o.company_id.vat">
+                                <t t-esc="o.company_id.vat"></t><br/>
+                            </t>
+                        </div>
+                    </div>
+                    <div class="col-4" style="padding-left:60px;">
+                        <div class="row" style="font-size:9px;">
+                            Account Holder:
+                            <!-- <t if="o.partner_bank_id.partner_id">
+                                <t t-esc="o.partner_bank_id.partner_id.name"></t>
+                            </t> -->
+                            Tigre Uno Distribucion S.L
+                        </div>
+                        <div class="row" style="font-size:9px;padding-bottom:1px;">
+                            Bank Name:
+                            <!-- <t if="o.partner_bank_id.bank_id">
+                                <t t-esc="o.partner_bank_id.bank_id.name"></t>
+                            </t> -->
+                            Caja Rural de Extremadura
+                        </div>
+                        <div class="row" style="font-size:9px;padding-bottom:1px;">
+                            Bank Address:
+                            <!-- <t if="o.partner_bank_id.bank_id.street">
+                                <t t-esc="o.partner_bank_id.bank_id.street">,</t>
+                            </t>
+                            <t if="o.partner_bank_id.bank_id.city">
+                                <t t-esc="o.partner_bank_id.bank_id.city">,</t>
+                            </t>
+                            <t if="o.partner_bank_id.bank_id.state">
+                                <t t-esc="o.partner_bank_id.bank_id.state.name">,</t>
+                            </t>
+                            <t if="o.partner_bank_id.bank_id.zip">
+                                <t t-esc="o.partner_bank_id.bank_id.zip"></t>
+                            </t>
+                            <br/>
+                            <t if="o.partner_bank_id.country">
+                                <t t-esc="o.partner_bank_id.bank_id.country.name"></t>
+                            </t> -->
+                            Avda Santa Marina, 15 – 06005
+                             BADAJOZ
+                        </div>
+                        <div class="row" style="font-size:9px;padding-bottom:1px;">
+                            IBAN:
+                            <!-- <t if="o.partner_bank_id.iban_number">
+                                <t t-esc="o.partner_bank_id.iban_number"></t>
+                            </t> -->
+                            ES67 3009 0095 6927 1270 3327
+                        </div>
+                        <div class="row" style="font-size:9px;padding-bottom:1px;">
+                            BIC:
+                            <!-- <t if="o.partner_bank_id.acc_number">
+                                <t t-esc="o.partner_bank_id.acc_number"></t>
+                            </t> -->
+                            BCOEESMM009
+                        </div>
+                        <div class="row" style="font-size:9px;padding-bottom:1px;">
+                            Currency:
+                             <!-- <t if="o.partner_bank_id.currency_id">
+                                <t t-esc="o.partner_bank_id.currency_id.name"></t>
+                            </t> -->
+                            Euro
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="article o_report_layout_standard" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+                <t t-call="web.address_layout" />
+                <t t-raw="0" />
+            </div>
+            <div class="footer">
+                <div class="row" style="padding-right:1px;padding-top:1px;font-size:13px">
+                    <div class="col-11"></div>
+                    <div class="col-1" align="center" style="font-size:13px">
+                        <span class="page" />/<span class="topage" />
+                    </div>
+                </div>
+            </div>
+        </template>
+    </data>
+</odoo>

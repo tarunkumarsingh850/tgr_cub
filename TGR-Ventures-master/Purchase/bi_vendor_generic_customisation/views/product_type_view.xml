@@ -1,0 +1,40 @@
+<odoo>
+  <data>
+    <record id="view_vendor_product_type_form_view" model="ir.ui.view">
+        <field name="name">vendor.product.type.form</field>
+        <field name="model">vendor.product.type</field>
+        <field name="arch" type="xml">
+            <form string="Vendor Product Type">
+                <group name="main_group">
+                    <field name="name" />
+                </group>
+            </form>
+        </field>
+    </record>
+    <record id="view_vendor_product_type_tree" model="ir.ui.view">
+        <field name="name">vendor.product.type.tree</field>
+        <field name="model">vendor.product.type</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_vendor_product_type_tree" model="ir.actions.act_window">
+        <field name="name">Vendor Product type</field>
+        <field name="res_model">vendor.product.type</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Click to Create a Vendor Product Type.</p>
+        </field>
+    </record>
+    <menuitem
+        action="action_vendor_product_type_tree"
+        id="menu_action_vendor_product_type_tree"
+        parent="purchase.menu_purchase_config"
+    />
+
+
+    </data>
+</odoo>

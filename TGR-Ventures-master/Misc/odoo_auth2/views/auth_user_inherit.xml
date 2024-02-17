@@ -1,0 +1,12 @@
+<odoo>
+	  <record id="restapi_users_form_view" model="ir.ui.view">
+            <field name="name">res.users.form</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+               	<xpath expr="//button[@name='action_show_groups']" position="after">
+                  	<button string="Auth2" type="action" context="{'user_id': active_id}" class="oe_stat_button" icon="fa-arrow-circle-right" name="%(action_auth_auth)d"/>
+                </xpath>
+            </field>
+        </record>
+</odoo>

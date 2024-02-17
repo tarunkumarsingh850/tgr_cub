@@ -1,0 +1,26 @@
+<odoo>
+  <data>
+
+    <record id="inherit_stock_picking_parcel_details" model="ir.ui.view">
+      <field name="name">stock.picking.view.form.inherit.parcel</field>
+      <field name="model">stock.picking</field>
+      <field name="inherit_id" ref="stock.view_picking_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//form/sheet/notebook/page[@name='extra']/group" position="after">
+          <group string="Parcel Information" name="parcel_infos">
+            <group>
+              <group>
+                <field name="parcel_length" />
+                <field name="parcel_width" />
+                <field name="parcel_height"/>
+                <field name="parcel_weight"/>
+                <field name="no_of_packages"/>
+              </group>
+            </group>
+          </group>
+        </xpath>
+      </field>
+    </record>
+
+  </data>
+</odoo>

@@ -1,0 +1,45 @@
+<odoo>
+  <data>
+    <record id="stock_picking_batch_form" model="ir.ui.view">
+      <field name="name">stock.picking.batch.form</field>
+      <field name="model">stock.picking.batch</field>
+      <field name="inherit_id" ref="stock_picking_batch.stock_picking_batch_form"/>
+      <field name="arch" type="xml">
+          <xpath expr="//field[@name='scheduled_date']" position="after">
+            <field name="website_ids" widget="many2many_tags"/>
+          </xpath>
+          <xpath expr="//header/button[@name='action_confirm']" position="after">
+              <button name="action_lock" string="Lock" type="object" class="oe_highlight" attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+              <button name="action_unlock" string="UnLock" type="object" class="btn-secondary" attrs="{'invisible': [('state', '!=', 'lock')]}"/>
+          </xpath>
+      </field>
+    </record>
+
+    <record id="inherit_stock_picking_batch_tree" model="ir.ui.view">
+      <field name="name">inherit.stock.picking.batch.tree</field>
+      <field name="model">stock.picking.batch</field>
+      <field name="inherit_id" ref="stock_picking_batch.stock_picking_batch_tree"/>
+      <field name="arch" type="xml">
+          <xpath expr="//tree/field[@name='scheduled_date']" position="after">
+            <field name="website_ids" widget="many2many_tags"/>
+          </xpath>
+          <xpath expr="//tree/field[@name='name']" position="after">
+            <field name="operation_count"/>
+          </xpath>
+      </field>
+    </record>
+
+
+    <record id="picking_batch_search" model="ir.ui.view">
+        <field name="name">stock.picking.batch.view</field>
+        <field name="model">stock.picking.batch</field>
+        <field name="inherit_id" ref="stock_picking_batch.stock_picking_batch_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+               <field name="website_ids" string="Website"/>
+            </xpath>
+        </field>
+    </record>
+  </data>
+
+</odoo>

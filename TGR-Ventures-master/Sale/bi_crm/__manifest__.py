@@ -1,0 +1,26 @@
+{
+    "name": "CRM Customization",
+    "summary": """
+        CRM Customization""",
+    "author": "Bassam Infotech LLP",
+    "website": "https://bassaminfotech.com",
+    "support": "sales@bassaminfotech.com",
+    "license": "OPL-1",
+    "category": "Uncategorized",
+    "version": "15.0.0.1",
+    "depends": ["base", "crm", "partner_manual_rank", "odoo_magento2_ept"],
+    "data": [
+        "security/ir.model.access.csv",
+        "views/crm_lead.xml",
+        "views/res_config_settings.xml",
+        "views/res_partner.xml",
+        "views/personal_mail_template.xml",
+        "views/no_region_template.xml",
+        "views/vat_information_template.xml",
+        "views/account_success_template.xml",
+        "views/application_create.xml",
+        "views/account_decline_template.xml",
+        "views/invalid_businessid_template.xml",
+        "views/customer_group.xml",
+    ],
+}

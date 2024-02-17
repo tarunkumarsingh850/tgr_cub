@@ -1,0 +1,27 @@
+<odoo>
+  <data>
+
+      <record id="res_config_settings_view_form_sale_inherit_fraud_value" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.sale</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="25"/>
+        <field name="inherit_id" ref="sale.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+          <div data-key="sale_management" position="inside">
+            <h2 class="mt32">Fraud Score</h2>
+            <div class="row mt16 o_settings_container" id="fraud_score_setting_container">
+                <div class="col-12 col-lg-6 o_setting_box" id="fraud_score">
+                    <div class="o_setting_left_pane"/>
+                    <div class="o_setting_right_pane">
+                        <label for="fraud_score"/>
+                        <field name="fraud_score"/>
+                    </div>
+                </div>
+            </div>
+          </div>
+
+        </field>
+      </record>
+
+  </data>
+</odoo>

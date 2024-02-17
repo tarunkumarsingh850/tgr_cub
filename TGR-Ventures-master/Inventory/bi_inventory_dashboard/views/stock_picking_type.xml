@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="inherit_stock_production_type_kanban" model="ir.ui.view">
+        <field name="name">stock.picking.type.kanban</field>
+        <field name="model">stock.picking.type</field>
+        <field name="inherit_id" ref="stock.stock_picking_type_kanban"/>
+        <field name="arch" type="xml">
+            <field name="code" position="after">
+                <field name="count_paid_orders"/>
+                <field name="count_unpaid_orders"/>
+                <field name="count_credit_customer"/>
+            </field>
+            <xpath expr="//div[@name='picking_type_backorder_count']" position="after">
+                <div  class="row">
+                    <div t-if="record.count_paid_orders.raw_value > 0" class="col-12">
+                        <a class="oe_kanban_stock_picking_type_list" name="get_action_picking_paid_orders_tree" type="object">
+                            <field name="count_paid_orders"/>
+                            Paid Orders
+                        </a>
+                    </div>
+                    <div t-if="record.count_unpaid_orders.raw_value > 0" class="col-12">
+                        <a class="oe_kanban_stock_picking_type_list" name="get_action_picking_unpaid_orders_tree" type="object">
+                            <field name="count_unpaid_orders"/>
+                            Unpaid Orders
+                        </a>
+                    </div>
+                    <div t-if="record.count_credit_customer.raw_value > 0" class="col-12">
+                        <a class="oe_kanban_stock_picking_type_list" name="get_action_picking_credit_customers_orders_tree" type="object">
+                            <field name="count_credit_customer"/>
+                            Credit Customer Orders
+                        </a>
+                    </div>
+                    <div t-if="record.count_is_hold.raw_value > 0" class="col-12">
+                        <a class="oe_kanban_stock_picking_type_list" name="get_action_picking_hold_orders_tree" type="object">
+                            <field name="count_is_hold"/>
+                            Hold Orders
+                        </a>
+                    </div>
+                    <div t-if="record.count_high_alert_customer.raw_value > 0" class="col-12">
+                        <a class="oe_kanban_stock_picking_type_list" name="get_action_picking_high_alert_customer" type="object">
+                            <field name="count_high_alert_customer"/>
+                            High Alert Orders
+                        </a>
+                    </div>
+                    <div t-if="record.count_usa_charge_back.raw_value > 0" class="col-12">
+                        <a class="oe_kanban_stock_picking_type_list" name="get_action_picking_usa_charge_back" type="object">
+                            <field name="count_usa_charge_back"/>
+                            USA Charge Back
+                        </a>
+                    </div>
+                </div>
+            </xpath>
+
+            <xpath expr="//a[@name='get_action_picking_tree_waiting']" position="replace">
+                <a name="get_action_picking_tree_waiting" type="object">
+                    <field name="count_picking_waiting"/>
+                    Backorders
+                </a>
+            </xpath>
+
+            <xpath expr="//a[@name='get_action_picking_tree_late']" position="replace">
+
+            </xpath>
+
+            <xpath expr="//div[@name='picking_type_backorder_count']" position="replace">
+            </xpath>
+        </field>
+    </record>
+</odoo>

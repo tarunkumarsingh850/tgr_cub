@@ -1,0 +1,134 @@
+<odoo>
+    <data>
+      <record id="magento_product_configurable_view_form" model="ir.ui.view">
+        <field name="name">magento.product.configurable.view.form</field>
+        <field name="model">magento.product.configurable</field>
+        <field name="arch" type="xml">
+          <form string="Magento Product Configurable">
+            <header>
+              <field name="product_count" invisible="1" string="Products" />
+               <button name="action_create_product" type="object" string="Create Simple Product" class="oe_highlight"
+                attrs="{'invisible':[('product_count', '&gt;', '1')]}"/>
+            </header>
+            <sheet>
+              <div class="oe_button_box" name="button_box">
+                  <button type="object"
+                    name="action_view_simple_products"
+                    class="oe_stat_button"
+                    icon="fa-book"
+                    attrs="{'invisible':[('product_count', '&lt;', '1')]}">
+                    <field name="product_count" widget="statinfo" string="Products" />
+                  </button>
+              </div>
+              <group>
+                    <group>
+                        <field name="magento_product_id" readonly="1"/>
+                        <field name="magento_product_name"/>
+                        <field name="description"/>
+                        <field name="product_visibility"/>
+                        <field name="pack_size_ids" widget="many2many_tags" required="1"/>
+                    </group>
+                    <group>
+                        <field name="magento_product_type" invisible="1"/>
+                        <field name="magento_sku" required="1"/>
+                        <field name="product_type" invisible="1"/>
+                        <field name="categ_id"/>
+                        <field name="brand_id"/>
+                        <field name="flower_type_id"/>
+                        <field name="product_sex_id"/>
+                    </group>
+              </group>
+              <group>
+                <group>
+                    <field name="uk_tiger_one_boolean" widget="boolean_toggle"/>
+                    <field name="eu_tiger_one_boolean" widget="boolean_toggle"/>
+                    <field name="sa_tiger_one_boolean" widget="boolean_toggle"/>
+                    <field name="usa_tiger_one_boolean" widget="boolean_toggle"/>
+                </group>
+                <group>
+                    <field name="uk_seedsman_boolean" widget="boolean_toggle"/>
+                    <field name="eu_seedsman_boolean" widget="boolean_toggle"/>
+                    <field name="sa_seedsman_boolean" widget="boolean_toggle"/>
+                    <field name="usa_seedsman_boolean" widget="boolean_toggle"/>
+                </group>
+                  <group>
+                    <field name="uk_eztestkits_boolean" widget="boolean_toggle"/>
+                    <field name="eu_eztestkits_boolean" widget="boolean_toggle"/>
+                    <field name="sa_eztestkits_boolean" widget="boolean_toggle"/>
+                    <field name="usa_eztestkits_boolean" widget="boolean_toggle"/>
+                  </group>
+                  <group>
+                    <field name="pytho_n_boolean" widget="boolean_toggle"/>
+                  </group>
+                </group>
+                <notebook>
+                  <page string="Magento Other Attributes">
+                      <field name="magento_attribute_ids">
+                          <tree string="Magento Other Attributes"  editable="bottom">
+                              <field name="magento_attribute_id" invisible="1" options="{'no_create': True, 'no_open': True}"/>
+                              <field name="name" invisible="1"/>
+                              <field name="attribute_id"/>
+                              <field name="attribute_val_id" />
+                          </tree>
+                      </field>
+                  </page>
+                </notebook>
+            </sheet>
+          </form>
+        </field>
+      </record>
+
+      <record id="magento_product_configurable_tree" model="ir.ui.view">
+        <field name="name">magento.product.configurable.view.tree</field>
+        <field name="model">magento.product.configurable</field>
+        <field name="arch" type="xml">
+              <tree>
+                <field name="magento_product_id"/>
+                <field name="magento_product_name"/>
+                <field name="magento_product_type"/>
+                <field name="magento_sku"/>
+                <field name="product_type"/>
+                <field name="uk_tiger_one_boolean" widget="boolean_toggle"/>
+                <field name="eu_tiger_one_boolean" widget="boolean_toggle"/>
+                <field name="sa_tiger_one_boolean" widget="boolean_toggle"/>
+                <field name="usa_tiger_one_boolean" widget="boolean_toggle"/>
+                <field name="uk_seedsman_boolean" widget="boolean_toggle"/>
+                <field name="eu_seedsman_boolean" widget="boolean_toggle"/>
+                <field name="sa_seedsman_boolean" widget="boolean_toggle"/>
+                <field name="usa_seedsman_boolean" widget="boolean_toggle"/>
+                <field name="uk_eztestkits_boolean" widget="boolean_toggle"/>
+                <field name="eu_eztestkits_boolean" widget="boolean_toggle"/>
+                <field name="sa_eztestkits_boolean" widget="boolean_toggle"/>
+                <field name="usa_eztestkits_boolean" widget="boolean_toggle"/>
+                <field name="pytho_n_boolean" widget="boolean_toggle"/>
+              </tree>
+          </field>
+        </record>
+
+      <record id="magento_product_configurable_action" model="ir.actions.act_window">
+        <field name="name">Magento Product Configurable</field>
+        <field name="res_model">magento.product.configurable</field>
+        <field name="view_mode">tree,form</field>
+      </record>
+
+      <menuitem id="menu_product_configurable_master"
+      name="Product Enable/Disable"
+      parent="stock.menu_stock_root"
+      groups="update_product_enable_disable_menu_group"
+      sequence="7"/>
+
+      <menuitem
+            id="magento_configurable_menu"
+            name="Magento Configurable Product"
+            parent="stock.menu_stock_root"
+            sequence="7"/>
+
+      <menuitem
+        id="magento_product_configurable_menu"
+        name="Magento Configurable Product"
+        action="magento_product_configurable_action"
+        parent="bi_export_product_enable_website.magento_configurable_menu"
+        sequence="100"/>
+
+    </data>
+  </odoo>

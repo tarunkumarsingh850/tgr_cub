@@ -1,0 +1,34 @@
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="stock_move1_view_inherit_form">
+        <field name="name">stock.move1.view.inherit.form</field>
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="stock.view_move_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="///field[@name='product_id']" position="after">
+              <field name="brand_id"/>
+              <field name="stock_onhand_quantity"/>
+              <field name="origin" />
+          </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_move_search_filter_form">
+      <field name="name">stock.moves1.view.inherit.filter.form</field>
+      <field name="model">stock.move</field>
+      <field name="inherit_id" ref="stock.view_move_search"/>
+      <field name="arch" type="xml">
+          <xpath expr="///field[@name='product_id']" position="after">
+            <field name="brand_id"/>
+            <field name='origin'/>
+        </xpath>
+        <xpath expr="//search/group" position="inside">
+          <filter string="Brand" name="by_brand" domain="[]"  context="{'group_by': 'brand_id'}"/>
+          <filter string="Source Document" name="by_origin" domain="[]"  context="{'group_by': 'origin'}"/>
+        </xpath>
+      </field>
+  </record>
+
+
+  </data>
+</odoo>

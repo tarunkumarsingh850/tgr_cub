@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="inherit_sale_order_form_view" model="ir.ui.view">
+        <field name="name">sale.order.view.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <field name="validity_date" position="after">
+                <field name="priority_group_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="inherit_sale_order_tree_view" model="ir.ui.view">
+        <field name="name">sale.order.view.tree.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree"/>
+        <field name="arch" type="xml">
+            <field name="company_id" position="before">
+                <field name="priority_group_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="inherit_sale_order_view_order_tree" model="ir.ui.view">
+        <field name="name">sale.order.tree.view.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree"/>
+        <field name="arch" type="xml">
+            <field name="company_id" position="before">
+                <field name="priority_group_id"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

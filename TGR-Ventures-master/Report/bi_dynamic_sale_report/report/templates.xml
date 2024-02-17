@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="dynamic_report_sale_wise">
+        <div class="container o_mrp_bom_report_page">
+            <t t-if="data.get('lines')">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="mt16">
+                            <p style="padding-left:150px;padding-bottom:20px;margin:auto;width:50%;font-weight:bold;font-size:18px;"><span t-esc="data['date_from']"/>  ____  <span t-esc="data['date_to']"/></p>
+                            <table width="100%" class="o_list_table table table-sm table-hover table-striped o_list_table_ungrouped">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">Type</th>
+                                        <th class="text-center">Ref.Nbr.</th>
+                                        <th class="text-center">Order Date</th>
+                                        <th class="text-center">Status</th>
+                                        <th class="text-center">Currency</th>
+                                        <th class="text-center">Customer ID</th>
+                                        <th class="text-center">Customer Name</th>
+                                        <th class="text-center">Payment Method</th>
+                                        <th class="text-center">Warehouse</th>
+                                        <th class="text-center">Order Qty.</th>
+                                        <th class="text-center">Open Qty.</th>
+                                        <th class="text-center">Line Total</th>
+                                        <th class="text-center">Open Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="data['lines']" t-as="l">
+                                    <tr>
+                                        <td class="text-center"><span><t t-esc="l['type']"/></span></td>
+                                        <td class="text-center"><span><t t-esc="l['ref']"/></span></td>
+                                        <td class="text-center"><span><t t-esc="l['order_date']"/></span></td>
+                                        <td class="text-center"><span><t t-esc="l['status']"/></span></td>
+                                        <td class="text-center"><span><t t-esc="l['currency']"/></span></td>
+                                        <td class="text-center"><span><t t-esc="l['cus_id']"/></span></td>
+                                        <td class="text-center"><span><t t-esc="l['cus_name']"/></span></td>
+                                        <td class="text-center"><span><t t-esc="l['payment_method']"/></span></td>
+                                        <td class="text-center"><span><t t-esc="l['warehouse']"/></span></td>
+                                        <td class="text-center"><span><t t-esc="l['order_qty']"/></span></td>
+                                        <td class="text-center"><span><t t-esc="l['open_qty']"/></span></td>
+                                        <td class="text-center"><span><t t-esc="l['line_total']"/></span></td>
+                                        <td class="text-center"><span><t t-esc="l['open_amount']"/></span></td>
+                                    </tr>
+                                </t>
+                                </tbody>
+                            </table>
+                            <div id="piechart" style="margin:auto;width:50%"></div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+            <t t-else="">
+                <h1 class="text-center">No data available.</h1>
+            </t>
+        </div>
+    </template>
+</odoo>

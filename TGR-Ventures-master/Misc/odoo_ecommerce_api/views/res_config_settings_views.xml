@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--Res config setting view form customizations-->
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.odoo_ecommerce_api</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="5000"/>
+        <field name="inherit_id" ref="base.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+
+            <div data-key="sale_management" position="inside">
+                <h2 class="mt32">Dropshipping API</h2>
+                <div class="row mt16 o_settings_container" id="ecommerce_api_setting_container">
+                    <div class="col-12 col-lg-6 o_setting_box" id="ecommerce_api">
+                        <div class="o_setting_left_pane"/>
+                        <div class="o_setting_right_pane">
+                            <label for="folder_for_so_data"/>
+                            <div class="text-muted">
+                                Folder that contains .xml or .csv file with the sale order data
+                            </div>
+                            <field name="folder_for_so_data" placeholder="/home/data_folder"/>
+                            <div class="content-group">
+                                <div class="mt8">
+                                    <button name="download_sample_xml" icon="fa-download" type="object" string="Sample .xml" class="btn-link"/>
+                                    <button name="download_sample_csv" icon="fa-download" type="object" string="Sample .csv" class="btn-link"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 o_setting_box" id="dropshipping_api_shipping_cost">
+                        <div class="o_setting_left_pane"/>
+                        <div class="o_setting_right_pane">
+                            <label for="dropshipping_shipping_cost" string="Shipping Cost"/>
+                            <div>
+                                <field name="dropshipping_shipping_cost"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 o_setting_box" id="barneys_api_picking_packing_cost">
+                        <div class="o_setting_left_pane"/>
+                        <div class="o_setting_right_pane">
+                            <label for="dropshipping_picking_packing_cost" string="Picking/Packing Cost"/>
+                            <div class="text-muted"/>
+                            <field name="dropshipping_picking_packing_cost"/>
+                            <div class="text-muted"/>
+                            <label for="dropshipping_min_pick_pack_cost_upto_sku_count" string="Minimum Picking/Packing Cost upto SKU Count"/>
+                            <div class="text-muted"/>
+                            <field name="dropshipping_min_pick_pack_cost_upto_sku_count"/>
+                            <div class="text-muted"/>
+                            <label for="dropshipping_additional_picking_packing_cost" string="Additional Picking/Packing Cost"/>
+                            <div class="text-muted"/>
+                            <field name="dropshipping_additional_picking_packing_cost"/>
+                            <div class="text-muted"/>
+                            <label for="dropshipping_payment_surcharge" string="Payment Surcharge"/>
+                            <div class="text-muted"/>
+                            <field name="dropshipping_payment_surcharge"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </field>
+    </record>
+
+</odoo>

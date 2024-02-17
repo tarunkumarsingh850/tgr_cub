@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <data>
+
+        <menuitem
+            id="export_vendor_menu"
+            name="Vendor Export Template"
+            action="bi_vendor_import_export.action_report_vendor_template"
+            parent="purchase.menu_purchase_config"
+            sequence="112"/>
+
+        <menuitem
+            id="vendor_import_menu"
+            name="Vendor Import"
+            action="bi_vendor_import_export.vendor_import_action"
+            parent="purchase.menu_purchase_config"
+            sequence="113"/>
+
+    </data>
+
+</odoo>

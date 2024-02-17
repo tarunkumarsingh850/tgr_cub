@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="stamps_view_stock_picking_package_details" model="ir.ui.view">
+        <field name="name">Stamps.com Label URL</field>
+        <field name="model">stock.picking</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='carrier_id']" position="after">
+                <field name="stamps_label_url" readonly="1" widget="url" string="Stamps Label url"/>
+                <field name="stamps_tx_id" readonly="1" string="Transaction Id"/>
+                <label for="stamps_shipping_rate"/>
+                <field name="stamps_shipping_rate" readonly="1" string="Stamps Shipping Rate"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="stamps_reprint_action_server" model="ir.actions.server">
+        <field name="name">Reprint Stamps Label</field>
+        <field name="model_id" ref="stock.model_stock_picking"/>
+        <field name="binding_model_id" ref="stock.model_stock_picking"/>
+        <field name="state">code</field>
+        <field name="code">records.reprint_stamps_label()</field>
+    </record>
+
+    <record id="stamps_get_rate_action_server" model="ir.actions.server">
+        <field name="name">Get Stamps Rate</field>
+        <field name="model_id" ref="stock.model_stock_picking"/>
+        <field name="binding_model_id" ref="stock.model_stock_picking"/>
+        <field name="state">code</field>
+        <field name="code">records.get_stamps_rate_shipment()</field>
+    </record>
+
+    <record id="view_picking_withcarrier_out_form_inherited_generate" model="ir.ui.view">
+        <field name="name">delivery.stock.picking_withcarrier.form.view.inherited</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="delivery.view_picking_withcarrier_out_form"/>
+        <field name="arch" type="xml">
+          <xpath expr="//div[@name='tracking']/field[@name='carrier_tracking_ref']" position="after">
+            <button type='object' class="fa fa-arrow-right oe_link" name="generate_shipment" string="Generate" attrs="{'invisible':['|',('delivery_type','!=', 'stamps'),('state','not in',('done'))]}"/>
+          </xpath>
+        </field>
+    </record>
+</odoo>

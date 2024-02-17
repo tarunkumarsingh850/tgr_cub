@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_report_priority_group" model="ir.actions.report">
+        <field name="name">Priority Group</field>
+        <field name="model">wizard.sale.priority.group.report</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">custom_sale.report_priority_group</field>
+        <field name="report_file">custom_sale.report_priority_group</field>
+        <field name="binding_model_id" ref="model_wizard_sale_priority_group_report"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

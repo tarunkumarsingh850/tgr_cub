@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="import_and_export_sale_line" model="ir.ui.view">
+    <field name="name">import.and.export.sale.line.form</field>
+    <field name="inherit_id" ref="sale.view_order_form"/>
+    <field name="model">sale.order</field>
+    <field name="arch" type="xml">
+        <xpath expr="//form/sheet/notebook/page/field[@name='order_line']" position="before">
+          <group groups="bi_purchase_create.group_phytonation">
+              <group>
+                  <field name="vendor_line_id" doamin="[('is_supplier', '=', True)]"/>
+              </group>
+              <group>
+              </group>
+              <group>
+                <group>
+                  <field name="excel_file"/>
+                  <button name="load_lines" string="Import" type="object" class="btn-primary" attrs="{'invisible': [('state','=','done')]}"/>
+                </group>
+              </group>
+              <group>
+                <group>
+                  <button string="Download New Template" name="export_template" type="object"/>
+                </group>
+              </group>
+          </group>
+        </xpath>
+    </field>
+  </record>
+
+</odoo>

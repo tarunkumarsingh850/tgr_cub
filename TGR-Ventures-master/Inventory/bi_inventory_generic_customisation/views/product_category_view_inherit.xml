@@ -1,0 +1,20 @@
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="product_category_view_inherit_form">
+        <field name="name">product.category.view.inherit.form</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="product.product_category_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="description"/>
+
+
+            </xpath>
+            <xpath expr="//group[@name='first']" position="inside">
+                <field name="magento_id"  class="oe_inline" />
+                <field name="set_id" />
+            </xpath>
+        </field>
+    </record>
+    </data>
+</odoo>

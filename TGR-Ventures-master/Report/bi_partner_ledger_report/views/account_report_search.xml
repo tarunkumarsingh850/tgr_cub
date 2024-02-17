@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="search_template_salesperson">
+            <button t-if="options.get('salesperson')" type="button" class="o-no-caret btn btn-secondary dropdown-toggle salesperson_filter" data-toggle="dropdown">
+                <span class="fa fa-folder-open"/> Salesperson
+            </button>
+            <ul class="dropdown-menu o_filter_menu" role="menu">
+                <li class="o_account_report_search js_saleperson_m2o"/>
+            </ul>
+        </template>
+
+        <template id="salesperson_search_template" inherit_id="account_reports.search_template">
+            <xpath expr="//div[hasclass('o_account_reports_filter_analytic')]" position="after">
+                <div class="btn-group dropdown o_account_reports_filter_salesperson" t-if="options.get('user_id') != None">
+                    <t t-call="bi_partner_ledger_report.search_template_salesperson"/>
+                </div>
+            </xpath>
+        </template>
+
+    </data>
+</odoo>

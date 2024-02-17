@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_purchase_receipt">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="bi_purchase_receipt.receipt_header">
+                        <div class="page">
+                            <div class="row">
+                                <table width="100%">
+                                    <tr width="100%">
+                                        <td width="51%" style="font-size:15px;padding-left:12px;background-color: #D6EEEE;">
+                                            <span style="font-weight:bold;">FROM:</span>
+                                        </td>
+                                        <td width="5%"></td>
+                                        <td width="44%">
+                                            <span style="font-size:28px;font-weight:bold;padding-right:250px;">Receipt</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="51%" style="font-size:13px;padding-left:12px;word-break:break-word;">
+                                            <t t-if="o.partner_id.name">
+                                                <span t-field ="o.partner_id.name"/>
+                                            </t>
+                                            <t t-if="o.partner_id.street">
+                                                <span t-field="o.partner_id.street"/><br/>
+                                            </t>
+                                            <t t-if="o.partner_id.street2">
+                                                <span t-field="o.partner_id.street2"/><br/>
+                                            </t>
+                                            <t t-if="o.partner_id.city">
+                                                <span t-field="o.partner_id.city"/><br/>
+                                            </t>
+                                            <t t-if="o.partner_id.state_id.name">
+                                                <span t-field="o.partner_id.state_id.name"/>
+                                            </t>
+                                            <t t-if="o.partner_id.zip">
+                                                <span t-field="o.partner_id.zip"/><br/>
+                                            </t>
+                                            <t t-if="o.partner_id.country_id.name">
+                                                <span t-field="o.partner_id.country_id.name"/><br/>
+                                            </t>
+                                            Phone:<t t-if="o.partner_id.phone">
+                                                <span t-field="o.partner_id.phone"/>
+                                            </t>
+                                        </td>
+                                        <td width="5%"></td>
+                                        <td width="44%">
+                                            <table width="100%">
+                                                <tr>
+                                                    <td style="font-size:13px;">
+                                                        <b>Receipt Nbr:</b>
+                                                    </td>
+                                                    <td></td>
+                                                    <td style="font-size:13px;"><t t-if="o.name">
+                                                        <span t-field="o.name"/>
+                                                    </t>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="font-size:13px;">
+                                                        <b>Date: </b>
+                                                    </td>
+                                                    <td></td>
+                                                    <td style="font-size:13px;">
+                                                    <t t-if="o.scheduled_date">
+                                                        <span t-field="o.scheduled_date"/>
+                                                    </t>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="font-size:13px;">
+                                                        <b>Vendor ID:</b>
+                                                    </td>
+                                                    <td></td>
+                                                    <td style="font-size:13px;">
+                                                    <t t-if="o.partner_id.vendor_code">
+                                                        <span t-field="o.partner_id.vendor_code"/>
+                                                    </t>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div><br/><br/><br/>
+                            <table>
+                                <thead>
+                                    <tr width="100%" style="background-color: #D6EEEE;font-weight:bold;">
+                                        <td width="4%">
+                                            No
+                                        </td>
+                                        <td width="15%">
+                                            SKU
+                                        </td>
+                                        <td width="30%">
+                                            ITEM
+                                        </td>
+                                        <td width="10%">
+                                            PO ORDER
+                                        </td>
+                                        <td width="8%">
+                                            UOM
+                                        </td>
+                                        <td width="8%">
+                                            QTY
+                                        </td>
+                                        <td width="10%">
+                                            UNIT COST
+                                        </td>
+                                        <td width="10%">
+                                            EXT.COST
+                                        </td>
+                                        <td width="5%">
+                                            CURRENCY
+                                        </td>
+                                    </tr>
+                                </thead>
+                                <t t-set="sl_no" t-value="1" />
+                                <t t-foreach="o.move_ids_without_package" t-as="l">
+                                <tr>
+                                    <td style="text-align:center;font-size:13px;vertical-align:middle;">
+                                        <t t-esc="sl_no" />
+                                        <t t-set="sl_no" t-value="sl_no+1" />
+                                    </td>
+                                    <td style="text-align:left;font-size:13px;word-break:break-word;">
+                                        <t t-if="l.product_id.default_code">
+                                            <span t-esc="l.product_id.default_code" />
+                                        </t>
+                                    </td>
+                                    <td style="text-align:left;font-size:13px;word-break:break-word;">
+                                        <t t-if="l.product_id.name">
+                                            <span t-esc="l.product_id.name" />
+                                        </t>
+                                    </td>
+                                    <td style="text-align:left;font-size:13px;word-break:break-word;">
+                                        <t t-if="o.purchase_id.name">
+                                            <span t-esc="o.purchase_id.name" />
+                                        </t>
+                                    </td>
+                                    <td style="text-align:left;font-size:13px;word-break:break-word;">
+                                        <t t-if="l.product_uom.name">
+                                            <span t-esc="l.product_uom.name" />
+                                        </t>
+                                    </td>
+                                    <td style="text-align:center;font-size:13px;word-break:break-word;">
+                                        <t t-if="l.product_uom_qty">
+                                            <span t-esc="l.product_uom_qty" />
+                                        </t>
+                                    </td>
+                                    <td style="text-align:center;font-size:13px;word-break:break-word;">
+                                        <t t-if="l.price_unit">
+                                            <span t-esc="'%.2f'%l.price_unit" />
+                                        </t>
+                                    </td>
+                                    <td style="text-align:center;font-size:13px;word-break:break-word;">
+                                        <t t-if="l.purchase_line_id.price_subtotal">
+                                            <span t-esc="'%.2f'% l.purchase_line_id.price_subtotal" />
+                                        </t>
+                                    </td>
+                                    <td style="text-align:left;font-size:13px;word-break:break-word;">
+                                        <t t-if="l.purchase_line_id.currency_id.name">
+                                            <span t-esc="l.purchase_line_id.currency_id.name" />
+                                        </t>
+                                    </td>
+                                </tr>
+                                </t>
+                            </table>
+                            <br/><br/>
+                            <div class="row">
+                                <div class="col-8">
+                                </div>
+                                <div class="col-4">
+                                    <table>
+                                        <tr width="100%" style="text-align:right;font-size:13px;">
+                                            <td width="30%" style="font-weight:bold;">Total Qty</td>
+                                            <td width="20%"></td>
+                                            <td width="50%">
+                                                <t t-foreach="vals" t-as="v">
+                                                    <t t-if="v['total_qty']">
+                                                        <span  t-esc="'%.2f'% v['total_qty']"/>
+                                                    </t>
+                                                </t>
+                                            </td>
+                                        </tr>
+                                        <tr width="100%" style="text-align:right;font-size:13px;">
+                                            <td style="font-weight:bold;" width="30%">Receipt Total </td>
+                                            <td width="20%"></td>
+                                            <td width="50%">
+                                                <t t-foreach="vals" t-as="v">
+                                                    <t t-if="v['receipt_total']">
+                                                        <span  t-esc="'%.2f'% v['receipt_total']"/>
+                                                    </t>
+                                                </t>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

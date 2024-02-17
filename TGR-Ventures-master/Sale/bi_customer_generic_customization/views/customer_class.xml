@@ -1,0 +1,80 @@
+<odoo>
+  <data>
+    <record id="view_customer_class_form_view" model="ir.ui.view">
+        <field name="name">customer.class.form</field>
+        <field name="model">customer.class</field>
+        <field name="arch" type="xml">
+            <form string="Customer Class">
+                <sheet>
+                    <group name="main_group">
+                        <field name="name" />
+                        <field name="shortcode" />
+                        <field name="description"/>
+                        <field name="country_id" />
+                        <field name="payment_term_id"/>
+                        <field name="journal_id" />
+                        <field name="is_dropshipping"/>
+                        <field name="is_wholesales"/>
+                        <field name="is_salesman"/>
+                        <field name="is_eztest"/>
+                        <field name="is_shopify"/>
+                        <field name="website_ids" widget="many2many_tags"/>
+                        <field name="receivable_account_code_prefix"
+                            attrs="{'invisible':[('is_wholesales', '=', False)], 'required':[('is_wholesales', '=', True)]}"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_customer_class_tree" model="ir.ui.view">
+        <field name="name">customer.class.tree</field>
+        <field name="model">customer.class</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="shortcode" />
+                <field name="description"/>
+                <field name="country_id" />
+                <field name="payment_term_id"/>
+                <field name="journal_id" />
+                <field name="is_dropshipping"/>
+                <field name="is_wholesales" optional="hide"/>
+                <field name="is_salesman" optional="hide"/>
+                <field name="is_eztest" optional="hide"/>
+                <field name="is_shopify" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_customer_class_search" model="ir.ui.view">
+        <field name="name">customer.class.search</field>
+        <field name="model">customer.class</field>
+        <field name="arch" type="xml">
+            <search string="Search Customer Class">
+                <field name="name" string="Customer Class Name"/>
+                <field name="description" string="Description"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_customer_class_tree" model="ir.actions.act_window">
+        <field name="name">Customer Class</field>
+        <field name="res_model">customer.class</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Click to Create a Customer Class.</p>
+        </field>
+    </record>
+
+
+    <menuitem
+        action="action_customer_class_tree"
+        id="menu_action_customer_class_tree"
+        parent="sale.menu_sale_config"
+        name="Customer Class"
+    />
+
+
+    </data>
+</odoo>

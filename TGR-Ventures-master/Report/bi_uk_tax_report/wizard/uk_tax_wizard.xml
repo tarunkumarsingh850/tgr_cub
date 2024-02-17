@@ -1,0 +1,37 @@
+<odoo>
+
+    <record id="view_uk_tax_wizard" model="ir.ui.view">
+    <field name="name">UK TAX</field>
+    <field name="model">uk.tax.wizard</field>
+    <field name="arch" type="xml">
+        <form>
+            <sheet>
+                <group>
+                    <group>
+                        <field name="date_from"/>
+                        <field name="tax_type"/>
+                    </group>
+                    <group>
+                        <field name="date_to"/>
+                    </group>
+                </group>
+            </sheet>
+            <footer>
+                <button string="Generate" name="generate_xlsx_report" type="object" class="btn-primary"/>
+                <button string="Cancel" class="btn-default" special="cancel"/>
+            </footer>
+        </form>
+    </field>
+</record>
+
+<record id="action_uk_tax_wizard" model="ir.actions.act_window">
+    <field name="name">UK TAX</field>
+    <field name="res_model">uk.tax.wizard</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="view_mode">form</field>
+    <field name="target">new</field>
+</record>
+
+<menuitem name="UK TAX Report" id="menu_uk_tax_report" action="action_uk_tax_wizard" parent="account.account_reports_management_menu"/>
+
+</odoo>

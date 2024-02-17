@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_line_export_template" model="ir.actions.report">
+        <field name="name">Sale Import Template</field>
+        <field name="model">sale.order</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">bi_sale_line_import.line_export_template_xlsx</field>
+        <field name="report_file">bi_sale_line_import.line_export_template_xlsx</field>
+        <field name="print_report_name">"Sale Line Import Template"</field>
+    </record>
+</odoo>

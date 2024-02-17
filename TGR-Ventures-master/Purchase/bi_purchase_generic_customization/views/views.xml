@@ -1,0 +1,118 @@
+<odoo>
+  <data>
+
+      <record id="view_purchase_order_inherit_form" model="ir.ui.view">
+        <field name="name">view.purchase.order.inherit.form</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_create_invoice']" position="before">
+                <button string="Purchase Receipt" name="button_create_picking" type="object" class="oe_highlight" attrs="{'invisible':['|',('is_balance_picking','=',False),('state','not in',('purchase','cancel'))]}"/>
+                <button string="Delete Lines" name="unlink_lines" type="object" attrs="{'invisible':[('state','in',('purchase','cancel'))]}"/>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+              <attribute name="domain">[('is_supplier','=',True)]</attribute>
+            </xpath>
+            <xpath expr="//div[@name='reminder']" position="after">
+              <field name="lead_days" string="ETA" invisible="1"/>
+              <field name="eta_date"/>
+              <field name="trigger_boolean" invisible="1"/>
+              <field name="is_created_picking" invisible="1"/>
+              <field name="is_balance_picking" invisible="1"/>
+            </xpath>
+
+            <xpath expr="//field[@name='currency_id']" position="after">
+              <field name="acumatica_po_status"/>
+              <field name="arrival_status"/>
+              <field name="arrival_date"/>
+            </xpath>
+            <xpath expr="//field[@name='invoice_status']" position="after">
+              <field name="billing_status" attrs="{'invisible': [('state', 'in', ('draft', 'sent', 'to approve', 'cancel'))]}"/>
+            </xpath>
+            <xpath expr="//field[@name='invoice_status']" position="replace">
+              <field name="invoice_status" attrs="{'invisible': [('state', 'in', ('draft', 'sent', 'to approve', 'cancel'))]}" invisible="1"/>
+            </xpath>
+            <xpath expr="//label[@for='date_planned']" position="attributes">
+              <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//div[@name='date_planned_div']" position="attributes">
+              <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='effective_date']" position="after">
+              <field name="mark_as_fully_billed" attrs="{'invisible': [('state', 'in', ('draft', 'sent', 'to approve', 'cancel'))]}" groups="bi_purchase_generic_customization.group_access_mark_as_fully_billed"/>
+            </xpath>
+           <xpath expr="//form/sheet/notebook/page/field/tree/field[@name='name']" position="after">
+            <field name="product_sku"/>
+           </xpath>
+            <xpath expr="//form/sheet/notebook/page/field/tree/field[@name='price_unit']" position="after">
+                <field name="last_purchase_cost"/>
+                <field name="is_not_update_cost"/>
+            </xpath>
+        </field>
+      </record>
+
+      <record id="view_purchase_order_inherit_tree" model="ir.ui.view">
+        <field name="name">view.purchase.order.inherit.tree</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_view_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='invoice_status']" position="after">
+              <field name="billing_status" widget="badge" decoration-success="billing_status == 'invoiced'" decoration-info="billing_status == 'to invoice'" optional="show"/>
+              <field name="trigger_boolean" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='invoice_status']" position="replace">
+              <field name="invoice_status" widget="badge" decoration-success="billing_status == 'invoiced'" decoration-info="billing_status == 'to invoice'" optional="show" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='date_planned']" position="after">
+              <field name="lead_days" string="ETA" invisible="1"/>
+              <field name="eta_date" />
+              <field name="effective_date"/>
+              <field name="arrival_status"/>
+              <field name="arrival_date"/>
+              <field name="is_eta_color" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='date_planned']" position="attributes">
+              <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//tree" position="attributes">
+                <attribute name="decoration-danger">(is_eta_color == True)</attribute>
+            </xpath>
+        </field>
+      </record>
+
+      <record id="purchase_order_filter_inherit" model="ir.ui.view">
+        <field name="name">inherit.purchase.order.filter</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_view_search"/>
+        <field name="arch" type="xml">
+          <xpath expr="//search/filter[@name='not_invoiced']" position="replace">
+             <filter name="waiting_bills" string="Waiting Bills" domain="[('billing_status','=','to invoice')]" help="Purchase orders that include lines not invoiced."/>
+          </xpath>
+          <xpath expr="//search/filter[@name='invoiced']" position="replace">
+             <filter name="fully_billed" string="Fully Billed" domain="[('billing_status','=','invoiced')]" help="Purchase orders that include lines not invoiced."/>
+          </xpath>
+          <xpath expr="//search" position="inside">
+              <filter string="Billing  Status" name="groupby_billing_status" domain="[]" context="{'group_by': 'billing_status'}"/>
+          </xpath>
+        </field>
+      </record>
+
+      <record id="purchase_rfq_tree_inherit" model="ir.ui.view">
+        <field name="name">inherit.purchase.rfq.tree</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_kpis_tree"/>
+        <field name="arch" type="xml">
+          <xpath expr="//field[@name='partner_id']" position="after">
+            <field name="is_eta_color" invisible="1"/>
+          </xpath>
+          <xpath expr="//field[@name='invoice_status']" position="replace">
+              <field name="billing_status"/>
+          </xpath>
+          <xpath expr="//tree" position="attributes">
+                <attribute name="decoration-danger">(is_eta_color == True)</attribute>
+            </xpath>
+        </field>
+      </record>
+
+  </data>
+</odoo>

@@ -1,0 +1,13 @@
+<odoo>
+    <record id="view_stock_report_pivot_extended" model="ir.ui.view">
+        <field name="name">view.stock.report.pivot.extended</field>
+        <field name="model">stock.report</field>
+        <field name="inherit_id" ref="stock_enterprise.stock_report_pivot_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='categ_id']" position="after">
+                <field name="brand_id" type="row"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

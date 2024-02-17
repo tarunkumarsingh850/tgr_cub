@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="kit_assembly_import_view_form" model="ir.ui.view">
+        <field name="name">kit.assembly.import.view.form</field>
+        <field name="model">kit.assembly.import</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="type" widget="radio"/>
+                            <field name="file"/>
+                        </group>
+                    </group>
+                </sheet>
+                <footer>
+                    <button string="Import" name="import_kit_data" type="object" class="oe_highlight"/>
+                    <button string="Download Template" name="export_template" type="object"/>
+                    <button string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="kit_assembly_import_action" model="ir.actions.act_window">
+        <field name="name">Kit Assembly/Dissembly Import</field>
+        <field name="res_model">kit.assembly.import</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem
+        id="kit_assembly_import_menu"
+        name="Kit Assembly/Dissembly Import"
+        action="kit_assembly_import_action"
+        parent="bi_barcode.menu_update_sales_price"
+        sequence="10"/>
+
+</odoo>

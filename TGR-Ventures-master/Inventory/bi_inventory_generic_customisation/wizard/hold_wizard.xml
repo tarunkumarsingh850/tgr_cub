@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data noupdate="0">
+        <record id="view_hold_picking" model="ir.ui.view">
+            <field name="name">Hold</field>
+            <field name="model">picking.hold</field>
+            <field name="arch" type="xml">
+             <form string="Hold">
+                <group>
+                    <field name="hold_reason_id"/>
+                    <field name="picking_ids" invisible="1"/>
+                </group>
+                <footer>
+                    <button string="Confirm" name="confirm" type="object" class="oe_highlight"/>
+                    <button string="Cancel" class="btn btn-default" special="cancel"/>
+                </footer>
+            </form>
+            </field>
+        </record>
+
+        <record id="action_hold_picking" model="ir.actions.act_window">
+            <field name="name">Hold Picking</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">picking.hold</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_hold_picking"/>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>

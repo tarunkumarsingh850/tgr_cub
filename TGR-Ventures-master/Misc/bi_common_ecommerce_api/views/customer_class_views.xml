@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="customer_class_inherit_view_form" model="ir.ui.view">
+        <field name="name">customer.class.inherit.view.form</field>
+        <field name="model">customer.class</field>
+        <field name="inherit_id" ref="bi_customer_generic_customization.view_customer_class_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='is_dropshipping']" position="after">
+                <field name="is_dutch_customer" />
+            </xpath>
+        </field>
+    </record>
+
+
+
+</odoo>

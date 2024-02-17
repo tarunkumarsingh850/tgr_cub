@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+
+        <record id="sale_price_update_wizard_view_form" model="ir.ui.view">
+            <field name="name">sale.price.update.wizard.view.form</field>
+            <field name="model">sale.price.update.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Sale Price Update">
+                    <sheet>
+                        <group>
+                            <field name="filename" invisible="1"/>
+                            <field name="csv_file" filename="filename"/>
+                        </group>
+                        <group>
+                            <button string="Download Template" name="generate_template" type="object"/>
+                        </group>
+                        <footer>
+                            <button string="Upload File" name="generate_update" type="object" class="oe_highlight"/>
+                            <button string="Cancel" special="cancel"/>
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="sale_price_update_wizard_action" model="ir.actions.act_window">
+            <field name="name">Update Product Other Details</field>
+            <field name="res_model">sale.price.update.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="menu_update_sales_price"
+            name="Update Products"
+            parent="stock.menu_stock_root"
+            groups="sale_price_update_manager"
+            sequence="4"/>
+
+        <menuitem
+            id="sale_price_update_wizard_menu"
+            name="Update Product Other Details"
+            action="sale_price_update_wizard_action"
+            groups="sale_price_update_manager"
+            parent="menu_update_sales_price"
+            sequence="10"/>
+
+
+    </data>
+
+
+</odoo>

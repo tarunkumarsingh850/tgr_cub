@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="stock_picking_view_form_inherit_is_drop_shipping" model="ir.ui.view">
+      <field name="name">stock.picking.view.form</field>
+      <field name="model">stock.picking</field>
+      <field name="inherit_id" ref="stock.vpicktree"/>
+      <field name="arch" type="xml">
+         <xpath expr="//field[@name='partner_id']" position="after">
+              <field name="is_drop_shipping" invisible="1"/>
+          </xpath>
+      </field>
+    </record>
+    <record id="inherit_view_stock_picking_filter_is_drop_shipping" model="ir.ui.view">
+        <field name="name">stock.picking.search</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_internal_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='draft']" position="before">
+                <separator/>
+                <filter string="Fast Buds" name="fast_bauds" domain="[('partner_id.parent_id', '=', 29318)]"/>
+                <separator/>
+                <filter string="Drop Shipping" name="is_drop_shipping" domain="[('is_drop_shipping', '=', True)]"/>
+                <separator/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

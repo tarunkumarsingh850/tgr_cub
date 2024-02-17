@@ -1,0 +1,24 @@
+<odoo>
+    <record id="breeder_report_wizard_views" model="ir.ui.view">
+        <field name="name">breeder.report.wizard.views</field>
+        <field name="model">breeder.report.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="brand_id" widget='many2many_tags'/>
+                        </group>
+                        <group>
+                            <field name='warehouse_id'/> 
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="action_print_breeder_report" type="object" string="Print Report" class="btn-primary" data-hotkey="q"/>
+                        <button special="cancel" data-hotkey="z" string="Cancel" class="btn-secondary"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

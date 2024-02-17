@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="product_tag_view_tree" model="ir.ui.view">
+        <field name="name">product.tag.view.tree</field>
+        <field name="model">product.tag</field>
+        <field name="arch" type="xml">
+            <tree editable="top">
+                <field name="name" required="1"/>
+                <field name="is_usa"/>
+                <field name="is_eu_uk"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="product_tag_action" model="ir.actions.act_window">
+        <field name="name">Product Tags</field>
+        <field name="res_model">product.tag</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <menuitem
+        id="product_tag_menu"
+        name="Product Tags"
+        action="product_tag_action"
+        parent="stock.menu_stock_config_settings"
+    />
+
+</odoo>

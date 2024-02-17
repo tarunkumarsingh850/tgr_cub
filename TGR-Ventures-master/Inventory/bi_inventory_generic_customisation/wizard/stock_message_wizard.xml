@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="shock_message_wizard_form" model="ir.ui.view">
+        <field name="name">shock.message.wizard</field>
+        <field name="model">shock.message.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Message">
+            <div>
+                <h3>
+                    <field name="name" />
+                </h3>
+            </div>
+                <footer>
+                    <button string="Continue" name="validation_continue" type="object" class="oe_highlight"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

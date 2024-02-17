@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+        <record id="import_material_view_form" model="ir.ui.view">
+          <field name="name">bill.material.wizard.view.form</field>
+          <field name="model">bill.material.wizard</field>
+          <field name="arch" type="xml">
+              <form string="Bill Material Import">
+                  <group>
+                      <field name="excel_file"/>
+                  </group>
+                  <group>
+                    <button string="Download Template" name="export_template_kit" type="object"/>
+                  </group>
+                  <footer>
+                      <button name="import_xls" string="Import Excel" type="object" class="btn-primary" />
+                      <button string="Cancel" class="btn-default" special="cancel"/>
+                  </footer>
+              </form>
+          </field>
+        </record>
+
+        <record id="import_material_wizrd_action" model="ir.actions.act_window">
+          <field name="name">Bill Material Import</field>
+          <field name="res_model">bill.material.wizard</field>
+          <field name="view_mode">form</field>
+          <field name="target">new</field>
+        </record>
+
+
+      <record id="import_kit_specification" model="ir.ui.view">
+        <field name="name">import.kit.form</field>
+        <field name="inherit_id" ref="bi_kit_assembly.bill_material_view_tree"/>
+        <field name="model">bill.material</field>
+        <field name="arch" type="xml">
+          <xpath expr="//tree" position="attributes">
+            <attribute name="js_class">button_in_tree_kit</attribute>
+          </xpath>
+        </field>
+      </record>
+
+</odoo>

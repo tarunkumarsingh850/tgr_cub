@@ -1,0 +1,12 @@
+<odoo>
+    <data>
+        <report
+            id="action_view_invoice_memo_excel1"
+            model="account.move"
+            string="Invoice Invoice/Memo Report"
+            report_type="xlsx"
+            name="bi_invoice_excel_report.invoice_memo_excel_rpt"
+            file="bi_invoice_excel_report.invoice_memo_excel_rpt"
+        />
+    </data>
+</odoo>

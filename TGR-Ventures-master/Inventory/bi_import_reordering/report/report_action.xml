@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="reordering_action_export_template" model="ir.actions.report">
+        <field name="name">Import Template</field>
+        <field name="model">import.reordering</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">bi_import_reordering.reordering_export_template_xlsx</field>
+        <field name="report_file">bi_import_reordering.reordering_export_template_xlsx</field>
+        <field name="print_report_name">"Export Import Template"</field>
+    </record>
+</odoo>

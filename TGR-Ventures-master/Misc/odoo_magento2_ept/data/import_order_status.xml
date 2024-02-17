@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="import.magento.order.status" id="pending">
+            <field name="name">Pending</field>
+            <field name="status">new</field>
+        </record>
+        <record model="import.magento.order.status" id="processing">
+            <field name="name">Processing</field>
+            <field name="status">processing</field>
+        </record>
+        <record model="import.magento.order.status" id="pending_payment">
+            <field name="name">Pending Payment</field>
+            <field name="status">pending_payment</field>
+        </record>
+        <record model="import.magento.order.status" id="canceled">
+            <field name="name">Canceled</field>
+            <field name="status">canceled</field>
+        </record>
+        <record model="import.magento.order.status" id="new">
+            <field name="name">New</field>
+            <field name="status">new</field>
+        </record>
+        <record model="import.magento.order.status" id="payment_review">
+            <field name="name">Payment Review</field>
+            <field name="status">payment_review</field>
+        </record>
+    </data>
+</odoo>

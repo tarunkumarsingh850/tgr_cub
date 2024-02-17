@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="inherit_account_bank" model="ir.ui.view">
+        <field name="name">account.bank.statement.import.line</field>
+        <field name="model">account.bank.statement</field>
+        <field name="inherit_id" ref="account.view_bank_statement_form"/>
+        <field name="arch" type="xml">
+        <xpath expr="//form/sheet/notebook/page/field[@name='line_ids']" position="before">
+            <button string ="Import Lines"
+            name="action_import_lines"
+            type="object"
+            class="oe_highlight"
+            states="open"/>
+            <field name="date_to" invisible="1"/>
+            <field name="date_from" invisible="1"/>
+        </xpath>
+      </field>
+    </record>
+
+</odoo>

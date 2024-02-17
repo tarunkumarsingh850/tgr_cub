@@ -1,0 +1,50 @@
+<odoo>
+
+<record id="insufficient_personal_id_email_template" model="mail.template">
+    <field name="name">Insufficient Personal ID</field>
+    <field name="model_id" ref="base.model_res_partner"/>
+    <field name="subject">Insufficient Personal ID</field>
+    <field name="body_html" type="html">
+        <div style="font-family: 'Times New Roman';">
+            <tbody style="align:center;width:100%;" align="center">
+                <tr>
+                    <td align="center">
+                        <table cellpadding="0" cellspacing="0" align="center" style="width:70%;background-color: white;border-collapse:separate;padding-right:30px;">
+                            <tr><td valign="top" style="font-size: 13px;">
+                                <div>
+                                    <img align="left" width="100%" src="bi_crm/static/img/logo.png" alt="Logo" />
+                                </div><br/><br/>
+                                <div style="font-size:16px;">
+                                    <!-- Hi {{ object.partner_id.name }},<br/><br/> -->
+                                    Hi <t t-out="object.name"/>,<br/><br/>
+                                    <p style="font-weight:bold">There's an issue with your Personal ID</p>
+                                    <br/>
+                                    <p>We'd like to approve your account but we are unable to at this time as we require you to supply the required proof of personal identification.</p>
+                                    <br/>
+                                    <p>
+                                        In order for us to approve your account, please supply personal identification such as a passport to prove your identity. Please note that the name on the ID must match the business information proof.
+                                    </p>
+                                    <br/>
+
+                                    <b>Thanks</b><br/>
+                                        <!-- ${object.employee_id.name}<br/> -->
+                                    <br/>
+                                    <p style="font-weight:bold">The Tiger One Team</p>
+                                    <br/>
+                                </div>
+                                <!-- <div class="row" style="font-size:16px;padding-left:10px;text-align:center;">
+
+                                </div> -->
+                            </td></tr>
+                            <tr><td style="text-align:center;font-size:16px;color:#0047AB;">
+                                Tiger One Distribution, C/Paris 45-47 Entresuelo 3, CP08029, Barcelona, Espania
+                            <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;"/>
+                            </td></tr>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </div>
+    </field>
+</record>
+</odoo>

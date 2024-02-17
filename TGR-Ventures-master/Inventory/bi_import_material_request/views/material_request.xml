@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="material_request_form_dimension" model="ir.ui.view">
+            <field name="name">material.request.form</field>
+            <field name="model">material.request</field>
+            <field name="inherit_id" ref="bi_material_request_form.view_material_request_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet/notebook/page/field[@name='material_line_ids']" position="before">
+                    <button string ="Import Lines" name="action_import" type="object" class="oe_highlight" states="draft"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

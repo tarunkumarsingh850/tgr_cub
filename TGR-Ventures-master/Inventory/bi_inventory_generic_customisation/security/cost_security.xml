@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="0">
+    <data>
+        <!-- Security for Cost field in stock move -->
+        <record model="res.groups" id="cost_security">
+            <field name="name">Access Product Cost</field>
+        </record>
+
+        <!-- Security for Cost field in Product Master -->
+        <record model="res.groups" id="product_cost_security">
+            <field name="name">Product Cost Manager</field>
+        </record>
+
+    </data>
+</odoo>

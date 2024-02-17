@@ -1,0 +1,119 @@
+<section class="oe_container" style="padding: 3% 0% 3% 15%;">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan" style="text-align: left;font-size: 28px;font-weight: 600;margin: 0px !important;color:#875A7B;">
+            Overview
+        </h2>
+        <h3 class="oe_slogan" style="text-align: left;font-size: 16px;width: 90%;margin: 0;margin-top: 14px;color: #000 !important;opacity: 1 !important;line-height: 24px;">
+            This module provides standard API for authentication2.The Authorization Code grant type is used by confidential and public clients to exchange an authorization code for an access token.After the user returns to the client via the redirect URL, the application will get the authorization code from the URL and use it to request an access token.
+
+         </h3>
+    </div>
+     <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan" style="text-align: left;font-size: 28px;font-weight: 600;margin: 0px !important;color:#875A7B;">
+            Configuration
+        </h2>
+         <h3 class="oe_slogan" style="text-align: left;font-size: 16px;width: 200%;margin: 0;margin-top: 14px;color: #000 !important;opacity: 1 !important;line-height: 24px;color:#875A7B;">
+                        <img style="border:8px white; width:17px" src="arrow.png">
+<strong>API Request Oauth2:</strong>
+
+            <p>Token Name :- Auth2 Token</p>
+            <p>Redirect URI:- https://www.getpostman.com/oauth2/callback</p>
+            <p>Auth URL :- http://localhost:8069/oauth2/auth</p>
+            <p>Access Token URL :- http://localhost:8069/oauth2/access_token</p>
+            <p>Client ID:- Paste Consumer key ex.(v7oOYPhqnagqGod5X2fY4qPi4JdHsL)</p>
+            <p>Client Secrat:- Paste Consumer Secrat ex(p80Gd595gpjJKSxfum2yDqCDnseFXD)</p>
+            <p>Grant Type:- Authorization Code
+
+         </h3>
+    </div>
+</section>
+
+</section>
+
+<section class="oe_container" style="padding: 3% 0% 0% 15%;">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan" style="text-align: left;font-size: 28px;font-weight: 600;margin: 0px !important;color:#875A7B;">
+            Generate Consumer Key and Secret for Auth2
+        </h2>
+        <h3 class="oe_slogan" style="text-align: left;padding: 0% 0% 0% 0%;font-size: 16px;width: 90%;margin: 0;margin-top: 14px;color: #000 !important;opacity: 1 !important;line-height: 24px;">
+            <img style="border:8px white; width:17px" src="arrow.png">
+            Log in your Odoo instance with an administrator account
+            Go to Settings ‣ Users ‣ Users
+            Click on the user you want to use for REST API access
+            Click the OAuth applications button
+            Register an Application you want to interact with your Odoo instance
+            Click on Save button to generate Consumer Key and Secret.
+             </span><br/>
+         </h3>
+        <div class="oe_row oe_spaced">
+            <img src="key_secret.png" alt="" style="width: 95%;"/>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container" style="padding: 3% 0% 0% 15%;">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan" style="text-align: left;font-size: 28px;font-weight: 600;margin: 0px !important;color:#875A7B;">
+            Request Token
+        </h2>
+        <h3 class="oe_slogan" style="text-align: left;padding: 0% 0% 0% 0%;font-size: 16px;width: 90%;margin: 0;margin-top: 14px;color: #000 !important;opacity: 1 !important;line-height: 24px;">
+            <img style="border:8px white; width:17px" src="arrow.png">
+            You have to Request Token for  Auth2 Authorization
+             </span><br/>
+         </h3>
+        <div class="oe_row oe_spaced">
+            <img src="Auth2.png" alt="" style="width: 95%;"/>
+        </div>
+    </div>
+</section>
+<section class="oe_container" style="padding: 3% 0% 0% 15%;">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan" style="text-align: left;font-size: 28px;font-weight: 600;margin: 0px !important;color:#875A7B;">
+            Get Access Token
+        </h2>
+        <h3 class="oe_slogan" style="text-align: left;padding: 0% 0% 0% 0%;font-size: 16px;width: 90%;margin: 0;margin-top: 14px;color: #000 !important;opacity: 1 !important;line-height: 24px;">
+            <img style="border:8px white; width:17px" src="arrow.png">
+            Get Access Token using Authentication
+             </span><br/>
+         </h3>
+        <div class="oe_row oe_spaced">
+            <img src="access_token.png" alt="" style="width: 95%;"/>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container" style="padding: 3% 0% 0% 15%;">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan" style="text-align: left;font-size: 28px;font-weight: 600;margin: 0px !important;color:#875A7B;">
+            Redirect URI Get Access Token Odoo
+        </h2>
+        <h3 class="oe_slogan" style="text-align: left;padding: 0% 0% 0% 0%;font-size: 16px;width: 90%;margin: 0;margin-top: 14px;color: #000 !important;opacity: 1 !important;line-height: 24px;">
+                                    <img style="border:8px white; width:17px" src="arrow.png">
+                Copy Access Token and paste Haeder Request
+                Fetch an access token from the Odoo using the authorization code obtained during user authorization.
+         </span><br/>
+         </h3>
+        <div class="oe_row oe_spaced">
+            <img src="token.png" alt="" style="width: 95%;"/>
+        </div>
+
+
+    </div>
+</section>
+
+
+<section class="oe_container" style="padding: 3% 0% 0% 15%;">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan" style="text-align: left;font-size: 28px;font-weight: 600;margin: 0px !important;color:#875A7B;">
+            Call API and Get Response
+        </h2>
+        <h3 class="oe_slogan" style="text-align: left;padding: 0% 0% 0% 0%;font-size: 16px;width: 90%;margin: 0;margin-top: 14px;color: #000 !important;opacity: 1 !important;line-height: 24px;">
+                        <img style="border:8px white; width:17px" src="arrow.png">
+            When your API Call after that You will get response with status code 200
+             </span><br/>
+         </h3>
+        <div class="oe_row oe_spaced">
+            <img src="response.png" alt="" style="width: 95%;"/>
+        </div>
+    </div>
+</section>

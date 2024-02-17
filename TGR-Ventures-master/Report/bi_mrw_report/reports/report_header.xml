@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="mrw_report_header">
+            <div class="header">
+                <div class="row" style="width:100%;">
+                    <div>
+                        <img src="bi_mrw_report/static/src/img/mrw_logo_.jpg"  width="300" height="100" />
+                        <span style="padding-top:20px;">
+                            <t if="docs.company_id.mrw_agency_code">
+                                <b><t t-esc="docs.company_id.mrw_agency_code"/></b> <br/>
+                             </t>
+                        </span>
+                    </div>
+                </div>
+                <br/>
+                    <div>
+                        <div class="row" style="font-size:15px">
+                            <div class="col-4">
+                                <p><b>Parámetros del informe:</b></p>
+                            </div>
+                            <div class="col-8">
+                                <span>
+                                Franquicia recogida:
+                                <t if="docs.company_id.mrw_agency_code">
+                                    <t t-esc="docs.company_id.mrw_agency_code"></t>;
+                                </t></span>
+                                <span style="padding-left:10px">
+                                Abonado:
+                                <t if="docs.company_id.name">
+                                    <t t-esc="docs.company_id.mrw_subscriber_code"/>-<t t-esc="docs.company_id.name"></t>;
+                                </t></span>
+                                <span style="padding-left:10px">
+                                Fecha recogida:
+                                <t t-esc="datetime.datetime.now().strftime('%Y-%m-%d')"/></span>;
+                               <span style="padding-left:10px">
+                                Reembolso: Todos;</span>
+
+                                <span>
+                                Ordenar por:Fecha recogida en sentido ascendente;</span>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+                    <br/><br/>
+                <div class="article o_report_layout_standard" t-att-data-oe-model="o and docs._name" t-att-data-oe-id="o and docs.id" t-att-data-oe-lang="o and docs.env.context.get('lang')">
+                    <t t-call="web.address_layout" />
+                    <t t-raw="0" />
+                </div>
+            <div class="footer">
+                <div class="row" style="padding-right:1px;padding-top:1px;font-size:13px">
+                    <div class="col-11"></div>
+                    <div class="col-1" align="center" style="font-size:13px">
+                        <span class="page" />/<span class="topage" />
+                    </div>
+                </div>
+            </div>
+
+        </template>
+
+        </data>
+    </odoo>

@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <record id="action_bi_consignment_xl_report" model='ir.actions.report'>
+        <field name="name">Consignment Report</field>
+        <field name="model">bi.consignment.wizard</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">bi_consignment_report.consign_report_id</field>
+        <field name="report_file">bi_consignment_report.consign_report_id</field>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

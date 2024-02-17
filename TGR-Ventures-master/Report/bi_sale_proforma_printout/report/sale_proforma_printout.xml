@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_saleorder_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="bi_sale_proforma_printout.invoice_memo_report_header">
+                    <div class="page">
+                        <div class="row" style="height:18px;background-color: #0078d7;width:100%;margin-top:5px;"></div>
+                        <div class="row" style="min-height:50px;border:1px solid grey;font-size:12px;margin-top:5px;width:100%;">
+                            <div class="col-2" style="text-align:left;padding-top:5px;">
+                                <b>VAT NUMBER</b><br/>
+                                <t t-esc="o.partner_id.vat"></t>
+                            </div>
+                            <div class="col-5" style="text-align:left;padding-top:5px;">
+                                <b>DELIVERY METHOD</b><br></br>
+                            </div>
+                            <div class="col-5" style="text-align:left;padding-top:5px;">
+                                <b>PAYMENT METHOD</b><br/>
+                                <t t-esc="o.invoice_payment_term_id.name"></t>
+                            </div>
+                        </div>
+                        <div class="row" style="text-align:center;border:1px solid black;min-height:27px;background-color: #0078d7;margin-top:5px;margin-bottom:5px;width:100%;color:white;">
+                            <div style="padding-left:3px;padding-top:5px;font-weight: bold;font-size:11px;width:15%;border-right:1px solid black;">INVENTORY ID</div>
+                            <div style="padding-left:3px;padding-top:5px;font-weight: bold;font-size:11px;width:30%;border-right:1px solid black;">PRODUCTS</div>
+                            <div style="padding-left:3px;padding-top:5px;font-weight: bold;font-size:11px;width:9%;border-right:1px solid black;">QUANTITY</div>
+                            <div style="padding-left:3px;padding-top:5px;font-weight: bold;font-size:11px;width:12%;border-right:1px solid black;">UNIT PRICE</div>
+                            <div style="padding-left:3px;padding-top:5px;font-weight: bold;font-size:11px;width:12%;border-right:1px solid black;">SUBTOTAL</div>
+                            <div style="padding-left:3px;padding-top:5px;font-weight: bold;font-size:11px;width:10%;border-right:1px solid black;">DISCOUNT</div>
+                            <div style="padding-left:3px;padding-top:5px;font-weight: bold;font-size:11px;width:12%;">TOTAL</div>
+                        </div>
+                        <t t-set="tax_type_print" t-value=""/>
+                        <t t-set="subtotal" t-value="0" />
+                        <t t-set="total_tax_per" t-value="0" />
+                        <t t-set="total_discount" t-value="0" />
+                        <t t-foreach="o.invoice_line_ids" t-as="line">
+
+                            <t t-if="line.tax_ids.is_export_tax">
+                                <t t-set="tax_type_print" t-value="'Operación exenta por exportación en virtud del art. 21 de la Ley 37/1992, de IVA'"/>
+                            </t>
+                            <t t-if="line.tax_ids.is_intra_operation">
+                                <t t-set="tax_type_print" t-value="'Entrega intracomunitaria exenta por aplicación del art. 25 Uno de la Ley 37/1992 del IVA y el art. 6.1.j del Real Decreto 1619/2012 de 30 de noviembre'"/>
+                            </t>
+
+                            <t t-set="subtotal" t-value="line.quantity*line.price_unit" />
+                            <t t-set="total_discount" t-value="total_discount+line.discount" />
+                            <div class="row" style="border:1px solid black;width:100%;page-break-inside: avoid !important;">
+                                <div style="padding-left:3px;font-size:11px;width:15%;border-right:1px solid black;border-top:none;"><t t-esc="line.product_id.default_code"></t></div>
+                                <div style="padding-left:3px;font-size:11px;width:30%;border-right:1px solid black;border-top:none;"> <t t-esc="line.product_id.name"></t></div>
+                                <div style="padding-left:3px;font-size:11px;width:9%;border-right:1px solid black;border-top:none;"> <t t-esc="line.quantity"></t></div>
+                                <div style="padding-left:3px;font-size:11px;width:12%;border-right:1px solid black;border-top:none;"><t t-esc="line.price_unit"></t></div>
+                                <div style="padding-left:3px;font-size:11px;width:12%;border-right:1px solid black;border-top:none;"><t t-esc="subtotal"></t></div>
+                                <div style="padding-left:3px;font-size:11px;width:10%;border-right:1px solid black;border-top:none;"><t t-esc="line.discount"></t>%</div>
+                                <div style="padding-left:3px;font-size:11px;width:12%;border-top:none;"><t t-esc="line.price_subtotal"></t></div>
+                            </div>
+                        </t>
+                        <div style="text-align:center;font-size:12px;font-weight: bold;">
+                            <t t-esc="tax_type_print"/>
+                        </div>
+                        <t t-set="total_tax_per" t-value="(o.amount_tax/o.amount_total)*100" />
+                        <div class="row" style="text-align:center;border:1px solid black;min-height:27px;background-color: #808080;margin-top:5px;width:100%;color:white;page-break-inside: avoid !important;">
+                            <div style="padding-left:3px;padding-top:5px;font-size:11px;width:8%;border-right:1px solid black;"><b>TAX</b></div>
+                            <div style="padding-left:3px;padding-top:5px;font-size:11px;width:10%;border-right:1px solid black;"><b>AMOUNT</b></div>
+                            <div style="padding-left:3px;padding-top:5px;font-size:11px;width:12%;border-right:1px solid black;"><b>DISCOUNT</b></div>
+                            <div style="padding-left:3px;padding-top:5px;font-size:11px;width:12%;border-right:1px solid black;"><b>CASH DISCOUNT</b></div>
+                            <div style="padding-left:3px;padding-top:5px;font-size:11px;width:12%;border-right:1px solid black;"><b>SHIPPING</b></div>
+                            <div style="padding-left:3px;padding-top:5px;font-size:11px;width:12%;border-right:1px solid black;"><b>FINANCING</b></div>
+                            <div style="padding-left:3px;padding-top:5px;font-size:11px;width:12%;border-right:1px solid black;"><b>BASE</b></div>
+                            <div style="padding-left:3px;padding-top:5px;font-size:11px;width:10%;border-right:1px solid black;"><b>I.V.A.</b></div>
+                            <div style="padding-left:3px;padding-top:5px;font-size:11px;width:12%;"><b>R.E.</b></div>
+                        </div>
+                        <!-- <t t-foreach="line" t-as="o.order_line"> -->
+                        <div class="row" style="text-align:center;border:1px solid black;margin-top:5px;width:100%;page-break-inside: avoid !important;min-height:30px;page-break-inside: avoid !important;">
+                            <div style="padding-left:3px;padding-top:5px;font-size:11px;width:8%;border-right:1px solid black;"><t t-esc="'%.2f'%total_tax_per"></t>%</div>
+                            <div style="padding-left:3px;padding-top:5px;font-size:11px;width:10%;border-right:1px solid black;"><t t-esc="'%.2f'%o.amount_tax"></t></div>
+                            <div style="padding-left:3px;padding-top:5px;font-size:11px;width:12%;border-right:1px solid black;"><t t-esc="'%.2f'%total_discount"></t>%</div>
+                            <div style="padding-left:3px;padding-top:5px;font-size:11px;width:12%;border-right:1px solid black;"></div>
+                            <div style="padding-left:3px;padding-top:5px;font-size:11px;width:12%;border-right:1px solid black;"></div>
+                            <div style="padding-left:3px;padding-top:5px;font-size:11px;width:12%;border-right:1px solid black;"></div>
+                            <div style="padding-left:3px;padding-top:5px;font-size:11px;width:12%;border-right:1px solid black;"></div>
+                            <div style="padding-left:3px;padding-top:5px;font-size:11px;width:10%;border-right:1px solid black;"></div>
+                            <div style="padding-left:3px;padding-top:5px;font-size:11px;width:12%;"></div>
+                        </div>
+                        <!-- </t> -->
+                        <div class="row" style="margin-top:5px;width:100%;">
+                            <div style="padding-left:6px;font-size:11px;width:66%;padding-top:5px;"><b>OBSERVACTIONS</b></div>
+                            <div style="padding-left:3px;font-size:13px;width:34%;border:1px solid black;min-height:30px;background-color: #0078d7;color:white;padding-top:5px;">
+                               <b> GRAND TOTAL €:</b><![CDATA[&nbsp;]]><![CDATA[&nbsp;]]><t t-esc="'%.2f'%o.amount_total"></t>
+                            </div>
+                        </div>
+                        <div class="row" style="text-align:center;border:1px solid black;min-height:27px;background-color: #808080;margin-top:5px;width:100%;color:white;page-break-inside: avoid !important;">
+                            <div style="padding-left:3px;padding-top:5px;font-weight: bold;font-size:11px;width:10%;">Due Date</div>
+                            <div style="padding-left:3px;padding-top:5px;font-weight: bold;font-size:11px;width:12%;">Amount</div>
+                            <div style="padding-left:3px;padding-top:5px;font-weight: bold;font-size:11px;width:28%;">Direct Debit</div>
+                            <div style="padding-left:3px;padding-top:5px;font-weight: bold;font-size:11px;width:25%;">Office</div>
+                            <div style="padding-left:3px;padding-top:5px;font-weight: bold;font-size:11px;width:25%;">Account Number</div>
+                        </div>
+                        <div class="row" style="text-align:center;min-height:30px;margin-top:5px;width:100%;page-break-inside: avoid !important;">
+                            <div style="padding-left:3px;padding-top:5px;font-size:11px;width:10%;border:1px solid black;">
+                                <t t-esc="o.invoice_date_due"></t>
+                            </div>
+                            <div style="padding-left:3px;width:1%;"></div>
+                            <div style="padding-left:3px;padding-top:5px;font-size:11px;width:10%;border:1px solid black;"></div>
+                            <div style="padding-left:3px;width:1%;margin-left:3px;"></div>
+                            <div style="padding-left:3px;padding-top:5px;font-size:11px;width:28%;border:1px solid black;border-right:none;"></div>
+                            <div style="padding-left:3px;padding-top:5px;font-size:11px;width:25%;border:1px solid black;border-right:none;border-left:none;"></div>
+                            <div style="padding-left:3px;padding-top:5px;font-size:11px;width:25%;border:1px solid black;border-left:none;"></div>
+                        </div>
+                    </div>
+                </t>
+            <!-- </div> -->
+            </t>
+        </t>
+    </template>
+</odoo>

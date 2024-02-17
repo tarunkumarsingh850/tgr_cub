@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_taxjar_tax_rate_tree" model="ir.ui.view">
+            <field name="name">view.taxjar.tax.rate.tree</field>
+            <field name="model">taxjar.tax.rate</field>
+            <field name="arch" type="xml">
+                <tree string="TaxJar Tax Rate"  create="false" edit="false" >
+                    <field name="from_zip"/>
+                    <field name="name" string="To Zip"/>
+                    <field name="state_id"/>
+                    <field name="country_id"/>
+                    <field name="tax_rate"/>
+                    <field name="sync_date"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_taxjar_tax_rate_form" model="ir.ui.view">
+            <field name="name">view.taxjar.tax.rate.form</field>
+            <field name="model">taxjar.tax.rate</field>
+            <field name="arch" type="xml">
+                <form string="TaxJar Tax Rate" create="false" edit="false" >
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1><field name="name" class="oe_inline" placeholder="e.g. 00001"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <label for="tax_rate"/>
+                                <div>
+                                    <field name="tax_rate" class="oe_inline"/>
+                                    <span class="o_form_label oe_inline">%</span>
+                                </div>
+                                <field name="sync_date"/>
+                                <field name="tx_category_id"/>
+                                <field name="ts_exemption_type"/>
+                                <field name="is_recalculate"/>
+                                <field name="account_id"/>
+                            </group>
+                            <group>
+                                <field name="city_tax_rate"/>
+                                <field name="state_tax_rate"/>
+                                <field name="county_tax_rate"/>
+                                <field name="special_tax_rate"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group string="To Address">
+                                <field name="state_id"/>
+                                <field name="country_id"/>
+                            </group>
+                            <group string="From Address">
+                                <field name="from_zip"/>
+                                <field name="from_state_id"/>
+                                <field name="from_country_id"/>
+                            </group>
+<!--                            <group/>-->
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_taxjar_tax_rate_action" model="ir.actions.act_window">
+            <field name="name">TaxJar Rates</field>
+            <field name="res_model">taxjar.tax.rate</field>
+            <!--<field name="view_type">form</field>-->
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_taxjar_tax_rate" groups="base.group_no_one" parent="taxjar_integration_ts.main_menu_taxjar" action="taxjar_integration_ts.view_taxjar_tax_rate_action" sequence="4"/>
+    </data>
+</odoo>

@@ -1,0 +1,153 @@
+<odoo>
+
+    <record id="account_success_email_template" model="mail.template">
+        <field name="name">Account Success</field>
+        <field name="model_id" ref="base.model_res_partner"/>
+        <field name="subject">Account Success</field>
+        <field name="body_html" type="html">
+            <div style="font-family: 'Times New Roman';">
+                <tbody style="align:center;width:100%;" align="center">
+                    <tr>
+                        <td align="center">
+                            <table cellpadding="0" cellspacing="0" align="center" style="width:70%;background-color: white;border-collapse:separate;padding-right:30px;">
+                                <tr><td valign="top" style="font-size: 13px;">
+                                    <div>
+                                        <img align="left" width="100%" src="bi_crm/static/img/logo.png" alt="Logo" />
+                                    </div><br/><br/><br/><br/>
+                                    <!-- <a t-attf-href="/web?#id={{ object.id }}&amp;view_type=form&amp;model=res.partner"
+                                        style="padding: 5px 10px; color: #FFFFFF; text-decoration: none; background-color: #000000; border: 1px solid #875A7B; border-radius: 3px">
+                                        Your Account
+                                    </a> -->
+                                    <a t-attf-href="https://www.tiger-one.eu/uk-en/customer/account/login"
+                                        style="padding: 5px 10px; color: #FFFFFF; text-decoration: none; background-color: #000000; border: 1px solid #875A7B; border-radius: 3px">
+                                        Your Account
+                                    </a>
+                                    <br/><br/>
+                                    <div>
+                                        <img align="left" width="100%" src="bi_crm/static/img/img1.png" alt="Logo" />
+                                    </div><br/><br/>
+                                    <br/>
+                                    <div style="text-align:center;font-size:18px;">
+                                        <p style="font-weight:bold">Your Account is Approved!</p>
+                                        <p style="font-weight:bold">Welcome to Tiger One</p>
+                                    </div>
+                                    <div style="font-size:16px;">
+                                        <!-- Hi {{ object.partner_id.name }},<br/><br/> -->
+                                        Hi customer,<br/><br/>
+
+                                        <p>
+                                            Good news! Your application has been <font style="font-weight:bold;">approved</font> and you can now purchase from our website. You must log in to browse the range.
+                                            Just click
+                                            <u>
+                                                <a t-attf-href="https://www.tiger-one.eu/uk-en/customer/account/login">
+                                                    <font style="color:#e64c2c;">Login</font>
+                                                </a>
+                                            </u>
+                                            or
+                                            <u>
+                                                <a t-attf-href="https://www.tiger-one.eu/uk-en/customer/account/login">
+                                                    <font style="color:#e64c2c;">My Account</font>
+                                                </a>
+                                            </u>
+                                            at the top of every page, and then enter your e-mail address and the password given to you in the recent email we sent you.
+                                        </p>
+                                        <br/>
+                                        <p>
+                                            If you have any questions on placing your first order let's arrange a chat. You can easily see my real-time availability and schedule time with me here. 
+                                        </p>
+                                        <br/>
+                                        <p>
+                                            With a
+                                            <u>
+                                                <a t-attf-href="https://www.tiger-one.eu/uk-en/customer/account/login">
+                                                    <font style="color:#e64c2c;">Tiger One</font>
+                                                </a>
+                                            </u>
+                                            account you benefit from:
+                                            <ul>
+                                                <li>
+                                                    a diverse range of Seeds, Unbranded Seeds, Vapes, Paraphernalia, Testing Kits and Merchandise
+                                                </li>
+                                                <li>
+                                                    excellent customer service and support
+                                                </li>
+                                                <li>
+                                                    same day dispatch
+                                                </li>
+                                                <li>
+                                                    free delivery on orders over €300 on seeds [in UK/EU only]
+                                                </li>
+                                                <li>
+                                                    access to our Quick Ordering tool 
+                                                </li>
+                                                <li>
+                                                    free Seed Promotions
+                                                </li>
+                                                <li>
+                                                    a catalogue of 3500+ products
+                                                </li>
+                                                <li>
+                                                    real time order updates
+                                                </li>
+                                                <li>
+                                                    price negotiation for improved discounts
+                                                </li>
+                                                <li>
+                                                    data feeds, prices and images for adding products to your website.
+                                                </li>
+                                            </ul>
+                                        </p>
+                                        <p>
+                                            When you log in you can do the following:
+                                            <ul>
+                                                <li>
+                                                    Browse the Tiger-One range
+                                                </li>
+                                                <li>
+                                                    Proceed through checkout faster when making a purchase
+                                                </li>
+                                                <li>
+                                                    Check the status of orders
+                                                </li>
+                                                <li>
+                                                    View past orders
+                                                </li>
+                                                <li>
+                                                    Make changes to your account information
+                                                </li>
+                                                <li>
+                                                    Change your password
+                                                </li>
+                                                <li>
+                                                    Store alternative addresses.
+                                                </li>
+                                            </ul>
+                                        </p>
+                                        <br/>
+                                        <p>
+                                            If you have any questions about your account or any other matter, please contact us.
+                                        </p><br/>
+                                        <p>
+                                            We look forward to receiving your first order!
+                                        </p>
+                                        <br/>
+                                        <p>Kind regards,</p>
+                                        <p style="font-weight:bold">The Tiger One Team</p>
+                                        <br/>
+                                    </div>
+                                    <div class="row" style="font-size:16px;padding-left:10px;text-align:center;">
+                                        <img align="left" width="100%" src="bi_crm/static/img/pic1.png" alt="Logo" />
+                                    </div>
+                                </td></tr>
+                                <tr><td style="text-align:center;font-size:16px;color:#0047AB;">
+                                    Tiger One Distribution, C/Paris 45-47 Entresuelo 3, CP08029, Barcelona, Espania
+                                <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;"/>
+                                </td></tr>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </div>
+        </field>
+    </record>
+    </odoo>

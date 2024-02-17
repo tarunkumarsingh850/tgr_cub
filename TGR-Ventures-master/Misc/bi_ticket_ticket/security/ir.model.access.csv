@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ticket_ticket_user,bi_ticket_ticket.ticket.ticket,model_ticket_ticket,base.group_user,1,1,1,1
+access_ticket_ticket_line_user,bi_ticket_ticket.ticket.ticket.line,model_ticket_ticket_line,base.group_user,1,1,1,1

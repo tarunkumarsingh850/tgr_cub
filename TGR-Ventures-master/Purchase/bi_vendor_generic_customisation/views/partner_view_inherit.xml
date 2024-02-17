@@ -1,0 +1,126 @@
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="partner_view_inherit_form">
+        <field name="name">res.partner.view.inherit.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='vat']" position="after">
+                <field name="is_supplier" invisible="1"/>
+                <field name="vendor_class_id" attrs="{'invisible':[('is_supplier','!=',True)]}"/>
+                <field name="lead_days" attrs="{'invisible':[('is_supplier','!=',True)]}"/>
+                <field name="taxes_ids" widget="many2many_tags"/>
+                <field name="brand_ids" widget="many2many_tags"/>
+                <field name="product_type_id" attrs="{'invisible':[('is_supplier','!=',True)]}"/>
+                <field name="vendor_rate_type" attrs="{'invisible':[('is_supplier','!=',True)]}"/>
+                <field name="vendor_password" attrs="{'invisible':[('is_supplier','!=',True)]}"/>
+                <field name="vendor_username" attrs="{'invisible':[('is_supplier','!=',True)]}"/>
+            </xpath>
+            <xpath expr="//field[@name='property_payment_term_id']" position="after">
+                <field name="vendor_payment_method" attrs="{'invisible':[('is_supplier','!=',True)]}"/>
+                <field name="vendor_payment_by" attrs="{'invisible':[('is_supplier','!=',True)]}"/>
+                <field name="vendor_external_id" attrs="{'invisible':[('is_supplier','!=',True)]}"/>
+            </xpath>
+            <xpath expr="//field[@name='category_id']" position="after">
+                <field name="vendor_status" attrs="{'invisible':[('is_supplier','!=',True)]}"/>
+                <field name="vendor_attention" attrs="{'invisible':[('is_supplier','!=',True)]}"/>
+                <field name="vendor_warehouse" attrs="{'invisible':[('is_supplier','!=',True)]}"/>
+                <field name="vendor_delivery_estimate" attrs="{'invisible':[('is_supplier','!=',True)]}"/>
+                <field name="vendor_discount_comment" attrs="{'invisible':[('is_supplier','!=',True)]}"/>
+                <field name="vendor_ordering_method" attrs="{'invisible':[('is_supplier','!=',True)]}"/>
+                <field name="tax_zone" attrs="{'invisible':[('is_supplier','!=',True)]}"/>
+            </xpath>
+            <xpath expr="//field[@name='name']" position="after">
+                <div>
+                    <h3>
+                        <field name="vendor_code" default_focus="1" placeholder="Vendor ID" string="name" attrs="{'invisible':[('is_supplier','!=',True)]}"/>
+                    </h3>
+                </div>
+            </xpath>
+            <xpath expr="//field[@name='name']" position="attributes">
+                <attribute name="placeholder">ID</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_res_partner_new_filter" model="ir.ui.view">
+        <field name="name">res.partner.search</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <field name="brand_ids" string="Brand"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="account_partner_view_inherit_form">
+        <field name="name">account.res.partner.view.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account.view_partner_property_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group/group[@name='accounting_entries']/field[@name='property_account_payable_id']" position="after">
+                <field name="ap_sub_account_id" attrs="{'invisible':[('is_customer', '=', True)]}"/>
+                <field name="exp_account_id" attrs="{'invisible':[('is_customer', '=', True)]}"/>
+                <field name="exp_sub_account_id" attrs="{'invisible':[('is_customer', '=', True)]}"/>
+                <field name="sales_account_id" attrs="{'invisible':[('is_supplier', '=', True)]}"/>
+                <field name="sales_sub_account_id" attrs="{'invisible':[('is_supplier', '=', True)]}"/>
+                <field name="freight_account_id" attrs="{'invisible':[('is_supplier', '=', True)]}"/>
+                <field name="freight_sub_account_id" attrs="{'invisible':[('is_supplier', '=', True)]}"/>
+                <field name="disc_account_id"/>
+                <field name="disc_sub_account_id"/>
+                <field name="cash_account_id"/>
+                <field name="cash_sub_account_id"/>
+                <field name="pre_account_id"/>
+                <field name="pre_sub_account_id"/>
+                <field name="po_account_id" attrs="{'invisible':[('is_customer', '=', True)]}"/>
+                <field name="po_sub_account_id" attrs="{'invisible':[('is_customer', '=', True)]}"/>
+                <field name="cash_account_vendor_id" attrs="{'invisible':[('is_customer', '=', True)]}"/>
+            </xpath>
+            <xpath expr="//group/group[@name='accounting_entries']/field[@name='property_account_receivable_id']" position="attributes">
+                <attribute name="string">AR Account</attribute>
+                <attribute name="attrs">{'invisible':[('is_supplier', '=', True)],'required':[('is_customer', '=', True)]}</attribute>
+            </xpath>
+            <xpath expr="//group/group[@name='accounting_entries']/field[@name='property_account_payable_id']" position="attributes">
+                <attribute name="string">AP Account</attribute>
+                <attribute name="attrs">{'invisible':[('is_customer', '=', True)],'required':[('is_supplier', '=', True)]}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="vendor_master_partner_view_inherit_form">
+        <field name="name">vendor.master.res.partner.view.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree/field[@name='country_id']" position="after">
+                <field name="vendor_class_id" optional="show"/>
+                <field name="product_type_id" optional="show"/>
+                <field name="brand_ids" widget="many2many_tags" optional="show"/>
+                <field name="property_supplier_payment_term_id" string="Payment Terms" optional="show"/>
+                <field name="lead_days" optional="show"/>
+                <field name="property_delivery_carrier_id" optional="show"/>
+                <field name="vendor_delivery_estimate" optional="show"/>
+                <field name="vendor_payment_method" optional="show"/>
+                <field name="vendor_status" optional="show"/>
+                <field name="vendor_warehouse" optional="show"/>
+                <field name="vendor_delivery_estimate" optional="show"/>
+                <field name="vendor_discount_comment" optional="show"/>
+                <field name="vendor_ordering_method" optional="show"/>
+                <field name="vendor_payment_method" optional="show"/>
+                <field name="vendor_payment_by" optional="show"/>
+                <field name="vendor_external_id" optional="show"/>
+            </xpath>
+            <xpath expr="//tree/field[@name='display_name']" position="after">
+                <field name="is_supplier" invisible="1"/>
+                <field name="vendor_code" attrs="{'invisible':[('is_supplier','=',False)]}"/>
+                <field name="vendor_attention" optional="show"/>
+            </xpath>
+            <xpath expr="//tree/field[@name='vendor_code']" position="attributes">
+                <attribute name="string">Vendor ID</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    </data>
+</odoo>

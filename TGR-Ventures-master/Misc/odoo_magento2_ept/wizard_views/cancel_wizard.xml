@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data noupdate="0">
+        <record id="view_cancel_sale" model="ir.ui.view">
+            <field name="name">Reason</field>
+            <field name="model">cancel.sale</field>
+            <field name="arch" type="xml">
+             <form string="Reason for the Cancel">
+                <group>
+                    <field name="reason"/>
+                    <field name="sale_id" invisible="1"/>
+                </group>
+                <footer>
+                    <button string="Confirm" name="confirm" type="object" class="oe_highlight"/>
+                    <button string="Cancel" class="btn btn-default" special="cancel"/>
+                </footer>
+            </form>
+            </field>
+        </record>
+
+        <record id="action_cancel_sale" model="ir.actions.act_window">
+            <field name="name">Reason for the Cancel</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cancel.sale</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_cancel_sale"/>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>

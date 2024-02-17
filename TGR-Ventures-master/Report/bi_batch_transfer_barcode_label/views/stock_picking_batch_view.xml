@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="stock_picking_batch_form_inherit_batch_barcode" model="ir.ui.view">
+        <field name="name">stock.picking.batch.form.inherit.batch.barcode</field>
+        <field name="model">stock.picking.batch</field>
+        <field name="inherit_id" ref="stock_picking_batch.stock_picking_batch_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_open_label_layout']" position="after">
+                <button name="print_zpl_barcode" string="Print ZPL Barcode" type="object"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

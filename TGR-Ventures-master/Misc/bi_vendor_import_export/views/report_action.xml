@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <data>
+
+        <report
+            id="action_report_vendor_template"
+            model="res.partner"
+            string="Vendor Template"
+            report_type="xlsx"
+            name="bi_vendor_import_export.vendor_export_temp"
+            file="vendor Template"
+        />
+
+    </data>
+
+</odoo>

@@ -1,0 +1,12 @@
+<odoo>
+    <data>
+        <record id="report_uk_tax_report_xlsx" model="ir.actions.report">
+            <field name="name">UK TAX Report</field>
+            <field name="model">uk.tax.wizard</field>
+            <field name="report_type">xlsx</field>
+            <field name="report_name">bi_uk_tax_report.report_uk_tax_xlsx</field>
+            <field name="report_file">bi_uk_tax_report.report_uk_tax_xlsx</field>
+            <field name="binding_type">report</field>
+      </record>
+    </data>
+</odoo>

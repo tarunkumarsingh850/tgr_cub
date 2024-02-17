@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_material_request">
+        <t t-call="web.basic_layout">
+        <t t-foreach="docs" t-as="o">
+            <h2 class="text-center" style="font-size: 18px;">
+                <span><strong>Material Transfer To Branch</strong></span>
+            </h2>
+            <div class="row">
+                <div class="col-5 mb4">
+                </div>
+                <div class="col-4 text-right">
+                    <span style="font-size: 14px;"><strong>Transfer No:</strong></span>
+                </div>
+                <div class="col-3 text-right">
+                    <b><span t-field="o.name"/></b>
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-3 mb4">
+                </div>
+                <div class="col-3 mb4">
+                    <span style="font-size: 14px;"><strong>From :</strong><b><span t-field="o.requested_from"/></b></span>
+                </div>
+                <div class="col-2 text-right">
+                    <span style="font-size: 14px;"><strong>To :</strong><b><span t-field="o.requested_to"/></b></span>
+                </div>
+                <div class="col-4 text-right">
+                </div>
+            </div>
+            <br/>
+            <div class="container" style="border:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black">
+                <div class="row" style="border-top:none;border-bottom:none">
+                    <div class="col-2 text-center" style="border-right:1px solid black;font-size: 12px"><b>Sl No.</b></div>
+                    <div class="col-2 text-center" style="border-right:1px solid black; border-bottom:none;font-size: 12px"><b>Item Code</b></div>
+                    <div class="col-4 text-center" style="border-right:1px solid black; border-bottom:none;font-size: 12px"><b>Description</b></div>
+                    <div class="col-2 text-center" style="border-right:1px solid black; border-bottom:none;font-size: 12px"><b>Unit</b></div>
+                    <div class="col-2 text-center" style="border-right:none; border-bottom:none;font-size: 12px"><b>Quantity</b></div>
+                </div>
+            </div>
+            <div class="container" style="border:1px solid black;border-right:1px solid black;border-top:none;border-bottom:none">
+                <t t-set="sl_no" t-value='1'></t>
+                <t t-foreach="o.material_line_ids" t-as="l">
+                <div class="row" style="border-top:none;border-bottom:1px solid black">
+                    <div class="col-2 text-center" style="border-right:1px solid black;font-size: 12px"><span t-esc="sl_no"/><t t-set="sl_no" t-value="sl_no+1"/></div>
+                    <div class="col-2 text-center" style="border-right:1px solid black;font-size: 12px; border-bottom:none;border-top:none;"><span t-field="l.product_id.default_code"/></div>
+                    <div class="col-4 text-center" style="border-right:1px solid black;font-size: 12px; border-bottom:none;border-top:none;"><span t-field="l.product_id.name"/></div>
+                    <div class="col-2 text-center" style="border-right:1px solid black;font-size: 12px; border-bottom:none;border-top:none;"><span t-field="l.unit_of_measure"/></div>
+                    <div class="col-2 text-center" style="border-right:none;font-size: 12px; border-bottom:none;border-top:none;"><span t-field="l.quantity"/></div>
+                </div>
+                </t>
+            </div>
+              <br/>
+            <div class="container" style="border:1px solid black;border-right:1px solid black;border-top:1px solid black">
+
+                <div class="row" style="border-top:none;border-bottom:1px solid black">
+                    <div class="col-12 text-left" style="border-right:none; border-bottom:none;border-top:none;font-size: 12px"><b>Remarks</b></div>
+                    <br/>
+                    <br/>
+                </div>
+                <div class="row" style="border-top:none;border-bottom:1px solid black">
+                    <div class="col-4 text-left" style="border-right:1px solid black;font-size: 14px; border-bottom:none;border-top:none;"><b>Issued By:</b></div>
+                    <div class="col-4 text-left" style="border-right:1px solid black; border-bottom:none;border-top:none;font-size: 14px;"><b>Received &amp; Checked By:</b></div>
+                    <div class="col-4 text-left" style="border-right:none; border-bottom:none;border-top:none;font-size: 14px;"><b>Reviewed/Approved By:</b></div>
+                </div>
+                <div class="row" style="border-top:none;border-bottom:none">
+                    <div class="col-4 text-left" style="border-right:1px solid black; border-bottom:none;border-top:none;font-size: 14px;"><b>zcxvb</b></div>
+                    <div class="col-4 text-left" style="border-right:1px solid black; border-bottom:none;border-top:none;"></div>
+                    <div class="col-4 text-left" style="border-right:none; border-bottom:none;border-top:none;"></div>
+                </div>
+            </div>
+        </t>
+        </t>
+    </template>
+</odoo>

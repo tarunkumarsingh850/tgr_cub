@@ -1,0 +1,45 @@
+<odoo>
+  <data>
+
+    <record id="res_config_settings_inherit_kit_view_form" model="ir.ui.view">
+      <field name="name">res.config.settings.view.form.inherit.kit</field>
+      <field name="model">res.config.settings</field>
+      <field name="priority" eval="70"/>
+      <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+      <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('settings')]/div[@data-key='stock']" position="inside">
+                    <h2 >Kit Assembly/Packet Journal</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_right_pane">
+                                <label for="journal_id"/>
+                                <div class="row">
+                                    <div class="text-muted col-lg-8"></div>
+                                </div>
+                                <div class="content-group">
+                                    <div class="mt16">
+                                        <field name="journal_id" required="1" class="o_light_label" placeholder="Journal"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_right_pane">
+                                <label for="account_assembly_id" string="Account ID"/>
+                                <div class="row">
+                                    <div class="text-muted col-lg-8"></div>
+                                </div>
+                                <div class="content-group">
+                                    <div class="mt16">
+                                        <field name="account_assembly_id" class="o_light_label" placeholder="Account"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </xpath>
+      </field>
+  </record>
+
+  </data>
+</odoo>

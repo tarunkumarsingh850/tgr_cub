@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="material_update_wizard" model="ir.ui.view">
+      <field name="name">material.request.wizard</field>
+      <field name="model">material.request.wizard</field>
+      <field name="arch" type="xml">
+        <form string="Import Lines">
+          <group>
+            <field name="excel_file" required="1"/>
+            <field name="material_update_id" invisible="1"/>
+          </group>
+          <footer>
+            <button name="load_lines" string="Import" type="object" class="btn-primary"/>
+            <button string="Cancel" class="btn-default" special="cancel"/>
+          </footer>
+        </form>
+      </field>
+    </record>
+
+</odoo>

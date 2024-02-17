@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="invoice_line_import_update_wizard" model="ir.ui.view">
+      <field name="name">invoice.line.wizard</field>
+      <field name="model">invoice.line.wizard</field>
+      <field name="arch" type="xml">
+        <form string="Import Lines">
+          <group>
+            <field name="excel_file"/>
+            <field name="invoice_line_update_id" invisible="1"/>
+          </group>
+          <group>
+            <button string="Download Invoice Template" name="export_template_invoice" type="object"/>
+          </group>
+          <footer>
+            <button name="load__invoice_lines" string="Import" type="object" class="btn-primary"/>
+            <button string="Cancel" class="btn-default" special="cancel"/>
+          </footer>
+        </form>
+      </field>
+    </record>
+
+</odoo>

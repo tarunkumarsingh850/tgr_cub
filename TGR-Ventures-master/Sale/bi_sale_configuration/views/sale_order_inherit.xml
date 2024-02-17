@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="inherit_logistic_sale_order_view_form" model="ir.ui.view">
+        <field name="name">inherit.logistic.sale.order.view_form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="bi_sale_generic_customisation.sale_order_type_inherit_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='tag_ids']" position="after">
+                <field name="logistics_costs"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

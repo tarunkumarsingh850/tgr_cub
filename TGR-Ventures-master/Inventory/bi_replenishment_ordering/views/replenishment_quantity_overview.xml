@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="replenishment_quantity_overview_view_form" model="ir.ui.view">
+        <field name="name">replenishment.quantity.overview.view.form</field>
+        <field name="model">replenishment.quantity.overview</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button string="Confirm" name="load_lines" type="object" class="oe_highlight" states="draft"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="view_lines" type="object" class="oe_stat_button" icon="fa-shopping-cart"
+                                attrs="{'invisible':[('state','!=','confirmed')]}">
+                            <div class="o_stat_info">
+                                <span class="o_stat_text">View</span>
+                                <span class="o_stat_text">Products</span>
+                            </div>
+                        </button>
+                        <button name="view_orders" type="object" class="oe_stat_button" icon="fa-file"
+                                attrs="{'invisible':[('order_count','&lt;=',0)]}">
+                            <field name="order_count" string="Orders" widget="statinfo"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="warehouse_id" required="1"/>
+                            <field name="sex_id"/>
+                            <field name="brand_ids" widget="many2many_tags" required="1"/>
+                            <field name="flower_type_id"/>
+                        </group>
+                        <group>
+                            <field name="date" />
+                            <field name="size_id" />
+                            <field name="date_range" required="1"/>
+                            <field name="user_id" />
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" />
+                    <field name="message_ids" />
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="replenishment_quantity_overview_line_view_tree" model="ir.ui.view">
+        <field name="name">replenishment.quantity.overview.line.view.tree</field>
+        <field name="model">replenishment.quantity.overview.line</field>
+        <field name="arch" type="xml">
+            <tree editable="top" create="false" decoration-info="product_age=='new'">
+                <header>
+                    <button string="Order" name="create_order" type="object" class="oe_highlight oe_inline"/>
+                </header>
+                <field name="product_id" readonly="1"/>
+                <field name="product_age" invisible="1"/>
+                <field name="supplier_id" />
+                <field name="last_year_order_quantity" string="Last Year Sale Quantity" optional="show" readonly="1"/>
+                <field name="on_order_quantity" readonly="1"/>
+                <field name="ideal_quantity" readonly="1"/>
+                <field name="available_quantity" readonly="1"/>
+                <field name="suggested_reorder_quantity" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="replenishment_quantity_overview_view_tree" model="ir.ui.view">
+        <field name="name">replenishment.quantity.overview.view.tree</field>
+        <field name="model">replenishment.quantity.overview</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="name" />
+                <field name="date" />
+                <field name="warehouse_id"/>
+                <field name="sex_id"/>
+                <field name="brand_ids" widget="many2many_tags"/>
+                <field name="flower_type_id"/>
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="replenishment_quantity_overview_action" model="ir.actions.act_window">
+        <field name="name">Replenishment Order</field>
+        <field name="res_model">replenishment.quantity.overview</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="replenishment_quantity_overview_line_action" model="ir.actions.act_window">
+        <field name="name">Replenishment Order Products</field>
+        <field name="res_model">replenishment.quantity.overview.line</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <menuitem
+        id="replenishment_ordering_menu"
+        name="Replenishment Order"
+        action="replenishment_quantity_overview_action"
+        parent="stock.menu_stock_warehouse_mgmt"
+        sequence="10"/>
+
+    <!-- <menuitem
+        id="stock.menu_reordering_rules_replenish"
+        groups="base.group_no_one"/> -->
+
+    <record id="stock.menu_reordering_rules_replenish" model="ir.ui.menu">
+        <field name="groups_id" eval="[(6,0, [ref('base.group_no_one')])]"/>
+    </record>
+
+</odoo>

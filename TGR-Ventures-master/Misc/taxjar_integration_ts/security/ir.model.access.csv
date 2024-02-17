@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_taxjar_account_public,taxjar.account,taxjar_integration_ts.model_taxjar_account,,1,1,1,1
+access_taxjar_category_public,taxjar.category,taxjar_integration_ts.model_taxjar_category,,1,1,1,1
+access_taxjar_tax_rate_public,taxjar.taxjar.tax.rate,taxjar_integration_ts.model_taxjar_tax_rate,,1,1,1,1
+access_taxjar_logs_public,taxjar.logs,taxjar_integration_ts.model_taxjar_logs,,1,1,1,1
+access_sync_multi_transaction_taxjar,sync.multi.transaction.taxjar,taxjar_integration_ts.model_sync_multi_transaction_taxjar,,1,1,1,1

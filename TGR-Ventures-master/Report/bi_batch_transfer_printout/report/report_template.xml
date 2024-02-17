@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="batch_report_template_id">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="bi_batch_transfer_printout.batch_report_header">
+                    <div class="page">
+                        <div class="row">
+                            <div class="col-3">
+                            </div>
+                            <!-- <div class="col-3">
+                            </div> -->
+                            <div class="col-5" style="text-align:center;">
+                                <b>Batch Transfer</b>
+                            </div>
+                            <div class="col-4" style="margin-left:-20px;">
+                                <div t-field="o.name" t-options="{'widget': 'barcode', 'width': 400, 'height': 100, 'img_style': 'width:250px;height:30px;'}"/>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row" style="width:100%;background-color:#808080;min-height:80px;font-size:12px;">
+                            <br/>
+                            <div class="col-4" style="color: white;padding-top:10px;">
+                                <b>Batch #:</b>
+                                <t t-if="o.name">
+                                    <b><span style="padding-left:40px;" t-esc="o.name"/></b>
+                                </t>
+                                <br/>
+                                <b>Batch Date:</b><![CDATA[&nbsp;]]><![CDATA[&nbsp;]]><![CDATA[&nbsp;]]><![CDATA[&nbsp;]]>
+                                <t t-if="o.scheduled_date">
+                                    <b><span style="padding-left:10px;" t-esc="o.scheduled_date.date().strftime('%d-%b-%Y')"/></b>
+                                </t>
+                                <br/>
+                                <b>Website:</b>
+                                <t t-if="website_name">
+                                    <b><span style="padding-left:35px;" t-esc="website_name"/></b>
+                                </t><br/>
+                            </div>
+                            <div class="col-4" style="color: white;padding-top:10px;">
+                                <b>Batch Amount:</b><![CDATA[&nbsp;]]><![CDATA[&nbsp;]]>
+
+                                <br/>
+                                <b>Batch Weight:</b><![CDATA[&nbsp;]]><![CDATA[&nbsp;]]><![CDATA[&nbsp;]]>
+
+                            </div>
+                            <t t-set="so_item_quantity" t-value="0" />
+                            <t t-foreach="o.picking_ids" t-as="lines">
+                                <t t-foreach="lines.move_ids_without_package" t-as="vals">
+                                    <t t-set="so_item_quantity" t-value="so_item_quantity+vals.product_uom_qty" />
+                                </t>
+                            </t>
+                            <div class="col-4" style="color: white;padding-top:10px;">
+                                <b>SOs Qty.:</b><![CDATA[&nbsp;]]><![CDATA[&nbsp;]]>
+                                <span style="padding-left:30px;">
+                                    <span t-esc="length_picking"/>
+                                </span>
+
+                                <br/>
+                                <b>SO Items Qty.:</b><![CDATA[&nbsp;]]><![CDATA[&nbsp;]]><![CDATA[&nbsp;]]>
+                                <t t-if="so_item_quantity">
+                                    <span t-esc="so_item_quantity"/>
+                                </t>
+                            </div>
+                        </div>
+                        <div class="row" style="width:100%;border:1px solid black;background-color:#D0D0D0;font-size:14px;margin-top:10px;">
+                            <div class="col-6" style="border-right:1px solid black">
+                                Batch Description:<![CDATA[&nbsp;]]><![CDATA[&nbsp;]]>
+                                <t t-if="o.batch_picking_description">
+                                    <span t-esc="o.batch_picking_description"/>
+                                </t>
+                            </div>
+                            <div class="col-6">
+                                Batch Notes:<![CDATA[&nbsp;]]><![CDATA[&nbsp;]]>
+                            </div>
+                        </div>
+                        <div class="row" style="width:100%;border:1px solid black;min-height:35px;background-color:#D0D0D0;font-size:14px;margin-top:20px;">
+                                <div style="width:25%;padding-left:5px;padding-top:8px;">SKU</div>
+                                <div style="width:37%;padding-left:5px;padding-top:8px;">Products</div>
+                                <div style="width:10%;padding-left:5px;padding-top:8px;">Pack Size</div>
+                                <div style="width:5%;padding-left:5px;padding-top:8px;">P</div>
+                                <div style="width:5%;padding-left:5px;padding-top:8px;">C</div>
+                                <div style="width:8%;padding-left:5px;padding-top:8px;">QTY</div>
+                                <div style="width:10%;padding-left:5px;padding-top:8px;">Zone</div>
+                        </div>
+                        <t t-set="i" t-value="0" />
+                        <t t-foreach="zone_vals" t-as="zone_val">
+                            <t t-if="i == 1 ">
+                                <t t-if="prev_zone != zone_val['zone']">
+                                    <div class="row" style="border-top:1px dashed black;width:100%;"></div>
+                                </t>
+                            </t>
+                            <div class="row" style="width:100%;font-size:12px;min-height:25px;">
+
+                                <div t-attf-style="width:25%;padding-left:5px;">
+                                    <t t-if="zone_val['sku']">
+                                        <span t-esc="zone_val['sku']" t-attf-style="color:#{zone_val['colour']}!important; "/>
+                                    </t>
+                                </div>
+                                <div style="width:36%;padding-left:5px;">
+                                    <t t-if="zone_val['product_id']">
+                                        <span t-esc="zone_val['product_id']" t-attf-style="color:#{zone_val['colour']}!important; "/>
+                                    </t>
+                                </div>
+                                <div style="width:10%;padding-left:5px;">
+                                    <t t-if="zone_val['pack_size']">
+                                        <span t-esc="zone_val['pack_size']" t-attf-style="color:#{zone_val['colour']}!important; "/>
+                                    </t>
+                                </div>
+                                <div style="width:5%;padding-left:5px;border:1px solid black;height:20px;margin-top:3px;"></div>
+                                <div style="width:1%;"></div>
+                                <div style="width:5%;padding-left:5px;border:1px solid black;height:20px;margin-top:3px;"></div>
+                                <div style="width:8%;padding-left:5px;">
+                                    <t t-if="zone_val['quantity']">
+                                        <span t-esc="zone_val['quantity']" t-attf-style="color:#{zone_val['colour']}!important; "/>
+                                    </t>
+                                </div>
+                                <div style="width:10%;padding-left:5px;">
+                                    <t t-if="zone_val['zone']">
+                                        <span t-esc="zone_val['zone']" t-attf-style="color:#{zone_val['colour']}!important; "/>
+                                        <t t-set="prev_zone" t-value="zone_val['zone']" />
+                                    </t>
+                                </div>
+                                <t t-set="i" t-value="1" />
+                            </div>
+                        </t>
+                         <t t-if="product_vals">
+                            <div class="row" style="border-top:1px dashed black;width:100%;">
+                            </div>
+                        </t>
+                        <t t-foreach="product_vals" t-as="product_val">
+                            <div class="row" style="width:100%;font-size:12px;min-height:25px;">
+
+                                <div style="width:25%;padding-left:5px;">
+                                    <t t-if="product_val['sku']">
+                                        <span t-esc="product_val['sku']" t-attf-style="color:#{product_val['colour']}!important; "/>
+                                    </t>
+
+                                </div>
+                                <div style="width:36%;padding-left:5px;">
+                                    <t t-if="product_val['product_id']">
+                                        <span t-esc="product_val['product_id']" t-attf-style="color:#{product_val['colour']}!important; "/>
+                                    </t>
+                                </div>
+                                <div style="width:10%;padding-left:5px;">
+                                    <t t-if="product_val['pack_size']">
+                                        <span t-esc="product_val['pack_size']" t-attf-style="color:#{product_val['colour']}!important; "/>
+                                    </t>
+                                </div>
+                                <div style="width:5%;padding-left:5px;border:1px solid black;height:20px;margin-top:3px;"></div>
+                                <div style="width:1%;"></div>
+                                <div style="width:5%;padding-left:5px;border:1px solid black;height:20px;margin-top:3px;"></div>
+                                <div style="width:8%;padding-left:5px;">
+                                    <t t-if="product_val['quantity']">
+                                        <span t-esc="product_val['quantity']" t-attf-style="color:#{product_val['colour']}!important; "/>
+                                    </t>
+                                </div>
+                                <div style="width:10%;padding-left:5px;">
+                                    <t t-if="product_val['zone']">
+                                        <span t-esc="product_val['zone']" t-attf-style="color:#{product_val['colour']}!important; "/>
+                                    </t>
+                                </div>
+                            </div>
+                        </t>
+                        <t t-if="new_vals">
+                            <div class="row" style="border-top:1px dashed black;width:100%;">
+                            </div>
+                        </t>
+                        <t t-foreach="new_vals" t-as="new_val">
+
+                            <div class="row" style="width:100%;font-size:12px;min-height:25px;">
+                                <div style="width:25%;padding-left:5px;">
+                                    <t t-if="new_val['sku']">
+                                        <span t-esc="new_val['sku']" t-attf-style="color:#{new_val['colour']}!important; "/>
+                                    </t>
+
+                                </div>
+                                <div style="width:36%;padding-left:5px;">
+                                    <t t-if="new_val['product_id']">
+                                        <span t-esc="new_val['product_id']" t-attf-style="color:#{new_val['colour']}!important; "/>
+                                    </t>
+                                </div>
+                                <div style="width:10%;padding-left:5px;">
+                                    <t t-if="new_val['pack_size']">
+                                        <span t-esc="new_val['pack_size']" t-attf-style="color:#{new_val['colour']}!important; "/>
+                                    </t>
+                                </div>
+                                <div style="width:5%;padding-left:5px;border:1px solid black;height:20px;margin-top:3px;"></div>
+                                <div style="width:1%;"></div>
+                                <div style="width:5%;padding-left:5px;border:1px solid black;height:20px;margin-top:3px;"></div>
+                                <div style="width:8%;padding-left:5px;">
+                                    <t t-if="new_val['quantity']">
+                                        <span t-esc="new_val['quantity']" t-attf-style="color:#{new_val['colour']}!important; "/>
+                                    </t>
+                                </div>
+                                <div style="width:10%;padding-left:5px;">
+                                    <!-- <t t-if="new_val['zone']"> -->
+                                        <!-- <span t-esc="new_val['zone']"/> -->
+                                    <!-- </t> -->
+                                </div>
+                            </div>
+                        </t>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

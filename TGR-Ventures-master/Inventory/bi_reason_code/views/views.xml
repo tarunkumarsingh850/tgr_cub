@@ -1,0 +1,52 @@
+<odoo>
+  <data>
+    <record id="reason_code_view_form" model="ir.ui.view">
+      <field name="name">reason.code.view.form</field>
+      <field name="model">reason.code</field>
+      <field name="arch" type="xml">
+        <form string="Reason Code">
+          <header>
+          </header>
+          <sheet>
+            <group>
+                <group>
+                  <field name="code" required="1"/>
+                  <field name="name" required="1"/>
+                </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="reason_code_view_tree" model="ir.ui.view">
+      <field name="name">reason.code.view.tree</field>
+      <field name="model">reason.code</field>
+      <field name="arch" type="xml">
+            <tree default_order="create_date desc">
+                <field name="code"/>
+                <field name="name"/>
+            </tree>
+        </field>
+      </record>
+
+    <record id="reason_code_action" model="ir.actions.act_window">
+      <field name="name">Reason Code</field>
+      <field name="res_model">reason.code</field>
+      <field name="view_mode">tree,form</field>
+      <field name="help" type="html">
+        <p class="o_view_nocontent_smiling_face">
+          Create a record
+        </p>
+      </field>
+    </record>
+
+    <menuitem
+      id="reason_code_menu"
+      name="Reason Code"
+      action="reason_code_action"
+      parent="stock.menu_stock_config_settings"
+      sequence="100"/>
+
+  </data>
+</odoo>

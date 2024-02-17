@@ -1,0 +1,55 @@
+<odoo>
+  <data>
+        <record id="view_product_size_form_view" model="ir.ui.view">
+            <field name="name">product.size.form</field>
+            <field name="model">product.size</field>
+            <field name="arch" type="xml">
+                <form string="Product Size">
+                    <group name="main_group">
+                        <field name="product_size" />
+                        <field name="product_size_des"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+    <record id="view_product_size_tree" model="ir.ui.view">
+        <field name="name">product.size.tree</field>
+        <field name="model">product.size</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="product_size" />
+                <field name="product_size_des"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_product_size_search" model="ir.ui.view">
+        <field name="name">product.size.search</field>
+        <field name="model">product.size</field>
+        <field name="arch" type="xml">
+            <search string="Search Product Sex">
+                <field name="product_size" />
+                <field name="product_size_des"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_product_size_tree" model="ir.actions.act_window">
+        <field name="name">Product Size</field>
+        <field name="res_model">product.size</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Click to Create a Product Size.</p>
+        </field>
+    </record>
+
+    <menuitem
+        action="action_product_size_tree"
+        id="menu_action_product_size_tree"
+        name="Product Size"
+        parent="stock.menu_stock_config_settings"
+    />
+
+  </data>
+  </odoo>

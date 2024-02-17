@@ -1,0 +1,125 @@
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="customer_view_inherited_form_view">
+            <field name="name">customer.view.inherited.form.view</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet" position="before">
+                    <header>
+                        <!-- <button name="action_confirm" string="Confirm" type="object" class="oe_highlight" attrs="{'invisible':['|',('is_customer','=',False),('state','!=','draft')]}"/> -->
+                        <!-- <button name="action_decline" string="DECLINE" type="object" class="btn-danger" attrs="{'invisible':['|',('is_customer','=',False),('state','!=','draft')]}"/> -->
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirm" attrs="{'invisible': True}"/>
+                    </header>
+                </xpath>
+                <xpath expr="//field[@name='vat']" position="after">
+                    <field name="is_customer" invisible="1"/>
+                    <field name="product_type" attrs="{'invisible':[('is_customer','=',False)]}"/>
+                    <field name="type_of_product" attrs="{'invisible':[('is_customer','=',False)]}"/>
+                    <field name="product_category" attrs="{'invisible':[('is_customer','=',False)]}"/>
+                </xpath>
+                <xpath expr="//field[@name='website']" position="attributes">
+                    <attribute name="string" >Company Website</attribute>
+                </xpath>
+                <xpath expr="//field[@name='website']" position="after">
+                    <field name="customer_website" attrs="{'invisible':[('is_customer','!=',True)]}"/>
+                    <field name="magento_company_id"/>
+                </xpath>
+                <!-- <xpath expr="//field[@name='vat']" position="replace">
+                    <label for="vat" string="Vat" attrs="{'invisible':[('is_customer','=',False)]}"/>
+                    <div class="o_row" attrs="{'invisible':[('is_customer','=',False)]}">
+                        <field name="vat" class="oe_inline"/>
+                        <button name="button_send_mail" type="object" string="if Insufficient Vat send email" class="oe_link oe_read_only pt-0" />
+                    </div>
+                </xpath> -->
+                <xpath expr="//field[@name='category_id']" position="before">
+                    <label for="personal_identification_no" string="Personal ID" attrs="{'invisible':[('is_customer','=',False)]}"/>
+                    <div class="o_row" attrs="{'invisible':[('is_customer','=',False)]}">
+                        <field name="personal_identification_no" class="oe_inline" widget="url" readonly="1"/>
+                        <!-- <button name="action_invalid_personal_id" type="object" string="if Insufficient PersonalID send email" class="oe_link oe_read_only pt-0" /> -->
+                    </div>
+                </xpath>
+                <xpath expr="//field[@name='category_id']" position="after">
+                    <label for="business_identification_no" string="Business ID" attrs="{'invisible':[('is_customer','=',False)]}"/>
+                    <div class="o_row" attrs="{'invisible':[('is_customer','=',False)]}">
+                        <field name="business_identification_no" class="oe_inline" widget="url" readonly="1"/>
+                        <!-- <button name="action_invalid_business_id" type="object" string="if Insufficient BusinessID send email" class="oe_link oe_read_only pt-0" /> -->
+                    </div>
+                </xpath>
+                <xpath expr="//field[@name='warehouse_ids']" position="after">
+                    <field name="customer_group_id"/>
+                </xpath>
+                <page name="internal_notes" position="before">
+                    <page name="additional_detail" string="Additional Details">
+                    <group>
+                        <group>                            
+                            <field name="current_buyer" string="Current Buyer"/>
+                            <field name="is_reselling"/>
+                            <field name="reselling"/>
+                            <field name="is_automated_ordering"/>
+                            <field name="monthly_turnover"/>
+                            <field name="hear_about_us"/>
+                        </group>
+                        <group>
+                            <field name="business_since"/>
+                            <field name="other_products_to_sell"/>
+                            <field name="current_selling_area"/>
+                            <field name="brand_interested"/>
+                            <field name="type_of_business"/>
+                            <field name="interested_in_banking"/>
+                        </group>
+                    </group>
+                    </page>
+                    <page name="sms_details" string="SMS Details">
+                        <group>
+                            <group>                            
+                                <field name="sms_notify"/>
+                                <field name="receive_tracking_sms"/>
+                            </group>
+                            <group>
+                                <field name="receive_marketing_sms"/>
+                            </group>
+                        </group>
+                        </page>
+                </page>
+            </field>
+        </record>
+
+        <record id="view_res_partner_filter_view_inherited" model="ir.ui.view">
+            <field name="name">res.partner.search</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter"/>
+            <field name="arch" type="xml">
+                <search>
+                    <filter name="name" string="Confimed" domain="[('state', '=', 'confirm')]"/>
+                    <filter name="name" string="Declined" domain="[('state', '=', 'decline')]"/>
+                </search>
+                <xpath expr="//search" position="inside">
+                    <field name="website" string="Company Website"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- <record id="base.action_partner_form" model="ir.actions.act_window">
+            <field name="context">{'group_by': 'country_id'}</field>
+       </record> -->
+
+       <record id="base.action_partner_form" model="ir.actions.act_window">
+        <field name="name">Customers</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="domain">[('is_customer','=',True)]</field>
+        <field name="context">{'search_default_customer': 1,'res_partner_search_mode': 'customer', 'default_is_company': True, 'default_customer_rank': 1,'default_is_customer': 1,'group_by': ['country_id']}</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Create a new customer in your address book
+          </p><p>
+            Odoo helps you easily track all activities related to a customer.
+          </p>
+        </field>
+    </record>
+
+    </data>
+</odoo>

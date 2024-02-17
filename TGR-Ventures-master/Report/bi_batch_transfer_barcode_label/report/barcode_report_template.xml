@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="batch_barcode_label_template_id">
+        <t t-foreach="docs" t-as="o">
+            <t t-translation="off">
+                <t t-foreach="o.picking_ids" t-as="picking">
+                    ^XA
+                    ^FX
+                    ^CF0,30
+                    ^FO20,20^FB(700,5,1,C)^FD<t t-esc="picking.partner_id.name"/>^FS
+                    ^CF0,28
+                    <t t-if="picking.partner_id.street and picking.partner_id.street2 and picking.partner_id.country_id">
+                        ^FO20,85^FB(700,5,1,C)^FD<t t-esc="picking.partner_id.street[:15]"/>,<t
+                            t-esc="picking.partner_id.street2[:15]"/>,<t t-esc="picking.partner_id.country_id.name"/>^FS
+                    </t>
+                    <t t-elif="picking.partner_id.street and picking.partner_id.country_id">
+                        ^FO20,85^FB(700,5,1,C)^FD<t t-esc="picking.partner_id.street[:15]"/>,<t
+                            t-esc="picking.partner_id.country_id.name"/>^FS
+                    </t>
+                    <t t-elif="picking.partner_id.street2 and picking.partner_id.country_id">
+                        ^FO20,85^FB(700,5,1,C)^FD<t t-esc="picking.partner_id.street2[:15]"/>,<t
+                            t-esc="picking.partner_id.country_id.name"/>^FS
+                    </t>
+                    <t t-elif="picking.partner_id.street">
+                        ^FO20,85^FB(700,5,1,C)^FD<t t-esc="picking.partner_id.street[:15]"/>^FS
+                    </t>
+                    <t t-elif="picking.partner_id.street2">
+                        ^FO20,85^FB(700,5,1,C)^FD<t t-esc="picking.partner_id.street2[:15]"/>^FS
+                    </t>
+                    <t t-if="picking.carrier_id and picking.origin">
+                        ^FO20,150^FB(700,5,1,C)^FD<t t-esc="picking.origin"/>,<t t-esc="o.name"/>,<t t-esc="picking.carrier_id.name"/>
+                        ^FS
+                    </t>
+                    <t t-elif="picking.carrier_id">
+                        ^FO20,150^FB(700,5,1,C)^FD<t t-esc="o.name"/>,<t t-esc="picking.carrier_id.name"/>^FS
+                    </t>
+                    <t t-elif="picking.origin">
+                        ^FO20,150^FB(700,5,1,C)^FD<t t-esc="picking.origin"/>,<t t-esc="o.name"/>^FS
+                    </t>
+                    ^FO200,200^BY2^BCN,63^FD<t t-esc="o.name"/>^FS
+                    ^XZ
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="delivery_slip_report_header">
+            <div class="header">
+                <div class="row" style="text-align:left;">
+                    <div class="col-2" style="margin-left:-10px;">
+                        <img t-if="o.sudo().magento_website_id.website_logo" t-att-src="image_data_uri(o.sudo().magento_website_id.website_logo)" style="width:130px;height:60px;" alt="Logo"/>
+                    </div>
+                    <div class="col-6" style="padding-left:45px;">
+                        <div class="row" style="font-size:9px;">
+                            <span t-field="o.company_id.name"/>
+                        </div>
+                        <div class="row" style="font-size:9px;padding-bottom:0px;">
+                            <span t-field="o.company_id.street2"/>
+                            <span t-field="o.company_id.city"/>
+                        </div>
+                        <div class="row" style="font-size:9px;padding-bottom:0px;">
+                            <span t-field="o.company_id.country_id"/>
+                        </div>
+                        <div class="row" style="font-size:9px;padding-bottom:0px;">
+                            Phone:<span t-field="o.company_id.phone"/>
+                        </div>
+                        <div class="row" style="font-size:9px;padding-bottom:0px;">
+                            VAT Number:<span t-field="o.company_id.vat"/>
+                        </div>
+                    </div>
+                    <div class="col-4" style="padding-left:60px;">
+                        <t t-if="o.name">
+                            <div t-field="o.name" t-options="{'widget': 'barcode', 'width': 600, 'height': 100, 'img_style': 'width:300px;height:50;'}"/>
+                        </t>
+                    </div>
+                    <!-- <div class="col-4" style="padding-left:60px;">
+                        <div class="row" style="font-size:9px;">
+                            Account Holder:
+                            Tigre Uno Distribucion S.L
+                        </div>
+                        <div class="row" style="font-size:9px;padding-bottom:1px;">
+                            Bank Name: La Caixa
+                        </div>
+                        <div class="row" style="font-size:9px;padding-bottom:1px;">
+                            Bank Address: Avenida Diagonal, 621-629, 08028,
+                            Barcelona, Spain
+                        </div>
+                        <div class="row" style="font-size:9px;padding-bottom:1px;">
+                            IBAN:ES1021001810400200088098
+                        </div>
+                        <div class="row" style="font-size:9px;padding-bottom:1px;">
+                            BIC:CAIXESBBXXX
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+            <div class="article o_report_layout_standard" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+                <t t-call="web.address_layout"/>
+                <t t-raw="0"/>
+            </div>
+            <div class="footer">
+                <div class="row" style="width:100%;">
+                    <div class="col-6" style="font-size:17px;padding-left:62px;">
+                        <span t-field="o.partner_id.name"/><br/>
+                        <t t-if="o.partner_id.customer_attention">
+                            <span t-field="o.partner_id.customer_attention"/><br/>
+                        </t>
+                        <t t-if="o.partner_id.street">
+                            <span t-field="o.partner_id.street"/><br/>
+                        </t>
+                        <t t-if="o.partner_id.street2">
+                            <span t-field="o.partner_id.street2"/>,
+                        </t>
+                        <t t-if="o.partner_id.city">
+                            <span t-field="o.partner_id.city"/>,
+                        </t>
+                        <t t-if="o.partner_id.zip">
+                            <span t-field="o.partner_id.zip"/><br/>
+                        </t>
+                        <t t-if="o.partner_id.state_id.name">
+                            <span t-field="o.partner_id.state_id.name"/><br/>
+                        </t>
+                        <t t-if="o.partner_id.country_id">
+                            <span t-field="o.partner_id.country_id"/><br/>
+                        </t>
+                    </div>
+                    <div class="col-6" style="font-size:10px;padding-left:40px;">
+                        <div class="row">
+                            <div class="col-6" >
+                                <span t-field="o.partner_id.name"/><br/>
+                                <t t-if="o.partner_id.customer_attention">
+                                    <span t-field="o.partner_id.customer_attention"/><br/>
+                                </t>
+                                <t t-if="o.partner_id.street">
+                                    <span t-field="o.partner_id.street"/><br/>
+                                </t>
+                                <t t-if="o.partner_id.street2">
+                                    <span t-field="o.partner_id.street2"/>,
+                                </t>
+                                <t t-if="o.partner_id.city">
+                                    <span t-field="o.partner_id.city"/><br/>
+                                </t>
+                                <t t-if="o.partner_id.state_id.name">
+                                    <span t-field="o.partner_id.state_id.name"/><br/>
+                                </t>
+                                <t t-if="o.partner_id.country_id">
+                                    <span t-field="o.partner_id.country_id"/><br/>
+                                </t>
+                            </div>
+                            <div class="col-6" >
+                                <b><span>Order #:</span><span t-esc="o.origin"/></b><br/>
+                                <b><span>Batch Nbr #:</span><span t-esc="o.batch_id.name"/></b><br/>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top:40px;">
+                            <div class="col-6" >
+                                <span t-field="o.partner_id.name"/><br/>
+                                <t t-if="o.partner_id.customer_attention">
+                                    <span t-field="o.partner_id.customer_attention"/><br/>
+                                </t>
+                                <t t-if="o.partner_id.street">
+                                    <span t-field="o.partner_id.street"/><br/>
+                                </t>
+                                <t t-if="o.partner_id.street2">
+                                    <span t-field="o.partner_id.street2"/>,
+                                </t>
+                                <t t-if="o.partner_id.city">
+                                    <span t-field="o.partner_id.city"/><br/>
+                                </t>
+                                <t t-if="o.partner_id.state_id.name">
+                                    <span t-field="o.partner_id.state_id.name"/><br/>
+                                </t>
+                                <t t-if="o.partner_id.country_id">
+                                    <span t-field="o.partner_id.country_id"/><br/>
+                                </t>
+                            </div>
+                            <div class="col-6" >
+                                <b><span>Order #:</span><span t-esc="o.origin"/></b><br/>
+                                <b><span>Batch Nbr #:</span><span t-esc="o.batch_id.name"/></b><br/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </template>
+    </data>
+</odoo>

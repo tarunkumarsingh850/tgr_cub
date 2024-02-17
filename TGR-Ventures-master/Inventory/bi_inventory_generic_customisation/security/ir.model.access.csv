@@ -1,0 +1,14 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_product_breeder_user,bi_inventory_generic_customisation.product.breeder,model_product_breeder,base.group_user,1,1,1,1
+access_flower_type_user,bi_inventory_generic_customisation.flower.type,model_flower_type,base.group_user,1,1,1,1
+access_product_sex_user,bi_inventory_generic_customisation.product.sex,model_product_sex,base.group_user,1,1,1,1
+access_product_size_user,bi_inventory_generic_customisation.product.size,model_product_size,base.group_user,1,1,1,1
+access_product_attribute_line_user,bi_inventory_generic_customisation.product.attribute.line,model_product_attribute_line,base.group_user,1,1,1,1
+access_product_attribute_model_user,bi_inventory_generic_customisation.product.attribute.model,model_product_attribute_model,base.group_user,1,1,1,1
+access_hold_picking,hold_picking.picking.hold.model,model_picking_hold,base.group_user,1,1,1,1
+access_cancel_picking,cancel.picking.hold.model,model_picking_cancel,base.group_user,1,1,1,1
+access_tracking_reference_wizard_user,bi_inventory_generic_customisation.tracking.reference.wizard,model_tracking_reference_wizard,base.group_user,1,1,1,1
+access_update_warehouse_wizard_user,bi_inventory_generic_customisation.update.warehouse.wizard,model_update_warehouse_wizard,base.group_user,1,1,1,1
+access_product_website_model_user,bi_inventory_generic_customisation.product.website.model,model_product_website_model,base.group_user,1,1,1,1
+access_product_tag_user,bi_inventory_generic_customisation.product.tag,model_product_tag,base.group_user,1,1,1,1
+access_shock_message_wizard,shock_message_wizard,bi_inventory_generic_customisation.model_shock_message_wizard,base.group_user,1,1,1,1

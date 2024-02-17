@@ -1,0 +1,158 @@
+.filters-container {
+  .filter-col {
+    padding: 0 5px 0 5px;
+  }
+}
+
+.chart-card-filter {
+  background: #ffffff;
+  border-radius: 15px;
+  padding: 8px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
+  height: 70px;
+  select {
+    border: 0;
+    text-align: center;
+    //color: #f6f7fa !important;
+  }
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+.chart-date-range {
+  font-size: 12pt;
+  background: #fff;
+  cursor: pointer;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+}
+
+.chart-card {
+  background: #ffffff;
+  border-radius: 15px;
+  padding: 10px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
+  h4 {
+    font-weight: bolder;
+  }
+}
+
+.summary-container {
+  h2 {
+    margin-bottom: 60px;
+    font-weight: bolder;
+  }
+  height: 510px !important;
+  padding: 10px 10px 10px 10px !important;
+}
+
+.sale-order-title {
+  h2 {
+    font-weight: bolder;
+  }
+}
+
+.purchase-tables {
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+}
+
+.overflow-purchase-tables {
+  overflow-x: scroll !important;
+}
+
+.amount-of-each-product-sold,
+.crm-leads-and-conversions,
+.leads-information {
+  padding-left: 80px;
+  padding-right: 80px;
+  max-height: 430px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.crm-leads-and-conversions-table {
+  max-height: 300px !important;
+  padding-bottom: 30px;
+}
+
+.leads-information {
+  max-height: 416px !important;
+  min-height: 416px !important;
+}
+
+.overflow-div {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
+.current-stock-levels-chart-card {
+  max-height: 510px !important;
+}
+
+.sales-of-brand-table-div {
+  max-height: 500px !important;
+}
+
+.sales-of-brand-table {
+  max-height: 900px !important;
+}
+
+.redirect-to-sale-orders {
+  color: #000000;
+  &:hover {
+    cursor: pointer;
+    color: #bfbfbf;
+  }
+  &:active {
+    color: white;
+  }
+}
+
+.ms-options-wrap > button {
+  border: 0 !important;
+  &:focus {
+    border: 0 !important;
+    outline: 0 !important;
+  }
+}
+
+//Scrollbar style
+.amount-of-each-product-sold::-webkit-scrollbar-track
+{
+  -webkit-box-shadow: inset 0 0 6px rgba(99, 74, 92, 1);
+  background-color: #F5F5F5;
+}
+
+.amount-of-each-product-sold::-webkit-scrollbar
+{
+  width: 6px;
+  background-color: #F5F5F5;
+}
+
+.amount-of-each-product-sold::-webkit-scrollbar-thumb
+{
+  background-color: rgba(99, 74, 92, 1);
+}
+
+.sticky-header {
+  position: sticky !important;
+  top: 0 !important;
+}
+
+.sob-filter {
+  border-right: 1px solid grey;
+}
+
+.sob-pagination {
+  float: right;
+  margin: 10px 0 20px 0;
+  font-weight: bold;
+  input{
+    border-top: none;
+    border-left: none;
+    border-right: none;
+  }
+}

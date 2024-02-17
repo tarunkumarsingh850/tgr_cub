@@ -1,0 +1,612 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="product_template_view_inherit_form">
+            <field name="name">product.template.view.inherit.form</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet/notebook/page[@name='general_information']/group/group/field[@name='detailed_type']" position="after">
+                    <field name="product_new_type"/>
+                    <field name="item_status"/>
+                    <field name="pack_size_desc"/>
+                    <field name="flower_type_id"/>
+                    <field name="product_breeder_id"/>
+                    <field name="product_sex_id"/>
+                    <field name="product_size_id"/>
+                    <field name="case_quantity"/>
+                    <field name="supplier_sku_no"/>
+                    <field name="pi_cycle"/>
+                    <field name="vendor_inventory_char"/>
+                    <field name="lead_time_day"/>
+                    <field name="pa_accural_account"/>
+                    <field name="is_website" invisible="1"/>
+                    <field name="product_tag_ids" widget="many2many_tags"/>
+                </xpath>
+                <xpath expr="//form/sheet/notebook" position="inside">
+                    <page string="Pricing">
+                        <group>
+                            <group>
+                                <field name="retail_us_price"/>
+                                <field name="retail_za_price"/>
+                                <field name="retail_uk_price"/>
+                                <field name="retail_default_price"/>
+                                <field name="retail_special_price"/>
+                                <field name="retail_special_us"/>
+                                <field name="retail_special_za"/>
+                                <field name="retail_special_uk"/>
+                            </group>
+                            <group>
+                                <field name="wholesale_special_price"/>
+                                <field name="wholesale_special_us"/>
+                                <field name="wholesale_special_za"/>
+                                <field name="wholesale_special_uk"/>
+                                <field name="wholesale_price_value"/>
+                                <field name="za_price" invisible="1"/>
+                                <field name="wholesale_us"/>
+                                <field name="wholesale_za"/>
+                                <field name="wholesale_uk"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+                <xpath expr="//form/sheet/notebook/page[@name='general_information']/group/group/div[@name='standard_price_uom']" position="after">
+                    <field name="tag_groups_ids" widget="many2many_tags"/>
+                    <field name="last_cost" invisible="1"/>
+                    <field name="is_not_product_cost_manager" invisible="1"/>
+                    <field name="last_cost_2"/>
+                    <field name="min_cost"/>
+                    <field name="max_cost"/>
+                </xpath>
+                <xpath expr="//field[@name='standard_price']" position="attributes">
+                    <attribute name="attrs">{"readonly" : [('is_not_product_cost_manager','=', True)]}</attribute>
+                </xpath>
+                <xpath expr="//form/sheet/notebook/page[@name='inventory']/group/group/div" position="after">
+                    <field name="default_warehouse_id"/>
+                </xpath>
+
+                <xpath expr="//form/sheet/notebook/page[@name='invoicing']/group/group/field[@name='property_account_income_id']" position="attributes">
+                    <attribute name="string">Sales Account</attribute>
+                </xpath>
+                <xpath expr="//form/sheet/notebook/page[@name='invoicing']/group/group/field[@name='property_account_expense_id']" position="attributes">
+                    <attribute name="string">Purchase Account</attribute>
+                </xpath>
+                <xpath expr="//form/sheet/notebook/page[@name='invoicing']/group" position="after">
+                    <group name="gl_accounts">
+                        <group string="GL Accounts">
+                            <field name="account_inventory_id"/>
+                            <field name="account_sub_inventory_id"/>
+                            <field name="account_reason_subcode_id"/>
+                            <field name="account_sub_sales_id"/>
+                            <field name="account_cogs_id"/>
+                            <field name="account_cogs_sub_id"/>
+                            <field name="account_standard_cost_variance_id"/>
+                            <field name="account_standard_cost_sub_variance_id"/>
+                            <field name="account_standard_cost_revaluation_id"/>
+                            <field name="account_standard_cost_sub_revaluation_id"/>
+                            <field name="account_po_sub_accrual"/>
+                            <field name="account_purchase_price_variance_id"/>
+                            <field name="account_purchase_price_sub_variance_id"/>
+                            <field name="account_landed_cost_variance_id"/>
+                            <field name="account_landed_cost_sub_variance_id"/>
+                        </group>
+                    </group>
+                </xpath>
+                <xpath expr="//form/sheet/notebook" position="inside">
+                    <page string="Product Attribute">
+                        <field name="attribute_product_line_ids" invisible="1">
+                            <tree string="Attribute" editable="bottom">
+                                <field name="product_attribute"/>
+                                <field name="required_boolean"/>
+                                <field name="value_boolean"/>
+                                <field name="date_attribute" attrs="{'invisible':[('value_boolean','=',False)]}"/>
+                            </tree>
+                        </field>
+                        <group>
+                            <group>
+                                <field name="is_pn_br"/>
+                                <field name="is_pn_sa"/>
+                                <field name="is_pn_us"/>
+                                <field name="is_pn_us_two"/>
+                                <field name="is_usa_replenishment"/>
+                                <field name="is_malaga_replenishment"/>
+                                <field name="is_uk_replenishment"/>
+                            </group>
+                            <group>
+                                <field name="is_out_of_stock"/>
+                                <field name="out_of_stock_date" attrs="{'invisible':[('is_out_of_stock','=',False)]}"/>
+                                <field name="is_back_in_stock"/>
+                                <field name="back_stock_date" attrs="{'invisible':[('is_back_in_stock','=',False)]}"/>
+                                <field name="is_exclude_from_replenishment"/>
+                                <field name="is_excluded_pricelist"/>
+                                <field name="is_excluded_customer"/>
+                                <field name="is_pending_discontinued"/>
+                                <field name="is_free_product"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+                <xpath expr="//form/sheet/notebook" position="inside">
+                    <page string="Website" groups="odoo_magento2_ept.group_magento_user_ept,odoo_magento2_ept.group_magento_manager_ept">
+                        <field name="website_instance_ids" readonly="1" groups="">
+                            <tree string="Website" create="false" editable="bottom">
+                                <field name="website_instance_id" readonly="1"/>
+                                <field name="price_unit"/>
+                                <field name="enable_disable_product"/>
+                            </tree>
+                        </field>
+                    </page>
+                    <page string="Enable/Disable" groups="bi_export_product_enable_website.update_product_enable_disable_menu_group">
+                        <group>
+                            <group>
+                                <field name="uk_tiger_one_boolean" widget="boolean_toggle"/>
+                                <field name="eu_tiger_one_boolean" widget="boolean_toggle"/>
+                                <field name="sa_tiger_one_boolean" widget="boolean_toggle"/>
+                                <field name="usa_tiger_one_boolean" widget="boolean_toggle"/>
+                            </group>
+                            <group>
+                                <field name="uk_seedsman_boolean" widget="boolean_toggle"/>
+                                <field name="eu_seedsman_boolean" widget="boolean_toggle"/>
+                                <field name="sa_seedsman_boolean" widget="boolean_toggle"/>
+                                <field name="usa_seedsman_boolean" widget="boolean_toggle"/>
+                            </group>
+                              <group>
+                                <field name="uk_eztestkits_boolean" widget="boolean_toggle"/>
+                                <field name="eu_eztestkits_boolean" widget="boolean_toggle"/>
+                                <field name="sa_eztestkits_boolean" widget="boolean_toggle"/>
+                                <field name="usa_eztestkits_boolean" widget="boolean_toggle"/>
+                              </group>
+                              <group>
+                                <field name="pytho_n_boolean" widget="boolean_toggle"/>
+                              </group>
+                        </group>
+                    </page>
+
+                </xpath>
+                <xpath expr="//page[@name='purchase']/group[@name='purchase']" position="inside">
+                    <group name='last_purchase'>
+                        <field name="is_last_purchase_order" />
+                        <field name="last_purchase_order_id" readonly="1"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+
+      <record model="ir.ui.view" id="product_template_view_inherit_form_sku">
+        <field name="name">product.template.view.inherit.form.sku</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+                <xpath expr="//field[@name='default_code']" position="attributes">
+                  <attribute name="string">Product SKU</attribute>
+                </xpath>
+                <xpath expr="//label[@for='list_price']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='list_price']" position="replace">
+                    <field name="list_price" string="Sales Price" invisible="1" />
+                </xpath>
+                <xpath expr="//form/sheet/notebook/page[@name='inventory']/group/group[@name='group_lots_and_weight']" position="inside">
+                    <field name="dimension"/>
+                </xpath>
+                <xpath expr="//form/sheet/notebook/page[@name='general_information']/group/group/div[@name='standard_price_uom']" position="after">
+                    <field name="previous_last_cost" attrs="{'invisible':[('active', '=', True)]}"/>
+                    <field name="hs_code"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_product_template_inherited_list" model="ir.ui.view">
+            <field name="name">view.product.template.list.inherited</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_tree_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="check_color" invisible="1"/>
+                    <field name="black_color" invisible="1"/>
+                    <field name="recently_created" invisible="1"/>
+                    <field name="zero_onhand" invisible="1"/>
+                    <field name="is_pending_discontinued" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='list_price']" position="replace">
+                    <field name="list_price" string="Sales Price" invisible="1" widget="monetary" options="{'currency_field': 'currency_id'}" optional="show" decoration-muted="not sale_ok"/>
+                </xpath>
+                <xpath expr="//field[@name='standard_price']" position="after">
+                    <field name="supplier_sku_no"/>
+                    <field name="product_tag_ids" widget="many2many_tags" optional="show"/>
+
+                    <field name="retail_us_price" optional="hide"/>
+                    <field name="retail_za_price" optional="hide"/>
+                    <field name="retail_uk_price" optional="hide"/>
+                    <field name="retail_default_price"/>
+                    <field name="retail_special_price" optional="hide"/>
+                    <field name="retail_special_us" optional="hide"/>
+                    <field name="retail_special_za" optional="hide"/>
+                    <field name="retail_special_uk" optional="hide"/>
+
+                    <field name="wholesale_price_value"/>
+                    <field name="wholesale_special_price" optional="hide"/>
+                    <field name="wholesale_special_us" optional="hide"/>
+                    <field name="wholesale_special_za" optional="hide"/>
+                    <field name="wholesale_special_uk" optional="hide"/>
+                    <field name="wholesale_us" optional="hide"/>
+                    <field name="wholesale_za" optional="hide"/>
+                    <field name="wholesale_uk" optional="hide"/>
+
+                    <field name="malag_stock_quant" optional="show"/>
+                    <field name="malag_on_hand_quant" optional="show"/>
+                    <field name="uk_stock_quant" optional="show"/>
+                    <field name="uk_on_hand_quant" optional="show"/>
+                    <field name="bulk_uk_stock_quant" optional="show"/>
+                    <field name="bulk_es_stock_quant" optional="show"/>
+                    <field name="za_stock_quant" optional="show"/>
+                    <field name="wsale_stock_quant" optional="show"/>
+                    <field name="uk_3pl_stock_quant" optional="show"/>
+                    <field name="uk_3pl_on_hand_quant" optional="show"/>
+                    <field name="usit_stock_quant" optional="show"/>
+                    <field name="lost_stock_quant" optional="show"/>
+                    <field name="flower_type_id" optional="show"/>
+                    <field name="pack_size_desc" optional="show"/>
+                    <field name="product_breeder_id" optional="show"/>
+                    <field name="product_sex_id" optional="show"/>
+                    <field name="product_size_id" optional="show"/>
+                    <field name="case_quantity" optional="show"/>
+                </xpath>
+                <xpath expr="//field[@name='qty_available']" position="after">
+                    <field name="total_stock_quant" optional="show"/>
+                </xpath>
+                <xpath expr="//field[@name='standard_price']" position="replace">
+                    <field name="standard_price"  options="{'currency_field': 'cost_currency_id'}" optional="show" readonly="1"/>
+                </xpath>
+                <!-- <xpath expr="//tree" position="attributes">
+                    <attribute name="decoration-muted">(black_color == True)</attribute>
+                </xpath>
+                <xpath expr="//tree" position="attributes">
+                    <attribute name="decoration-danger">(check_color == False)</attribute>
+                </xpath> -->
+                <xpath expr="//tree" position="attributes">
+                    <attribute name="decoration-success">(is_pending_discontinued == True)</attribute>
+                </xpath>
+                 <xpath expr="//tree" position="attributes">
+                    <attribute name="decoration-info">(recently_created == True)</attribute>
+                </xpath>
+                <xpath expr="//tree/field[@name='default_code']" position="after">
+                    <field name="product_breeder_id" string="Brand"/>
+                </xpath>
+                <xpath expr="//field[@name='uom_id']" position="before">
+                    <field name="qty_expected" optional="show"/>
+                </xpath>
+                <xpath expr="//field[@name='default_code']" position="after">
+                    <field name="last_purchase_order_id" readonly="1" optional="hide"/>
+                    <field name="date_of_receipt" readonly="1"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_product_template_new_filter" model="ir.ui.view">
+            <field name="name">product.template.search</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_search_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//search" position="inside">
+                    <field name="product_breeder_id" string="Brand"/>
+                    <field name="product_tag_ids" string="Product Tag"/>
+                    <filter name="product_tag_groupby" string="Product Tag" context="{'group_by': 'product_tag_ids'}" />
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="product_template_view_inherit_tree_sku">
+            <field name="name">product.template.view.inherit.form.sku</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_tree_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='default_code']" position="attributes">
+                    <attribute name="string">SKU</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="product_product_view_inherit_form_sku">
+            <field name="name">product.product.view.inherit.tree.sku</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                  <xpath expr="//field[@name='default_code']" position="attributes">
+                      <attribute name="string">SKU</attribute>
+                  </xpath>
+                </field>
+            </record>
+
+            <record model="ir.ui.view" id="product_product_view_inherit_tree_sku">
+                <field name="name">product.product.view.inherit.tree.sku</field>
+                <field name="model">product.product</field>
+                <field name="inherit_id" ref="product.product_product_tree_view"/>
+                <field name="arch" type="xml">
+                      <xpath expr="//field[@name='default_code']" position="attributes">
+                          <attribute name="string">SKU</attribute>
+                      </xpath>
+                      <xpath expr="//field[@name='uom_id']" position="before">
+                        <field name="expected_qty" optional="show"/>
+                      </xpath>
+                    </field>
+            </record>
+
+        <record id="product_template_list_action" model="ir.actions.act_window">
+            <field name="name">Product List(Copy)</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.template</field>
+            <field name="view_mode">tree</field>
+            <field name="domain"></field>
+            <field name="context"></field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                </p>
+            </field>
+        </record>
+
+        <record id="product_template_list_out_of_stock_action" model="ir.actions.act_window">
+            <field name="name">Out Of Stock Products</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.template</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('is_out_of_stock','=',True)]</field>
+            <field name="context"></field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                </p>
+            </field>
+        </record>
+
+        <record id="product_template_list_phyto_nation_action" model="ir.actions.act_window">
+            <field name="name">Phyto Nation Products</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.template</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('is_pn_us','=',True)]</field>
+            <field name="context"></field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                </p>
+            </field>
+        </record>
+
+        <record id="product_template_list_us_two_action" model="ir.actions.act_window">
+            <field name="name">T1 US products</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.template</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('is_pn_us_two','=',True)]</field>
+            <field name="context"></field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                </p>
+            </field>
+        </record>
+
+        <!-- <menuitem action="product_template_list_action" id="menu_product_template_list_action" parent="stock.menu_stock_inventory_control"/> -->
+        <menuitem action="product_template_list_out_of_stock_action" id="menu_product_template_list_out_of_stock_action" parent="stock.menu_stock_inventory_control"/>
+        <menuitem action="product_template_list_phyto_nation_action" id="menu_product_template_list_phyto_nation_action" parent="stock.menu_stock_inventory_control"/>
+        <menuitem action="product_template_list_us_two_action" id="menu_product_template_list_us_two_action" parent="stock.menu_stock_inventory_control"/>
+
+        <record model="ir.ui.view" id="inherit_stock_product_template_search_form_view_stock">
+            <field name="name">product.template.view.inherit.form.filter</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="stock.product_template_search_form_view_stock"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='warehouse_id']" position="after">
+                    <separator/>
+                    <filter name="zero_on_hand" string="Zero Quantity" domain="[('zero_onhand','=', True)]"/>
+                    <filter name="recenty_created" string="Recently Created" domain="[('create_date','>=', ((context_today()-datetime.timedelta(days=70)).strftime('%Y-%m-%d')))]"/>
+                    <separator/>
+                    <filter name="is_out_of_stock" string="Out of stock" domain="[('is_out_of_stock','=', True)]"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- NEW MENU FOR PHYTO  -->
+        <record id="phyto_product_template_tree_view" model="ir.ui.view">
+            <field name="name">product.template.product.tree</field>
+            <field name="model">product.template</field>
+            <field name="arch" type="xml">
+                <tree string="Product" multi_edit="1" sample="1">
+                    <field name="product_breeder_id" optional="show"/>
+                    <field name="default_code" string="SKU" optional="show"/>
+                    <field name="name" string="Product Name"/>
+                    <field name="pack_size_desc"/>
+                    <field name="flower_type_id"/>
+                    <field name="product_sex_id"/>
+                    <field name="phyto_stock"/>
+
+                    <field name="retail_us_price" optional="hide"/>
+                    <field name="retail_za_price" optional="hide"/>
+                    <field name="retail_uk_price" optional="hide"/>
+                    <field name="retail_default_price" optional="hide"/>
+                    <field name="retail_special_price" optional="hide"/>
+                    <field name="retail_special_us" optional="hide"/>
+                    <field name="retail_special_za" optional="hide"/>
+                    <field name="retail_special_uk" optional="hide"/>
+
+                    <field name="wholesale_price_value" optional="hide"/>
+                    <field name="wholesale_special_price" optional="hide"/>
+                    <field name="wholesale_special_us" optional="hide"/>
+                    <field name="wholesale_special_za" optional="hide"/>
+                    <field name="wholesale_special_uk" optional="hide"/>
+                    <field name="wholesale_us" optional="hide"/>
+                    <field name="wholesale_za" optional="hide"/>
+                    <field name="wholesale_uk" optional="hide"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="phyto_product_template_action" model="ir.actions.act_window">
+            <field name="name">PHYTO NATION</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.template</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="phyto_product_template_tree_view"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                </p>
+            </field>
+        </record>
+
+        <menuitem action="phyto_product_template_action" id="menu_product_template_phyto_action" parent="stock.menu_stock_inventory_control"/>
+
+         <!-- NEW MENU FOR US  -->
+        <record id="us_product_template_tree_view" model="ir.ui.view">
+            <field name="name">product.template.product.tree</field>
+            <field name="model">product.template</field>
+            <field name="arch" type="xml">
+                <tree string="Product" multi_edit="1" sample="1">
+                    <field name="product_breeder_id" optional="show"/>
+                    <field name="default_code" string="SKU" optional="show"/>
+                    <field name="name" string="Product Name"/>
+                    <field name="pack_size_desc"/>
+                    <field name="flower_type_id"/>
+                    <field name="product_sex_id"/>
+                    <field name="barcode" />
+                    <field name="standard_price" string="Last Cost USD"/>
+                    <field name="retail_us_price"/>
+                    <field name="wholesale_us"/>
+                    <field name="live_stock"/>
+                    <field name="live_stock_available" optional="show"/>
+                    <field name="whusa_stock"/>
+                    <field name="unpac_stock"/>
+                    <field name="retail_za_price" optional="hide"/>
+                    <field name="retail_uk_price" optional="hide"/>
+                    <field name="retail_default_price" optional="hide"/>
+                    <field name="retail_special_price" optional="hide"/>
+                    <field name="retail_special_us" optional="hide"/>
+                    <field name="retail_special_za" optional="hide"/>
+                    <field name="retail_special_uk" optional="hide"/>
+
+                    <field name="wholesale_price_value" optional="hide"/>
+                    <field name="wholesale_special_price" optional="hide"/>
+                    <field name="wholesale_special_us" optional="hide"/>
+                    <field name="wholesale_special_za" optional="hide"/>
+                    <field name="wholesale_special_uk" optional="hide"/>
+                    <field name="wholesale_za" optional="hide"/>
+                    <field name="wholesale_uk" optional="hide"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="us_product_template_action" model="ir.actions.act_window">
+            <field name="name">TGR USA</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.template</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('product_tag_ids.is_usa','=',True)]</field>
+            <field name="view_id" ref="us_product_template_tree_view"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                </p>
+            </field>
+        </record>
+
+        <record id="product_template_form_view_procurement_button_inherit" model="ir.ui.view">
+            <field name="name">product.template.form.view.procurement.button.inherited</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="stock.product_template_form_view_procurement_button"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_product_tmpl_forecast_report']" position="after">
+                    <button type="object"
+                            name="action_template_expected_qty"
+                            class="oe_stat_button" icon="fa-cubes">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_value">
+                                    <field name="qty_expected" widget="statinfo" nolabel="1" class="mr4"/>
+                                    <field name="uom_name"/>
+                                </span>
+                                <span class="o_stat_text">Expected Qty</span>
+                            </div>
+                    </button>
+                </xpath>
+            </field>
+        </record>
+
+        <menuitem action="us_product_template_action" id="menu_product_template_us_action" parent="stock.menu_stock_inventory_control"/>
+
+    <record model="ir.ui.view" id="product_template_kanban_view_inherit_wsale_price">
+      <field name="model">product.template</field>
+      <field name="name">Product.template.product.kanban</field>
+      <field name="inherit_id" ref="product.product_template_kanban_view"/>
+      <field name="arch" type="xml">
+        <xpath expr="//div[@name='product_lst_price']" position="after">
+          <div name="product_lst_price" class="mt-1">
+               Wsale Default EUR: <field name="wholesale_price_value" widget="monetary" options="{'currency_field': 'currency_id', 'field_digits': True}"/>
+          </div>
+        </xpath>
+      </field>
+    </record>
+
+    <record id="eu_and_uk_product_template_tree_view" model="ir.ui.view">
+        <field name="name">product.template.product.tree</field>
+        <field name="model">product.template</field>
+        <field name="arch" type="xml">
+            <tree string="Product" multi_edit="1" sample="1">
+                <field name="product_breeder_id" optional="show"/>
+                <field name="default_code" string="SKU" optional="show"/>
+                <field name="name" string="Product Name"/>
+                <field name="pack_size_desc"/>
+                <field name="flower_type_id"/>
+                <field name="product_sex_id"/>
+                <field name="standard_price" string="Last Cost"/>
+                <field name="retail_default_price"/>
+                <field name="wholesale_price_value"/>
+
+                <field name="bules_stock"/>
+                <field name="buluk_stock"/>
+                <field name="escdo_stock"/>
+                <field name="wsale_stock"/>
+                <field name="lost_stock" />
+                <field name="malag_stock"/>
+                <field name="uk3pl_stock"/>
+                <field name="ukbar_stock"/>
+                <field name="ukcdo_stock"/>
+                <field name="ukwsa_stock"/>
+                <field name="usit_stock"/>
+                <field name="zacdo_stock"/>
+                <field name="zates_stock"/>
+                <field name="zawsa_stock"/>
+
+                <field name="retail_za_price" optional="hide"/>
+                <field name="retail_uk_price" optional="hide"/>
+                <field name="retail_special_price" optional="hide"/>
+                <field name="retail_special_us" optional="hide"/>
+                <field name="retail_special_za" optional="hide"/>
+                <field name="retail_special_uk" optional="hide"/>
+                <field name="retail_us_price" optional="hide"/>
+
+                <field name="wholesale_special_price" optional="hide"/>
+                <field name="wholesale_us" optional="hide"/>
+                <field name="wholesale_special_us" optional="hide"/>
+                <field name="wholesale_special_za" optional="hide"/>
+                <field name="wholesale_special_uk" optional="hide"/>
+                <field name="wholesale_za" optional="hide"/>
+                <field name="wholesale_uk" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="eu_and_uk_product_template_action" model="ir.actions.act_window">
+        <field name="name">TGR EU AND UK</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('product_tag_ids.is_eu_uk','=',True)]</field>
+        <field name="view_id" ref="eu_and_uk_product_template_tree_view"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+            </p>
+        </field>
+    </record>
+
+    <menuitem action="eu_and_uk_product_template_action" id="menu_product_template_eu_and_uk_action" parent="stock.menu_stock_inventory_control"/>
+
+      </data>
+  </odoo>

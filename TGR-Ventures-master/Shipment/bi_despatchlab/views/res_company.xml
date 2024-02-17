@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="desaptchlab_credential_configuration" model="ir.ui.view">
+        <field name="name">Despatchlab Configuration</field>
+        <field name="model">res.company</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[last()]" position="after">
+                <page string="Despatchlab Configuration">
+                    <group>
+                        <group>
+                            <field name="despatch_api_key"/>
+                            <field name="despatch_api_url"
+                               />
+
+                            <button type="object" class="btn-primary o_timesheet_validate" name="import_carrier_from_despatch" string="Import Carrier"/>
+                        </group>
+                        <group>
+                            <field name="diamond_logistics_customer_id" />
+                            <field name="diamond_logistics_feature_id" />
+                            <field name="diamond_logistics_service_type" />
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

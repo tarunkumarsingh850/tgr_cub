@@ -1,0 +1,72 @@
+<odoo>
+  <data>
+
+        <record id="view_product_breeder_form_view" model="ir.ui.view">
+            <field name="name">product.breeder.form</field>
+            <field name="model">product.breeder</field>
+            <field name="arch" type="xml">
+                <form string="Brand">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="breeder_name" />
+                                <field name="breeder_des"/>
+                                <field name="discount" />
+                                <field name="tracking" />
+                                <field name="magento_id"/>
+                                <field name="weight" />
+                                <field name="dimension"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+    <record id="view_product_breeder_tree" model="ir.ui.view">
+        <field name="name">product.breeder.tree</field>
+        <field name="model">product.breeder</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="breeder_name" />
+                <field name="breeder_des"/>
+                <field name="discount" />
+                <field name="tracking" />
+                 <field name="magento_id"/>
+                <field name="weight" />
+                <field name="dimension"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_product_breeder_search" model="ir.ui.view">
+        <field name="name">product.breeder.search</field>
+        <field name="model">product.breeder</field>
+        <field name="arch" type="xml">
+            <search string="Search Product Brand">
+                <field name="breeder_name" />
+                <field name="breeder_des"/>
+                <field name="discount" />
+                <field name="tracking" />
+            </search>
+        </field>
+    </record>
+
+    <record id="action_product_breeder_tree" model="ir.actions.act_window">
+        <field name="name">Product Brand</field>
+        <field name="res_model">product.breeder</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Click to Create a Product Brand.</p>
+        </field>
+    </record>
+
+    <menuitem
+        action="action_product_breeder_tree"
+        id="menu_action_product_breeder_tree"
+        name="Product Brand"
+        parent="stock.menu_stock_config_settings"
+    />
+
+  </data>
+  </odoo>

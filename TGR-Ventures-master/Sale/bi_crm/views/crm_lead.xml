@@ -1,0 +1,26 @@
+<odoo>
+  <data>
+    <record id="crm_lead_view_form_inherited_crm" model="ir.ui.view">
+      <field name="name">crm.lead.view.form.inherited</field>
+      <field name="model">crm.lead</field>
+      <field name="inherit_id" ref="crm.crm_lead_view_form" />
+      <field name="arch" type="xml">
+        <field name="company_id" position="after">
+          <field name="is_wholesale_account"/>
+          <field name="type_"/>
+        </field>
+      </field>
+    </record>
+
+    <!-- <record id="crm_lead_view_form_scheduler" model="ir.cron">
+      <field name="name">Insufficient Personal Identification No</field>
+      <field name="model_id" ref="crm.model_crm_lead"/>
+      <field name="state">code</field>
+      <field name="code">model.button_send_email()</field>
+      <field name="interval_number">1</field>
+      <field name="interval_type">months</field>
+      <field name="numbercall">-1</field>
+      <field name="doall" eval="False"/>
+  </record> -->
+  </data>
+</odoo>

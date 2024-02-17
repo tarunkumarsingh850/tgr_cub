@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <template id="369_report_export_template">
+            <t t-foreach="docs" t-as="o">
+                  <t t-esc="o.get_print_vals()"/>
+            </t>
+        </template>
+
+</odoo>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form view of Assign Assignee -->
+    <record id="view_assignee_assign" model="ir.ui.view">
+        <field name="name">Assign Pickers</field>
+        <field name="model">assign.assignee.wizard</field>
+        <field name="arch" type="xml">
+             <form string="Assign Pickers">
+                <group>
+                    <field name="assignee_id"/>
+                </group>
+                <footer>
+                    <button name="assign_assignee" string="Assign Pickers" type="object"
+                        class="btn-primary"/>
+                    <button string="Cancel" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action of Assign Assignee -->
+    <record id="action_view_assignee_assign" model="ir.actions.act_window">
+        <field name="name">Assign Pickers</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">assign.assignee.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_assignee_assign"/>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="stock.model_stock_picking"/>
+    </record>
+</odoo>

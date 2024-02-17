@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="order_unhold_reason_wizard_view_form" model="ir.ui.view">
+        <field name="name">order.unhold.reason.wizard.view.form</field>
+        <field name="model">order.unhold.reason.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <field name="order_id" invisible="1"/>
+                    <field name="hold_type" invisible="1"/>
+                    <field name="hold_reason_id" placeholder="Order Hold Reason" attrs="{'invisible':[('hold_type','=','unhold')], 'required':[('hold_type','=','hold')]}"/>
+                    <field name="unhold_reason" placeholder="Order Hold Override Reason"  attrs="{'invisible':[('hold_type','=','hold')], 'required':[('hold_type','=','unhold')]}"/>
+                </sheet>
+                <footer>
+                    <button string="Submit" name="submit" type="object" class="oe_highlight"/>
+                    <button string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>

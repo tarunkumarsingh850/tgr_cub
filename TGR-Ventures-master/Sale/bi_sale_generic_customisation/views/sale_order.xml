@@ -1,0 +1,175 @@
+<odoo>
+  <data>
+
+    <record id="sale_order_type_inherit_form" model="ir.ui.view">
+      <field name="name">view.sale.order.inherit.form.sale.type</field>
+      <field name="model">sale.order</field>
+       <field name="inherit_id" ref="sale.view_order_form" />
+      <field name="arch" type="xml">
+          <xpath expr="//field[@name='partner_invoice_id']" position="attributes">
+               <attribute name="invisible">1</attribute>
+          </xpath>  
+          <xpath expr="//field[@name='partner_shipping_id']" position="after">
+              <field name="partner_invoice_id" groups="sale.group_delivery_invoice_address" context="{'default_type':'invoice'}" options="{&quot;always_reload&quot;: True}"/>
+              <field name="websites" invisible="1"/>
+              <field name="order_type_id" attrs="{'readonly':[('state','=','done')]}" invisible="1"/>
+              <field name="is_hold" readonly="1" force_save="1"/>
+              <field name="hold_reason_id"  readonly="1" force_save="1" attrs="{'invisible':[('is_hold','=',False)]}"/>
+              <field name="order_hold_override_reason" readonly="1" force_save="1" attrs="{'invisible':[('order_hold_override_reason','=',False)]}"/>
+              <field name="customer_order" attrs="{'readonly':[('state','=','done')]}"/>
+              <field name="requested_on" attrs="{'readonly':[('state','=','done')]}"/>
+              <field name="original_order" attrs="{'readonly':[('state','=','done')]}"/>
+              <field name="is_balance_to_deliver" invisible="1"/>
+              <field name="shipment_tracking_reference" invisible="1"/>
+          </xpath>
+          <xpath expr="//header" position="inside">
+            <button string="Hold" name="hold_order" type="object" class="oe_highlight" attrs="{'invisible':[('is_hold','=',True)]}"/>
+            <button string="Un-Hold" name="unhold_order" type="object" class="oe_highlight" attrs="{'invisible':[('is_hold','=',False)]}"/>
+          </xpath>
+          <xpath expr="//field[@name='effective_date']" position="after">
+              <field name="delivery_status" readonly="1" force_save="1"/>
+          </xpath>
+          <xpath expr="//button[@name='action_quotation_send']" position="after">
+            <button name="create_payment" string="Create Payment" type="object" class="oe_highlight"
+                    attrs="{'invisible':[('payment_count','&gt;',0)]}"/>
+             <button string="Create Delivery for Balance Qty" name="action_create_delivery_balance" type="object"
+                        class="oe_highlight"  attrs="{'invisible':['|',('state','!=','sale'),('is_balance_to_deliver','=',False)]}"/>
+          </xpath>
+          <xpath expr="//field[@name='partner_id']" position="attributes">
+            <attribute name="domain">[('is_customer','=',True)]</attribute>
+            <attribute name="context">{'res_partner_search_mode': 'customer', 'show_vat': True}</attribute>
+          </xpath>
+          <xpath expr="//form/sheet/notebook/page/field/tree/field[@name='discount']" position="after">
+            <field name="discount_amount_line"/>
+          </xpath>
+          <xpath expr="//field[@name='currency_id']" position="replace">
+            <field name="currency_id"
+            attrs="{'readonly': [('state', 'not in', ['draft'])]}"/>
+          </xpath>
+          <xpath expr="//field[@name='pricelist_id']" position="attributes">
+            <attribute name="domain">[('company_id', '=', company_id)]</attribute>
+          </xpath>
+          <xpath expr="//header" position="inside">
+            <button string="Switch Warehouse" name="action_update_stock_warehouse" type="object" class="oe_highlight"/>
+          </xpath>
+          <xpath expr="//form/sheet/notebook/page/field/tree/field[@name='name']" position="after">
+              <field name="product_sku"/>
+          </xpath>
+          <xpath expr="//field[@name='tag_ids']" position="after">
+              <field name="credit_amount"/>
+              <field name="total_sale_credit_amount"/>
+          </xpath>
+          <xpath expr="//field[@name='partner_shipping_id']" position="attributes">
+            <attribute name="context">{'default_type':'delivery', 'show_address' : 1}</attribute>
+          </xpath>
+      </field>
+    </record>
+
+    <record id="sale_order_template_list_magento_action" model="ir.actions.act_window">
+        <field name="name">Sale Order Magento</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('magento_order_id','!=',False)]</field>
+        <field name="context"></field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+            </p>
+        </field>
+    </record>
+
+    <record id="sale_order_template_list_shopify_action" model="ir.actions.act_window">
+      <field name="name">Sale Order Shopify</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">sale.order</field>
+      <field name="view_mode">tree,form</field>
+      <field name="domain">[('shopify_order_id','!=',False)]</field>
+      <field name="context"></field>
+      <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+          </p>
+      </field>
+    </record>
+
+
+    <menuitem action="sale_order_template_list_magento_action" id="menu_sale_order_template_list_magento_action" parent="sale.sale_order_menu"/>
+    <menuitem action="sale_order_template_list_shopify_action" id="menu_sale_order_template_list_shopify_action" parent="sale.sale_order_menu"/>
+
+
+    <record id="action_server_sale_update_warehouse" model="ir.actions.server">
+      <field name="name">Switch Warehouse</field>
+      <field name="type">ir.actions.server</field>
+      <field name="state">code</field>
+      <field name="model_id" ref="sale.model_sale_order"/>
+      <field name="binding_model_id" ref="sale.model_sale_order"/>
+      <field name="binding_view_types">list</field>
+      <field name="code">action = records.action_update_stock_warehouse()
+      </field>
+    </record>
+
+    <record id="action_server_sale_cancel_by_picking" model="ir.actions.server">
+      <field name="name">Cancel Order by Picking</field>
+      <field name="type">ir.actions.server</field>
+      <field name="state">code</field>
+      <field name="model_id" ref="sale.model_sale_order"/>
+      <field name="binding_model_id" ref="sale.model_sale_order"/>
+      <field name="binding_view_types">list</field>
+      <field name="code">action = records.cancel_order_by_picking()
+      </field>
+    </record>
+
+    <record id="view_order_tree_inherit_delivery_status" model="ir.ui.view">
+        <field name="name">view.order.tree.inherit.delivery.status</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='state']" position="after">
+                <field name="delivery_status" decoration-success="delivery_status == 'done'" decoration-info="delivery_status == 'confirmed'" decoration-warning="delivery_status == 'waiting'" widget="badge" optional="show"/>
+                <field name="shipment_tracking_reference" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='tag_ids']" position="before">
+                <field name="customer_class_tag" widget="badge" decoration-success="customer_class_tag == 'wholesale'" decoration-info="customer_class_tag == 'retail'"/>
+            </xpath>
+            <xpath expr="//field[@name='amount_total']" position="after">
+              <field name="credit_amount"/>
+              <field name="total_sale_credit_amount"/>
+              <field name="fraud_score"/>
+              <field name="margin" sum="Total Margin"/>
+              <field name="margin_percent" sum="Total Margin%"/>
+          </xpath>
+        </field>
+    </record>
+
+      <record id="view_quotation_tree_with_onboarding_inherit" model="ir.ui.view">
+          <field name="name">view.quotation.tree.with.onboarding.inherit</field>
+          <field name="model">sale.order</field>
+          <field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding"/>
+          <field name="arch" type="xml">
+              <xpath expr="//field[@name='tag_ids']" position="before">
+                  <field name="customer_class_tag" widget="badge" decoration-success="customer_class_tag == 'wholesale'"
+                         decoration-info="customer_class_tag == 'retail'"/>
+              </xpath>
+          </field>
+      </record>
+
+      <record id="sale.action_quotations_with_onboarding" model="ir.actions.act_window">
+        <field name="domain">[('state','in',('draft', 'sent'))]</field>
+        <field name="context">{'search_default_my_quotation': 1}</field>          
+      </record>
+
+      <record id="view_sales_order_filter_delivery_status" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search/group" position="inside">
+                  <field name="shipment_tracking_reference" />
+                  <filter name="delivery_status" string="Delivery Status" context="{'group_by': 'delivery_status'}"/>
+                  <filter name="websites" string="Websites" context="{'group_by': 'websites'}"/>
+            </xpath>
+        </field>
+      </record>
+      <record id="sale.action_orders" model="ir.actions.act_window">
+        <field name="domain">[('is_credit_on_hold','!=','True'),('is_resend_order','=',False),('state', 'not in', ('draft', 'sent'))]</field>
+    </record>
+  </data>
+</odoo>

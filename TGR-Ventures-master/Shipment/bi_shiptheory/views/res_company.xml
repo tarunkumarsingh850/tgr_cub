@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="shiptheory_uk_address_configuration" model="ir.ui.view">
+        <field name="name">Shiptheory UK Address Configuration</field>
+        <field name="model">res.company</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[last()]" position="after">
+                <page string="Shiptheory UK Address">
+                    <group>
+                        <group>
+                            <label for="street" string="Address"/>
+                            <div class="o_address_format">
+                                <field name="uk_street" placeholder="Street..." class="o_address_street"/>
+                                <field name="uk_street2" placeholder="Street 2..." class="o_address_street"/>
+                                <field name="uk_city" placeholder="City" class="o_address_city"/>
+                                <field name="uk_state_id" class="o_address_state" placeholder="State" options="{&quot;no_open&quot;: True}"/>
+                                <field name="uk_zip" placeholder="ZIP" class="o_address_zip"/>
+                                <field name="uk_country_id" placeholder="Country" class="o_address_country" options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}"/>
+                            </div>
+                            <field name="uk_phone"/>
+                            <field name="uk_email"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

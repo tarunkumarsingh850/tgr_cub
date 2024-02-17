@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates>
+    <div t-inherit="account.TaxTotalsField" t-inherit-mode="extension" owl="1">
+        <xpath expr="//table/tbody/t[1]" position="before">
+            <t t-if="totals.value.untaxed_amount_before_discount > 0">
+                <tr>
+                    <td class="o_td_label">
+                        <label class="o_form_label o_tax_total_label">Untaxed Amount without Discount</label>
+                    </td>
+
+                    <td>
+                        <span
+                            name="untaxed_amount_before_discount"
+                            t-att-class="Object.keys(totals.value.groups_by_subtotal).length > 0 ? 'oe_subtotal_footer_separator' : ''"
+                            t-esc="totals.value.untaxed_amount_before_discount"
+                            style="white-space: nowrap; font-weight: bold; font-size: 1.3em;"
+                        />
+                    </td>
+                </tr>
+            </t>
+            <t t-if="totals.value.global_discount_amount > 0">
+                <tr>
+                    <td class="o_td_label">
+                        <label class="o_form_label o_tax_total_label">Discount</label>
+                    </td>
+
+                    <td>
+                        <span
+                            name="global_discount_amount"
+                            t-att-class="Object.keys(totals.value.groups_by_subtotal).length > 0 ? 'oe_subtotal_footer_separator' : ''"
+                            t-esc="totals.value.global_discount_amount"
+                            style="white-space: nowrap; font-weight: bold; font-size: 1.3em;"
+                        />
+                    </td>
+                </tr>
+            </t>
+        </xpath>
+    </div>
+</templates>

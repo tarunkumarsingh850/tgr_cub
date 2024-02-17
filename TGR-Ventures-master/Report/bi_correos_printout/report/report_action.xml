@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_correos_export_report" model="ir.actions.report">
+        <field name="name">Correos Report</field>
+        <field name="model">correos.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">bi_correos_printout.correos_pdf_report</field>
+        <field name="report_file">bi_correos_printout.correos_pdf_report</field>
+        <field name="print_report_name">"Correos"</field>
+         <field name="paperformat_id" ref="correos_paperformat" />
+    </record>
+
+    <record id="action_correos_export__excel_report" model="ir.actions.report">
+        <field name="name">Correos Report</field>
+        <field name="model">correos.wizard</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">bi_correos_printout.correos_xlsx</field>
+        <field name="report_file">bi_correos_printout.correos_xlsx</field>
+    </record>
+</odoo>

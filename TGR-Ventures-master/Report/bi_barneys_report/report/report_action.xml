@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_export_report" model="ir.actions.report">
+        <field name="name">Barney's Report</field>
+        <field name="model">barneys.wizard</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">bi_barneys_report.generate_barneys_xlsx</field>
+        <field name="report_file">bi_barneys_report.generate_barneys_xlsx</field>
+        <field name="print_report_name">"Barneys Report"</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <!--Template for tgr sales dashboard-->
+    <t t-name="tgrSalesDashboard">
+        <div class="text-center p-4 tgr-sales-dashboard">
+            <!--Filters-->
+            <div class="row mr-3 ml-4 filters-container">
+                <!--Date range selector-->
+                <div class="col-md-2 filter-col">
+                    <div class="chart-card-filter filter-background">
+                        <label class="o_form_label font-bold">Date Range</label>
+                        <div id="chart-date-range" >
+                            <span><i class="fa fa-calendar"/>  <span id="load-data"/>  <i class="fa fa-caret-down"/></span>
+                        </div>
+                    </div>
+                </div>
+                <!--Country selector-->
+                <div class="col-md-2 filter-data">
+                    <div class="chart-card-filter filter-background">
+                        <label class="o_form_label font-bold">Country</label>
+                        <select name="country" id="country">
+                            <option value="all" selected="1">All</option>
+                        </select>
+                    </div>
+                </div>
+                <!--Brand selector-->
+                <div class="col-md-2 filter-data">
+                    <div class="chart-card-filter filter-background">
+                        <label class="o_form_label font-bold">Brand</label>
+                        <select name="brand" id="brand">
+                            <option value="all" selected="1">All</option>
+                        </select>
+                    </div>
+                </div>
+                <!--Salesperson selector-->
+                <div class="col-md-2 filter-data">
+                    <div class="chart-card-filter filter-background">
+                        <label class="o_form_label font-bold">Salesperson</label>
+                        <select name="salesperson" id="salesperson">
+                            <option value="all" selected="1">All</option>
+                        </select>
+                    </div>
+                </div>
+                <!--Warehouse selector-->
+                <div class="col-md-2 filter-data">
+                    <div class="chart-card-filter filter-background">
+                        <label class="o_form_label font-bold">Warehouse</label>
+                        <select name="warehouse" id="warehouse">
+                            <option value="all" selected="1">All</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Wholesale Customer -->
+                <div class="col-md-2 filter-data">
+                    <div class="chart-card-filter filter-background">
+                        <label class="o_form_label font-bold">Wholesale Customer</label>
+                        <select name="wholesale_customers" id="wholesale_customers">
+                            <option value="all" selected="1">All</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!--Chart containers-->
+            <div class="row mt-4 mr-3 ml-3 chart-container">
+
+                <!--Summary Content-->
+                <div class="col-md-4 filter-col">
+                    <div class="chart-card summary-container content-background">
+                        <!--Title-->
+                        <div class="summary-title text-center mb-3 mt-4">
+                            <h2>Summary</h2>
+                        </div>
+                        <hr/>
+                        <h4 class="redirect-to-sale-orders">Total Orders</h4>
+                        <h5 class="total-orders redirect-to-sale-orders"/>
+                        <hr/>
+                        <h4>Total Revenue (€)</h4>
+                        <h5 class="total-revenue"/>
+                        <hr/>
+                        <h4>Total Profit (€)</h4>
+                        <h5 class="total-profit"/>
+                        <hr/>
+                        <h4>Total Margin</h4>
+                        <h5 class="total-margin"/>
+                        <hr/>
+                        <h4>Total Margin (%)</h4>
+                        <h5 class="total-margin_percent"/>
+                        <hr/>
+                    </div>
+                </div>
+
+                <!--Completed Orders-->
+                <div class="col-md-8 filter-col">
+                    <div class="chart-card content-background">
+                        <!--Title-->
+                        <div class="sale-order-title text-center mb-3 mt-4">
+                            <h2>Completed Orders</h2>
+                        </div>
+                        <!--Completed Orders Bar Chart-->
+                        <div id="completed-orders-bar-chart">
+                            <canvas id="completedOrders" height="440"/>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Sales and Profits-->
+                <div class="col-md-6 filter-col mt-4">
+                    <div class="chart-card content-background">
+                        <!--Title-->
+                        <div class="sale-order-title text-center mb-3 mt-4">
+                            <h2>Sales &amp; Profits (€)</h2>
+                        </div>
+                        <!--Sales and profit area chart-->
+                        <div id="sales-and-profit-area-chart">
+                            <canvas id="salesAndProfit" height="440"/>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Sales by Brand pie chart-->
+                <div class="col-md-6 filter-col mt-4">
+                    <div class="chart-card content-background">
+                        <!--Title-->
+                        <div class="sale-order-title text-center mb-3 mt-4">
+                            <h2>Sales By Brand</h2>
+                        </div>
+                        <!--Sales by brand pie chart-->
+                        <div id="sales-by-brand-pie-chart">
+                            <canvas id="salesByBrand" height="440"/>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Margin area chart-->
+                <div class="col-md-6 filter-col mt-4">
+                    <div class="chart-card content-background">
+                        <!--Title-->
+                        <div class="sale-order-title text-center mb-3 mt-4">
+                            <h2>Margin %</h2>
+                        </div>
+                        <!--Margin area chart-->
+                        <div id="margin-area-chart">
+                            <canvas id="marginAreaChart" height="440"/>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Phyto Nation sales area chart-->
+                <div class="col-md-6 filter-col mt-4">
+                    <div class="chart-card content-background">
+                        <!--Title-->
+                        <div class="sale-order-title text-center mb-3 mt-4">
+                            <h2>Phytonation Sales</h2>
+                        </div>
+                        <!--Phytonation sales area chart-->
+                        <div id="phyto-nation-sales-chart">
+                            <canvas id="phytoNationSalesAreaChart" height="440"/>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Amount of each product sold-->
+                <div class="col-md-12 filter-col mt-4">
+                    <div class="chart-card content-background">
+                        <!--Title-->
+                        <div class="sale-order-title text-center mb-4 mt-4">
+                            <h2>Amount of Each Product Sold</h2>
+                            <div class="sort-sold-products pb-4 pt-2 row">
+                                <div class="col-sm-8"/>
+                                <label for="sort-field" class="col-sm-1 col-form-label text-right">Sort By: </label>
+                                <div class="col-sm-2">
+                                    <select name="sort-field" id="sort-field" class="form-control">
+                                        <option value="item_description-asc" selected="1">Description</option>
+                                        <option value="inventory_id-asc">InventoryID</option>
+                                        <option value="sales_qty-asc">Sales Qty ASC</option>
+                                        <option value="sales_qty-dsc">Sales Qty DESC</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-1"/>
+                            </div>
+                        </div>
+                        <!--Amount of each product sold table-->
+                        <div id="amount-of-each-product-sold-table" class="amount-of-each-product-sold">
+                            <table class="table table-sm table-striped" id="table-amount-of-each-product-sold">
+                                <thead>
+                                    <tr>
+                                        <th class="text-left">Item Description</th>
+                                        <th class="text-left">InventoryID</th>
+                                        <th class="text-right">Sales Qty</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="amount-of-each-product-sold-tbody"/>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </t>
+
+</templates>

@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_packet_management,packet_management,model_packet_management,base.group_user,1,1,1,1
+access_packet_management_line,packet_management_line,model_packet_management_lines,base.group_user,1,1,1,1

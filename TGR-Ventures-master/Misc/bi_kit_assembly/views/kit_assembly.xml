@@ -1,0 +1,153 @@
+<odoo>
+  <data>
+
+    <record id="kit_assembly_view_tree" model="ir.ui.view">
+      <field name="name">kit.assembly.view.tree</field>
+      <field name="model">kit.assembly</field>
+      <field name="arch" type="xml">
+        <tree string="">
+          <header>
+            <button string="Done" name="action_done_assembly" type="object" class="oe_highlight"/>
+          </header>
+          <field name="product_id"/>
+          <field name="quantity" />
+          <field name="reference" />
+          <field name="state" />
+        </tree>
+      </field>
+    </record>
+
+    <record id="kit_assembly_view_form" model="ir.ui.view">
+      <field name="name">kit.assembly.view.form</field>
+      <field name="model">kit.assembly</field>
+      <field name="arch" type="xml">
+        <form string="">
+          <header>
+            <button string="Approve" name="action_approve" type="object" class="oe_highlight" states="draft"/>
+            <button string="Done" name="action_done_assembly" type="object" class="oe_highlight" attrs="{'invisible':['|',('is_done','=',True), ('state','!=','approve')]}"/>
+            <field name="state" widget="statusbar" statusbar_visible="draft,approve,done" readonly="1"/>
+          </header>
+          <sheet>
+            <div class="oe_button_box" name="button_box">
+              <button class="oe_stat_button" name="view_assembly_moves" type="object" icon="fa-exchange" attrs="{'invisible':[('assembly_count','=',0)]}">
+                  <field string="Moves" name="assembly_count" widget="statinfo" />
+              </button>
+              <button class="oe_stat_button" name="view_journal_entry" type="object" icon="fa-th-list" attrs="{'invisible':[('journal_count','=',0)]}">
+                <field string="Journal" name="journal_count" widget="statinfo" />
+              </button>
+            </div>
+            <group>
+                <group>
+                  <field name="product_id" required="1" attrs="{'readonly':[('state','=','done')]}"/>
+                  <label for="quantity" string="Quantity"/>
+                  <div class="o_row">
+                      <field name="quantity" required="1" attrs="{'readonly':[('state','=','done')]}"/>
+                      <field name="uom_id" required="1" attrs="{'readonly':[('state','=','done')]}"/>
+                  </div>
+                  <label for="available_quantity" string="Available Quantity"/>
+                  <div class="o_row">
+                      <field name="available_quantity"/>
+                      <field name="available_quantity_uom_id" readonly="1"/>
+                  </div>
+                  <field name="bom_id" attrs="{'readonly':[('state','=','done')]}"/>
+                  <field name="warehouse_id" required="1" attrs="{'readonly':[('state','=','done')]}"/>
+                  <field name="location_id" readonly="1" force_save="1"/>
+                  <field name="is_done" invisible="1"/>
+                  <field name="is_disassembly" invisible="1"/>
+                </group>
+                <group>
+                  <field name="date" attrs="{'readonly':[('state','=','done')]}"/>
+                  <field name="reference" attrs="{'readonly':[('state','=','done')]}"/>
+                  <field name="company_id" readonly="1"/>
+                </group>
+            </group>
+            <notebook>
+              <page name="kit_lines" string="Components">
+                <field name="kit_line_ids" attrs="{'readonly':[('state','=','done')]}">
+                <tree editable = "bottom">
+                  <field name="kit_assembly_id" invisible="1" />
+                  <field name="product_id" required="1"/>
+                  <field name="product_sku"/>
+                  <field name="line_uom_id" required="1"/>
+                  <field name="line_quantity" required="1"/>
+                  <field name="unit_cost" />
+                  <field name="is_no_track" invisible="1" />
+                  <button name="action_show_serial" string="" type="object" icon="fa-list" width="0.1" options='{"warn": true}' attrs="{'invisible':[('is_no_track','=',True)]}"/>
+                </tree>
+              </field>
+              </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="kit_assembly_action" model="ir.actions.act_window">
+      <field name="name">Kit Assembly</field>
+      <field name="res_model">kit.assembly</field>
+      <field name="view_mode">tree,form</field>
+      <field name="domain">[('is_disassembly','=',False)]</field>
+      <field name="context">{'default_is_disassembly': False}</field>
+      <field name="help" type="html">
+        <p class="o_view_nocontent_smiling_face">
+          Create a record
+        </p>
+      </field>
+    </record>
+
+    <record id="kit_disassembly_action" model="ir.actions.act_window">
+      <field name="name">Kit Disassembly</field>
+      <field name="res_model">kit.assembly</field>
+      <field name="view_mode">tree,form</field>
+      <field name="domain">[('is_disassembly','=',True)]</field>
+      <field name="context">{'default_is_disassembly': True}</field>
+      <field name="help" type="html">
+        <p class="o_view_nocontent_smiling_face">
+          Create a record
+        </p>
+      </field>
+    </record>
+
+
+    <menuitem
+      id="kit_assembly_menu"
+      name="Kit Assembly"
+      action="kit_assembly_action"
+      parent="stock.menu_stock_warehouse_mgmt"
+      sequence="6"/>
+
+    <menuitem
+      id="kit_disassembly_menu"
+      name="Kit Disassembly"
+      action="kit_disassembly_action"
+      parent="stock.menu_stock_warehouse_mgmt"
+      sequence="7"/>
+
+      <record id="serial_line_tracking_view_form" model="ir.ui.view">
+        <field name="name">kit.serial.view.form</field>
+        <field name="model">kit.assembly.lines</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="product_id" readonly="1" />
+                        </group>
+                    </group>
+                    <field name="serial_ids">
+                        <tree editable="bottom">
+                            <field name="is_lot" invisible="1" />
+                            <field name="serial_quantity" attrs="{'invisible':[('is_lot','!=',True)]}"/>
+                            <field name="serial_id"/>
+                        </tree>
+                    </field>
+                    <footer>
+                      <button string="Confirm" class="oe_highlight" special="save"/>
+                  </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+  </data>
+</odoo>

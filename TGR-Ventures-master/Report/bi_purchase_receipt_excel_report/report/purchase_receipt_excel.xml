@@ -1,0 +1,14 @@
+<odoo>
+    <data>
+        <report
+            id="action_view_purchase_receipt_excel1"
+            model="stock.picking"
+            string="Purchase Receipt Excel Report"
+            report_type="xlsx"
+            name="bi_purchase_receipt_excel_report.purchase_receipt_rpt"
+            file="bi_purchase_receipt_excel_report.purchase_receipt_rpt"
+            print_report_name="Purchase Receipt Excel Report"
+            menu='False'
+        />
+    </data>
+</odoo>

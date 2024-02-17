@@ -1,0 +1,14 @@
+<odoo>
+    <data>
+        <report
+            id="action_update_stock_data_export"
+            model="update.quantity.wizard"
+            string="Update Stock Data Export"
+            report_type="xlsx"
+            name="bi_update_stock_price.update_stock_data_export"
+            file="bi_update_stock_price.update_stock_data_export"
+            print_report_name="Update Stock Data Export"
+            menu='False'
+        />
+    </data>
+</odoo>

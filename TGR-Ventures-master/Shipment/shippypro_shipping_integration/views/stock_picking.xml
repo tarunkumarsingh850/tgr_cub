@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <menuitem id="stock_new_menu_packaging_types"
+            name="Package Types"
+            parent="stock.menu_stock_config_settings"
+            action="stock.action_package_type_view"
+            sequence="101"/>
+
+            <record id="sendle_shipment_form_view" model="ir.ui.view">
+                <field name="name">stock.picking</field>
+                <field name="model">stock.picking</field>
+                <field name="inherit_id" ref="stock.view_picking_form"/>
+                <field name="arch" type="xml">
+                     <header>
+                        <button type="object" name="generate_label_shippypro" string="Generate Shippypro Label"
+                        attrs="{'invisible': [('delivery_type','!=','shippypro')]}"/>
+                    </header>
+                </field>
+            </record>
+    </data>
+</odoo>

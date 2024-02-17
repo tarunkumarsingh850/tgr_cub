@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="view_stock_picking_out_connector_form" model="ir.ui.view">
+            <field name="name">stock.picking.form</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header/button[5]" position="after">
+                    <field name="is_shipment_exportable" invisible="1"/>
+                    <button name="export_magento_shipment" string="Export Shipment In Magento"
+                            type="object" class="oe_highlight"
+                            attrs="{'invisible' : ['|','|','|','|',
+                            ('magento_instance_id','=',False),
+                            ('state','!=','done'),
+                            ('is_exported_to_magento','=',True),
+                            ('is_shipment_exportable','=',False),
+                            ('max_no_of_attempts','&gt;',3)]}"
+                    />
+                </xpath>
+                <xpath expr="//notebook[last()]" position="inside" attrs="{'invisible' : [('is_magento_picking','=',False)]}">
+                    <page name="magento_info" string="Magento Info">
+                        <group>
+                            <field name="magento_instance_id" readonly="1"/>
+                            <field name="magento_website_id"/>
+                            <field name="magento_shipping_id"/>
+                            <field name="magento_status"/>
+                            <field name="magento_payment_code"/>
+                            <field name="is_exported_to_magento"/>
+                            <field name="max_no_of_attempts" invisible="1"/>
+                            <field name="magento_message" attrs="{'invisible':[('magento_message', '=', False)]}"/>
+                        </group>
+                        <group>
+                            <field name="is_msi_enabled" invisible="1"/>
+                            <field name="magento_inventory_source" string="Magento Inventory Source" attrs="{'invisible' : [('is_msi_enabled','=',False)], 'readonly': [('is_exported_to_magento','=',True)]}"/>
+                        </group>
+                        <div style="color:#000000" attrs="{'invisible': [('is_msi_enabled', '=', False)]}">
+                            <p class="alert alert-warning" role="alert">
+                                <u>
+                                    <h3 style="font-weight:bold;color:#7d5a29">Note :  When MSI is enabled into Magento</h3>
+                                </u>
+                                <b>
+                                    <ol>
+                                        <li>
+                                            Magento Inventory Source is set by default according to the warehouse specified in the website configuration.
+                                        </li>
+                                        <li>
+                                            If you have a re-supply set up in the Odoo warehouse, you can change the Magento Inventory Source manually from here depending on your re-supply rules.
+                                        </li>
+                                        <li>
+                                            This Magento Inventory Source will be set up in order shipment into Magento after exporting shipment information from Odoo to Magento.
+                                        </li>
+                                    </ol>
+                                </b>
+                            </p>
+                        </div>
+                    </page>
+                </xpath>
+                <xpath expr="//field[@name='date_deadline']" position="after">
+                    <field name="last_delivery_date" readonly="1" invisible="1"/>
+
+                </xpath>
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button name="open_invoice" type="object" class="oe_stat_button" icon="fa-file"
+                            attrs="{'invisible':[('invoice_id','=',False)]}">
+                        <field name="invoice_id" string="Invoice" widget="statinfo"/>
+                    </button>
+                </xpath>
+                <xpath expr="/form/sheet/group/group[1]" position="inside">
+                    <field name="is_resend_order" invisible="1"/>
+                    <field name="resend_reason" attrs="{'invisible':[('is_resend_order','=',False)]}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="magento_view_stock_picking_tree" model="ir.ui.view">
+            <field name="name">magento.view.stock.picking.tree</field>
+            <field name="model">stock.picking</field>
+            <field name="priority" eval="50"/>
+            <field name="arch" type="xml">
+                <tree string="Picking list" create="false">
+                    <field name="name"/>
+                    <field name="location_dest_id"/>
+                    <field name="partner_id"/>
+                    <field name="date"/>
+                    <field name="origin"/>
+                    <field name="backorder_id"/>
+                    <field name="magento_instance_id"/>
+                    <field name="resend_reason" />
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Inherited Search View Section -->
+        <record id="magento_view_stock_picking_filter_ept" model="ir.ui.view">
+            <field name="name">stock.picking.search</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_internal_search"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='status']" position="after">
+                    <field name="magento_website_id"/>
+                    <field name="magento_status"/>
+                    <field name="magento_payment_code"/>
+                    <filter string="Magento Instances" name="magento_instance_id" domain="[]" context="{'group_by':'magento_instance_id'}" />
+                    <filter string="Magento Website" name="magento_website_id" domain="[]" context="{'group_by':'magento_website_id'}" />
+                    <separator/>
+                    <filter string="Magento Status" name="magento_status" domain="[]" context="{'group_by':'magento_status'}" />
+                    <separator/>
+                    <filter string="Magento Payment Code" name="magento_payment_code" domain="[]" context="{'group_by':'magento_payment_code'}" />
+                    <separator/>
+                    <filter string="FOC/Resend" name="is_resend_order" domain="[('is_resend_order', '=', True)]"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="stock_picking_view_list_inherit" model="ir.ui.view">
+            <field name="name">stock.picking.view.list.inherit</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.vpicktree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='company_id']" position="after">
+                    <field name="resend_reason" optional="show"/>
+                    <field name="magento_website_id" optional="show"/>
+                    <field name="magento_status"  optional="show"/>
+                    <field name="magento_payment_code"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- dashboard -->
+        <record id="action_magento_stock_picking_tree_ept" model="ir.actions.act_window">
+            <field name="name">Delivery Orders</field>
+            <field name="res_model">stock.picking</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="magento_view_stock_picking_tree"/>
+            <field name="search_view_id" ref="magento_view_stock_picking_filter_ept"/>
+            <field name="domain">[('is_magento_picking','=','True'),('magento_instance_id','!=',False)]</field>
+            <field name="help" type="html">
+                <div>
+                    <br />
+                    <br />
+                    <br />
+                    <p>
+                        <b>There is no any Delivery Order created for any of Magento Sale Orders.</b>
+                        <br/>
+                        <br/>
+                        Delivery order for Magento will be created automatically
+                        and it will be visible over here.<br/>
+                        From here, you can't manually create delivery order for Magento. It
+                        must be created via Sale Order.
+                    </p>
+                </div>
+            </field>
+        </record>
+
+        <record id="action_magento_picking_view_partially_available_ept" model="ir.actions.act_window">
+            <field name="name">Delivery Orders</field>
+            <field name="res_model">stock.picking</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('is_magento_picking','=','True'),
+                ('state','=','partially_available'),
+                ('magento_instance_id','=',active_id)]</field>
+            <field name="search_view_id" ref="stock.view_picking_internal_search" />
+        </record>
+
+        <record id="action_magento_picking_view_assigned_ept" model="ir.actions.act_window">
+            <field name="name">Delivery Orders</field>
+            <field name="res_model">stock.picking</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('is_magento_picking','=','True'),
+                ('state','=','assigned'),
+                ('magento_instance_id','=',active_id)]</field>
+            <field name="search_view_id" ref="stock.view_picking_internal_search" />
+        </record>
+
+        <record id="action_magento_picking_view_done_ept" model="ir.actions.act_window">
+            <field name="name">Delivery Orders</field>
+            <field name="res_model">stock.picking</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('is_magento_picking','=','True'),
+                ('state','=','done'),
+                ('magento_instance_id','=',active_id)]</field>
+            <field name="search_view_id" ref="stock.view_picking_internal_search" />
+        </record>
+
+<!--        <menuitem id="menu_transfer_details_parent" name="Delivery"-->
+<!--            sequence="4" parent="odoo_magento2_ept.menu_magento_sales_and_customer"/>-->
+
+        <menuitem id="menu_magento_delivery_order_ept" name="Delivery Orders"
+            parent="odoo_magento2_ept.menu_magento_sales_and_customer" sequence="3"
+            action="action_magento_stock_picking_tree_ept" />
+
+        <record id="stock_picking_payment_code_compute_action_server" model="ir.actions.server">
+            <field name="name">Stock picking payment code update</field>
+            <field name="model_id" ref="stock.model_stock_picking"/>
+            <field name="binding_model_id" ref="stock.model_stock_picking"/>
+            <field name="state">code</field>
+            <field name="code">records._compute_payment_code()</field>
+        </record>
+</odoo>

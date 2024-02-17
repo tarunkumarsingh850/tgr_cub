@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_ticket_tree" model="ir.ui.view">
+            <field name="name">ticket.ticket.tree</field>
+            <field name="model">ticket.ticket</field>
+            <field name="arch" type="xml">
+                <tree string="Tickets" sample="1" decoration-info="state == 'draft'">
+                    <field name="date"/>
+                    <field name="name"/>
+                    <field name="partner_id" optional="show"/>
+                    <field name="ref" optional="show"/>
+                    <field name="company_id" optional="show"/>
+                    <field name="state" widget="badge" decoration-info="state == 'draft'" decoration-success="state == 'posted'"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_ticket_form" model="ir.ui.view">
+            <field name="name">ticket.ticket.form</field>
+            <field name="model">ticket.ticket</field>
+            <field name="arch" type="xml">
+                <form string="Tickets">
+                    <header>
+                        <button name="action_cancel" states="draft" string="Cancel" type="object"/>
+                        <button name="action_post" states="draft" string="Post" type="object"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,posted"/>
+                    </header>
+                    <sheet>
+                        <h1 class="mt0">
+                            <field name="name"/>
+                        </h1>
+                        <group>
+                            <group>
+                                <field name="partner_id"/>
+                                <field name="ref"/>
+                                <field name="journal_id"/>
+                                <field name="partner_shipping_id"/>
+                            </group>
+                            <group >
+                                <field name="date"/>
+                                <field name="company_id"/>
+                                <field name="currency_id"/>
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <page id="ticket_tab"
+                                string="Ticket Lines">
+                                <field name="line_ids"
+                                    widget="section_and_note_one2many">
+                                    <tree editable="bottom" string="Ticket Lines">
+                                        <field name="product_id"
+                                        optional="show"
+                                        domain="
+                                                [('sale_ok', '=', True), '|', ('company_id', '=', False), ('company_id', '=', parent.company_id)]
+                                                or [('purchase_ok', '=', True), '|', ('company_id', '=', False), ('company_id', '=', parent.company_id)]
+                                            "/>
+                                        <field name="name" widget="section_and_note_text"/>
+                                        <field name="quantity"/>
+                                        <field name="product_uom_id"/>
+                                        <field name="price_unit"/>
+                                        <field name="tax_ids" widget="many2many_tags"
+                                            options="{'no_create': True}"
+                                            />
+                                        <field name="amount_subtotal"/>
+                                        <field name="price_subtotal"
+                                            string="Subtotal" optional="hide"
+                                            />
+                                        <field name="price_total"
+                                            string="Total" optional="hide"/>
+
+                                    </tree>
+                                </field>
+                                <group col="12">
+                                    <group colspan="8">
+                                    </group>
+                                    <group colspan="4">
+                                        <group class="oe_subtotal_footer oe_right" >
+                                             <field name="amount_untaxed"/>
+                                            <field name="amount_tax"/>
+                                            <field name="amount_total"/>
+                                        </group>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_ticket_ticket" model="ir.actions.act_window">
+            <field name="name">Tickets</field>
+            <field name="res_model">ticket.ticket</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_ticket_tree"/>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a record
+              </p>
+            </field>
+        </record>
+        <menuitem name="Tickets"
+            id="tickets_tickets"
+            parent="account.menu_finance_receivables"
+            action="action_ticket_ticket"
+            sequence="2"/>
+
+    </data>
+</odoo>

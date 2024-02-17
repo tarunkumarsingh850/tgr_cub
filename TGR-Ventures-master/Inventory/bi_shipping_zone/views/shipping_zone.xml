@@ -1,0 +1,51 @@
+<odoo>
+  <data>
+
+    <record id="shipping_zone_view_form" model="ir.ui.view">
+      <field name="name">shipping.zone.view.form</field>
+      <field name="model">shipping.zone</field>
+      <field name="arch" type="xml">
+        <form string="Shipping Zone">
+          <header>
+          </header>
+          <sheet>
+            <group>
+                <group>
+                  <field name="name"/>
+                </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="shipping_zone_view_tree" model="ir.ui.view">
+      <field name="name">shipping.zone.view.tree</field>
+      <field name="model">shipping.zone</field>
+      <field name="arch" type="xml">
+            <tree default_order="create_date desc">
+                <field name="name"/>
+            </tree>
+        </field>
+      </record>
+
+    <record id="shipping_zone_action" model="ir.actions.act_window">
+      <field name="name">Shipping Zone</field>
+      <field name="res_model">shipping.zone</field>
+      <field name="view_mode">tree,form</field>
+      <field name="help" type="html">
+        <p class="o_view_nocontent_smiling_face">
+          Create a record
+        </p>
+      </field>
+    </record>
+
+    <menuitem
+      id="shipping_zone_menu"
+      name="Shipping Zone"
+      action="shipping_zone_action"
+      parent="stock.menu_stock_config_settings"
+      sequence="100"/>
+
+  </data>
+</odoo>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="product_website_export_new_view_form" model="ir.ui.view">
+            <field name="name">product.website.wizard.view.form</field>
+            <field name="model">product.website.export.import</field>
+            <field name="arch" type="xml">
+                <form string="Product Website Export">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="excel_file"/>
+                            </group>
+                            <group>
+                                <field name="magento_website_id" invisible="1"/>
+                                <field name="product_type"/>
+                            </group>
+                        </group>
+                        <footer>
+                            <button string="Export Configurable Product" name="export_template" type="object" class="oe_highlight"/>
+                            <button string="Export Simple Product" name="export_simple_template" type="object" class="oe_highlight"/>
+                            <button string="Import" name="import_xls" type="object" class="oe_highlight"/>
+                            <button string="Cancel" special="cancel"/>
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="product_export_wizard_action_new" model="ir.actions.act_window">
+            <field name="name">Product Website Export</field>
+            <field name="res_model">product.website.export.import</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+
+
+        <menuitem
+            id="product_website_export_wizard_menu"
+            name="Import/Export Product Enable"
+            action="product_export_wizard_action_new"
+            parent="bi_export_product_enable_website.magento_configurable_menu"
+            sequence="7"/>
+
+    </data>
+
+
+</odoo>

@@ -1,0 +1,42 @@
+<odoo>
+    <data>
+
+      <record id="view_product_attribute_tree" model="ir.ui.view">
+          <field name="name">product.attribute.tree</field>
+          <field name="model">product.attribute.model</field>
+          <field name="arch" type="xml">
+              <tree editable="bottom">
+                  <field name="name" />
+                  <field name="stockout_boolean" />
+              </tree>
+          </field>
+      </record>
+
+      <record id="action_product_attributes_tree" model="ir.actions.act_window">
+          <field name="name">Product Attribute</field>
+          <field name="res_model">product.attribute.model</field>
+          <field name="view_mode">tree,form</field>
+      </record>
+
+      <!-- <record id="product_stock_scheduler" model="ir.cron">
+        <field name="name">Out of stock</field>
+        <field name="model_id" ref="product.model_product_template"/>
+        <field name="type">ir.actions.server</field>
+        <field name="state">code</field>
+        <field name="user_id" ref="base.user_root"/>
+        <field name="code">model.action_out_of_stock()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="priority">1</field>
+      </record> -->
+
+      <menuitem
+          action="action_product_attributes_tree"
+          id="menu_action_product_attributes_tree"
+          name="Product Attribute"
+          parent="stock.menu_stock_config_settings"
+      />
+
+    </data>
+    </odoo>

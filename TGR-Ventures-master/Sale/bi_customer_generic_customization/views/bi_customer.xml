@@ -1,0 +1,315 @@
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="customer_view_inherit_form">
+            <field name="name">customer.view.inherit.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='vat']" position="after">
+                    <field name="is_customer" invisible="1"/>
+
+                    <field name="customer_class_id" attrs="{'invisible':['|',('is_customer','!=',True),('company_type', '!=', 'company')]}"/>
+                    <field name="payment_journal_id" attrs="{'invisible':[('is_customer','!=',True)]}" widget="many2many_tags"/>
+                </xpath>
+                <xpath expr="//field[@name='name']" position="after">
+                    <div>
+                        <h3>
+                            <field name="customer_code" default_focus="1" placeholder="Customer Code" string="Customer Code" attrs="{'invisible':[('is_customer','!=',True)]}"/>
+                        </h3>
+                    </div>
+                    <field name="invoice_company_name"/>
+                </xpath>
+                <xpath expr="//field[@name='name']" position="attributes">
+                    <attribute name="placeholder">ID</attribute>
+                </xpath>
+                <xpath expr="//form/sheet/notebook/page[@name='contact_addresses']" position="before">
+                    <page name="general" string="General" attrs="{'invisible':[('is_customer','!=',True)]}">
+                        <group>
+                            <group name="primary_contact" string="Primary Contact">
+                                <label for="first_name" string="Name" id="label_dates"/>
+                                <div>
+                                    <field name="first_name" class="oe_inline" nolabel="1" placeholder="First Name"/>
+                                    <field name="last_name" class="oe_inline" nolabel="1" placeholder="Last Name"/>
+                                </div>
+                                <field name="customer_attention"/>
+                                <field name="customer_job_title"/>
+                                <field name="customer_email"/>
+                            </group>
+                            <group name="account_address" string="Account Address">
+                                <field name="account_address"/>
+                                <field name="account_address_two"/>
+                                <field name="contact_city"/>
+                                <field name="contact_state_id" string="State"/>
+                                <field name="contact_country_id" string="Country"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+                <xpath expr="//page[@name='sales_purchases']/group" position="inside">
+                    <group>
+                        <group string="Drop Shipping" colspan="2">
+                            <field name="payment_surcharge"/>
+                            <field name="picking_packing_cost"/>
+                        </group>
+                    </group>
+                </xpath>
+                <xpath expr="//form/sheet/notebook/page[@name='contact_addresses']" position="attributes">
+                    <attribute name="autofocus"></attribute>
+                </xpath>
+                <xpath expr="//form/sheet/notebook/page[@name='sales_purchases']" position="after">
+                    <page name="financial" string="Financial" attrs="{'invisible':[('is_customer','=',False)]}">
+                        <group>
+                            <group name="credit_verification_rules" string="Credit Verification Rules">
+                                <field name="is_credit_customer"/>
+                                <field name="credit_verification"/>
+                                <field name="credit_limit"/>
+                                <field name="credit_days_past_due" widget="integer"/>
+                                <field name="unreleased_balance"/>
+                                <field name="open_ordered_balance"/>
+                                <field name="available_credit"/>
+                                <field name="first_due_date"/>
+                            </group>
+                        </group>
+                    </page>
+                    <page name="sales_person" string="Sales Person" attrs="{'invisible':[('is_customer','=',False)]}">
+                        <field name="sales_person_line_ids">
+                            <tree editable="bottom">
+                                <field name="user_id"/>
+                                <field name="name"/>
+                                <field name="commission_percentage"/>
+                            </tree>
+                        </field>
+                    </page>
+                    <page name="Product_brand" string="Product Brand" attrs="{'invisible':[('is_customer','=',False)]}">
+                        <field name="brand_product_ids">
+                            <tree editable="bottom">
+                                <field name="brand_id"/>
+                                <field name="discount"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_partner_property_form_inherit_form">
+            <field name="name">account.res.partner.view.inherit2</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="bi_vendor_generic_customisation.account_partner_view_inherit_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='ap_sub_account_id']" position="after">
+                    <field name="ap_sub_account_id" string="AR Sub Acc." attrs="{'invisible':[('is_supplier', '=', True)]}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="bi_view_partner_tree" model="ir.ui.view">
+            <field name="name">res.partner.tree.form.1</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <tree string="Customers" sample="1" multi_edit="1">
+                    <field name="display_name" string="Name"/>
+                    <field name="customer_code"/>
+                    <field name="customer_class_id"/>
+                    <field name="function" invisible="1"/>
+                    <field name="phone" class="o_force_ltr" optional="show"/>
+                    <field name="email" optional="show"/>
+                    <field name="user_id" optional="show" widget="many2one_avatar_user" domain="[('share', '=', False)]"/>
+                    <field name="city" optional="show"/>
+                    <field name="state_id" optional="hide" readonly="1"/>
+                    <field name="country_id" optional="show" readonly="1"/>
+                    <field name="vat" optional="hide" readonly="1"/>
+                    <field name="category_id" optional="hide" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                    <field name="company_id" groups="base.group_multi_company" readonly="1"/>
+                    <field name="is_company" invisible="1"/>
+                    <field name="parent_id" invisible="1" readonly="1"/>
+                    <field name="active" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- CHANGE ACTION AND TREE VIEW CUSTOMER MASTER ACCOUNTING -->
+        <record id="bi_action_partner_form" model="ir.actions.act_window">
+            <field name="name">Customers</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">kanban,tree,form</field>
+             <field name="context">{'search_default_customer': 1,'res_partner_search_mode': 'customer', 'default_is_company': True, 'default_customer_rank': 1}</field>
+            <field name="search_view_id" ref="base.view_res_partner_filter"/>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a Contact in your address book
+              </p><p>
+                Odoo helps you track all activities related to your contacts.
+              </p>
+            </field>
+        </record>
+
+        <record id="action_partner_tree_view2" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="bi_view_partner_tree"/>
+            <field name="act_window_id" ref="bi_action_partner_form"/>
+        </record>
+
+        <record id="base.action_partner_form_view1" model="ir.actions.act_window.view">
+            <field eval="0" name="sequence"/>
+            <field name="view_mode">kanban</field>
+            <field name="view_id" ref="base.res_partner_kanban_view"/>
+            <field name="act_window_id" ref="bi_action_partner_form"/>
+        </record>
+
+        <menuitem id="account.menu_account_customer" name="Customers" parent="account.menu_finance_receivables" action="bi_action_partner_form" sequence="110"/>
+
+        <!-- sale order customer menu -->
+        <menuitem id="sale.res_partner_menu"
+            parent="sale.sale_order_menu"
+            action="bi_action_partner_form"
+            sequence="4" groups="sales_team.group_sale_salesman"/>
+
+        <record id="view_res_partner_filter" model="ir.ui.view">
+        <field name="name">res.partner.search</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <field name="customer_code" string="Customer Code"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_customer_class_tree_dropshipping" model="ir.actions.act_window">
+        <field name="name">Dropshipping Customers</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('customer_class_id.is_dropshipping', '=', True), ('is_company', '=', True)]</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Click to Create a Dropshipping Customers.</p>
+        </field>
+    </record>
+
+    <record id="action_customer_class_tree_wholesales" model="ir.actions.act_window">
+        <field name="name">Wholesales Customers</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('customer_class_id.is_wholesales', '=', True), ('is_company', '=', True)]</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Click to Create a Wholesales Customers.</p>
+        </field>
+    </record>
+
+    <record id="action_customer_class_tree_salesman" model="ir.actions.act_window">
+        <field name="name">Seedsman Customers</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('customer_class_id.is_salesman', '=', True), ('is_company', '=', True)]</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Click to Create a Seedsman Customers.</p>
+        </field>
+    </record>
+
+    <menuitem id="customer_class_menu_root"
+            name = "Customers"
+            parent="sale.sale_menu_root"
+            />
+
+
+    <menuitem
+        action="action_customer_class_tree_dropshipping"
+        id="menu_action_customer_class_tree_dropshipping"
+        parent="bi_customer_generic_customization.customer_class_menu_root"
+        name="Dropshipping Customers"
+        sequence='1'
+    />
+
+    <menuitem
+        action="action_customer_class_tree_wholesales"
+        id="menu_action_customer_class_tree_wholesales"
+        parent="bi_customer_generic_customization.customer_class_menu_root"
+        name="Wholesales Customers"
+        sequence='2'
+    />
+
+
+    <menuitem
+        action="action_customer_class_tree_salesman"
+        id="menu_action_customer_class_tree_salesman"
+        parent="bi_customer_generic_customization.customer_class_menu_root"
+        name="Seedsman Customers"
+        sequence='3'
+    />
+    <record id="action_customer_class_tree_barneys_customer" model="ir.actions.act_window">
+        <field name="name">Barneys Customers</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('customer_class_id.is_barneys_customer', '=', True), ('is_company', '=', True)]</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Click to Create a Barneys Customers.</p>
+        </field>
+    </record>
+
+    <menuitem
+        action="action_customer_class_tree_barneys_customer"
+        id="menu_action_customer_class_tree_barneys_customer"
+        parent="bi_customer_generic_customization.customer_class_menu_root"
+        name="Barneys Customers"
+        sequence='4'
+    />
+
+    <record id="action_customer_class_tree_eztest_customer" model="ir.actions.act_window">
+        <field name="name">Eztest Customers</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('customer_class_id.is_eztest', '=', True), ('is_company', '=', True)]</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Click to Create a Eztest Customer.</p>
+        </field>
+    </record>
+
+    <menuitem
+        action="action_customer_class_tree_eztest_customer"
+        id="menu_action_customer_class_tree_eztest_customer"
+        parent="bi_customer_generic_customization.customer_class_menu_root"
+        name="Eztest Customers"
+        sequence='5'
+    />
+
+    <record id="action_customer_class_tree_shopify_customer" model="ir.actions.act_window">
+        <field name="name">Shopify Customers</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('customer_class_id.is_shopify', '=', True), ('is_company', '=', True)]</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Click to Create a Shopify Customers.</p>
+        </field>
+    </record>
+
+    <menuitem
+        action="action_customer_class_tree_shopify_customer"
+        id="menu_action_customer_class_tree_shopify_customer"
+        parent="bi_customer_generic_customization.customer_class_menu_root"
+        name="Shopify Customers"
+        sequence='6'
+    />
+
+    <record id="action_customer_class_tree_customer" model="ir.actions.act_window">
+        <field name="name">All Customers</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('is_company', '=', True)]</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Click to Create a Shopify Customers.</p>
+        </field>
+    </record>
+
+    <menuitem
+        action="action_customer_class_tree_customer"
+        id="menu_action_customer_class_tree_customer"
+        parent="bi_customer_generic_customization.customer_class_menu_root"
+        name="All Customers"
+        sequence='6'
+    />
+
+    </data>
+</odoo>

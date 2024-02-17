@@ -1,0 +1,17 @@
+<odoo>
+    <record id="barcode_generator_template_action_server" model="ir.actions.server">
+        <field name="name">Generate Barcode</field>
+        <field name="model_id" ref="product.model_product_template"/>
+        <field name="binding_model_id" ref="product.model_product_template"/>
+        <field name="state">code</field>
+        <field name="code">action = model.action_generate_barcode()</field>
+    </record>
+
+    <record id="barcode_generator_action_server" model="ir.actions.server">
+        <field name="name">Generate Barcode</field>
+        <field name="model_id" ref="product.model_product_product"/>
+        <field name="binding_model_id" ref="product.model_product_product"/>
+        <field name="state">code</field>
+        <field name="code">action = model.action_generate_barcode()</field>
+    </record>
+</odoo>

@@ -1,0 +1,1070 @@
+<odoo>
+    <data>
+        <!-- SEEDS VARIETY -->
+      <record id="seeds_variety_view_form" model="ir.ui.view">
+        <field name="name">seeds.variety.view.form</field>
+        <field name="model">seeds.variety</field>
+        <field name="arch" type="xml">
+          <form>
+            <header>
+            </header>
+            <sheet>
+              <group>
+                  <group>
+                      <field name="name"/>
+                  </group>
+                  <group>
+                      <field name="magento_attribute_option_id"/>
+                      <field name="magento_attribute_id"/>
+                  </group>
+              </group>
+            </sheet>
+          </form>
+        </field>
+      </record>
+  
+      <record id="seeds_variety_view_tree" model="ir.ui.view">
+        <field name="name">seeds.variety.view.tree</field>
+        <field name="model">seeds.variety</field>
+        <field name="arch" type="xml">
+              <tree>
+                    <field name="name"/>
+                    <field name="magento_attribute_option_id"/>
+                    <field name="magento_attribute_id"/>
+              </tree>
+          </field>
+        </record>
+  
+      <record id="seeds_variety_view_action" model="ir.actions.act_window">
+        <field name="name">Seeds Variety</field>
+        <field name="res_model">seeds.variety</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Create a record
+          </p>
+        </field>
+      </record>
+  
+      <menuitem
+        id="seeds_variety_menu"
+        name="Seeds Variety"
+        action="seeds_variety_view_action"
+        parent="stock.menu_stock_config_settings"
+        sequence="100"/>
+        
+        <!-- SEEDS THC FILTER -->
+        <record id="seeds_thc_filter_view_form" model="ir.ui.view">
+            <field name="name">seeds.thc.filter.view.form</field>
+            <field name="model">seeds.thc.filter</field>
+            <field name="arch" type="xml">
+              <form>
+                <header>
+                </header>
+                <sheet>
+                  <group>
+                      <group>
+                          <field name="name"/>
+                      </group>
+                      <group>
+                          <field name="magento_attribute_option_id"/>
+                          <field name="magento_attribute_id"/>
+                      </group>
+                  </group>
+                </sheet>
+              </form>
+            </field>
+          </record>
+      
+          <record id="seeds_thc_filter_view_tree" model="ir.ui.view">
+            <field name="name">seeds.thc.filter.view.tree</field>
+            <field name="model">seeds.thc.filter</field>
+            <field name="arch" type="xml">
+                  <tree>
+                        <field name="name"/>
+                        <field name="magento_attribute_option_id"/>
+                        <field name="magento_attribute_id"/>
+                  </tree>
+              </field>
+            </record>
+      
+          <record id="seeds_thc_filter_view_action" model="ir.actions.act_window">
+            <field name="name">Seeds Thc Filter</field>
+            <field name="res_model">seeds.thc.filter</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a record
+              </p>
+            </field>
+          </record>
+      
+          <menuitem
+            id="seeds_thc_filter_menu"
+            name="Seeds Thc Filter"
+            action="seeds_thc_filter_view_action"
+            parent="stock.menu_stock_config_settings"
+            sequence="100"/>
+        
+        <!-- SEEDS CBD FILTER -->
+        <record id="seeds_cbd_filter_view_form" model="ir.ui.view">
+            <field name="name">seeds.cbd.filter.view.form</field>
+            <field name="model">seeds.cbd.filter</field>
+            <field name="arch" type="xml">
+              <form>
+                <header>
+                </header>
+                <sheet>
+                  <group>
+                      <group>
+                          <field name="name"/>
+                      </group>
+                      <group>
+                          <field name="magento_attribute_option_id"/>
+                          <field name="magento_attribute_id"/>
+                      </group>
+                  </group>
+                </sheet>
+              </form>
+            </field>
+          </record>
+      
+          <record id="seeds_cbd_filter_view_tree" model="ir.ui.view">
+            <field name="name">seeds.cbd.filter.view.tree</field>
+            <field name="model">seeds.cbd.filter</field>
+            <field name="arch" type="xml">
+                  <tree>
+                        <field name="name"/>
+                        <field name="magento_attribute_option_id"/>
+                        <field name="magento_attribute_id"/>
+                  </tree>
+              </field>
+            </record>
+      
+          <record id="seeds_cbd_filter_view_action" model="ir.actions.act_window">
+            <field name="name">Seeds cbd Filter</field>
+            <field name="res_model">seeds.cbd.filter</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a record
+              </p>
+            </field>
+          </record>
+      
+          <menuitem
+            id="seeds_cbd_filter_menu"
+            name="Seeds cbd Filter"
+            action="seeds_cbd_filter_view_action"
+            parent="stock.menu_stock_config_settings"
+            sequence="100"/>
+
+        
+        <!-- SEEDS Yield FILTER -->
+        <record id="seeds_yield_filter_view_form" model="ir.ui.view">
+            <field name="name">seeds.yield.filter.view.form</field>
+            <field name="model">seeds.yield.filter</field>
+            <field name="arch" type="xml">
+              <form>
+                <header>
+                </header>
+                <sheet>
+                  <group>
+                      <group>
+                          <field name="name"/>
+                      </group>
+                      <group>
+                          <field name="magento_attribute_option_id"/>
+                          <field name="magento_attribute_id"/>
+                      </group>
+                  </group>
+                </sheet>
+              </form>
+            </field>
+          </record>
+      
+          <record id="seeds_yield_filter_view_tree" model="ir.ui.view">
+            <field name="name">seeds.yield.filter.view.tree</field>
+            <field name="model">seeds.yield.filter</field>
+            <field name="arch" type="xml">
+                  <tree>
+                        <field name="name"/>
+                        <field name="magento_attribute_option_id"/>
+                        <field name="magento_attribute_id"/>
+                  </tree>
+              </field>
+            </record>
+      
+          <record id="seeds_yield_filter_view_action" model="ir.actions.act_window">
+            <field name="name">Seeds Yield Filter</field>
+            <field name="res_model">seeds.yield.filter</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a record
+              </p>
+            </field>
+          </record>
+      
+          <menuitem
+            id="seeds_yield_filter_menu"
+            name="Seeds Yield Filter"
+            action="seeds_yield_filter_view_action"
+            parent="stock.menu_stock_config_settings"
+            sequence="100"/>
+        
+        <!-- SEEDS Yield Indoor FILTER -->
+        <record id="seeds_yield_indoor_filter_view_form" model="ir.ui.view">
+            <field name="name">seeds.yield.indoor.filter.view.form</field>
+            <field name="model">seeds.yield.indoor.filter</field>
+            <field name="arch" type="xml">
+              <form>
+                <header>
+                </header>
+                <sheet>
+                  <group>
+                      <group>
+                          <field name="name"/>
+                      </group>
+                      <group>
+                          <field name="magento_attribute_option_id"/>
+                          <field name="magento_attribute_id"/>
+                      </group>
+                  </group>
+                </sheet>
+              </form>
+            </field>
+          </record>
+      
+          <record id="seeds_yield_indoor_filter_view_tree" model="ir.ui.view">
+            <field name="name">seeds.yield.indoor.filter.view.tree</field>
+            <field name="model">seeds.yield.indoor.filter</field>
+            <field name="arch" type="xml">
+                  <tree>
+                        <field name="name"/>
+                        <field name="magento_attribute_option_id"/>
+                        <field name="magento_attribute_id"/>
+                  </tree>
+              </field>
+            </record>
+      
+          <record id="seeds_yield_indoor_filter_view_action" model="ir.actions.act_window">
+            <field name="name">Seeds Yield Indoor Filter</field>
+            <field name="res_model">seeds.yield.indoor.filter</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a record
+              </p>
+            </field>
+          </record>
+      
+          <menuitem
+            id="seeds_yield_indoor_filter_menu"
+            name="Seeds Yield Indoor Filter"
+            action="seeds_yield_indoor_filter_view_action"
+            parent="stock.menu_stock_config_settings"
+            sequence="100"/>
+
+        <!-- SEEDS Plant height -->
+        <record id="seeds_plant_height_view_form" model="ir.ui.view">
+            <field name="name">seeds.plant.height.view.form</field>
+            <field name="model">seeds.plant.height</field>
+            <field name="arch" type="xml">
+              <form>
+                <header>
+                </header>
+                <sheet>
+                  <group>
+                      <group>
+                          <field name="name"/>
+                      </group>
+                      <group>
+                          <field name="magento_attribute_option_id"/>
+                          <field name="magento_attribute_id"/>
+                      </group>
+                  </group>
+                </sheet>
+              </form>
+            </field>
+          </record>
+      
+          <record id="seeds_plant_height_view_tree" model="ir.ui.view">
+            <field name="name">seeds.plant.height.view.tree</field>
+            <field name="model">seeds.plant.height</field>
+            <field name="arch" type="xml">
+                  <tree>
+                        <field name="name"/>
+                        <field name="magento_attribute_option_id"/>
+                        <field name="magento_attribute_id"/>
+                  </tree>
+              </field>
+            </record>
+      
+          <record id="seeds_plant_height_view_action" model="ir.actions.act_window">
+            <field name="name">Seeds Plant Height</field>
+            <field name="res_model">seeds.plant.height</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a record
+              </p>
+            </field>
+          </record>
+      
+          <menuitem
+            id="seeds_plant_height_menu"
+            name="Seeds Plant Height"
+            action="seeds_plant_height_view_action"
+            parent="stock.menu_stock_config_settings"
+            sequence="100"/>
+
+        <!-- SEEDS Flowering Weeks -->
+        <record id="seeds_flowering_weeeks_view_form" model="ir.ui.view">
+            <field name="name">seeds.flowering.weeks.view.form</field>
+            <field name="model">seeds.flowering.weeks</field>
+            <field name="arch" type="xml">
+              <form>
+                <header>
+                </header>
+                <sheet>
+                  <group>
+                      <group>
+                          <field name="name"/>
+                      </group>
+                      <group>
+                          <field name="magento_attribute_option_id"/>
+                          <field name="magento_attribute_id"/>
+                      </group>
+                  </group>
+                </sheet>
+              </form>
+            </field>
+          </record>
+      
+          <record id="seeds_flowering_weeeks_view_tree" model="ir.ui.view">
+            <field name="name">seeds.flowering.weeks.view.tree</field>
+            <field name="model">seeds.flowering.weeks</field>
+            <field name="arch" type="xml">
+                  <tree>
+                        <field name="name"/>
+                        <field name="magento_attribute_option_id"/>
+                        <field name="magento_attribute_id"/>
+                  </tree>
+              </field>
+            </record>
+      
+          <record id="seeds_flowering_weeeks_action" model="ir.actions.act_window">
+            <field name="name">Seeds Flowering Weeks</field>
+            <field name="res_model">seeds.flowering.weeks</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a record
+              </p>
+            </field>
+          </record>
+      
+          <menuitem
+            id="seeds_flowering_weeeks_menu"
+            name="Seeds Flowering Weeks"
+            action="seeds_flowering_weeeks_action"
+            parent="stock.menu_stock_config_settings"
+            sequence="100"/>
+
+
+        <!-- SEEDS Auto Harvest Time -->
+        <record id="seeds_auto_harvest_time_view_form" model="ir.ui.view">
+            <field name="name">seeds.auto.harvest.time.view.form</field>
+            <field name="model">seeds.auto.harvest.time</field>
+            <field name="arch" type="xml">
+              <form>
+                <header>
+                </header>
+                <sheet>
+                  <group>
+                      <group>
+                          <field name="name"/>
+                      </group>
+                      <group>
+                          <field name="magento_attribute_option_id"/>
+                          <field name="magento_attribute_id"/>
+                      </group>
+                  </group>
+                </sheet>
+              </form>
+            </field>
+          </record>
+      
+          <record id="seeds_auto_harvest_time_view_tree" model="ir.ui.view">
+            <field name="name">seeds.auto.harvest.time.view.tree</field>
+            <field name="model">seeds.auto.harvest.time</field>
+            <field name="arch" type="xml">
+                  <tree>
+                        <field name="name"/>
+                        <field name="magento_attribute_option_id"/>
+                        <field name="magento_attribute_id"/>
+                  </tree>
+              </field>
+            </record>
+      
+          <record id="seeds_auto_harvest_time_action" model="ir.actions.act_window">
+            <field name="name">Seeds Auto Harvest Time</field>
+            <field name="res_model">seeds.auto.harvest.time</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a record
+              </p>
+            </field>
+          </record>
+      
+          <menuitem
+            id="seeds_auto_harvest_time_menu"
+            name="Seeds Auto Harvest Time"
+            action="seeds_auto_harvest_time_action"
+            parent="stock.menu_stock_config_settings"
+            sequence="100"/>
+
+
+        <!-- SEEDS Grows -->
+        <record id="seeds_grows_view_form" model="ir.ui.view">
+            <field name="name">seeds.grows.view.form</field>
+            <field name="model">seeds.grows</field>
+            <field name="arch" type="xml">
+              <form>
+                <header>
+                </header>
+                <sheet>
+                  <group>
+                      <group>
+                          <field name="name"/>
+                      </group>
+                      <group>
+                          <field name="magento_attribute_option_id"/>
+                          <field name="magento_attribute_id"/>
+                      </group>
+                  </group>
+                </sheet>
+              </form>
+            </field>
+          </record>
+      
+          <record id="seeds_grows_view_tree" model="ir.ui.view">
+            <field name="name">seeds.grows.view.tree</field>
+            <field name="model">seeds.grows</field>
+            <field name="arch" type="xml">
+                  <tree>
+                        <field name="name"/>
+                        <field name="magento_attribute_option_id"/>
+                        <field name="magento_attribute_id"/>
+                  </tree>
+              </field>
+            </record>
+      
+          <record id="seeds_grows_action" model="ir.actions.act_window">
+            <field name="name">Seeds Grows</field>
+            <field name="res_model">seeds.grows</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a record
+              </p>
+            </field>
+          </record>
+      
+          <menuitem
+            id="seeds_grows_menu"
+            name="Seeds Grows"
+            action="seeds_grows_action"
+            parent="stock.menu_stock_config_settings"
+            sequence="100"/>
+
+        <!-- SEEDS Climate -->
+        <record id="seeds_climate_view_form" model="ir.ui.view">
+            <field name="name">seeds.climate.view.form</field>
+            <field name="model">seeds.climate</field>
+            <field name="arch" type="xml">
+              <form>
+                <header>
+                </header>
+                <sheet>
+                  <group>
+                      <group>
+                          <field name="name"/>
+                      </group>
+                      <group>
+                          <field name="magento_attribute_option_id"/>
+                          <field name="magento_attribute_id"/>
+                      </group>
+                  </group>
+                </sheet>
+              </form>
+            </field>
+          </record>
+      
+          <record id="seeds_climate_view_tree" model="ir.ui.view">
+            <field name="name">seeds.climate.view.tree</field>
+            <field name="model">seeds.climate</field>
+            <field name="arch" type="xml">
+                  <tree>
+                        <field name="name"/>
+                        <field name="magento_attribute_option_id"/>
+                        <field name="magento_attribute_id"/>
+                  </tree>
+              </field>
+            </record>
+      
+          <record id="seeds_climate_action" model="ir.actions.act_window">
+            <field name="name">Seeds Climate</field>
+            <field name="res_model">seeds.climate</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a record
+              </p>
+            </field>
+          </record>
+      
+          <menuitem
+            id="seeds_climate_menu"
+            name="Seeds Climate"
+            action="seeds_climate_action"
+            parent="stock.menu_stock_config_settings"
+            sequence="100"/>
+
+        
+        <!-- SEEDS Odour -->
+        <record id="seeds_odour_view_form" model="ir.ui.view">
+            <field name="name">seeds.odour.view.form</field>
+            <field name="model">seeds.odour</field>
+            <field name="arch" type="xml">
+              <form>
+                <header>
+                </header>
+                <sheet>
+                  <group>
+                      <group>
+                          <field name="name"/>
+                      </group>
+                      <group>
+                          <field name="magento_attribute_option_id"/>
+                          <field name="magento_attribute_id"/>
+                      </group>
+                  </group>
+                </sheet>
+              </form>
+            </field>
+          </record>
+      
+        <record id="seeds_odour_view_tree" model="ir.ui.view">
+            <field name="name">seeds.odour.view.tree</field>
+            <field name="model">seeds.odour</field>
+            <field name="arch" type="xml">
+                  <tree>
+                        <field name="name"/>
+                        <field name="magento_attribute_option_id"/>
+                        <field name="magento_attribute_id"/>
+                  </tree>
+              </field>
+            </record>
+      
+          <record id="seeds_odour_action" model="ir.actions.act_window">
+            <field name="name">Seeds Odour</field>
+            <field name="res_model">seeds.odour</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a record
+              </p>
+            </field>
+          </record>
+      
+          <menuitem
+            id="seeds_odour_menu"
+            name="Seeds Odour"
+            action="seeds_odour_action"
+            parent="stock.menu_stock_config_settings"
+            sequence="100"/>
+
+
+        <!-- SEEDS Grow Difficulty -->
+        <record id="seeds_grow_difficulty_view_form" model="ir.ui.view">
+            <field name="name">seeds.grow.difficulty.view.form</field>
+            <field name="model">seeds.grow.difficulty</field>
+            <field name="arch" type="xml">
+              <form>
+                <header>
+                </header>
+                <sheet>
+                  <group>
+                      <group>
+                          <field name="name"/>
+                      </group>
+                      <group>
+                          <field name="magento_attribute_option_id"/>
+                          <field name="magento_attribute_id"/>
+                      </group>
+                  </group>
+                </sheet>
+              </form>
+            </field>
+          </record>
+      
+        <record id="seeds_grow_difficulty_view_tree" model="ir.ui.view">
+            <field name="name">seeds.grow.difficulty.view.tree</field>
+            <field name="model">seeds.grow.difficulty</field>
+            <field name="arch" type="xml">
+                  <tree>
+                        <field name="name"/>
+                        <field name="magento_attribute_option_id"/>
+                        <field name="magento_attribute_id"/>
+                  </tree>
+              </field>
+            </record>
+      
+          <record id="seeds_grow_difficulty_action" model="ir.actions.act_window">
+            <field name="name">Seeds Grow Difficulty</field>
+            <field name="res_model">seeds.grow.difficulty</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a record
+              </p>
+            </field>
+          </record>
+      
+          <menuitem
+            id="seeds_grow_difficulty_menu"
+            name="Seeds Grow Difficulty"
+            action="seeds_grow_difficulty_action"
+            parent="stock.menu_stock_config_settings"
+            sequence="100"/>
+  
+        <!-- SEEDS Cannabinoid Report -->
+        <record id="seeds_cannabinoid_report_view_form" model="ir.ui.view">
+            <field name="name">seeds.cannabinoid.report.view.form</field>
+            <field name="model">seeds.cannabinoid.report</field>
+            <field name="arch" type="xml">
+              <form>
+                <header>
+                </header>
+                <sheet>
+                  <group>
+                      <group>
+                          <field name="name"/>
+                      </group>
+                      <group>
+                          <field name="magento_attribute_option_id"/>
+                          <field name="magento_attribute_id"/>
+                      </group>
+                  </group>
+                </sheet>
+              </form>
+            </field>
+          </record>
+      
+        <record id="seeds_cannabinoid_report_view_tree" model="ir.ui.view">
+            <field name="name">seeds.cannabinoid.report.view.tree</field>
+            <field name="model">seeds.cannabinoid.report</field>
+            <field name="arch" type="xml">
+                  <tree>
+                        <field name="name"/>
+                        <field name="magento_attribute_option_id"/>
+                        <field name="magento_attribute_id"/>
+                  </tree>
+              </field>
+            </record>
+      
+          <record id="seeds_cannabinoid_report_action" model="ir.actions.act_window">
+            <field name="name">Seeds Cannabinoid Report</field>
+            <field name="res_model">seeds.cannabinoid.report</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a record
+              </p>
+            </field>
+          </record>
+      
+          <menuitem
+            id="seeds_cannabinoid_report_menu"
+            name="Seeds Cannabinoid Report"
+            action="seeds_cannabinoid_report_action"
+            parent="stock.menu_stock_config_settings"
+            sequence="100"/>
+
+        <!-- SEEDS Bud Formation -->
+        <record id="seeds_bud_formation_view_form" model="ir.ui.view">
+            <field name="name">seeds.bud.formation.view.form</field>
+            <field name="model">seeds.bud.formation</field>
+            <field name="arch" type="xml">
+              <form>
+                <header>
+                </header>
+                <sheet>
+                  <group>
+                      <group>
+                          <field name="name"/>
+                      </group>
+                      <group>
+                          <field name="magento_attribute_option_id"/>
+                          <field name="magento_attribute_id"/>
+                      </group>
+                  </group>
+                </sheet>
+              </form>
+            </field>
+          </record>
+      
+        <record id="seeds_bud_formation_view_tree" model="ir.ui.view">
+            <field name="name">seeds.bud.formation.view.tree</field>
+            <field name="model">seeds.bud.formation</field>
+            <field name="arch" type="xml">
+                  <tree>
+                        <field name="name"/>
+                        <field name="magento_attribute_option_id"/>
+                        <field name="magento_attribute_id"/>
+                  </tree>
+              </field>
+            </record>
+      
+          <record id="seeds_bud_formation_action" model="ir.actions.act_window">
+            <field name="name">Seeds Bud Formation</field>
+            <field name="res_model">seeds.bud.formation</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a record
+              </p>
+            </field>
+          </record>
+      
+          <menuitem
+            id="seeds_bud_formation_menu"
+            name="Seeds Bud Formation"
+            action="seeds_bud_formation_action"
+            parent="stock.menu_stock_config_settings"
+            sequence="100"/>
+
+        <!-- SEEDS Award Filter -->
+        <record id="seeds_award_filter_view_form" model="ir.ui.view">
+            <field name="name">seeds.award.filter.view.form</field>
+            <field name="model">seeds.award.filter</field>
+            <field name="arch" type="xml">
+              <form>
+                <header>
+                </header>
+                <sheet>
+                  <group>
+                      <group>
+                          <field name="name"/>
+                      </group>
+                      <group>
+                          <field name="magento_attribute_option_id"/>
+                          <field name="magento_attribute_id"/>
+                      </group>
+                  </group>
+                </sheet>
+              </form>
+            </field>
+          </record>
+      
+        <record id="seeds_award_filter_view_tree" model="ir.ui.view">
+            <field name="name">seeds.award.filter.view.tree</field>
+            <field name="model">seeds.award.filter</field>
+            <field name="arch" type="xml">
+                  <tree>
+                        <field name="name"/>
+                        <field name="magento_attribute_option_id"/>
+                        <field name="magento_attribute_id"/>
+                  </tree>
+              </field>
+            </record>
+      
+          <record id="seeds_award_filter_action" model="ir.actions.act_window">
+            <field name="name">Seeds Award Filter</field>
+            <field name="res_model">seeds.award.filter</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a record
+              </p>
+            </field>
+          </record>
+      
+          <menuitem
+            id="seeds_award_filter_menu"
+            name="Seeds Award Filter"
+            action="seeds_award_filter_action"
+            parent="stock.menu_stock_config_settings"
+            sequence="100"/>
+
+        <!-- SEEDS Mould -->
+        <record id="seeds_mould_view_form" model="ir.ui.view">
+            <field name="name">seeds.mould.view.form</field>
+            <field name="model">seeds.mould</field>
+            <field name="arch" type="xml">
+              <form>
+                <header>
+                </header>
+                <sheet>
+                  <group>
+                      <group>
+                          <field name="name"/>
+                      </group>
+                      <group>
+                          <field name="magento_attribute_option_id"/>
+                          <field name="magento_attribute_id"/>
+                      </group>
+                  </group>
+                </sheet>
+              </form>
+            </field>
+          </record>
+      
+        <record id="seeds_mould_view_tree" model="ir.ui.view">
+            <field name="name">seeds.mould.view.tree</field>
+            <field name="model">seeds.mould</field>
+            <field name="arch" type="xml">
+                  <tree>
+                        <field name="name"/>
+                        <field name="magento_attribute_option_id"/>
+                        <field name="magento_attribute_id"/>
+                  </tree>
+              </field>
+            </record>
+      
+          <record id="seeds_mould_action" model="ir.actions.act_window">
+            <field name="name">Seeds Mould</field>
+            <field name="res_model">seeds.mould</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a record
+              </p>
+            </field>
+          </record>
+      
+          <menuitem
+            id="seeds_mould_menu"
+            name="Seeds Mould"
+            action="seeds_mould_action"
+            parent="stock.menu_stock_config_settings"
+            sequence="100"/>
+
+        <!-- SEEDS Extracts -->
+        <record id="seeds_extracts_view_form" model="ir.ui.view">
+            <field name="name">seeds.extracts.view.form</field>
+            <field name="model">seeds.extracts</field>
+            <field name="arch" type="xml">
+              <form>
+                <header>
+                </header>
+                <sheet>
+                  <group>
+                      <group>
+                          <field name="name"/>
+                      </group>
+                      <group>
+                          <field name="magento_attribute_option_id"/>
+                          <field name="magento_attribute_id"/>
+                      </group>
+                  </group>
+                </sheet>
+              </form>
+            </field>
+          </record>
+      
+        <record id="seeds_extracts_view_tree" model="ir.ui.view">
+            <field name="name">seeds.extracts.view.tree</field>
+            <field name="model">seeds.extracts</field>
+            <field name="arch" type="xml">
+                  <tree>
+                        <field name="name"/>
+                        <field name="magento_attribute_option_id"/>
+                        <field name="magento_attribute_id"/>
+                  </tree>
+              </field>
+            </record>
+      
+          <record id="seeds_extracts_action" model="ir.actions.act_window">
+            <field name="name">Seeds Extracts</field>
+            <field name="res_model">seeds.extracts</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a record
+              </p>
+            </field>
+          </record>
+      
+          <menuitem
+            id="seeds_extracts_menu"
+            name="Seeds Extracts"
+            action="seeds_extracts_action"
+            parent="stock.menu_stock_config_settings"
+            sequence="100"/>
+
+        <!-- SEEDS Taste Filter -->
+        <record id="seeds_taste_filter_view_form" model="ir.ui.view">
+            <field name="name">seeds.taste.filter.view.form</field>
+            <field name="model">seeds.taste.filter</field>
+            <field name="arch" type="xml">
+              <form>
+                <header>
+                </header>
+                <sheet>
+                  <group>
+                      <group>
+                          <field name="name"/>
+                      </group>
+                      <group>
+                          <field name="magento_attribute_option_id"/>
+                          <field name="magento_attribute_id"/>
+                      </group>
+                  </group>
+                </sheet>
+              </form>
+            </field>
+          </record>
+      
+        <record id="seeds_taste_filter_view_tree" model="ir.ui.view">
+            <field name="name">seeds.taste.filter.view.tree</field>
+            <field name="model">seeds.taste.filter</field>
+            <field name="arch" type="xml">
+                  <tree>
+                        <field name="name"/>
+                        <field name="magento_attribute_option_id"/>
+                        <field name="magento_attribute_id"/>
+                  </tree>
+              </field>
+            </record>
+      
+          <record id="seeds_taste_filter_action" model="ir.actions.act_window">
+            <field name="name">Seeds Taste Filter</field>
+            <field name="res_model">seeds.taste.filter</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a record
+              </p>
+            </field>
+          </record>
+      
+          <menuitem
+            id="seeds_taste_filter_menu"
+            name="Seeds Taste Filter"
+            action="seeds_taste_filter_action"
+            parent="stock.menu_stock_config_settings"
+            sequence="100"/>
+
+        <!-- SEEDS Terpenes -->
+        <record id="seeds_terpenes_view_form" model="ir.ui.view">
+            <field name="name">seeds.terpenes.view.form</field>
+            <field name="model">seeds.terpenes</field>
+            <field name="arch" type="xml">
+              <form>
+                <header>
+                </header>
+                <sheet>
+                  <group>
+                      <group>
+                          <field name="name"/>
+                      </group>
+                      <group>
+                          <field name="magento_attribute_option_id"/>
+                          <field name="magento_attribute_id"/>
+                      </group>
+                  </group>
+                </sheet>
+              </form>
+            </field>
+          </record>
+      
+        <record id="seeds_terpenes_view_tree" model="ir.ui.view">
+            <field name="name">seeds.terpenes.view.tree</field>
+            <field name="model">seeds.terpenes</field>
+            <field name="arch" type="xml">
+                  <tree>
+                        <field name="name"/>
+                        <field name="magento_attribute_option_id"/>
+                        <field name="magento_attribute_id"/>
+                  </tree>
+              </field>
+            </record>
+      
+          <record id="seeds_terpenes_action" model="ir.actions.act_window">
+            <field name="name">Seeds Terpenes</field>
+            <field name="res_model">seeds.terpenes</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a record
+              </p>
+            </field>
+          </record>
+      
+          <menuitem
+            id="seeds_terpenes_menu"
+            name="Seeds Terpenes"
+            action="seeds_terpenes_action"
+            parent="stock.menu_stock_config_settings"
+            sequence="100"/>
+
+        <!-- Genetic Description -->
+        <record id="genetic_description_view_form" model="ir.ui.view">
+          <field name="name">genetic.description.view.form</field>
+          <field name="model">genetic.description</field>
+          <field name="arch" type="xml">
+            <form>
+              <header>
+              </header>
+              <sheet>
+                <group>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                    <group>
+                        <field name="magento_attribute_option_id"/>
+                        <field name="magento_attribute_id"/>
+                    </group>
+                </group>
+              </sheet>
+            </form>
+          </field>
+        </record>
+    
+      <record id="genetic_description_view_tree" model="ir.ui.view">
+          <field name="name">genetic.description.view.tree</field>
+          <field name="model">genetic.description</field>
+          <field name="arch" type="xml">
+                <tree>
+                      <field name="name"/>
+                      <field name="magento_attribute_option_id"/>
+                      <field name="magento_attribute_id"/>
+                </tree>
+            </field>
+          </record>
+    
+        <record id="genetic_description_action" model="ir.actions.act_window">
+          <field name="name">Genetic Description</field>
+          <field name="res_model">genetic.description</field>
+          <field name="view_mode">tree,form</field>
+          <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+              Create a record
+            </p>
+          </field>
+        </record>
+    
+        <menuitem
+          id="genetic_description_menu"
+          name="Genetic Description"
+          action="genetic_description_action"
+          parent="stock.menu_stock_config_settings"
+          sequence="100"/>
+
+    </data>
+  </odoo>
+  

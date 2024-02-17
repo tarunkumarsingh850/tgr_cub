@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+     <data>
+        <record id="wizard_sale_priority_group_report_form" model="ir.ui.view">
+            <field name="name">wizard.sale.priority.group.report.form</field>
+            <field name="model">wizard.sale.priority.group.report</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group string="Print Sale Priority Group Report">
+                                <field name="date_from" required="1"/>
+                                <field name="date_to" required="1"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="action_print_sale_priority_group_report" string="Print"
+                               class="oe_highlight" type="object" data-hotkey="q" />
+                        <button special="cancel" class="btn btn-default" string="Cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+
+    <record id="action_view_wizard_sale_priority_group" model="ir.actions.act_window">
+        <field name="name">Print Sale Priority Group Report</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">wizard.sale.priority.group.report</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_sale_priority_group_pdf" action="action_view_wizard_sale_priority_group" 
+              parent="sale.menu_sale_report"
+              sequence="1" />
+</odoo>

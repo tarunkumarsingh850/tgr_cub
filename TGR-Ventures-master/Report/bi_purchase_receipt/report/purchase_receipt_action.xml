@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    <record id="action_report_purchase_receipt" model="ir.actions.report">
+        <field name="name">Receipt</field>
+        <field name="model">stock.picking</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">bi_purchase_receipt.report_purchase_receipt</field>
+        <field name="report_file">bi_purchase_receipt.report_purchase_receipt</field>
+        <field name="binding_model_id" ref="stock.model_stock_picking"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="bi_purchase_receipt.pr_paperformat" />
+    </record>
+
+    <record id="stock.action_report_delivery" model="ir.actions.report">
+        <field name="name">Delivery Slip</field>
+        <field name="model">stock.picking</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">stock.report_deliveryslip</field>
+        <field name="report_file">stock.report_deliveryslip</field>
+        <field name="print_report_name">'Delivery Slip - %s - %s' % (object.partner_id.name or '', object.name)</field>
+        <field name="binding_model_id"/>
+        <field name="binding_type">report</field>
+    </record>
+    <record id="stock.action_report_picking" model="ir.actions.report">
+            <field name="name">Picking Operations</field>
+            <field name="model">stock.picking</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">stock.report_picking</field>
+            <field name="report_file">stock.report_picking_operations</field>
+            <field name="print_report_name">'Picking Operations - %s - %s' % (object.partner_id.name or '', object.name)</field>
+            <field name="binding_model_id"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>

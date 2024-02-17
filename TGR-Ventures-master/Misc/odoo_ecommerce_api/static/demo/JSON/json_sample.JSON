@@ -1,0 +1,41 @@
+{
+  "customer_details": {
+    "code": 123456,
+    "name": "Test Customer",
+    "address_line_1": "Test address 1",
+    "address_line_2": "test address 2",
+    "city": "Test City",
+    "state": "Test State",
+    "zip": 21490,
+    "country": "United States",
+    "email": "test@gmail.com",
+    "phone": 2093784390392,
+    "mobile": 2928398239933,
+    "warehouse_code": "DROP1MALAG"
+  },
+  "order_details": [{
+    "product_details": {
+      "code": "FURN_6666",
+      "name": "TV",
+      "product_type": "consu",
+      "sale_price": 50000,
+      "product_category": "All"
+    },
+    "currency": "USD",
+    "quantity": 2,
+    "unit_price": 50000,
+    "taxes": false
+  }, {
+    "product_details": {
+      "code": "E-COM11",
+      "name": "Drawer",
+      "product_type": "consu",
+      "sale_price": 50500,
+      "product_category": "All"
+    },
+    "currency": "USD",
+    "quantity": 3,
+    "unit_price": 50500,
+    "taxes": false
+  }]
+}

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="sale_order_warning_view_form" model="ir.ui.view">
+    <field name="name">sale.order.warning.view.form</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_order_form" />
+    <field name="arch" type="xml">
+      <xpath expr="//field[@name='partner_id']" position="after">
+          <!-- <field name="is_credit_limit_exceed" invisible="1" /> -->
+          <field name="is_credit_on_hold" invisible="1"/>
+      </xpath>
+      <xpath expr="//group[@name='order_details']" position="inside">
+            <field name="no_credit_issue" attrs="{'invisible': [('is_credit_on_hold', '=', False)]}"/>
+    </xpath>
+       <xpath expr="//div[@name='button_box']" position="after">
+           <div class="alert alert-info" role="alert" style="display: inline-block; margin-bottom:0px;width:100%;" attrs="{'invisible':[('is_credit_on_hold','=',False)]}">
+                <p style="font-weight:bold;color:red;">The customer has exceeded the Credit Limit</p>
+           </div>
+      </xpath>
+    </field>
+  </record>
+
+  <record id="credit_on_hold_action" model="ir.actions.act_window">
+      <field name="name">Credit On Hold</field>
+      <field name="res_model">sale.order</field>
+      <field name="view_mode">tree,form</field>
+      <field name="domain">[('is_credit_on_hold','=','True')]</field>
+      <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+
+          </p>
+      </field>
+  </record>
+
+  <record id="sale.action_orders" model="ir.actions.act_window">
+      <field name="name">Sales Orders</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">sale.order</field>
+      <field name="view_mode">tree,kanban,form,calendar,pivot,graph,activity</field>
+      <field name="search_view_id" ref="sale.sale_order_view_search_inherit_sale"/>
+      <field name="context">{}</field>
+      <field name="domain">[('is_credit_on_hold','!=','True'),('is_resend_order','=',False),('state', 'not in', ('draft', 'sent'))]</field>
+      <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+              Create a new quotation, the first step of a new sale!
+          </p><p>
+              Once the quotation is confirmed, it becomes a sales order.<br/> You will be able to create an invoice and collect the payment.
+          </p>
+      </field>
+  </record>
+
+  <menuitem name="Credit On Hold" id="menu_credit_on_hold" sequence="2" parent="sale.sale_order_menu" action="credit_on_hold_action"/>
+
+</odoo>

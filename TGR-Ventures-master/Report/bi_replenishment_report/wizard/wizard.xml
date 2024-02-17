@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_replenishment_report" model="ir.ui.view">
+    <field name="name">Replenishment Report</field>
+    <field name="model">replenishment.report</field>
+    <field name="arch" type="xml">
+        <form>
+            <sheet>
+                <group>
+                    <group>
+                    <field name="warehouse_id"/>
+                    <!-- <field name="breader_id"/> -->
+                    <field name="sex_id"/>
+                    <field name="brand_breeder_ids" widget="many2many_tags"/>
+                    <field name="avg_weeks_for_sale" />
+                    <field name="lead_time_in_weeks" />
+                </group>
+                <group>
+                    <field name="inventory_id" invisible="1"/>
+                    <field name="flower_type_id"/>
+                    <field name="size_id"/>
+                    <field name="avg_weeks"/>
+                </group>
+            </group>
+            </sheet>
+            <footer>
+                <button string="Generate" name="generate_xlsx_report" type="object" class="btn-primary"/>
+                <button string="Cancel" class="btn-default" special="cancel"/>
+            </footer>
+        </form>
+    </field>
+</record>
+
+<record id="action_replenishment_report" model="ir.actions.act_window">
+    <field name="name">Replenishment Report</field>
+    <field name="res_model">replenishment.report</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="view_mode">form</field>
+    <field name="view_id" ref="view_replenishment_report"/>
+    <field name="target">new</field>
+</record>
+
+<menuitem name="Replenishment Report" id="menu_replenishment_report" action="action_replenishment_report" parent="stock.menu_warehouse_report"/>
+
+</odoo>

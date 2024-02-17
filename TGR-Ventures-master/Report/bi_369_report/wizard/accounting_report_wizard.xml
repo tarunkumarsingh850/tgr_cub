@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="accounting_report_wizard" model="ir.ui.view">
+      <field name="name">accounting.report.wizard.view</field>
+      <field name="model">accounting.report.wizard</field>
+      <field name="arch" type="xml">
+        <form string="369 Report">
+          <group>
+            <group>
+                <field name="start_date" required="1"/>
+                <field name="company_id" invisible="1"/>
+            </group>
+            <group>
+                <field name="end_date" required="1"/>
+            </group>
+          </group>
+          <footer>
+            <button name="export_excel_report" string="Export" type="object" class="btn-primary"/>
+            <button string="Cancel" class="btn-default" special="cancel"/>
+          </footer>
+        </form>
+      </field>
+    </record>
+
+    <record id="accounting_report_action" model="ir.actions.act_window">
+      <field name="name">369 Report</field>
+      <field name="res_model">accounting.report.wizard</field>
+      <field name="view_mode">form</field>
+      <field name="target">new</field>
+  </record>
+
+    <menuitem
+        id="menu_accounting_report"
+        name="369 Report"
+        action="accounting_report_action"
+        parent="account.account_reports_management_menu"
+         sequence="100"
+        />
+
+</odoo>

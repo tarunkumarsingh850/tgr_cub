@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="import_and_export_kit_specification" model="ir.ui.view">
+    <field name="name">import.and.export.kit.specification.form</field>
+    <field name="inherit_id" ref="bi_kit_assembly.bill_material_view_form"/>
+    <field name="model">bill.material</field>
+    <field name="arch" type="xml">
+        <xpath expr="//form/sheet/notebook/page/field[@name='bom_line_ids']" position="before">
+          <group>
+              <group>
+                <field name="excel_file"/>
+                <group>
+                  <button name="load_lines" string="Import" type="object" class="btn-primary" attrs="{'invisible': [('state','=','done')]}"/>
+                </group>
+              </group>
+              <!-- <group>
+                <button string="Download New Template" name="export_template" type="object"/>
+              </group> -->
+          </group>
+        </xpath>
+    </field>
+  </record>
+
+</odoo>

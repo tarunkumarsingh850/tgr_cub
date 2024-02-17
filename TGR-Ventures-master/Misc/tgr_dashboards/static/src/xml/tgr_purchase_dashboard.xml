@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <!--Template for tgr purchase dashboard-->
+    <t t-name="tgrPurchaseDashboard">
+        <div class="text-center p-4 tgr-purchase-dashboard">
+            <!--Filters-->
+            <div class="row mr-3 ml-4 filters-container">
+                <!--Date range selector-->
+                <div class="col-md-3 filter-col">
+                    <div class="chart-card-filter filter-background">
+                        <label class="o_form_label font-bold">Date Range</label>
+                        <div id="chart-date-range" >
+                            <span><i class="fa fa-calendar"/>  <span id="load-data"/>  <i class="fa fa-caret-down"/></span>
+                        </div>
+                    </div>
+                </div>
+                <!--Country selector-->
+                <div class="col-md-3 filter-data">
+                    <div class="chart-card-filter filter-background">
+                        <label class="o_form_label font-bold">Country</label>
+                        <select name="country" multiple="" id="country"/>
+                    </div>
+                </div>
+                <!--Brand selector-->
+                <div class="col-md-3 filter-data">
+                    <div class="chart-card-filter filter-background">
+                        <label class="o_form_label font-bold">Brand</label>
+                        <select name="brand" id="brand" multiple=""/>
+                    </div>
+                </div>
+                <!--Warehouse selector-->
+                <div class="col-md-3 filter-data">
+                    <div class="chart-card-filter filter-background">
+                        <label class="o_form_label font-bold">Warehouse</label>
+                        <select name="warehouse" id="warehouse" multiple=""/>
+                    </div>
+                </div>
+            </div>
+
+            <!--Chart containers-->
+            <div class="row mt-4 mr-3 ml-3 chart-container">
+
+                <!--Overview of current stock levels-->
+                <div class="col-md-12 filter-col mt-4">
+                    <div class="chart-card content-background current-stock-levels-chart-card">
+                        <!--Title-->
+                        <div class="sale-order-title text-center mb-4 mt-4">
+                            <h2>Overview Of Current Stock Levels</h2>
+                        </div>
+                        <!--Overview of current stock levels table-->
+                        <div id="overview-of-current-stock-levels-table" class="amount-of-each-product-sold purchase-tables">
+                            <!--Pagination-->
+                            <div class="row g-3 align-items-center sob-pagination">
+                                <div class="col-4"/>
+                                <div class="col-2 text-end">
+                                    <label for="startPageCSL" class="col-form-label">1  -</label>
+                                </div>
+                                <div class="col-3">
+                                    <input type="text" id="paginationPageCSL" class="form-control" value="0"/>
+                                </div>
+                                <div class="col-3 text-start">
+                                    <span id="endPageCSL" class="form-text"/>
+                                </div>
+                            </div>
+                            <table class="table table-sm table-striped" id="table-overview-of-current-stock-levels">
+                                <thead>
+                                    <tr>
+                                        <th class="text-left">Brand</th>
+                                        <th class="text-right">Stock Available</th>
+                                        <th class="text-right">Stock Value €</th>
+                                        <th class="text-right">Ideal Stock €</th>
+                                        <th class="text-right">Stock Value Over Ideal €</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="overview-of-current-stock-levels-tbody"/>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Purchases / COGS-->
+                <div class="col-md-6 filter-col mt-4">
+                    <div class="chart-card content-background">
+                        <!--Title-->
+                        <div class="sale-order-title text-center mb-3 mt-4">
+                            <h2>Purchases / COGS</h2>
+                        </div>
+                        <!--Purchase cogs line chart-->
+                        <div id="purchase-cogs-line-chart">
+                            <canvas id="purchaseCogsLineChart" height="440"/>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Stock Value Barchart-->
+                <div class="col-md-6 filter-col mt-4">
+                    <div class="chart-card content-background">
+                        <!--Title-->
+                        <div class="sale-order-title text-center mb-3 mt-4">
+                            <h2>Stock Values</h2>
+                        </div>
+                        <!--Purchase cogs line chart-->
+                        <div id="purchase-stock-values-bar-chart">
+                            <canvas id="purchaseStockValuesBarChart" height="440"/>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Sell Through Rate Line Chart-->
+                <div class="col-md-6 filter-col mt-4">
+                    <div class="chart-card content-background">
+                        <!--Title-->
+                        <div class="sale-order-title text-center mb-3 mt-4">
+                            <h2>Sell Through Rate %</h2>
+                        </div>
+                        <!--Purchase cogs line chart-->
+                        <div id="purchase-stock-values-bar-chart">
+                            <canvas id="sellThroughRateLineChart" height="440"/>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Seedsman Sales by Product-->
+                <div class="col-md-6 filter-col mt-4">
+                    <div class="chart-card content-background">
+                        <!--Title-->
+                        <div class="sale-order-title text-center mb-3 mt-4">
+                            <h2>Seedsman Sales By Product</h2>
+                        </div>
+                        <!--Seedsman Sales By Product Bar Chart-->
+                        <div id="seedsman-sales-by-product-bar-chart">
+                            <canvas id="seedsmanSalesByProductBarChart" height="440"/>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Sales of Brand-->
+                <div class="col-md-12 filter-col mt-4">
+                    <div class="chart-card content-background sales-of-brand-table">
+                        <!--Title-->
+                        <div class="sale-order-title text-center mb-4 mt-4">
+                            <h2>Sales Of Brand</h2>
+                        </div>
+                        <hr/>
+                        <div class="sales-of-brand-filters mb-3 mt-2" id="sales-of-brand-filters">
+                            <div class="row">
+                                <div class="sob-brand-filter col-2 sob-filter">
+                                    <label class="o_form_label font-bold">Create Date</label>
+                                    <div id="sob-create-date-range" >
+                                        <span><i class="fa fa-calendar"/>  <span id="sob-load-data"/>  <i class="fa fa-caret-down"/></span>
+                                    </div>
+                                </div>
+                                <div class="sob-brand-filter col-2 sob-filter">
+                                    <label class="o_form_label font-bold">Brand</label>
+                                    <select name="sob-brand" id="sob-brand" class="sob-filters" multiple=""/>
+                                </div>
+                                <div class="sob-abc-classification-filter col-2 sob-filter">
+                                    <label class="o_form_label font-bold">ABC Classification</label>
+                                    <select name="sob-abc-classification" id="sob-abc-classification" class="sob-filters" multiple=""/>
+                                </div>
+                                <div class="sob-sex-filter col-2 sob-filter">
+                                    <label class="o_form_label font-bold">Sex</label>
+                                    <select name="sob-sex" id="sob-sex" multiple="" class="sob-filters"/>
+                                </div>
+                                <div class="sob-flowering-type-filter col-2 sob-filter">
+                                    <label class="o_form_label font-bold">Flowering Type</label>
+                                    <select name="sob-flowering-type" id="sob-flowering-type" multiple="" class="sob-filters"/>
+                                </div>
+                                <div class="sob-odoo-product-tag-filter col-2">
+                                    <label class="o_form_label font-bold">Odoo Product Tag</label>
+                                    <select name="sob-odoo-product-tag" id="sob-odoo-product-tag" multiple="" class="sob-filters"/>
+                                </div>
+                            </div>
+                            <hr/>
+                            <div class="row">
+                                <div class="sob-product-group-category-filter col-2 sob-filter">
+                                    <label class="o_form_label font-bold">Product Group Category</label>
+                                    <select name="sob-product-group-category" id="sob-product-group-category" multiple="" class="sob-filters"/>
+                                </div>
+                                <div class="sob-product-segment-filter col-2 sob-filter">
+                                    <label class="o_form_label font-bold">Product Segment</label>
+                                    <select name="sob-product-segment" id="sob-product-segment" multiple="" class="sob-filters"/>
+                                </div>
+                                <div class="sob-warehouse-filter col-2 sob-filter">
+                                    <label class="o_form_label font-bold">Warehouse</label>
+                                    <select name="sob-warehouse" id="sob-warehouse" multiple="" class="sob-filters"/>
+                                </div>
+                                <div class="sob-website-filter col-2 sob-filter">
+                                    <label class="o_form_label font-bold">Website</label>
+                                    <select name="sob-website" id="sob-website" multiple="" class="sob-filters"/>
+                                </div>
+                                <div class="sob-region-filter col-2 sob-filter">
+                                    <label class="o_form_label font-bold">Region</label>
+                                    <select name="sob-region" id="sob-region" multiple="" class="sob-filters"/>
+                                </div>
+                                <div class="sob-country-filter col-2">
+                                    <label class="o_form_label font-bold">Country</label>
+                                    <select name="sob-country" id="sob-country" multiple="" class="sob-filters"/>
+                                </div>
+                                <div class="sob-company-filter col-2">
+                                    <label class="o_form_label font-bold">Company</label>
+                                    <select name="sob-company" id="sob-company" multiple="" class="sob-filters"/>
+                                </div>
+                            </div>
+                        </div>
+                        <hr/>
+                        <!--Sales of Brand table-->
+                        <div id="sales-of-brand-table" class="amount-of-each-product-sold purchase-tables overflow-purchase-tables sales-of-brand-table-div">
+                            <!--Pagination-->
+                            <div class="row g-3 align-items-center sob-pagination">
+                                <div class="col-2">
+                                        <button class="print_sales_of_brand" type="object" style="border-radius:5px;background-color:#17A2B8">
+                                            Print
+                                        </button>
+                                </div>
+                                <div class="col-2"></div>
+                                <div class="col-2 text-end">
+                                    <label for="startPage" class="col-form-label">1  -</label>
+                                </div>
+                                <div class="col-3">
+                                    <input type="text" id="paginationPage" class="form-control" value="0"/>
+                                </div>
+                                <div class="col-3 text-start">
+                                    <span id="endPage" class="form-text"/>
+                                </div>
+                            </div>
+                            <table class="table table-sm table-striped table-bordered mt-4" id="table-sales-of-brand">
+                                <thead class="sticky-header bg-info">
+                                    <tr>
+                                        <th class="text-center align-middle">SKU</th>
+                                        <th class="text-center align-middle">Brand</th>
+                                        <th class="text-center align-middle">Name</th>
+                                        <th class="text-center align-middle">Inventory Value</th>
+                                        <th class="text-center align-middle">Ideal Inventory Value</th>
+                                        <th class="text-center align-middle">Inventory Value vs. Ideal Inventory Value</th>
+                                        <th class="text-center align-middle">Total Purchases</th>
+                                        <th class="text-center align-middle">Total Purchases Qty</th>
+                                        <th class="text-center align-middle">Total Sales</th>
+                                        <th class="text-center align-middle">Total Profit</th>
+                                        <th class="text-center align-middle">Total Sales Qty.</th>
+                                        <th class="text-center align-middle">Cost of Sales</th>
+                                        <th class="text-center align-middle">Purchases vs. Cost of Sales</th>
+                                        <th class="text-center align-middle">Profit Margin</th>
+                                        <th class="text-center align-middle">Sell Through</th>
+                                        <th class="text-center align-middle">ABC Classification</th>
+                                        <th class="text-center align-middle">Pack Size</th>
+                                        <th class="text-center align-middle">Sex</th>
+                                        <th class="text-center align-middle">Flowering Type</th>
+                                        <th class="text-center align-middle">Creation Date</th>
+                                        <th class="text-center align-middle">Last Sale Date</th>
+                                        <th class="text-center align-middle">Last Receipt or Kit Assembly Date</th>
+                                        <th class="text-center align-middle">Product Group/Category</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="sales-of-brand-table-tbody"/>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </t>
+</templates>

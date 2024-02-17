@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+     <template id="report_priority_group">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <div class="text-center">
+                        <h2>Priority Group</h2>
+                    </div>
+                    <table>
+                        <tr>
+                            <td>Date From</td>
+                            <td>:</td>
+                            <td>
+                                <t t-if="form_data.get('date_from')">
+                                    <t t-esc="form_data['date_from']" t-options='{"widget": "date","format": "dd-MM-yyyy"}'/>
+                                </t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Date To</td>
+                            <td>:</td>
+                            <td>
+                                <t t-if="form_data.get('date_to')">
+                                    <t t-esc="form_data['date_to']" t-options='{"widget": "date","format": "dd-MM-yyyy"}'/>
+                                </t>
+                            </td>
+                        </tr>
+                    </table>
+                    <br/>
+                    <table class="table table-bordered mt32">
+                        <thead>
+                            <tr>
+                                <th name="th_sale_order" class="text-center">
+                                    <span>Order No</span>
+                                </th>
+                                <th name="th_order_date" class="text-center">
+                                    <span>Order Date</span>
+                                </th>
+                                <th name="th_priority_group" class="text-center">
+                                    <span>Priority Group</span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <t t-foreach="sale_order" t-as="line">
+                            <t t-if="line['priority_group_id']">
+                                <tr>
+                                    <td class="text-center">
+                                        <span t-esc="line['order_number']"/>
+                                    </td>
+                                    <td class="text-center">
+                                        <span t-esc="line['date_order']" t-options='{"widget": "date","format": "dd-MM-yyyy"}'/>
+                                    </td>
+                                    <td class="text-center">
+                                        <span t-esc="line['priority_group_id']"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </t>
+                    </table>
+                </div>
+            </t>
+        </t>
+     </template>
+
+</odoo>

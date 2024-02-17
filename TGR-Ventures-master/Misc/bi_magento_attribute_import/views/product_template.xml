@@ -1,0 +1,54 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="product_template_view_inherit_form">
+            <field name="name">product.template.view.inherit.form</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet/notebook" position="inside">
+                    <page string="Magento Other Attributes">
+                        <field name="magento_attribute_ids">
+                            <tree string="Magento Other Attributes"  editable="bottom">
+                                <field name="attribute_id"/>
+                                <field name="attribute_val_id" />
+                                <field name="magento_attribute_id" invisible="1" options="{'no_create': True, 'no_open': True}"/>
+                                <field name="name" invisible="1"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+                <xpath expr="//form/sheet/notebook" position="inside">
+                    <page string="Magento Attributes">
+                        <group name="magetno_attribute">
+                            <group>
+                                <field name="seeds_variety_id"/>
+                                <field name="seeds_thc_filter_id"/>
+                                <field name="seeds_cbd_filter_id"/>
+                                <field name="seeds_yield_filter_id"/>
+                                <field name="seeds_yield_indoor_filter_id"/>
+                                <field name="seeds_plant_height_id"/>
+                                <field name="seeds_flowering_weeks_id"/>
+                                <field name="seeds_auto_harvest_time_id"/>
+                                <field name="seeds_climate_id"/>
+                                <field name="seeds_odour_id"/>
+                            </group>   
+                            <group>
+                                <field name="seeds_grow_difficulty_id"/>
+                                <field name="seeds_cannabinoid_report_id"/>
+                                <field name="seeds_grows_id"/>
+                                <field name="seeds_bud_formation_id"/>
+                                <field name="seeds_award_filter_id"/>
+                                <field name="seeds_mould_id"/>
+                                <field name="seeds_extracts_id"/>
+                                <field name="seeds_taste_filter_id"/>
+                                <field name="seeds_terpenes_id"/>
+                                <field name="genetic_discription_id"/>
+                            </group>
+                            
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

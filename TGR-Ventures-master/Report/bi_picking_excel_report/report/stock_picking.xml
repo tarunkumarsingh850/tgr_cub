@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_picking_report" model="ir.actions.report">
+        <field name="name">Picking Report</field>
+        <field name="model">stock.picking</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">bi_picking_excel_report.picking_report_xlsx</field>
+        <field name="report_file">bi_picking_excel_report.picking_report_xlsx</field>
+        <field name="print_report_name">"Picking Report"</field>
+    </record>
+</odoo>

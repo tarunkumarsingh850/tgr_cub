@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+
+        <record id="material_transfer_wizard_view" model="ir.ui.view">
+            <field name="name">Import Material transfer Lines</field>
+            <field name="model">material.transfer.import</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name='filename' class="oe_inline" invisible='1'/>
+                        <field name="file" filename='filename'/>
+                    </group>
+                    <footer>
+                        <button string="Import" name="generate_update" class="oe_highlight" type="object"/>
+                        or
+                        <button name="cancel" string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="material_transfer_wizard_action" model="ir.actions.act_window">
+            <field name="name">Material Transfer Cost Lines</field>
+            <field name="res_model">material.transfer.import</field>
+            <field name="target">new</field>
+
+            <field name="view_mode">form</field>
+        </record>
+
+
+    </data>
+</odoo>

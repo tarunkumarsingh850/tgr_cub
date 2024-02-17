@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="product_report_export_wizard" model="ir.ui.view">
+      <field name="name">export.wizard.wizard</field>
+      <field name="model">export.wizard</field>
+      <field name="arch" type="xml">
+        <form string="Export">
+          <group>
+            <group>
+              <field name="excel_file" required="1"/>
+              <field name="warehouse_id" required="1"/>
+              <field name="product_ids" invisible="1"/>
+            </group>
+          </group>
+          <footer>
+            <button name="export_product_report" string="Export" type="object" class="btn-primary"/>
+            <button string="Cancel" class="btn-default" special="cancel"/>
+          </footer>
+        </form>
+      </field>
+    </record>
+
+    <record id="export_report_wizard_form" model="ir.actions.act_window">
+      <field name="name">Product Report</field>
+      <field name="res_model">export.wizard</field>
+      <field name="view_mode">form</field>
+      <field name="view_id" ref="product_report_export_wizard"/>
+      <field name="target">new</field>
+  </record>
+
+    <menuitem
+        id="menu_view_report_form"
+        name="Product Report"
+        action="export_report_wizard_form"
+        parent="stock.menu_warehouse_report" sequence="100"
+        />
+
+</odoo>

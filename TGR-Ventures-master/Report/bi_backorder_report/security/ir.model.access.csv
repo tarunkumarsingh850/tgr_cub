@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_backorder_reserved_product_wizard,bi_backorder_report.backorder.reserved.product.wizard,model_backorder_reserved_product_wizard,base.group_user,1,1,1,1

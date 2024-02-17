@@ -1,0 +1,22 @@
+{
+    "name": "Partner Category",
+    "version": "15.0.0.1",
+    "summary": "Partner Category",
+    "category": "Tools",
+    "author": "Bassam",
+    "maintainer": "Bassam",
+    "company": "Bassam",
+    "website": "https://www.bassaminfotech.com",
+    "depends": ["base", "sale"],
+    "data": [
+        "security/ir.model.access.csv",
+        "views/partner_category.xml",
+        "views/res_partner.xml",
+        "views/reminder_user.xml",
+        "data/reminder_check.xml",
+        "data/notification.xml",
+    ],
+    "images": [],
+    "license": "AGPL-3",
+    "installable": True,
+}

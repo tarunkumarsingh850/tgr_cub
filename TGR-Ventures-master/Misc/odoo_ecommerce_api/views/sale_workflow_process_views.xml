@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--Sale workflow process form view customizations-->
+    <record id="sale_workflow_process_view_form" model="ir.ui.view">
+        <field name="name">sale.workflow.process.view.form.inherit.odoo_ecommerce_api</field>
+        <field name="model">sale.workflow.process.ept</field>
+        <field name="inherit_id" ref="common_connector_library.sale_workflow_process_view_form"/>
+        <field name="arch" type="xml">
+
+            <field name="company_id" position="after">
+                <field name="default_generic_so_workflow" widget="boolean_toggle"/>
+            </field>
+            <field name="picking_policy" position="after">
+                <field name="is_dropshipping_workflow"/>
+                <field name="is_drop_shipping_workflow_new"/>
+            </field>
+
+        </field>
+    </record>
+
+</odoo>

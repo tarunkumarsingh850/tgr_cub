@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+        <record id="update_product_tracking_view_form" model="ir.ui.view">
+            <field name="name">update.product.tracking.view.form</field>
+            <field name="model">update.tracking.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Update Tracking">
+                    <sheet>
+                        <group>
+                            <field name="filename" invisible="1"/>
+                            <field name="csv_file" filename="filename"/>
+                        </group>
+                        <footer>
+                            <button string="Upload File" name="generate_update" type="object" class="oe_highlight"/>
+                            <button string="Cancel" special="cancel"/>
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="update_product_tracking_action" model="ir.actions.act_window">
+            <field name="name">Update Product Tracking</field>
+            <field name="res_model">update.tracking.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem
+            id="update_wizard_product_tracking_menu"
+            name="Update Product Tracking"
+            action="update_product_tracking_action"
+            parent="bi_barcode.menu_update_sales_price"
+            sequence="10"/>
+
+    </data>
+
+</odoo>

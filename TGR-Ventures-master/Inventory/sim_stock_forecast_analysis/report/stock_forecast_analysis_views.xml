@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="stock_forecast_analysis_warehouse_view_pivot" model="ir.ui.view">
+        <field name="name">stock.forecast.analysis.view.pivot</field>
+        <field name="model">stock.forecast.analysis</field>
+        <field name="arch" type="xml">
+            <pivot string="Inventory Forecast Analysis" disable_linking="True">
+                <field name="warehouse_id" type="row"/>
+                <field name="date" interval="day" type="col"/>
+                <field name="quantity" type="measure"/>
+                <field name="cumulative_quantity" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="stock_forecast_analysis_product_view_pivot" model="ir.ui.view">
+        <field name="name">stock.forecast.analysis.view.pivot</field>
+        <field name="model">stock.forecast.analysis</field>
+        <field name="arch" type="xml">
+            <pivot string="Inventory Forecast Analysis" disable_linking="True">
+                <field name="product_id" type="row"/>
+                <field name="date" interval="day" type="col"/>
+                <field name="quantity" type="measure"/>
+                <field name="cumulative_quantity" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="stock_forecast_analysis_view_graph" model="ir.ui.view">
+        <field name="name">stock.forecast.analysis.view.graph</field>
+        <field name="model">stock.forecast.analysis</field>
+        <field name="arch" type="xml">
+            <graph string="Inventory Forecast Analysis" type="line">
+                <field name="product_id" type="col"/>
+                <field name="cumulative_quantity" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="stock_forecast_analysis_view_search" model="ir.ui.view">
+        <field name="name">stock.forecast.analysis.view.search</field>
+        <field name="model">stock.forecast.analysis</field>
+        <field name="arch" type="xml">
+            <search string="Inventory Forecast Analysis">
+                <field name="product_id"/>
+                <field name="product_tmpl_id"/>
+                <field name="date"/>
+                <field name="location_id"/>
+                <field name="warehouse_id"/>
+                <group expand="1" string="Group By">
+                    <filter string="Pivot (Day)" name="pivot_by_day"
+                            context="{'pivot_row_groupby': ['warehouse_id','product_id'], 'pivot_column_groupby': ['date:day'], 'pivot_measures': ['quantity','cumulative_quantity']}"/>
+                    <filter string="Pivot (Week)" name="pivot_by_week"
+                            context="{'pivot_row_groupby': ['warehouse_id','product_id'], 'pivot_column_groupby': ['date:week'], 'pivot_measures': ['quantity','cumulative_quantity_week']}"/>
+                    <filter string="Pivot (Month)" name="pivot_by_month"
+                            context="{'pivot_row_groupby': ['warehouse_id','product_id'], 'pivot_column_groupby': ['date:month'], 'pivot_measures': ['quantity','cumulative_quantity_month']}"/>
+                    <filter string="Graph (Day)" name="graph_by"
+                            context="{'graph_groupbys': ['date:day', 'product_id']}"/>
+                    <filter string="Graph (Week)" name="graph_by"
+                            context="{'graph_groupbys': ['date:week', 'product_id']}"/>
+                    <filter string="Graph (Month)" name="graph_by"
+                            context="{'graph_groupbys': ['date:month', 'product_id']}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="stock_forecast_analysis_template_action" model="ir.actions.act_window">
+        <field name="name">Inventory Forecast Analysis</field>
+        <field name="res_model">stock.forecast.analysis</field>
+        <field name="view_mode">pivot,graph</field>
+        <field name="view_id" ref="stock_forecast_analysis_warehouse_view_pivot"/>
+        <field name="search_view_id" ref="stock_forecast_analysis_view_search"/>
+        <field name="context">{'search_default_product_tmpl_id': active_id}</field>
+    </record>
+
+    <record id="stock_forecast_analysis_product_action" model="ir.actions.act_window">
+        <field name="name">Inventory Forecast Analysis</field>
+        <field name="res_model">stock.forecast.analysis</field>
+        <field name="view_mode">pivot,graph</field>
+        <field name="view_id" ref="stock_forecast_analysis_warehouse_view_pivot"/>
+        <field name="search_view_id" ref="stock_forecast_analysis_view_search"/>
+        <field name="context">{'search_default_product_id': active_id}</field>
+    </record>
+
+    <record id="stock_forecast_analysis_action" model="ir.actions.act_window">
+        <field name="name">Inventory Forecast Analysis</field>
+        <field name="res_model">stock.forecast.analysis</field>
+        <field name="view_mode">pivot,graph</field>
+        <field name="view_id" ref="stock_forecast_analysis_product_view_pivot"/>
+        <field name="search_view_id" ref="stock_forecast_analysis_view_search"/>
+    </record>
+    <menuitem id="stock_forecast_analysis_action_menu" action="stock_forecast_analysis_action"
+              parent="stock.menu_warehouse_report" sequence="199"/>
+
+</odoo>

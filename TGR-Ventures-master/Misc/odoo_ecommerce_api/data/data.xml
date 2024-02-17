@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!--Ecommerce api log sequence-->
+        <record id="seq_ecommerce_api_log" model="ir.sequence">
+            <field name="name">E-Commerce API Log</field>
+            <field name="code">ecommerce.api.log</field>
+            <field name="prefix">APILOG</field>
+            <field name="padding">7</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <!--Cron for create sale orders from xml file-->
+        <record id="ir_cron_create_sale_orders_from_xml" model="ir.cron">
+            <field name="name">E-Commerce API: Create sale orders from xml file</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="state">code</field>
+            <field name="code">model.cron_create_sale_orders()</field>
+            <field name="active" eval="True"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="True"/>
+        </record>
+
+        <!--Config parameter for store xml file folder path-->
+        <record model="ir.config_parameter" id="ecommerce_api_xml_folder">
+            <field name="key">odoo_ecommerce_api.files_folder_path</field>
+            <field name="value">/</field>
+        </record>
+
+        <!-- <record id="server_action_create_invoice" model="ir.actions.server">
+            <field name="name">Create Invoice dropshipping</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="binding_model_id" ref="sale.model_sale_order"/>
+            <field name="state">code</field>
+            <field name="code">records.button_action_create_invoice()</field>
+        </record> -->
+
+        <record id="server_action_edit_invoice" model="ir.actions.server">
+            <field name="name">Edit Invoice dropshipping</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="binding_model_id" ref="sale.model_sale_order"/>
+            <field name="state">code</field>
+            <field name="code">records.button_action_edit_invoice()</field>
+        </record>
+
+    </data>
+
+</odoo>

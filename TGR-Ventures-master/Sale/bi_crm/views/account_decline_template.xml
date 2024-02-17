@@ -1,0 +1,57 @@
+<odoo>
+
+    <record id="no_region_email_template" model="mail.template">
+        <field name="name">Account Declined</field>
+        <field name="model_id" ref="base.model_res_partner"/>
+        <field name="subject">Account Declined</field>
+        <field name="body_html" type="html">
+            <div style="font-family: 'Times New Roman';">
+                <tbody style="align:center;width:100%;" align="center">
+                    <tr>
+                        <td align="center">
+                            <table cellpadding="0" cellspacing="0" align="center" style="width:70%;background-color: white;border-collapse:separate;padding-right:30px;">
+                                <tr><td valign="top" style="font-size: 13px;">
+                                    <div>
+                                        <img align="left" width="100%" src="bi_crm/static/img/logo.png" alt="Logo" />
+                                    </div><br/><br/>
+                                    <div style="font-size:16px;">
+                                        <!-- Hi {{ object.partner_id.name }},<br/><br/> -->
+                                        Hi Applicant,<br/><br/>
+                                        <p style="font-weight:bold">Account Failure</p>
+                                        <br/>
+                                        <p>We’re sorry, but you’ve not been successful in your application on this occasion.</p>
+                                        <br/>
+                                        <p>
+                                            This could be for one of several reasons:
+                                            <br/>
+                                            <ul>
+                                                <li>You may not have provided the appropriate KYC (Know Your Customer) information - please see below for more information</li>
+                                                <li>There may be a lack of evidence that the products are intended for resale</li>
+                                                <li>You may be located in a zone that we do not sell to.</li>
+                                              </ul>
+                                        </p>
+                                        <br/>
+                                        <p>For KYC documentation, it is required that you provide a copy of your business information as well as a form of personal identification. </p>
+                                        <br/>
+                                        <p>
+                                            If you are able to provide more information to support your application, such as the appropriate KYC documentation, please get in touch and we will review your request.
+                                        </p>
+
+                                        <b>Thanks</b><br/>
+                                        <br/>
+                                        <p style="font-weight:bold">The Tiger One Team</p>
+                                        <br/>
+                                    </div>
+                                </td></tr>
+                                <tr><td style="text-align:center;font-size:16px;color:#0047AB;">
+                                    Tiger One Distribution, C/Paris 45-47 Entresuelo 3, CP08029, Barcelona, Espania
+                                <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;"/>
+                                </td></tr>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </div>
+        </field>
+    </record>
+    </odoo>

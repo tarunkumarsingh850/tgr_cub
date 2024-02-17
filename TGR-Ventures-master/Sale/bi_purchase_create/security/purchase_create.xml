@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.module.category" id="module_management1">
+        <field name="name">Purchase Create</field>
+        <field name="description">Manager access level of Purchase Create</field>
+        <field name="sequence">18</field>
+      </record>
+
+     <record id="group_user" model="res.groups">
+       <field name="name">Access</field>
+       <field name="category_id" ref="module_management1"/>
+      </record>
+
+</odoo>

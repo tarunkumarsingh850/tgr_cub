@@ -1,0 +1,23 @@
+<odoo>
+    <data>
+
+        <record id="crm_res_config_settings_view_form_inherit1" model="ir.ui.view">
+          <field name="name">crm.res.config.settings.view.form.inherit</field>
+          <field name="model">res.config.settings</field>
+          <field name="priority" eval="25"/>
+          <field name="inherit_id" ref="crm.res_config_settings_view_form"/>
+          <field name="arch" type="xml">
+              <xpath expr="//div/div[@name='generate_lead_setting_container']" position="after">
+                <h2>Email From</h2>
+                <div class="row mt16 o_settings_container" name="email_from_setting_crm">
+                    <div class="col-lg-6 o_setting_box">
+                        <div>
+                            <field name="res_user_id"/>
+                        </div>
+                    </div>
+                </div>
+              </xpath>
+          </field>
+        </record>
+    </data>
+</odoo>

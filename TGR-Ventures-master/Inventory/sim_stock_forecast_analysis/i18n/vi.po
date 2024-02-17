@@ -1,0 +1,194 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sim_stock_forecast_analysis
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-02-26 09:08+0000\n"
+"PO-Revision-Date: 2021-02-26 09:08+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sim_stock_forecast_analysis
+#: model:ir.model.fields.selection,name:sim_stock_forecast_analysis.selection__stock_forecast_analysis__transaction_type__current
+msgid "CURRENT"
+msgstr "Hiện hành"
+
+#. module: sim_stock_forecast_analysis
+#: model:ir.model.fields,field_description:sim_stock_forecast_analysis.field_stock_forecast_analysis__company_id
+msgid "Company"
+msgstr "Công ty"
+
+#. module: sim_stock_forecast_analysis
+#: model:ir.model.fields,field_description:sim_stock_forecast_analysis.field_stock_forecast_analysis__cumulative_quantity
+msgid "Cumulative Quantity (Day)"
+msgstr "Số lượng tích lũy (Ngày)"
+
+#. module: sim_stock_forecast_analysis
+#: model:ir.model.fields,field_description:sim_stock_forecast_analysis.field_stock_forecast_analysis__cumulative_quantity_month
+msgid "Cumulative Quantity (Month)"
+msgstr "Cumulative Quantity (Tháng)"
+
+#. module: sim_stock_forecast_analysis
+#: model:ir.model.fields,field_description:sim_stock_forecast_analysis.field_stock_forecast_analysis__cumulative_quantity_week
+msgid "Cumulative Quantity (Week)"
+msgstr "Cumulative Quantity(Tuần)"
+
+#. module: sim_stock_forecast_analysis
+#: model:ir.model.fields,field_description:sim_stock_forecast_analysis.field_stock_forecast_analysis__date
+msgid "Date"
+msgstr "Ngày"
+
+#. module: sim_stock_forecast_analysis
+#: model:ir.model.fields,field_description:sim_stock_forecast_analysis.field_stock_forecast_analysis__display_name
+#: model:ir.model.fields,field_description:sim_stock_forecast_analysis.field_stock_move__display_name
+msgid "Display Name"
+msgstr "Tên hiển thị"
+
+#. module: sim_stock_forecast_analysis
+#: model:ir.model.fields,field_description:sim_stock_forecast_analysis.field_stock_move__date_expected2
+#: model:ir.model.fields,field_description:sim_stock_forecast_analysis.field_stock_move_reservation__date_expected2
+msgid "Expected Date"
+msgstr "Ngày dự kiến"
+
+#. module: sim_stock_forecast_analysis
+#: model_terms:ir.ui.view,arch_db:sim_stock_forecast_analysis.product_forecast_analysis_view_form
+#: model_terms:ir.ui.view,arch_db:sim_stock_forecast_analysis.product_template_forecast_analysis_view_form
+msgid "Forecast Analysis"
+msgstr "Phân tích dự báo"
+
+#. module: sim_stock_forecast_analysis
+#: model_terms:ir.ui.view,arch_db:sim_stock_forecast_analysis.stock_forecast_analysis_view_search
+msgid "Graph (Day)"
+msgstr ""
+
+#. module: sim_stock_forecast_analysis
+#: model_terms:ir.ui.view,arch_db:sim_stock_forecast_analysis.stock_forecast_analysis_view_search
+msgid "Graph (Month)"
+msgstr "Đồ thị (Tháng)"
+
+#. module: sim_stock_forecast_analysis
+#: model_terms:ir.ui.view,arch_db:sim_stock_forecast_analysis.stock_forecast_analysis_view_search
+msgid "Graph (Week)"
+msgstr "Đồ thị (Tuần)"
+
+#. module: sim_stock_forecast_analysis
+#: model_terms:ir.ui.view,arch_db:sim_stock_forecast_analysis.stock_forecast_analysis_view_search
+msgid "Group By"
+msgstr "Sắp xếp theo"
+
+#. module: sim_stock_forecast_analysis
+#: model:ir.model.fields,field_description:sim_stock_forecast_analysis.field_stock_forecast_analysis__id
+#: model:ir.model.fields,field_description:sim_stock_forecast_analysis.field_stock_move__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sim_stock_forecast_analysis
+#: model:ir.model.fields.selection,name:sim_stock_forecast_analysis.selection__stock_forecast_analysis__transaction_type__internal
+msgid "INTERNAL"
+msgstr "Nội bộ"
+
+#. module: sim_stock_forecast_analysis
+#: model:ir.model.fields,field_description:sim_stock_forecast_analysis.field_stock_forecast_analysis__product_code
+msgid "Internal Reference"
+msgstr "Tài liệu tham khảo nội bộ"
+
+#. module: sim_stock_forecast_analysis
+#: model:ir.actions.act_window,name:sim_stock_forecast_analysis.stock_forecast_analysis_action
+#: model:ir.actions.act_window,name:sim_stock_forecast_analysis.stock_forecast_analysis_product_action
+#: model:ir.actions.act_window,name:sim_stock_forecast_analysis.stock_forecast_analysis_template_action
+#: model:ir.model,name:sim_stock_forecast_analysis.model_stock_forecast_analysis
+#: model:ir.ui.menu,name:sim_stock_forecast_analysis.stock_forecast_analysis_action_menu
+#: model_terms:ir.ui.view,arch_db:sim_stock_forecast_analysis.stock_forecast_analysis_product_view_pivot
+#: model_terms:ir.ui.view,arch_db:sim_stock_forecast_analysis.stock_forecast_analysis_view_graph
+#: model_terms:ir.ui.view,arch_db:sim_stock_forecast_analysis.stock_forecast_analysis_view_search
+#: model_terms:ir.ui.view,arch_db:sim_stock_forecast_analysis.stock_forecast_analysis_warehouse_view_pivot
+msgid "Inventory Forecast Analysis"
+msgstr ""
+
+#. module: sim_stock_forecast_analysis
+#: model:ir.model.fields,field_description:sim_stock_forecast_analysis.field_stock_forecast_analysis____last_update
+#: model:ir.model.fields,field_description:sim_stock_forecast_analysis.field_stock_move____last_update
+msgid "Last Modified on"
+msgstr "Sửa lần cuối vào"
+
+#. module: sim_stock_forecast_analysis
+#: model:ir.model.fields,field_description:sim_stock_forecast_analysis.field_stock_forecast_analysis__location_id
+msgid "Location"
+msgstr "Địa điểm"
+
+#. module: sim_stock_forecast_analysis
+#: model:ir.model.fields.selection,name:sim_stock_forecast_analysis.selection__stock_forecast_analysis__transaction_type__purchase
+msgid "PURCHASE"
+msgstr ""
+
+#. module: sim_stock_forecast_analysis
+#: model:ir.model.fields,field_description:sim_stock_forecast_analysis.field_stock_forecast_analysis__partner_id
+msgid "Picking Partner"
+msgstr "Chọn đối tác"
+
+#. module: sim_stock_forecast_analysis
+#: model_terms:ir.ui.view,arch_db:sim_stock_forecast_analysis.stock_forecast_analysis_view_search
+msgid "Pivot (Day)"
+msgstr "Trục (Ngày)"
+
+#. module: sim_stock_forecast_analysis
+#: model_terms:ir.ui.view,arch_db:sim_stock_forecast_analysis.stock_forecast_analysis_view_search
+msgid "Pivot (Month)"
+msgstr "Trục (tháng)"
+
+#. module: sim_stock_forecast_analysis
+#: model_terms:ir.ui.view,arch_db:sim_stock_forecast_analysis.stock_forecast_analysis_view_search
+msgid "Pivot (Week)"
+msgstr "Trục (tuần)"
+
+#. module: sim_stock_forecast_analysis
+#: model:ir.model.fields,field_description:sim_stock_forecast_analysis.field_stock_forecast_analysis__product_id
+msgid "Product"
+msgstr "Sản phẩm"
+
+#. module: sim_stock_forecast_analysis
+#: model:ir.model.fields,field_description:sim_stock_forecast_analysis.field_stock_forecast_analysis__product_category_id
+msgid "Product Category"
+msgstr "Danh mục sản phẩm "
+
+#. module: sim_stock_forecast_analysis
+#: model:ir.model.fields,field_description:sim_stock_forecast_analysis.field_stock_forecast_analysis__product_tmpl_id
+msgid "Product Template"
+msgstr "Go diện"
+
+#. module: sim_stock_forecast_analysis
+#: model:ir.model.fields,field_description:sim_stock_forecast_analysis.field_stock_forecast_analysis__quantity
+msgid "Quantity"
+msgstr "Số lượng"
+
+#. module: sim_stock_forecast_analysis
+#: model:ir.model.fields,field_description:sim_stock_forecast_analysis.field_stock_forecast_analysis__reference
+msgid "Reference"
+msgstr "Tài liệu tham khảo"
+
+#. module: sim_stock_forecast_analysis
+#: model:ir.model.fields.selection,name:sim_stock_forecast_analysis.selection__stock_forecast_analysis__transaction_type__sale
+msgid "SALES"
+msgstr "Bán hàng"
+
+#. module: sim_stock_forecast_analysis
+#: model:ir.model,name:sim_stock_forecast_analysis.model_stock_move
+msgid "Stock Move"
+msgstr "Hoạt động kho"
+
+#. module: sim_stock_forecast_analysis
+#: model:ir.model.fields,field_description:sim_stock_forecast_analysis.field_stock_forecast_analysis__transaction_type
+msgid "Transaction Type"
+msgstr "Loại dịch"
+
+#. module: sim_stock_forecast_analysis
+#: model:ir.model.fields,field_description:sim_stock_forecast_analysis.field_stock_forecast_analysis__warehouse_id
+msgid "Warehouse"
+msgstr "Kho"

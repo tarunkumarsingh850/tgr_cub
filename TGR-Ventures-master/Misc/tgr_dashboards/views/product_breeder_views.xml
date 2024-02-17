@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!--Product breeder form view customizations-->
+    <record id="product_breeder_view_form" model="ir.ui.view">
+        <field name="name">product.breeder.view.form.inherit.tgr_dashboards</field>
+        <field name="model">product.breeder</field>
+        <field name="inherit_id" ref="bi_inventory_generic_customisation.view_product_breeder_form_view"/>
+        <field name="arch" type="xml">
+
+            <field name="dimension" position="after">
+                <field name="is_visible_in_dashboard" widget="boolean_toggle"/>
+                <field name="dashboard_rgb_color_code" attrs="{'invisible': [('is_visible_in_dashboard', '=', False)]}"/>
+            </field>
+
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_picking_report_wizard_report" model="ir.ui.view">
+    <field name="name">picking.report.wizard</field>
+    <field name="model">picking.report.wizard</field>
+    <field name="arch" type="xml">
+        <form>
+            <sheet>
+                <group>
+                    <group>
+                    <field name="warehouse_id"/>
+                    <field name="batch_id"/>
+                </group>
+                <!-- <group>
+                    <field name="date_start"/>
+                    <field name="date_end"/>
+                </group> -->
+            </group>
+            </sheet>
+            <footer>
+                <button string="Generate" name="generate_xlsx_report" type="object" class="btn-primary"/>
+                <button string="Cancel" class="btn-default" special="cancel"/>
+            </footer>
+        </form>
+    </field>
+</record>
+
+<record id="action_picking_report_wizard" model="ir.actions.act_window">
+    <field name="name">Picking Report</field>
+    <field name="res_model">picking.report.wizard</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="view_mode">form</field>
+    <field name="view_id" ref="view_picking_report_wizard_report"/>
+    <field name="target">new</field>
+</record>
+
+<menuitem name="Picking Report" id="menu_picking_report" action="action_picking_report_wizard" parent="stock.menu_warehouse_report"/>
+
+</odoo>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="invoice_import_view_form" model="ir.ui.view">
+        <field name="name">invoice.import.view.form</field>
+        <field name="model">invoice.import</field>
+        <field name="arch" type="xml">
+            <form string="Invoice Import">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="file" />
+                        </group>
+                    </group>
+                </sheet>
+                <footer>
+                    <button string="Import" name="button_import" type="object" class="oe_highlight"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="invoice_import_action" model="ir.actions.act_window">
+        <field name="name">Invoice Import</field>
+        <field name="res_model">invoice.import</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem
+        id="invoice_import_menu"
+        name="Invoice Import"
+        action="invoice_import_action"
+        parent="account.menu_finance_receivables"
+        sequence="100"/>
+
+</odoo>

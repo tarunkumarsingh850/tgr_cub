@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form view of Assign Carrier -->
+    <record id="view_carrier_assign" model="ir.ui.view">
+        <field name="name">Assign Carrier</field>
+        <field name="model">assign.carrier.wizard</field>
+        <field name="arch" type="xml">
+             <form string="Assign Carrier">
+                <group>
+                    <field name="delivery_id"/>
+                </group>
+                <footer>
+                    <button name="assign_carrier" string="Assign Carrier" type="object"
+                        class="btn-primary"/>
+                    <button string="Cancel" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action of Assign Carrier -->
+    <record id="action_view_carrier_assign" model="ir.actions.act_window">
+        <field name="name">Assign Carrier</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">assign.carrier.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_carrier_assign"/>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="stock.model_stock_picking"/>
+    </record>
+</odoo>

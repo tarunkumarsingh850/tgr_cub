@@ -1,0 +1,14 @@
+<odoo>
+
+    <record id="view_purchase_order_inherit_excel" model="ir.ui.view">
+        <field name="name">view.purchase.order.inherit.excel.receipt</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/header/button[@name='action_create_invoice']" position="after">
+               <button name="button_print_excel" string="Print Excel" class="oe_highlight" type="object"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

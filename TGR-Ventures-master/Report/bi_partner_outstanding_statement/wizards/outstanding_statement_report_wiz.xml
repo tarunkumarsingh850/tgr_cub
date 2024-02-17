@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="outstanding_statement_report_wiz_form" model="ir.ui.view">
+      <field name="name">outstanding.statement.report.wiz.form</field>
+      <field name="model">outstanding.statement.report.wiz</field>
+      <field name="arch" type="xml">
+        <form string="Outstanding statement Report">
+        <group>
+            <group name="main_info">
+                        <field
+                            name="company_id"
+                            options="{'no_create': True}"
+                            groups="base.group_multi_company"
+                        />
+                        <label for="account_type" />
+                        <field name="account_type" nolabel="1" widget="radio" />
+                    </group>
+                    <group name="aging_report">
+                        <field name="show_aging_buckets" />
+                        <field name="aging_type" />
+                    </group>
+                </group>
+                <group>
+                    <group name="dates">
+                        <field name="date_end" />
+                    </group>
+                    <group name="multiple_partners">
+                        <field name="number_partner_ids" readonly="1" invisible="1" />
+                        <field
+                            name="filter_partners_non_due"
+                            attrs="{'invisible': [('number_partner_ids', '=', 1)]}"
+                        />
+                        <field
+                            name="filter_negative_balances"
+                            attrs="{'invisible': [('number_partner_ids', '=', 1)]}"
+                        />
+                        <field
+                            name="partner_ids" widget="many2many_tags"
+                        />
+                    </group>
+
+        </group>
+        <footer>
+                    <button
+                        name="print_report"
+                        string="View"
+                        type="object"
+                        default_focus="1"
+                        class="oe_highlight"
+                    />
+
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+        </form>
+      </field>
+    </record>
+
+    <record id="outstanding_statement_report_wiz_form_action" model="ir.actions.act_window">
+      <field name="name">Outstanding statement Report</field>
+      <field name="res_model">outstanding.statement.report.wiz</field>
+      <field name="view_mode">form</field>
+      <field name="target">new</field>
+  </record>
+
+
+</odoo>

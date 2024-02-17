@@ -1,0 +1,14 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="res_partner_view_inherit_new_form">
+            <field name="name">res.partner.bank.inherit.form</field>
+            <field name="model">res.partner.bank</field>
+            <field name="inherit_id" ref="base.view_partner_bank_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="iban_number"></field>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

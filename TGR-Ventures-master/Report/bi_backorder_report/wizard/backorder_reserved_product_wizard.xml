@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="backorder_reserved_product_wizard_view" model="ir.ui.view">
+        <field name="name">backorder.reserved.product.wizard.view</field>
+        <field name="model">backorder.reserved.product.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Export">
+                <group>
+                    <group>
+                        <field name="start_date" required="1"/>
+                    </group>
+                    <group>
+                        <field name="end_date" required="1"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="print_backorder_reserved_product_report" string="Print" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="backorder_reserved_product_wizard_action" model="ir.actions.act_window">
+        <field name="name">Backorder Inventory Report</field>
+        <field name="res_model">backorder.reserved.product.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem
+            id="menu_backorder_inventory_report"
+            name="Backorder Inventory Report"
+            action="backorder_reserved_product_wizard_action"
+            parent="stock.menu_warehouse_report"
+            sequence="130"
+    />
+</odoo>

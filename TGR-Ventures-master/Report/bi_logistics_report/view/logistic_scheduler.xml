@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="logistics_scheduler_form" model="ir.ui.view">
+      <field name="name">logistics.scheduler.view</field>
+      <field name="model">logistic.scheduler</field>
+      <field name="arch" type="xml">
+        <form string="Logistics Scheduler">
+            <header>
+                <button name="export_logistics_report" string="Run Scheduler" type="object" class="btn-primary"/>
+            </header>
+            <sheet>
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="start_date"/>
+                        <field name="end_date"/>
+                        <field name="logistics_id"/>
+                    </group>
+                    <group>
+                        <field name="email_from"/>
+                        <field name="email_to"/>
+                        <field name="email_cc"/>
+                    </group>
+                </group>
+            </sheet>
+
+        </form>
+      </field>
+    </record>
+
+    <record id="logistics_scheduler_action" model="ir.actions.act_window">
+      <field name="name">Logistics Scheduler</field>
+      <field name="res_model">logistic.scheduler</field>
+      <field name="view_mode">tree,form</field>
+  </record>
+
+    <menuitem
+        id="menu_logistics"
+        name="Logistics Sales"
+        action="logistics_scheduler_action"
+        parent="sale.menu_sale_config"
+         sequence="100"
+        />
+
+</odoo>

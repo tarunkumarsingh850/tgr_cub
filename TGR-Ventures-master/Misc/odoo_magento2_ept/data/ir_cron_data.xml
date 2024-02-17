@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--This is used for delete empty queue.-->
+    <!-- <record id="magento_ir_cron_delete_queue_data" model="ir.cron">
+        <field name="name">Magento: Delete Empty Queues</field>
+        <field name="model_id" ref="model_magento_order_data_queue_ept" />
+        <field name="state">code</field>
+        <field name="code">model.auto_delete_empty_queue_data()
+        </field>
+        <field name="user_id" ref="base.user_root"/>
+        <field name="interval_number">1</field>
+        <field name="interval_type">minutes</field>
+        <field name="state">code</field>
+        <field name="numbercall">-1</field>
+        <field eval="False" name="doall"/>
+    </record> -->
+
+    <!--This is used for cancel the delivery order and sale order if there is no payment.-->
+    <record id="magento_ir_cron_cancel_delivery" model="ir.cron">
+        <field name="name">Magento: Cancel Delivery</field>
+        <field name="model_id" ref="model_stock_picking" />
+        <field name="state">code</field>
+        <field name="code">model.auto_cancel_delivery_orders()
+        </field>
+        <field name="user_id" ref="base.user_root"/>
+        <field name="interval_number">1</field>
+        <field name="interval_type">minutes</field>
+        <field name="state">code</field>
+        <field name="numbercall">-1</field>
+        <field eval="False" name="doall"/>
+    </record>
+
+    <!--This is used for process the Order queue data.-->
+    <record id="magento_ir_cron_parent_to_process_order_queue_data" model="ir.cron">
+        <field name="name">Magento: Process Order Queues</field>
+        <field name="model_id" ref="model_magento_order_data_queue_line_ept" />
+        <field name="state">code</field>
+        <field name="code">model.auto_import_order_queue_data()
+        </field>
+        <field name="user_id" ref="base.user_root" />
+        <field name="interval_number">5</field>
+        <field name="interval_type">minutes</field>
+        <field name="numbercall">-1</field>
+    </record>
+
+    <!--This is used for process the product queue data "Parent Cron".-->
+    <record id="ir_cron_parent_to_process_product_queue_data" model="ir.cron">
+        <field name="name">Magento: Process Product Queues</field>
+        <field name="model_id" ref="model_sync_import_magento_product_queue_line" />
+        <field name="state">code</field>
+        <field name="code">model.auto_import_magento_product_queue_data()</field>
+        <field name="user_id" ref="base.user_root" />
+        <field name="interval_number">5</field>
+        <field name="interval_type">minutes</field>
+        <field name="numbercall">-1</field>
+    </record>
+
+    <!--This is used for process the Customer queue data.-->
+    <record id="magento_ir_cron_to_process_customer_queue_data" model="ir.cron">
+        <field name="name">Magento Customer Queue</field>
+        <field name="model_id" ref="model_magento_customer_data_queue_line_ept" />
+        <field name="state">code</field>
+        <field name="code">model.auto_process_customer_queues()</field>
+        <field name="user_id" ref="base.user_root" />
+        <field name="interval_number">5</field>
+        <field name="interval_type">minutes</field>
+        <field name="numbercall">-1</field>
+    </record>
+
+    <record id="product_create_api_cron" model="ir.cron">
+        <field name="name">Product Create API</field>
+        <field name="model_id" ref="model_product_template"/>
+        <field name="interval_number">1</field>
+        <field name="interval_type">hours</field>
+        <field name="numbercall">-1</field>
+        <field name="state">code</field>
+        <field name="code">model.action_product_update_api()</field>
+    </record>
+
+    <record id="auto_import_product_attribute_cron" model="ir.cron">
+        <field name="name">Magento: Import Product Attribute</field>
+        <field name="model_id" ref="model_magento_attribute_set"/>
+        <field name="user_id" ref="base.user_root" />
+        <field name="interval_number">5</field>
+        <field name="interval_type">minutes</field>
+        <field name="numbercall">-1</field>
+        <field name="state">code</field>
+        <field name="code">model.auto_import_product_attribute_cron()</field>
+    </record>
+
+</odoo>

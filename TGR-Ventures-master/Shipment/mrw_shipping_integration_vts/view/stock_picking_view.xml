@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="mrw_form_view" model="ir.ui.view">
+            <field name="name">stock.picking</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='carrier_id']" position='after'>
+                    <field name="shipment_details" readonly="1" widget="url" attrs="{'invisible': [('delivery_type','!=','mrw_vts')]}"/>
+                    <field name="mrw_label_url" readonly="1" widget="url" attrs="{'invisible': [('delivery_type','!=','mrw_vts')]}"/>
+                </xpath>
+                <xpath expr="//header" position="inside">
+                    <button name="retry_mrw_shipping" string="Retry MRW Shipping" type="object" class="oe_highlight" attrs="{'invisible': [('carrier_tracking_ref','=',False)]}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="mrw_form_view_delivery" model="ir.ui.view">
+            <field name="name">stock.picking</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="delivery.view_picking_withcarrier_out_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='send_to_shipper']" position='attributes'>
+                    <attribute name="string">Retry Shipping</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

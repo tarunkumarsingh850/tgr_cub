@@ -1,0 +1,52 @@
+<odoo>
+    <data>
+        <record id="view_stock_product_inherited_list" model="ir.ui.view">
+            <field name="name">view.stock.product.list.inherited</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="stock.view_stock_product_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="recently_created" invisible="1"/>
+                </xpath>
+                 <xpath expr="//tree" position="attributes">
+                    <attribute name="decoration-info">(recently_created == True)</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="product_form_view_procurement_button_inherit" model="ir.ui.view">
+            <field name="name">product.form.view.procurement.button.inherited</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="stock.product_form_view_procurement_button"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_product_forecast_report']" position="after">
+                    <button type="object"
+                            name="action_product_expected_qty"
+                            class="oe_stat_button" icon="fa-cubes">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_value">
+                                    <field name="expected_qty" widget="statinfo" nolabel="1" class="mr4"/>
+                                    <field name="uom_name"/>
+                                </span>
+                                <span class="o_stat_text">Expected Qty</span>
+                            </div>
+                    </button>
+                </xpath>
+                <!-- <xpath expr="//field[@name='hs_code']" position="after">
+                    <field name="stock_location_ids" force_save="1" widget="many2many_tags"/>
+                </xpath> -->
+            </field>
+        </record>
+        <!-- <record id="product_product_list_view_groupby_inherited" model="ir.ui.view">
+            <field name="name">product.product.list.view.groupby.inherited</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="industry_fsm_sale.product_search_form_view_inherit_fsm_sale"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='categ_id']" position="after">
+                    <filter string="Location" name="stock_location_ids" context="{'group_by':'stock_location_ids'}"/>
+                </xpath>
+            </field>
+        </record>  -->
+
+      </data>
+  </odoo>

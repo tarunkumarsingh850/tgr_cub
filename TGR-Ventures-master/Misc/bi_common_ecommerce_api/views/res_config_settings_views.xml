@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--Res config setting view form customizations-->
+    <record id="res_config_settings_view_form_common_api" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.odoo_ecommerce_api</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="5000"/>
+        <field name="inherit_id" ref="odoo_ecommerce_api.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <div data-key="sale_management" position="inside">
+                <h2 class="mt32">Common API</h2>
+                <div class="row mt16 o_settings_container" id="common_api_api_setting_container">
+                    <!-- <div class="col-12 col-lg-6 o_setting_box" id="common_api_api_folder">
+                        <div class="o_setting_left_pane"/>
+                        <div class="o_setting_right_pane">
+                            <label for="folder_for_common_api_so_data" string="Folder for common_api data files"/>
+                            <div class="text-muted">
+                                Folder that contains .xml or .csv file with the Common sale order data
+                            </div>
+                            <field name="folder_for_common_api_so_data" placeholder="/home/data_folder"/>
+                            <div class="content-group">
+                                <div class="mt8">
+                                    <button name="download_common_api_sample_xml" icon="fa-download" type="object" string="Sample .xml" class="btn-link"/>
+                                    <button name="download_common_api_sample_csv" icon="fa-download" type="object" string="Sample .csv" class="btn-link"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="col-12 col-lg-6 o_setting_box" id="common_api_api_shipping_cost_product">
+                        <div class="o_setting_left_pane"/>
+                        <div class="o_setting_right_pane">
+                            <label for="prefix_of_order_name" string="Prefix Of Order Name"/>
+                            <field name="prefix_of_order_name"/>
+                        </div>
+                    </div>
+                    <!-- <div class="col-12 col-lg-6 o_setting_box" id="common_api_api_picking_packing_cost">
+                        <div class="o_setting_left_pane"/>
+                        <div class="o_setting_right_pane">
+                            <label for="picking_packing_cost" string="Picking/Packing Cost"/>
+                            <div class="text-muted"/>
+                            <field name="picking_packing_cost"/>
+                            <div class="text-muted"/>
+                            <label for="min_pick_pack_cost_upto_sku_count" string="Minimum Picking/Packing Cost upto SKU Count"/>
+                            <div class="text-muted"/>
+                            <field name="min_pick_pack_cost_upto_sku_count"/>
+                            <div class="text-muted"/>
+                            <label for="additional_picking_packing_cost" string="Additional Picking/Packing Cost"/>
+                            <div class="text-muted"/>
+                            <field name="additional_picking_packing_cost"/>
+                            <div class="text-muted"/>
+                            <label for="common_api_payment_surcharge" string="Shipping Charge"/>
+                            <div class="text-muted"/>
+                            <field name="common_api_payment_surcharge"/>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 o_setting_box" id="common_api_api_tgr_dutch_percentage">
+                        <div class="o_setting_left_pane"/>
+                        <div class="o_setting_right_pane">
+                            <label for="tgr_percentage" string="TGR Percentage"/>
+                            <div class="text-muted"/>
+                            <field name="tgr_percentage"/>
+                            <div class="text-muted"/>
+                            <label for="common_api_percentage" string="Common Percentage"/>
+                            <div class="text-muted"/>
+                            <field name="common_api_percentage"/>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </field>
+    </record>
+
+</odoo>

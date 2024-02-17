@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<record id="assign_picking_report_wizard" model="ir.ui.view" >
+    <field name="name">Assign Picking Wizard</field>
+    <field name="model">bi.picking.wizard</field>
+    <field name="type">form</field>
+    <field name="arch" type="xml">
+        <form string="Picking Assign Report">
+            <group>
+                <group>
+                    <field name="date_start"/>
+                    <field name="picker_ids" widget="many2many_tags"/>
+                </group>
+                <group>
+                    <field name="date_end"/>
+                    <field name="warehouse_ids" widget="many2many_tags"/>
+                </group>
+            </group>
+            <footer>
+                <button name="get_report_xlsx" string="EXCEL Report" type="object" class="oe_highlight"/>
+                <button string="Cancel" special="cancel"/>
+            </footer>
+        </form>
+    </field>
+</record>
+
+
+
+    <record id="assign_picking_wizard_form" model="ir.actions.act_window">
+        <field name="name">Assign Picking Report</field>
+        <field name="res_model">bi.picking.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="assign_picking_report_wizard"/>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem action="assign_picking_wizard_form"
+        name="Assign Picking Report"
+        id="menu_assign_picking_report_wizard"
+        parent="stock.menu_warehouse_report"/>
+
+
+</odoo>

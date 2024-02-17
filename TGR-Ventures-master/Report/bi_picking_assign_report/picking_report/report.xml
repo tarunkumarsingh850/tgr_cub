@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report id="picking_wizard_report_excel"
+            model="bi.picking.wizard"
+            string="Picking Assign XLsx"
+            report_type="xlsx"
+            name="bi_picking_assign_report.assign_order_report_xlsx"
+            file="Picking Assign Report"
+            menu="False"/>
+    </data>
+</odoo>

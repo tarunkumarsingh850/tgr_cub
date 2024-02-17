@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_despatch_carrier,despatch_carrier,model_despatchlab_carrier,sales_team.group_sale_salesman,1,1,1,1
+access_despatchlab_product_user,bi_despatchlab.despatchlab.product,model_despatchlab_product,base.group_user,1,1,1,1
+access_website_delivery_country_line_user,bi_despatchlab.website.delivery.country.line,model_website_delivery_country_line,base.group_user,1,1,1,1
+access_website_tax_country_line_user,bi_despatchlab.website.tax.country.line,model_website_tax_country_line,base.group_user,1,1,1,1

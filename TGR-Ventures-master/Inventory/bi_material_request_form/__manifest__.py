@@ -1,0 +1,25 @@
+{
+    "name": "Material Request Form",
+    "summary": "Material request From for Internal Transfer",
+    "version": "15.0.1.0.0",
+    "author": "Bassam Infotech LLP",
+    "website": "https://www.bassaminfotech.com",
+    "license": "OPL-1",
+    "category": "Inventory",
+    "depends": ["product", "stock"],
+    "data": [
+        "security/security.xml",
+        "security/ir.model.access.csv",
+        "wizard/import_wizard.xml",
+        "views/material_request.xml",
+        "views/ir_sequence.xml",
+        "report/report.xml",
+        "report/material_request_report.xml",
+    ],
+    "images": [
+        "static/description/icon.png",
+    ],
+    "demo": [],
+    "installable": True,
+    "auto_install": False,
+}

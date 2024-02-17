@@ -1,0 +1,78 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data>
+        <!--Email template -->
+        <record id="email_template_transfer" model="mail.template">
+            <field name="name">Shipment: Send by email</field>
+            <field name="model_id" ref="stock.model_stock_picking"/>
+            <field name="email_from">{{ (object.user.email_formatted) }}</field>
+            <field name="partner_to">{{ object.partner_id.id }}</field>
+            <field name="subject">Shipment :{{object.origin}}</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        Dear
+                        <t t-if="object.partner_id.parent_id">
+                            <t t-out="object.partner_id.name"></t>
+                        </t>
+                        <t t-else="">
+                            <t t-out="object.partner_id.name"></t>,
+                        </t>
+                        <br /><br />
+                        We are glad to inform you that your order
+                        <t t-if="object.origin">
+                            <strong t-out="object.origin"></strong>
+                        </t>
+                        has been shipped.
+                        <br/>
+                        Your tracking reference is
+                        <t t-if="object.carrier_tracking_ref">
+                            <strong t-out="object.carrier_tracking_ref"></strong>
+                        </t>
+                        with carrier
+                        <t t-if="object.carrier_id">
+                            <strong t-out="object.carrier_id.name"></strong>
+                        </t>
+                        <br/>
+                        Please find your delivery slip attached for more details.
+                        <br/>
+                        Thank you,
+                    </p>
+                </div>
+            </field>
+            <field name="report_template" ref="bi_delivery_slip_printout.delivery_note_report_action"/>
+            <field name="report_name">Shipment_{{ (object.name or '').replace('/','_') }}{{ object.state == 'draft' and '_draft' or '' }}</field>
+            <field name="lang">{{ object.partner_id.lang }}</field>
+            <field name="auto_delete" eval="True"/>
+        </record>
+
+        <record id="email_template_refund_notification" model="mail.template">
+            <field name="name">Send refund email notification</field>
+            <field name="model_id" ref="stock.model_stock_picking"/>
+            <field name="email_from">{{ (object.user_id.email_formatted) }}</field>
+            <field name="partner_to">{{ object.partner_id.id }}</field>
+            <field name="subject">Amount credited for {{object.origin}}</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        Dear
+                        <t t-if="object.partner_id.parent_id">
+                            <t t-out="object.partner_id.name"></t>
+                        </t>
+                        <t t-else="">
+                            <t t-out="object.partner_id.name"></t>,
+                        </t>
+                        <br /><br />
+                        <t t-esc="object.email_notification_content"/>
+                        <br/>
+                        Thank you,
+                    </p>
+                </div>
+            </field>
+            <field name="lang">{{ object.partner_id.lang }}</field>
+            <field name="auto_delete" eval="True"/>
+        </record>
+
+
+    </data>
+</odoo>

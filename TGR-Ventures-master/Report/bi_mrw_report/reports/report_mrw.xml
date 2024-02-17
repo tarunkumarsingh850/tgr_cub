@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_mrw">
+        <t t-call="web.basic_layout">
+            <!-- <t t-set="docs" t-as="o"> -->
+
+                <t t-call="bi_mrw_report.mrw_report_header"/>
+                    <h2 class="text-center" style="font-size: 18px;">
+                        <span><strong>Listado de envíos</strong></span>
+                    </h2>
+
+                    <br/>
+                    <!-- <div class="row">
+                        <div class="col-12 text-right">
+                            <span style="font-size: 14px;"><strong>From :</strong><b><span t-field="o.start_date"/></b></span>
+                            <br/>
+                            <span style="font-size: 14px;"><strong>To :</strong><b><span t-field="o.end_date"/></b></span>
+                        </div>
+                    </div> -->
+                    <br/>
+                    <table width="100%" style="border-top:1px solid black;border-right:0px solid black;border-bottom:1px solid black">
+                        <tr>
+                            <th class="text-center" style="border-right:1px solid black;border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;font-size: 15px;;width:30px;">Sl No.</th>
+                            <th class="text-center" style="border-right:1px solid black;border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;font-size: 15px;;width:30px;">Núm. envío</th>
+                            <th class="text-center" style="border-right:1px solid black;border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;font-size: 15px;;width:30px;">Referencia</th>
+                            <th class="text-center" style="border-right:1px solid black;border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;font-size: 15px;;width:30px;">Obs Entrega</th>
+                            <th class="text-center" style="border-right:1px solid black;border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;font-size: 15px;;width:30px;">F. recogida</th>
+                            <th class="text-center" style="border-right:1px solid black;border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;font-size: 15px;;width:30px;">Nombre destinatario </th>
+                            <th class="text-center" style="border-right:1px solid black;border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;font-size: 15px;;width:30px;">D.P.</th>
+                            <th class="text-center" style="border-right:1px solid black;border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;font-size: 15px;;width:30px;">Dirección destinatario</th>
+                            <th class="text-center" style="border-right:1px solid black;border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;font-size: 15px;;width:30px;">Población destinatari</th>
+                            <th class="text-center" style="border-right:1px solid black;border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;font-size: 15px;;width:30px;">Provincia destinat</th>
+                            <th class="text-center" style="border-right:1px solid black;border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;font-size: 15px;width:30px;">KmE</th>
+                            <th class="text-center" style="border-right:1px solid black;border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;font-size: 15px;width:30px;">KmR</th>
+                            <th class="text-center" style="border-right:1px solid black;border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;font-size: 15px;width:30px;">Servicio</th>
+                            <th class="text-center" style="border-right:1px solid black;border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;font-size: 15px;width:30px">Btos.</th>
+                            <th class="text-center" style="border-right:1px solid black;border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;font-size: 15px;width:30px;">Kg</th>
+                            <th class="text-center" style="border-right:1px solid black;border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;font-size: 15px;width:30px;">Reembolso</th>
+                        </tr>
+
+                        <t t-set="sl_no" t-value='1'></t>
+                        <t t-set="total_kilo" t-value='0'></t>
+                        <t t-set="total_bultos" t-value="0"/>
+                        <t t-foreach="docs.get_picking_value()" t-as="l">
+                        <t t-set="total_kilo" t-value="total_kilo+l.weight"/>
+                        <t t-set="total_bultos" t-value="total_bultos+1"/>
+                        <tr>
+                            <td class="text-center" style="border-right:1px solid black;border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;font-size: 15px"><span t-esc="sl_no"/><t t-set="sl_no" t-value="sl_no+1"/></td>
+                            <td class="text-center" style="border-right:1px solid black;border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;font-size: 15px"><span t-esc="l.carrier_tracking_ref"/></td>
+                            <td class="text-center" style="border-right:1px solid black;border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;font-size: 15px"><span t-esc="l.sale_id.name"/></td>
+                            <td class="text-center" style="border-right:1px solid black;border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;font-size: 15px"><span t-esc="l.sale_id.name"/></td>
+                            <td class="text-center" style="border-right:1px solid black;border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;font-size: 15px"><span t-esc="l.date_done"/></td>
+                            <td class="text-center" style="border-right:1px solid black;border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;font-size: 15px"><span t-esc="l.partner_id.parent_id.name and l.partner_id.parent_id.name or ''"/></td>
+
+                            <td class="text-center" style="border-right:1px solid black;border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;font-size: 15px"><span t-esc="l.partner_id.zip and l.partner_id.zip or ''"/></td>
+                            <td class="text-center" style="border-right:1px solid black;border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;font-size: 15px"><span t-esc="l.partner_id.street and l.partner_id.street , l.partner_id.street2 or ''"/></td>
+                            <td class="text-center" style="border-right:1px solid black;border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;font-size: 15px"><span t-esc="l.partner_id.city and l.partner_id.city or ''"/></td>
+                            <td class="text-center" style="border-right:1px solid black;border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;font-size: 15px"><span t-esc="l.partner_id.state_id and l.partner_id.state_id.name or ''"/></td>
+
+                            <td class="text-center" style="border-right:1px solid black;border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;font-size: 15px">0</td>
+                            <td class="text-center" style="border-right:1px solid black;border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;font-size: 15px">0</td>
+
+                            <td class="text-center" style="border-right:1px solid black;border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;font-size: 15px"><span t-esc="l.carrier_id.mrw_service_code"/></td>
+                            <td class="text-center" style="border-right:1px solid black;border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;font-size: 15px">0</td>
+                            <td class="text-center" style="border-right:1px solid black;border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;font-size: 15px"><span t-esc="l.weight"/></td>
+                            <td class="text-center" style="border-right:1px solid black;border-left:1px solid black;border-top:1px solid black;border-bottom:1px solid black;font-size: 15px">558</td>
+                        </tr>
+                        </t>
+                    </table>
+                    <br/>
+                    <div>
+                        <div class="col-3 mb4">
+                            <span style="font-size: 14px;"><strong>Total BULTOS :</strong><b><span t-esc="round(total_bultos,2)"/></b></span>
+
+                            <span style="font-size: 14px;padding-left:20px"><strong>Total Kilos :</strong><b><span t-esc="round(total_kilo, 2)"/></b></span>
+                        </div>
+                    </div>
+                <!-- </t> -->
+            </t>
+        <!-- </t> -->
+    </template>
+</odoo>

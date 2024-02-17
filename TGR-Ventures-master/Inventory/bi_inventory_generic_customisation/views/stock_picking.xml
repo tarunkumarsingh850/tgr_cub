@@ -1,0 +1,424 @@
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="stockpicking_reason_code_view_inherit_form">
+        <field name="name">stock.picking.reason.code.view.inherit.form</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <header>
+              <field name="is_sendmail" invisible="1"/>
+              <button type="object" name="action_send_shipment_mail" string="Send Mail"
+                        attrs="{'invisible':['|','|','|',('carrier_id','=',False),('sale_id','=',False),('state','not in',['done','cancel']),('is_sendmail','=',True)]}"
+                        groups="bi_inventory_generic_customisation.send_mail_from_shipment"/>
+            </header>
+            <xpath expr="//form/sheet/group/group/field[@name='backorder_id']" position="after">
+                <field name="reason_code_id" required="0"/>
+                <field name="is_hold"/>
+                <field name="is_cancel" invisible="1"/>
+                <field name="hold_reason_id" attrs="{'invisible':[('is_hold','=',False)], 'required':[('is_hold','=',True)]}"/>
+                <field name="payment_status" readonly="1"/>
+                <field name="is_proof_of_payment_received"/>
+                <field name="is_paid" invisible="1"/>
+                <field name="set_paid"/>
+                <field name="additional_notes"/>
+            </xpath>
+            <xpath expr="//form/sheet/group/group/field[@name='origin']" position="after">
+              <field name="assignee_id" invisible="1"/>
+              <field name="country_id"/>
+              <field name="shipping_zone_id"/>
+              <field name="sale_boolean" invisible="1"/>
+              <field name="is_partner_carrier" invisible="1" />
+              <field name="sale_id" invisible="1"/>
+              <field name="reason" attrs="{'invisible':[('is_cancel','=',False)]}"/>
+              <field name="new_priority" widget="selection"/>
+              <field name="fraud_score"/>
+            </xpath>
+          <xpath expr="//field[@name='user_id']" position="attributes">
+            <attribute name="string">Picker</attribute>
+        </xpath>
+        <xpath expr="//field[@name='move_ids_without_package']/tree/field[@name='quantity_done']" position="attributes">
+            <attribute name="attrs">{'readonly':[("state","in",['done','cancel'])]}</attribute>
+        </xpath>
+        <xpath expr="//field[@name='move_ids_without_package']/tree/field[@name='product_uom_qty']" position="after">
+          <field name="stock_onhand_quantity"/>
+          <field name="sales_price" readonly="1" force_save="1" attrs="{'column_invisible':[('parent.sale_id','=',False)]}"/>
+          <field name="cost" sum="Total" groups="bi_inventory_generic_customisation.cost_security" />
+          <field name="total_cost" sum="Total Cost" optional="show"/>
+        </xpath>
+        <xpath expr="//field[@name='origin']" position="after">
+            <field name="sale_order_date" widget="date" attrs="{'invisible':[('picking_type_code','!=','outgoing')]}"/>
+            <field name="batch_id"/>
+            <field name="batch_state"/>
+            <field name="sale_total_amount"/>
+        </xpath>
+        <xpath expr="//field[@name='origin']" position="attributes">
+            <attribute name="string">Order ID/NO</attribute>
+        </xpath>
+            <xpath expr="//field[@name='scheduled_date']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//label[@for='scheduled_date']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='move_ids_without_package']/tree/field[@name='product_uom_qty']" position="attributes">
+                <attribute name="digits">[12,0]</attribute>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="stock_picking_carrier_view_inherit_form_carrier">
+      <field name="name">stock.picking.carrier.view.inherit.form.carrier</field>
+      <field name="model">stock.picking</field>
+      <field name="inherit_id" ref="delivery.view_picking_withcarrier_out_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//group/group[@name='carrier_data']/field[@name='carrier_id']" position="attributes">
+          <attribute name="attrs">{'readonly':[('state', 'in', ('done', 'cancel'))],'required': [('sale_boolean','=',True)]}</attribute>
+        </xpath>
+        <xpath expr="//group[@name='carrier_data']/div[@name='tracking']" position="after">
+          <group>
+            <button string="update" name="wizard_tracking" type="object" class="oe_highlight"/>
+          </group>
+
+        </xpath>
+        <xpath expr="//group/group[@name='carrier_data']/div[@name='tracking']/field[@name='carrier_tracking_ref']" position="attributes">
+          <attribute name="readonly">1</attribute>
+          <attribute name="force_save">1</attribute>
+        </xpath>
+        <xpath expr="//group/group[@name='carrier_data']" position="inside">
+          <label for="carrier" string="Carrier"/>
+          <div>
+            <field name="carrier"/>
+          </div>
+        </xpath>
+      </field>
+    </record>
+
+    <record id="stock_picking_type_shipment_action" model="ir.actions.act_window">
+      <field name="name">Shipment</field>
+      <field name="res_model">stock.picking</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="view_mode">tree,form</field>
+      <field name="domain">[('sale_id', '!=', False)]</field>
+  </record>
+
+  <menuitem
+    id="shipment_sub_menu"
+    name="Shipment"
+    action="stock_picking_type_shipment_action"
+    parent="stock.menu_stock_warehouse_mgmt"
+    sequence="5"/>
+
+
+    <record id="order_country_picking_search" model="ir.ui.view">
+        <field name="name">stock.picking.view</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_internal_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+              <field name="carrier_tracking_ref"/>
+              <filter string="Country" name="groupby_country_id" domain="[]" context="{'group_by': 'country_id'}"/>
+              <filter string="Batch No" name="groupby_batch_id" domain="[]" context="{'group_by': 'batch_id'}"/>
+              <filter string="Batch State" name="groupby_batch_state" domain="[]" context="{'group_by': 'batch_state'}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="stock_picking_batch_state_view_tree" model="ir.ui.view">
+      <field name="name">stock.picking.batch.state.view.tree</field>
+      <field name="model">stock.picking</field>
+      <field name="inherit_id" ref="stock_picking_batch.vpicktree_inherit_stock_picking_batch"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='batch_id']" position="after">
+          <field name="batch_state" />
+        </xpath>
+      </field>
+    </record>
+
+    <record id="stock_picking_view_list" model="ir.ui.view">
+      <field name="name">stock.picking.view.form</field>
+      <field name="model">stock.picking</field>
+      <field name="inherit_id" ref="stock.vpicktree"/>
+      <field name="arch" type="xml">
+            <xpath expr="//field[@name='priority']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//tree" position="attributes">
+              <attribute name="default_order">scheduled_date desc</attribute>
+            </xpath>
+            <xpath expr="//field[@name='company_id']" position="after">
+              <field name="country_id"/>
+              <field name="country_group_id" />
+            </xpath>
+            <xpath expr="//field[@name='user_id']" position="attributes">
+              <attribute name="string">Picker</attribute>
+          </xpath>
+          <xpath expr="//field[@name='origin']" position="attributes">
+              <attribute name="string">Order ID/NO</attribute>
+          </xpath>
+          <xpath expr="//field[@name='state']" position="before">
+            <field name="sale_total_amount"/>
+             <field name="new_priority" widget="selection"/>
+            <field name="payment_status" widget="badge" decoration-danger="payment_status == 'not_paid'" decoration-success="payment_status in ['paid','paid_and_batched']" decoration-info="payment_status == 'credit'"/>
+          </xpath>
+          <xpath expr="//field[@name='name']" position="attributes">
+            <attribute name="optional">hide</attribute>
+          </xpath>
+          <xpath expr="//field[@name='scheduled_date']" position="attributes">
+            <attribute name="optional">hide</attribute>
+          </xpath>
+          <xpath expr="//field[@name='company_id']" position="after"> <!--# ar added on 12042023-->
+            <field name="stock_move_total_cost" groups="bi_inventory_generic_customisation.cost_security"/>
+          </xpath>
+          <xpath expr="//field[@name='weight']" position="attributes">
+              <attribute name="optional">show</attribute>
+          </xpath>
+          <xpath expr="//field[@name='shipping_weight']" position="attributes">
+              <attribute name="optional">hide</attribute>
+          </xpath>
+          <xpath expr="//field[@name='carrier_id']" position="attributes">
+              <attribute name="optional"></attribute>
+          </xpath>
+          <xpath expr="//field[@name='carrier_tracking_ref']" position="attributes">
+              <attribute name="optional"></attribute>
+          </xpath>
+          <xpath expr="//field[@name='partner_id']" position="after">
+            <field name="partner_zip_code" optional="show"/>
+        </xpath>
+          <xpath expr="//field[@name='partner_zip_code']" position="after">
+              <field name="chargeback_customer_tag" widget="badge" optional="show"/>
+          </xpath>
+          <xpath expr="//field[@name='carrier_id']" position="before">
+            <field name="fraud_score" optional="show"/>
+        </xpath>
+      </field>
+    </record>
+
+    <record id="inherit_view_stock_picking_filter" model="ir.ui.view">
+      <field name="name">stock.picking.search</field>
+      <field name="model">stock.picking</field>
+      <field name="inherit_id" ref="stock.view_picking_internal_search"/>
+      <field name="arch" type="xml">
+        <xpath expr="//filter[@name='available']" position="replace">
+          <filter name="available" string="Ready" domain="[('state', '=', 'assigned'),('is_hold', '=',False )]" help="Assigned Moves"/>
+        </xpath>
+        <xpath expr="//filter[@name='draft']" position="before">
+          <!-- <filter string="Customer Carrier" name="is_partner_carrier" domain="[('is_partner_carrier', '=', True)]"/>
+            <filter string="Carrier Set" name="carrier_id" domain="[('carrier_id', '!=', False)]"/>
+            <filter string="Carrier Is Not Set" name="carrier_id" domain="[('carrier_id', '=', False)]"/>
+            <filter string="Picker Is Set" name="user_id" domain="[('user_id', '!=', False)]"/>
+            <filter string="Picker Is Not Set" name="user_id" domain="[('user_id', '=', False)]"/> -->
+            <!-- <filter string="UK VAULT" name="parnter_id" domain="[('country_id.id', 'in', ['231']),('partner_id.parent_id.id','=',['927349'])]"/>
+            <filter string="ROW-VAULT" name="parnter_id" domain="[('country_id.id', 'not in', ['231']),('partner_id.parent_id.id','in',['927349'])]"/>
+            <filter string="E-COM" name="partner_id" domain="[('partner_id.id', 'in', ['201693'])]"/>
+            <filter string="EXPRESS" name="carrier_id" domain="[('carrier_id.is_express', '=', True)]"/> -->
+            <!-- <filter string="Ecom" name="partner_id" domain="[('partner', 'in', ['1'])]"/>
+            <filter string="Express" name="partner_id" domain="[('partner', 'in', ['2'])]"/> -->
+            <separator/>
+            <filter string="UK" name="country_id" domain="[('country_id.id', 'in', ['231'])]"/>
+            <filter string="EU" name="country_group_id" domain="[('country_group_id.id', 'in', ['1'])]"/>
+            <filter string="USA" name="country_id" domain="[('country_id.id', 'in', ['233'])]"/>
+            <filter string="ROW" name="country_id" domain="[('country_id.country_group_id.id', 'not in', ['1','3'])]"/>
+            <separator/>
+         </xpath>
+         <xpath expr="//filter[@name='cancel']" position="after">
+            <separator/>
+            <filter string="Hold" name="is_hold" domain="[('is_hold', '=', True)]"/>
+            <filter string="Paid" name="is_paid" domain="[('payment_status', '=', 'paid')]"/>
+            <filter string="Not Paid" name="is_not_paid" domain="[('payment_status', '=', 'not_paid')]"/>
+             <filter string="Refund" name="is_refund" domain="[('payment_status', '=', 'paid_refund')]"/>
+             <filter string="Unpaid Refund" name="is_unpaid_refund" domain="[('payment_status', '=', 'unpaid_refund')]"/>
+            <separator/>
+         </xpath>
+         <xpath expr="//filter[@name='cancel']" position="after">
+            <separator/>
+              <filter string="High Alert" name="is_high_alert" domain="[('partner_id.high_alert_customer', '=', True)]"/>
+            <separator/>
+         </xpath>
+         <xpath expr="//filter[@name='late']" position="replace"/>
+         <xpath expr="//filter[@name='planning_issues']" position="replace"/>
+         <xpath expr="//filter[@name='backorder']" position="replace"/>
+          <xpath expr="//filter[@name='activities_exception']" position="replace"/>
+        </field>
+  </record>
+
+    <record id="ir_cron_delivery_country" model="ir.cron">
+      <field name="name">Update country in Picking</field>
+      <field name="interval_number">1</field>
+      <field name="interval_type">days</field>
+      <field name="numbercall">-1</field>
+      <field name="doall" eval="False" />
+      <field name="model_id" ref="model_stock_picking" />
+      <field name="code">model._country_check_country()</field>
+      <field name="state">code</field>
+  </record>
+
+  <record model="ir.ui.view" id="stockpicking_batch_form_inherit">
+    <field name="name">stock.picking.batch.form.inherit</field>
+    <field name="model">stock.picking.to.batch</field>
+    <field name="inherit_id" ref="stock_picking_batch.stock_picking_to_batch_form"/>
+    <field name="arch" type="xml">
+      <xpath expr="//field[@name='user_id']" position="attributes">
+        <attribute name="string">Picker</attribute>
+      </xpath>
+      <xpath expr="//group" position="inside">
+        <group>
+          <field name="batch_description"/>
+        </group>
+      </xpath>
+    </field>
+  </record>
+
+   <record  id="stockpicking_view_inherit_form" model="ir.ui.view">
+        <field name="name">stock.picking.view.inherit.form</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/sheet/group/group/field[@name='backorder_id']" position="after">
+                 <field name="is_credit_customer" readonly="1"/>
+              </xpath>
+          <xpath expr="//page[@name='operations']//field[@name='product_id']" position="after">
+            <field name="product_sku"/>
+          </xpath>
+          <xpath expr="//field[@name='batch_state']" position="attributes">
+            <attribute name="string">Batch Status</attribute>
+          </xpath>
+            <xpath expr="//field[@name='backorder_id']" position="after">
+                <field name="is_send_email_notification" invisible="1"/>
+                <field name="email_notification_content" invisible="1"/>
+            </xpath>
+          <xpath expr="//field[@name='origin']" position="after">
+              <field name="is_reship" attrs="{'invisible':[('is_reship','=', False)]}"/>
+          </xpath>
+            <!-- <xpath expr="//header/button[@name='do_print_picking']" position="attributes">
+                <attribute name="attrs">{'invisible': [('state', 'not in', ['assigned', 'processing_batched'])]}
+                </attribute>
+            </xpath>
+            <xpath expr="//header/button[@name='do_unreserve']" position="attributes">
+                <attribute name="attrs">{'invisible': ['|', '|', '|', ('picking_type_code', '=', 'incoming'),
+                    ('immediate_transfer', '=', True), '&amp;', ('state', 'not in', ['assigned', 'processing_batched']),
+                    ('move_type', '!=', 'one'), '&amp;', ('state', 'not in', ('assigned', 'confirmed')), ('move_type',
+                    '=', 'one')]}
+                </attribute>
+            </xpath>
+            <xpath expr="//header/button[@name='action_cancel']" position="attributes">
+                <attribute name="attrs">{'invisible': [('state', 'not in', ('assigned', 'confirmed', 'draft', 'waiting', 'processing_batched'))]}
+                </attribute>
+            </xpath> -->
+            <xpath expr="//header/button[@name='button_validate']" position="after">
+                <button class="btn btn-primary" type="object" name="send_email_notification" string="Send Notification"
+                        attrs="{'invisible': [('is_send_email_notification', '=', False)]}"/>
+            </xpath>
+
+          <xpath expr="//header/button[@name='action_cancel']" position="after">
+              <button class="btn btn-primary" type="object" name="duplicate_picking" string="RESHIP ORDER"
+                      attrs="{'invisible': [('state', '!=', 'done')]}"/>
+          </xpath>
+
+        </field>
+    </record>
+
+    <record  id="stockpicking_view_inherit_list" model="ir.ui.view">
+        <field name="name">stock.picking.view.inherit.list</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.vpicktree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='origin']" position="after">
+                <field name="sale_order_date" widget="date"/>
+                <field name="is_credit_customer" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_stock_picking_filter_inherit" model="ir.ui.view">
+      <field name="name">stock.picking.search</field>
+      <field name="model">stock.picking</field>
+      <field name="inherit_id" ref="stock.view_picking_internal_search"/>
+      <field name="arch" type="xml">
+        <xpath expr="//filter[@name='draft']" position="before">
+            <separator/>
+            <filter string="Credit Customer" name="is_credit_customer" domain="[('is_credit_customer', '=',True )]"/>
+            <separator/>
+         </xpath>
+        <xpath expr="//filter[@name='draft']" position="before">
+            <filter string="Tiger One USA" name="tiger_one_usa" domain="[('magento_website_id.magento_website_id', '=', 17)]"/>
+            <separator/>
+            <filter string="Tiger One EU" name="tiger_one_eu" domain="[('magento_website_id.magento_website_id', '=', 3)]"/>
+            <separator/>
+            <filter string="Tiger One SA" name="tiger_one_sa" domain="[('magento_website_id.magento_website_id', '=', 4)]"/>
+            <separator/>
+            <filter string="Tiger One UK" name="tiger_one_uk" domain="[('magento_website_id.magento_website_id', '=', 1)]"/>
+            <separator/>
+            <filter string="Seedsman USA" name="seedsman_usa" domain="[('magento_website_id.magento_website_id', '=', 6)]"/>
+            <separator/>
+            <filter string="Seedsman EU" name="seedsman_eu" domain="[('magento_website_id.magento_website_id', '=', 7)]"/>
+            <separator/>
+            <filter string="Seedsman SA" name="seedsman_sa" domain="[('magento_website_id.magento_website_id', '=', 8)]"/>
+            <separator/>
+            <filter string="Seedsman UK" name="seedsman_uk" domain="[('magento_website_id.magento_website_id', '=', 5)]"/>
+            <separator/>
+        </xpath>
+          <!-- <xpath expr="//filter[@name='available']" position="after">
+              <filter name="processing_batched" string="Processing/Batched"
+                      domain="[('state', '=', 'processing_batched')]" help="Processing/Batched Moves"/>
+          </xpath> -->
+      </field>
+  </record>
+
+
+  <record id="hold_picking_action_server" model="ir.actions.server">
+    <field name="name">Hold</field>
+    <field name="model_id" ref="stock.model_stock_picking"/>
+    <field name="binding_model_id" ref="stock.model_stock_picking"/>
+    <field name="binding_view_types">list</field>
+    <field name="state">code</field>
+    <field name="code">
+      action = {
+          'name' : 'Hold Wizard',
+          'type': 'ir.actions.act_window',
+          'context': {'default_picking_ids': records.ids},
+          'view_mode': 'form',
+          'res_model': 'picking.hold',
+          'target':'new'
+          }
+    </field>
+  </record>
+
+  <record id="ir_action_download_picking_label_attachment" model="ir.actions.server">
+      <field name="name">Download Label</field>
+      <field name="type">ir.actions.server</field>
+      <field name="model_id" ref="stock.model_stock_picking"/>
+      <field name="state">code</field>
+      <field name="code">
+          if records:
+          action = records.action_download_attachment()
+      </field>
+      <field name="binding_model_id" ref="stock.model_stock_picking"/>
+  </record>
+
+  <record id="action_payment_status_refund" model="ir.actions.server">
+    <field name="name">Refund</field>
+    <field name="model_id" ref="stock.model_stock_picking"/>
+    <field name="binding_model_id" ref="stock.model_stock_picking"/>
+    <field name="state">code</field>
+    <field name="code">records.button_payment_status_refund()</field>
+</record>
+
+  <record id="stock_picking_is_on_hold_action" model="ir.actions.act_window">
+    <field name="name">On Hold Order</field>
+    <field name="res_model">stock.picking</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('is_hold', '=', True)]</field>
+  </record>
+
+  <menuitem
+    id="stock_picking_is_on_hold_menu"
+    name="On Hold Order"
+    action="stock_picking_is_on_hold_action"
+    parent="stock.menu_stock_warehouse_mgmt"
+    sequence="5"/>
+
+  </data>
+</odoo>

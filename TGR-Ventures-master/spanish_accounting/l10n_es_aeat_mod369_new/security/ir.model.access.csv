@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_aeat_369_model_report_user,l10n_es_aeat_mod369_new.aeat_369_model_report,model_aeat_369_model_report,base.group_user,1,1,1,1
+access_aeat_369_model_report_line_user,l10n_es_aeat_mod369_new.aeat.369.model.report.line,model_aeat_369_model_report_line,base.group_user,1,1,1,1
+access_l10n_es_aeat_report_export_to_boe_new_user,l10n_es_aeat_mod369_new.l10n.es.aeat.report.export_to_boe.new,model_l10n_es_aeat_report_export_to_boe_new,base.group_user,1,1,1,1

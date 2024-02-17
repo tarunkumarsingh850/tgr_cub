@@ -1,0 +1,5 @@
+order_reference,customer_details/code,customer_details/address_line_1,customer_details/email,customer_details/phone,customer_details/warehouse_code,order_details/product_details/code,order_details/quantity,order_details/unit_price
+test,123456,test address 1,test@gmail.com,98374932875,DROP1MALAG,FURN_6666,2,50000
+,,,,,E-COM11,4,50500
+test,123456,test address 2,test@gmail.com,123456789,DROP1MALAG,KKK1234,5,60700
+,,,,,PPP45678,7,90879

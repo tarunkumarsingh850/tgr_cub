@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="account_fiscal_postion_taxjar" model="ir.ui.view">
+        <field name="name">account.fiscal.postion.taxjar</field>
+        <field name="model">account.fiscal.position</field>
+        <field name="inherit_id" ref="account.view_account_position_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="taxjar_account_id" domain="[('state','=','confirm')]"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

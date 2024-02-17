@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="account_move_view_form_import" model="ir.ui.view">
+            <field name="name">account.move.invoice.discount.view.form.import</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+            <xpath expr="//form/sheet/notebook/page/field[@name='line_ids']" position="before">
+                <button string ="Import Lines"
+                name="action_import_line"
+                type="object"
+                class="oe_highlight"
+                attrs="{'invisible':[('move_type', '=', 'entry')]}"
+                states="draft"/>
+            </xpath>
+            </field>
+          </record>
+    </data>
+</odoo>

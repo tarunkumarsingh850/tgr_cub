@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="magento_attribute_update_view_form" model="ir.ui.view">
+            <field name="name">magento.attribute.update.view.form</field>
+            <field name="model">magento.attribute.update</field>
+            <field name="arch" type="xml">
+                <form string="Magento Attribute Update">
+                    <sheet>
+                        <group>
+                            <field name="upload" />
+                        </group>
+                        <group>
+                            <button string="Download Template" name="generate_template" type="object"/>
+                        </group>
+                        <footer>
+                            <button string="Upload File" name="generate_update" type="object" class="oe_highlight"/>
+                            <button string="Cancel" special="cancel"/>
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="magento_attribute_update_action" model="ir.actions.act_window">
+            <field name="name">Update Magento Attributes</field>
+            <field name="res_model">magento.attribute.update</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="menu_update_magento_attribute"
+            name="Update Magento Attributes"
+            parent="bi_barcode.menu_update_sales_price"
+            action="magento_attribute_update_action"
+            sequence="4"/>
+
+
+
+
+    </data>
+
+
+</odoo>

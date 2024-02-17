@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- <record id="action_sale_wise_report" model="ir.actions.client">
+            <field name="name">Sale Summary Report</field>
+            <field name="tag">category_wise_report</field>
+            <field name="context" eval="{'model': 'report.bi_dynamic_sale_report.sale_order_report'}" />
+        </record> -->
+
+        <record id="sale_summary_report_wizard_form" model="ir.ui.view">
+            <field name="name">Sale Summary Report</field>
+            <field name="model">sale.summary.report</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <group>
+                            <field name="date" string='From Date' />
+                            <field name="to_date" />
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="export_xls" type="object" default_focus="1" string="Excel" class="oe_highlight" context="{'xls_export':1}"/>
+                        <!-- <button name="export_pdf" type="object" default_focus="1" string="PDF" class="oe_highlight" context="{'xls_export':1}"/>
+                        <button name="action_view" type="object" class="oe_stat_button" icon="fa-bars" string="View"/> -->
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="sale_summary_wizard_action" model="ir.actions.act_window">
+            <field name="name">Sale Summary Report</field>
+            <field name="res_model">sale.summary.report</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem
+            id="sale_summary_report_menu_item"
+            name="Sale Summary Report"
+            action="sale_summary_wizard_action"
+            parent="sale.menu_sale_report"
+            sequence="100"
+        />
+
+    </data>
+</odoo>

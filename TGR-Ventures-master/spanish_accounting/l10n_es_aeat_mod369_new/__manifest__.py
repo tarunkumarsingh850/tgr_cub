@@ -1,0 +1,20 @@
+{
+    "name": "AEAT modelo 369 NEW",
+    "version": "15.0.1.0.0",
+    "category": "Accounting",
+    "author": "Bassam Infotech LLP",
+    "website": "https://bassaminfotech.com",
+    "support": "sales@bassaminfotech.com",
+    "license": "OPL-1",
+    "category": "Account",
+    "version": "15.0.0.1",
+    "depends": ["l10n_es_aeat", "l10n_eu_oss_oca"],
+    "data": [
+        "security/ir.model.access.csv",
+        "wizards/export_to_boe_wizard.xml",
+        "views/mod369_new.xml",
+        "reports/report.xml",
+        "reports/report_template.xml",
+    ],
+    "installable": True,
+}

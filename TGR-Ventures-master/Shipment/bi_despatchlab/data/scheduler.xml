@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data noupdate="1">
+
+        <!--Cron to process delivery-->
+        <record id="ir_cron_process_diamond_orders" model="ir.cron">
+            <field name="name">Process diamond orders</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="state">code</field>
+            <field name="code">model.send_diamond_logistics_order_cron()</field>
+            <field name="active" eval="False"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+        </record>
+
+
+
+        <!--Cron to process delivery from picking-->
+        <record id="ir_cron_process_diamond_orders_from_picking" model="ir.cron">
+            <field name="name">Process diamond orders from Stock Transfer</field>
+            <field name="model_id" ref="stock.model_stock_picking"/>
+            <field name="state">code</field>
+            <field name="code">model.send_diamond_shipment_cron()</field>
+            <field name="active" eval="False"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+        </record>
+
+        <!--Cron to process delivery-->
+        <record id="ir_cron_get_shipment_diamond_orders" model="ir.cron">
+            <field name="name">Get shipment diamond orders</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="state">code</field>
+            <field name="code">model.get_despatchlab_shipment_cron()</field>
+            <field name="active" eval="False"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+        </record>
+
+    </data>
+
+
+</odoo>

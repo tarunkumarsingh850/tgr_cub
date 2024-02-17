@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="res.groups" id="group_access_mark_as_fully_billed">
+            <field name="name">Access Mark As Fully Billed</field>
+        </record>
+    </data>
+</odoo>

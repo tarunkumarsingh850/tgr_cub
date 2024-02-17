@@ -1,0 +1,18 @@
+<odoo>
+  <data>
+
+    <record id="account_tax_inherit_form" model="ir.ui.view">
+      <field name="model">account.tax</field>
+      <field name="name">account.tax.inherit.form</field>
+      <field name="inherit_id" ref="account.view_tax_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='name']" position="after">
+          <field name="code"/>
+          <field name="is_export_tax"/>
+          <field name="is_intra_operation"/>
+        </xpath>
+      </field>
+    </record>
+
+  </data>
+</odoo>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_barneys_master_tree" model="ir.ui.view">
+            <field name="name">barneys.master.tree</field>
+            <field name="model">barneys.master</field>
+            <field name="arch" type="xml">
+                <tree string="Barneys Pricelist">
+                    <field name="odoo_sku"/>
+                    <field name="barneys_sku"/>
+                     <field name="selling_price"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_barneys_master_form" model="ir.ui.view">
+            <field name="name">barneys.master.form</field>
+            <field name="model">barneys.master</field>
+            <field name="arch" type="xml">
+                <form string="Barneys Pricelist">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="odoo_sku"/>
+                                <field name="selling_price"/>
+                            </group>
+                            <group >
+                                <field name="barneys_sku"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_barneys_master" model="ir.actions.act_window">
+            <field name="name">Barneys Pricelist</field>
+            <field name="res_model">barneys.master</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_barneys_master_tree"/>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a record
+              </p>
+            </field>
+        </record>
+        <menuitem name="Barneys Pricelist"
+            id="menu_barneys"
+            parent="stock.menu_stock_config_settings"
+            action="action_barneys_master"
+            sequence="100"/>
+
+    </data>
+</odoo>

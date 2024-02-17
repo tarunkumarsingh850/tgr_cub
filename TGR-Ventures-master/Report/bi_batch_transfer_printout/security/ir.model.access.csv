@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_zone_master_user,bi_batch_transfer_printout.zone.master,model_zone_master,base.group_user,1,1,1,1

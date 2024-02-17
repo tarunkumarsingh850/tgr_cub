@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="vendor_import_view_form" model="ir.ui.view">
+            <field name="name">vendor.import.view.form</field>
+            <field name="model">import.vendor</field>
+            <field name="arch" type="xml">
+                <form string="Vendor Import">
+                    <group>
+                        <field name="excel_file" required="True"/>
+                    </group>
+                    <footer>
+                        <button name="import_xls" string="Import Excel" type="object" class="btn-primary" />
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="vendor_import_action" model="ir.actions.act_window">
+        <field name="name">Vendor Import</field>
+        <field name="res_model">import.vendor</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        </record>
+
+    </data>
+</odoo>

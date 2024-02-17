@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_historical_sale_data,historical_sale_data,model_historical_sale_data,base.group_user,1,1,1,1
+access_historical_sale_data_line,historical_sale_data_line,model_historical_sale_data_line,base.group_user,1,1,1,1

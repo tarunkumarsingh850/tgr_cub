@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="import_reordering_view_form" model="ir.ui.view">
+            <field name="name">import.reordering.view.form</field>
+            <field name="model">import.reordering</field>
+            <field name="arch" type="xml">
+                <form string="Reordering Import">
+                    <group>
+
+                        <group>
+                            <field name="excel_file"/>
+                        </group>
+                        <group>
+                            <button string="Download Template New" name="export_template" type="object"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="import_xls" string="Import Excel" type="object" class="btn-primary" />
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="import_reordering_action" model="ir.actions.act_window">
+            <field name="name">Reordering Import</field>
+            <field name="res_model">import.reordering</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</odoo>

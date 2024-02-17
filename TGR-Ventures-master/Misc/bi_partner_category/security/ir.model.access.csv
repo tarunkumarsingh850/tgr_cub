@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_partner_category,partner.category,model_partner_category,,1,1,1,1
+access_partner_category_line,partner.category.line,model_partner_category_line,,1,1,1,1
+access_reminder_user,reminder.user,model_reminder_user,,1,1,1,1
+access_reminder_user_line,reminder.user.line,model_reminder_user_line,,1,1,1,1

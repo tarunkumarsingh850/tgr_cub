@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="purchase_update_wizard" model="ir.ui.view">
+      <field name="name">purchase.update.wizard</field>
+      <field name="model">purchase.order.update.wizard</field>
+      <field name="arch" type="xml">
+        <form string="Import Lines">
+          <group>
+            <group>
+              <field name="excel_file"/>
+            </group>
+            <group>
+              <button string="Download Template New" name="export_lpo_template" type="object"/>
+            </group>
+          </group>
+          <footer>
+            <button name="load_lines" string="Import" type="object" class="btn-primary"/>
+            <button string="Cancel" class="btn-default" special="cancel"/>
+          </footer>
+        </form>
+      </field>
+    </record>
+
+    <record id="purchase_order_wizard_form" model="ir.actions.act_window">
+      <field name="name">Purchase Order Import</field>
+      <field name="res_model">purchase.order.update.wizard</field>
+      <field name="view_mode">form</field>
+      <field name="view_id" ref="purchase_update_wizard"/>
+      <field name="target">new</field>
+  </record>
+
+
+    <menuitem
+        id="menu_view_purchase_order_form"
+        name="Purchase Order Import"
+        action="purchase_order_wizard_form"
+        sequence="30"
+        parent = "purchase.menu_procurement_management"
+        />
+
+</odoo>

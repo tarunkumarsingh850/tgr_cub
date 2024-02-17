@@ -1,0 +1,14 @@
+<odoo>
+
+    <record id="view_stock_picking_inherit_excel_receipt" model="ir.ui.view">
+        <field name="name">view.stock.picking.inherit.excel.receipt</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header/button[@name='do_print_picking']" position="after">
+               <button name="button_print_excel" string="Print Excel" class="oe_highlight" type="object"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

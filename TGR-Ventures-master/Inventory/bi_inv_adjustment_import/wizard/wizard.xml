@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="stock_adjustment_wizard" model="ir.ui.view">
+      <field name="name">stock.adjustments.wizard</field>
+      <field name="model">stock.adjustment.wizard</field>
+      <field name="arch" type="xml">
+        <form string="Import Lines">
+          <group>
+            <group>
+              <field name="excel_file"/>
+            </group>
+            <group>
+              <button string="Download Template New" name="export_adj_template" type="object"/>
+            </group>
+          </group>
+          <footer>
+            <button name="load_lines" string="Import" type="object" class="btn-primary"/>
+            <button string="Cancel" class="btn-default" special="cancel"/>
+          </footer>
+        </form>
+      </field>
+    </record>
+
+    <record id="stock_adj_wizard_form" model="ir.actions.act_window">
+      <field name="name">Stock Adjustment Import</field>
+      <field name="res_model">stock.adjustment.wizard</field>
+      <field name="view_mode">form</field>
+      <field name="view_id" ref="stock_adjustment_wizard"/>
+      <field name="target">new</field>
+  </record>
+
+</odoo>

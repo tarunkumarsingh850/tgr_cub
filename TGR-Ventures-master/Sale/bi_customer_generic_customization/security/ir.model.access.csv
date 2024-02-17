@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_customer_class,customer_class,model_customer_class,base.group_user,1,1,1,1
+access_sales_person_line,sales_person_line,model_sales_person_line,base.group_user,1,1,1,1
+access_product_brand_line_user,bi_customer_generic_customization.product.brand.line,model_product_brand_line,base.group_user,1,1,1,1

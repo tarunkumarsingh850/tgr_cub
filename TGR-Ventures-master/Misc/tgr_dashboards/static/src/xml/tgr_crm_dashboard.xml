@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <!--Template for tgr crm dashboard-->
+    <t t-name="tgrCrmDashboard">
+        <div class="text-center p-4 tgr-crm-dashboard">
+
+            <!--Filters-->
+            <div class="row mr-3 ml-4 filters-container">
+
+                <!--Date range selector-->
+                <div class="col-md-4 filter-col">
+                    <div class="chart-card-filter filter-background">
+                        <label class="o_form_label font-bold">Date Range</label>
+                        <div id="chart-date-range" >
+                            <span><i class="fa fa-calendar"/>  <span id="load-data"/>  <i class="fa fa-caret-down"/></span>
+                        </div>
+                    </div>
+                </div>
+                <!--Country selector-->
+                <div class="col-md-4 filter-data">
+                    <div class="chart-card-filter filter-background">
+                        <label class="o_form_label font-bold">Country</label>
+                        <select name="country" id="country">
+                            <option value="all" selected="1">All</option>
+                        </select>
+                    </div>
+                </div>
+                <!--Salesperson selector-->
+                <div class="col-md-4 filter-data">
+                    <div class="chart-card-filter filter-background">
+                        <label class="o_form_label font-bold">Salesperson</label>
+                        <select name="salesperson" id="salesperson">
+                            <option value="all" selected="1">All</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+
+            <!--Chart containers-->
+            <div class="row mt-4 mr-3 ml-3 chart-container">
+
+                <!--CRM Leads and Conversions-->
+                <div class="col-md-12 filter-col">
+                    <div class="chart-card content-background">
+                        <!--Title-->
+                        <div class="sale-order-title text-center mb-4 mt-4">
+                            <h2>CRM Leads And Conversions</h2>
+                        </div>
+                        <!--CRM leads and conversions table-->
+                        <div id="amount-of-each-product-sold-table" class="crm-leads-and-conversions crm-leads-and-conversions-table">
+                            <table class="table table-sm table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">Salesperson</th>
+                                        <th class="text-center">Number of Leads</th>
+                                        <th class="text-center">New Leads</th>
+                                        <th class="text-center">Leads Converted to Customers</th>
+                                        <th class="text-center">Leads Converted to Purchasing Customers</th>
+                                        <th class="text-center">Total Revenue from Converted Leads</th>
+                                        <th class="text-center">Total Revenue from New Customers</th>
+                                        <th class="text-center">Lead to Purchase Conversion Rate %</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="crm-leads-and-conversions-tbody"/>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Leads Information-->
+                <div class="col-md-4 filter-col mt-4">
+                    <div class="chart-card content-background">
+                        <!--Title-->
+                        <div class="sale-order-title text-center mb-5 mt-4">
+                            <h2>Leads Information</h2>
+                        </div>
+                        <!--Leads Information-->
+                        <div id="leads-information-table" class="leads-information">
+                            <table class="table table-sm table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">Customer</th>
+                                        <th class="text-center">CountryID</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="leads-information-tbody"/>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Salesperson vs Revenue Chart-->
+                <div class="col-md-8 filter-col mt-4">
+                    <div class="chart-card content-background">
+                        <!--Title-->
+                        <div class="sale-order-title text-center mb-3 mt-4">
+                            <h2>Salesperson Vs Revenue</h2>
+                        </div>
+                        <!--Salesperson vs Revenue area chart-->
+                        <div id="salesperson_vs_revenue">
+                            <canvas id="salespersonVsRevenue" height="440"/>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </t>
+
+</templates>

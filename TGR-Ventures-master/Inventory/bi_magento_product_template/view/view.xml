@@ -1,0 +1,31 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="inherit_magento_product_template">
+            <field name="name">magento.product.template.view.inherit.form</field>
+            <field name="model">magento.product.template</field>
+            <field name="inherit_id" ref="odoo_magento2_ept.magento_product_template_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='standard_price_uom']" position="after">
+                    <field name="retail_uk_price"/>
+                    <field name="retail_za_price"/>
+                    <field name="retail_us_price"/>
+                    <field name="retail_default_price"/>
+                    <field name="retail_special_price"/>
+                    <field name="retail_special_us"/>
+                    <field name="retail_special_za"/>
+                    <field name="retail_special_uk"/>
+                    <field name="wholesale_special_price"/>
+                    <field name="wholesale_special_us"/>
+                    <field name="wholesale_special_za"/>
+                    <field name="wholesale_special_uk"/>
+                    <field name="wholesale_price_value"/>
+                    <field name="wholesale_us"/>
+                    <field name="wholesale_za"/>
+                    <field name="wholesale_uk"/>
+                    <field name="za_price"/>
+                </xpath>
+            </field>
+        </record>
+
+      </data>
+  </odoo>

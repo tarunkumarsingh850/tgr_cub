@@ -1,0 +1,57 @@
+<odoo>
+  <data>
+        <record id="view_product_sex_form_view" model="ir.ui.view">
+            <field name="name">product.sex.form</field>
+            <field name="model">product.sex</field>
+            <field name="arch" type="xml">
+                <form string="Product Sex">
+                    <group name="main_group">
+                        <field name="product_sex" />
+                        <field name="product_sex_des"/>
+                        <field name="magento_id"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+    <record id="view_product_sex_tree" model="ir.ui.view">
+        <field name="name">product.sex.tree</field>
+        <field name="model">product.sex</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="product_sex" />
+                <field name="product_sex_des"/>
+                <field name="magento_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_product_sex_search" model="ir.ui.view">
+        <field name="name">product.sex.search</field>
+        <field name="model">product.sex</field>
+        <field name="arch" type="xml">
+            <search string="Search Product Sex">
+                <field name="product_sex" />
+                <field name="product_sex_des"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_product_sex_tree" model="ir.actions.act_window">
+        <field name="name">Product Sex</field>
+        <field name="res_model">product.sex</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Click to Create a Product Sex.</p>
+        </field>
+    </record>
+
+    <menuitem
+        action="action_product_sex_tree"
+        id="menu_action_product_sex_tree"
+        name="Product Sex"
+        parent="stock.menu_stock_config_settings"
+    />
+
+  </data>
+  </odoo>

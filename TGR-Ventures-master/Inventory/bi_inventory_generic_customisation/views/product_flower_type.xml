@@ -1,0 +1,57 @@
+<odoo>
+  <data>
+        <record id="view_product_flower_type_form_view" model="ir.ui.view">
+            <field name="name">flower.type.form</field>
+            <field name="model">flower.type</field>
+            <field name="arch" type="xml">
+                <form string="Product Flower Type">
+                    <group name="main_group">
+                        <field name="flower_type" />
+                        <field name="flower_type_des"/>
+                        <field name="magento_id"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+    <record id="view_product_flower_type_tree" model="ir.ui.view">
+        <field name="name">flower.type.tree</field>
+        <field name="model">flower.type</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="flower_type" />
+                <field name="flower_type_des"/>
+                <field name="magento_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_product_flower_type_search" model="ir.ui.view">
+        <field name="name">flower.type.search</field>
+        <field name="model">flower.type</field>
+        <field name="arch" type="xml">
+            <search string="Search Product Flower Type">
+                <field name="flower_type" />
+                <field name="flower_type_des"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_product_flower_type_tree" model="ir.actions.act_window">
+        <field name="name">Product Flower Type</field>
+        <field name="res_model">flower.type</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Click to Create a Product Flower Type.</p>
+        </field>
+    </record>
+
+    <menuitem
+        action="action_product_flower_type_tree"
+        id="menu_action_product_flower_type_tree"
+        name="Product Flower Type"
+        parent="stock.menu_stock_config_settings"
+    />
+
+  </data>
+  </odoo>

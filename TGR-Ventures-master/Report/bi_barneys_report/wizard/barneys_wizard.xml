@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="barneys_wizard" model="ir.ui.view">
+      <field name="name">barneys.report.wizard.view</field>
+      <field name="model">barneys.wizard</field>
+      <field name="arch" type="xml">
+        <form string="Barneys Report">
+          <group>
+            <group>
+                <field name="start_date" required="1"/>
+                <field name="end_date" required="1"/>
+            </group>
+            <group>
+                <field name="cost_percentage"/>
+            </group>
+          </group>
+          <footer>
+            <button name="export_excel_report" string="Export Barneys Report" type="object" class="btn-primary"/>
+            <button string="Cancel" class="btn-default" special="cancel"/>
+          </footer>
+        </form>
+      </field>
+    </record>
+
+    <record id="barneys_report_action" model="ir.actions.act_window">
+      <field name="name">Barneys Report</field>
+      <field name="res_model">barneys.wizard</field>
+      <field name="view_mode">form</field>
+      <field name="target">new</field>
+  </record>
+
+    <menuitem
+        id="menu_barneys_report"
+        name="Barneys Report"
+        action="barneys_report_action"
+        parent="sale.menu_sale_report"
+         sequence="100"
+        />
+
+</odoo>

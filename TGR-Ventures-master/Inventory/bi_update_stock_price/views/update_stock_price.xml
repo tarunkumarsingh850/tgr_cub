@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+
+        <record id="stock_price_update_wizard_view_form" model="ir.ui.view">
+            <field name="name">price.update.wizard.view.form</field>
+            <field name="model">update.price.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Update Stock Price">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="magento_website_id" required="1"/>
+                                <field name="brand_ids" widget="many2many_tags"  required="1"/>
+                            </group>
+
+                        </group>
+                        <footer>
+                            <button string="Update" name="update_price" type="object" class="oe_highlight"/>
+                            <button string="Cancel" special="cancel"/>
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="update_stock_price_wizard_action" model="ir.actions.act_window">
+            <field name="name">Update Stock Price</field>
+            <field name="res_model">update.price.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem
+            id="stock_price_update_wizard_menu"
+            name="Update Stock Price"
+            action="update_stock_price_wizard_action"
+            parent="stock.menu_stock_config_settings"
+            groups="update_product_menu_group"
+            sequence="5"/>
+
+    </data>
+
+</odoo>

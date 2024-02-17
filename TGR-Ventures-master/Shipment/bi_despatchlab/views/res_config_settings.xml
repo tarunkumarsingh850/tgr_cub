@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_config_settings_view_form_inherit" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="stock.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('settings')]/div[@data-key='stock']" position="inside">
+                <h2>Despatch Lab Customer Settings</h2>
+                <div class="row mt16 o_settings_container">
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_right_pane">
+                            <label for="despatchlab_warehouse_id" string="Warehouse"/>
+                            <div class="row">
+                                <div class="text-muted col-lg-8">
+                                </div>
+                            </div>
+                            <div class="content-group">
+                                <div class="mt16">
+                                    <field name="despatchlab_warehouse_id" class="o_light_label"
+                                        placeholder="Warehouse"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_right_pane">
+                            <label for="despatchlab_partner_ids" string="Magento ID of Customer"/>
+                            <div class="row">
+                                <div class="text-muted col-lg-8">
+                                </div>
+                            </div>
+                            <div class="content-group">
+                                <div class="mt16">
+                                    <field name="despatchlab_partner_ids" class="o_light_label"
+                                        placeholder="Magento ID" widget="many2many_tags"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_right_pane">
+                            <label for="despatchlab_username" string="Despatchlab Username"/>
+                            <div class="row">
+                                <div class="text-muted col-lg-8">
+                                </div>
+                            </div>
+                            <div class="content-group">
+                                <div class="mt16">
+                                    <field name="despatchlab_username" class="o_light_label"
+                                        placeholder="Despatchlab Username"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_right_pane">
+                            <label for="despatchlab_password" string="Despatchlab Password"/>
+                            <div class="row">
+                                <div class="text-muted col-lg-8">
+                                </div>
+                            </div>
+                            <div class="content-group">
+                                <div class="mt16">
+                                    <field name="despatchlab_password" class="o_light_label"
+                                        placeholder="Despatchlab Password" password="True"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

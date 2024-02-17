@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+     <record model="mail.activity.type" id="mail_document_activity_reminder">
+        <field name="name">Partner Document Reminder</field>
+        <field name="icon">fa-file-text-o</field>
+        <field name="delay_count">0</field>
+    </record>
+</odoo>

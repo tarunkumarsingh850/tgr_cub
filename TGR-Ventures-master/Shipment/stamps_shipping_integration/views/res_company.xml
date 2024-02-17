@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="stamps_credential_configuration" model="ir.ui.view">
+        <field name="name">Stamps.com Configuration</field>
+        <field name="model">res.company</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[last()]" position="after">
+                <page string="Stamps.com Configuration">
+                    <group>
+                        <field name="use_stamps_shipping_provider"/>
+                    </group>
+                    <group attrs="{'invisible': [('use_stamps_shipping_provider', '!=', True)]}">
+                        <field name="stamps_user_name"
+                               attrs="{'required':[('use_stamps_shipping_provider','=',True)]}"/>
+                        <field name="stamps_password"
+                               attrs="{'required':[('use_stamps_shipping_provider','=',True)]}" password="True"/>
+                        <field name="stamps_integrator_id"
+                               attrs="{'required':[('use_stamps_shipping_provider','=',True)]}" password="True"/>
+                        <field name="stamps_api_url"
+                               attrs="{'required':[('use_stamps_shipping_provider','=',True)]}"/>
+                        <!--<field name="stamps_authenticator" attrs="{'invisible':[('stamps_authenticator','=',False)]}"/>-->
+                    </group>
+                    <!--<button class="oe_stat_button" name="generate_stamps_authenticator" type="object" string="Generate Stamps.com Authenticator" icon="fa-flask"/>-->
+                </page>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

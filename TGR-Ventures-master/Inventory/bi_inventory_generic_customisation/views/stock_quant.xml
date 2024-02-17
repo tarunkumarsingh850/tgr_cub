@@ -1,0 +1,80 @@
+<odoo>
+  <data>
+
+    <record model="ir.ui.view" id="stock_quant_view_inherit_filter_form">
+      <field name="name">stock.valuation.quant.view.inherit.filter.form</field>
+      <field name="model">stock.quant</field>
+      <field name="inherit_id" ref="stock.quant_search_view"/>
+      <field name="arch" type="xml">
+          <xpath expr="//field[@name='product_id']" position="after">
+            <field name="brand_id"/>
+          </xpath>
+          <xpath expr="//search/group" position="inside">
+            <filter string="Brand" name="by_brand" domain="[]"  context="{'group_by': 'brand_id'}"/>
+          </xpath>
+      </field>
+  </record>
+
+  <record model="ir.ui.view" id="stock_quant_view_inherited_list_form">
+    <field name="name">stock.valuation.quant.view.inherited.list.form</field>
+    <field name="model">stock.quant</field>
+    <field name="inherit_id" ref="stock.view_stock_quant_tree_editable"/>
+    <field name="arch" type="xml">
+        <xpath expr="//tree/field[@name='lot_id']" position="after">
+          <field name="brand_id" force_save="1"/>
+        </xpath>
+        <xpath expr="//tree/field[@name='product_id']" position="before">
+          <field name="product_sku" />
+            <field name="product_name" invisible="1"/>
+          <field name="recently_created" invisible="1"/>
+        </xpath>
+        <xpath expr="//tree/field[@name='location_id']" position="before">
+          <field name="warehouse_stock_id"/>
+        </xpath>
+        <xpath expr="//tree/field[@name='value']" position="before">
+          <field name="product_cost" force_save="1"/>
+        </xpath>
+        <xpath expr="//tree" position="attributes">
+            <attribute name="decoration-info">(recently_created == True)</attribute>
+        </xpath>
+        <xpath expr="//tree" position="attributes">
+            <attribute name="default_order">product_name ASC</attribute>
+        </xpath>
+    </field>
+  </record>
+
+  <record id="view_adjustment_lidt_stock_inherited_form1" model="ir.ui.view">
+    <field name="name">view.stock.adjustment.order.inherit.form</field>
+    <field name="model">stock.quant</field>
+     <field name="inherit_id" ref="stock.view_stock_quant_tree_inventory_editable" />
+    <field name="arch" type="xml">
+        <xpath expr="//tree/field[@name='quantity']" position="after">
+            <field name="product_cost" />
+            <field name="total_value" />
+            <field name="brand_id" force_save="1"/>
+            <field name="supplier_sku_no" force_save="1"/>
+            <field name="flower_type_id" force_save="1"/>
+            <field name="product_sex_id" force_save="1"/>
+        </xpath>
+        <xpath expr="//tree/field[@name='product_id']" position="before">
+          <field name="product_sku" />
+            <field name="product_name" invisible="1"/>
+        </xpath>
+        <xpath expr="//field[@name='inventory_date']" position="attributes">
+          <attribute name="optional">hide</attribute>
+        </xpath>
+        <xpath expr="//tree" position="attributes">
+            <attribute name="default_order">product_name,brand_id,location_id ASC</attribute>
+        </xpath>
+        <xpath expr="//field[@name='inventory_quantity']" position="after">
+            <field name="total_counted_qty"/>
+        </xpath>
+        <xpath expr="//tree/field[@name='inventory_diff_quantity']" position="after">
+          <field name="apply_value" />
+      </xpath>
+    </field>
+  </record>
+
+  </data>
+
+</odoo>

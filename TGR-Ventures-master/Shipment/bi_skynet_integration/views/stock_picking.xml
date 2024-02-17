@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="stock_picking_skynet_view_form" model="ir.ui.view">
+        <field name="name">stock.picking.skynet.view.form</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button string="Retry" name="retry_skynet" type="object" attrs="{'invisible':[('state','=','done'),('skynet_error','!=',False)]}"/>
+            </xpath>
+            <xpath expr="//field[@name='carrier_id']" position='after'>
+                <group name='skynet' string="Skynet">
+                    <field name="skynet_label_url" widget="url" readonly="1" attrs="{'invisible':[('skynet_label_url','=',False)]}"/>
+                    <field name="skynet_error" readonly="1" attrs="{'invisible':[('skynet_error','=',False)]}"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

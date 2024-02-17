@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+
+        <record id="update_product_disable_wizard_view_form" model="ir.ui.view">
+            <field name="name">update.product.disable.view.form</field>
+            <field name="model">update.product.disable</field>
+            <field name="arch" type="xml">
+                <form string="Update Product Disable">
+                    <sheet>
+                        <group>
+                            <field name="magento_storeview_id" required="1" widget="many2many_tags"/>
+                        </group>
+                        <group>
+                           <field name="brand_ids" widget="many2many_tags"/>
+                       </group>
+                        <footer>
+                            <button string="Update Configurable Products" name="update_product_disable" type="object" class="oe_highlight"/>
+                            <button string="Update Simple Products" name="update_product_template_enable" type="object" class="oe_highlight"/>
+                            <button string="Cancel" special="cancel"/>
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="update_product_disable_wizard_action" model="ir.actions.act_window">
+            <field name="name">Update Enable/Disable</field>
+            <field name="res_model">update.product.disable</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem
+            id="product_disable_update_wizard_menu"
+            name="Update Product Disable"
+            action="update_product_disable_wizard_action"
+            parent="bi_export_product_enable_website.menu_product_configurable_master"
+            groups="update_product_enable_disable_menu_group"
+            sequence="6"/>
+
+
+    </data>
+
+
+</odoo>

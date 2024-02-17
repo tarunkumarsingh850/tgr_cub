@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--TGR Sales Dashboard action-->
+    <record id="action_tgr_sales_dashboard" model="ir.actions.client">
+        <field name="name">TGR Sales Dashboard</field>
+        <field name="tag">tgr_sales_dashboard</field>
+    </record>
+
+    <!--Root menuitem-->
+    <menuitem id="menu_root_tgr_dashboard" name="TGR Dashboards" web_icon="tgr_dashboards,static/description/icon.png" sequence="25"/>
+    <!--Dashboard menuitem for sale-->
+    <menuitem id="menu_tgr_dashboard" parent="menu_root_tgr_dashboard" name="Sales Dashboard" action="action_tgr_sales_dashboard" sequence="1"/>
+
+    <!--TGR CRM dashboard action-->
+    <record id="action_tgr_crm_dashboard" model="ir.actions.client">
+        <field name="name">TGR CRM Dashboard</field>
+        <field name="tag">tgr_crm_dashboard</field>
+    </record>
+
+    <!--Dashboard menuitem for crm-->
+    <menuitem id="menu_crm_dashboard" parent="menu_root_tgr_dashboard" name="CRM Dashboard" action="action_tgr_crm_dashboard" sequence="20"/>
+
+    <!--TGR Purchase dashboard action-->
+    <record id="action_tgr_purchase_dashboard" model="ir.actions.client">
+        <field name="name">TGR Purchase Dashboard</field>
+        <field name="tag">tgr_purchase_dashboard</field>
+    </record>
+
+    <!--Dashboard menuitem for purchase-->
+    <menuitem id="menu_purchase_dashboard" parent="menu_root_tgr_dashboard" name="Purchase Dashboard" action="action_tgr_purchase_dashboard" sequence="35"/>
+
+</odoo>

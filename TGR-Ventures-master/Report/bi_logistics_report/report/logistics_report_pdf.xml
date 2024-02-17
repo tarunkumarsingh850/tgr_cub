@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <template id="logistic_pdf_report">
+            <t t-call="web.html_container">
+                <!-- <t t-foreach="docs" t-as="o"> -->
+                    <div class="page">
+                        <table style="width:100%">
+                            <tr style="width:100%">
+                                <td style="width:50%">
+                                    <t t-if="company_id">
+                                        <b><t t-esc="company_id.name"></t></b>
+                                    </t>
+                                    <br/>
+                                    <t t-if="company_id.street">
+                                        <t t-esc="company_id.street">,</t>
+                                    </t>
+                                    <t t-if="company_id.city">
+                                        <t t-esc="company_id.city">,</t>
+                                    </t>
+                                    <br/>
+                                    <t t-if="company_id.state_id">
+                                        <t t-esc="company_id.state_id.name">,</t>
+                                    </t>
+                                    <t t-if="company_id.country_id">
+                                        <t t-esc="company_id.country_id.name"></t>
+                                    </t>
+                                </td>
+                                <td style="width:50%">
+                                    <span style="font-size:30px;padding-left:180px;">
+                                        <b>Invoice</b>
+                                    </span>
+                                    <br/>
+                                    <span style="font-size:15px;padding-left:180px;">                                        <b>Invoice Date:</b>
+                                        <t t-if="date">
+                                            <t t-esc="date.strftime('%d-%m-%Y')"></t>
+                                        </t>
+                                    </span>
+                                </td>
+                            </tr>
+
+                        </table>
+                        <br/>
+                        <table  style="width:40%;border:1px solid black; border-collapse: collapse;">
+                            <tr style="width:40%;border:1px solid black; border-collapse: collapse;">
+                                <td style="width:40%;border:1px solid black;text-align:center; border-collapse: collapse;">
+                                    <b>BILL FROM</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <t t-if="logistic_company_id">
+                                        <t t-esc="logistic_company_id.name"></t>
+                                    </t>
+                                    <br/>
+                                    <t t-if="logistic_company_id.street">
+                                        <t t-esc="logistic_company_id.street">,</t>
+                                    </t>
+                                    <t t-if="logistic_company_id.city">
+                                        <t t-esc="logistic_company_id.city">,</t>
+                                    </t>
+                                    <br/>
+                                    <t t-if="logistic_company_id.state_id">
+                                        <t t-esc="logistic_company_id.state_id.name">,</t>
+                                    </t>
+                                    <t t-if="logistic_company_id.country_id">
+                                        <t t-esc="logistic_company_id.country_id.name"></t>
+                                    </t>
+                                </td>
+                            </tr>
+                        </table>
+                        <br/> <br/>
+                        <table style="width:100%;border:1px solid black; border-collapse: collapse;">
+                            <tr style="width:100%;border:1px solid black; border-collapse: collapse;">
+                                <th style="width:40%;border:1px solid black; border-collapse: collapse;">
+                                    Description
+                                </th>
+                                <th style="width:20%;border:1px solid black; border-collapse: collapse;">
+                                    Quantity
+                                </th>
+                                <th style="width:20%;border:1px solid black; border-collapse: collapse;">
+                                    Cost Per Line
+                                </th>
+                                <th style="width:20%;border:1px solid black; border-collapse: collapse;">
+                                    Amount
+                                </th>
+                            </tr>
+                            <tr style="width:100%;border:1px solid black; border-collapse: collapse;">
+                                <td style="border:1px solid black; border-collapse: collapse;text-align:center;padding:5px;">
+                                   Cost
+                                </td>
+                                <td style="border:1px solid black; border-collapse: collapse;text-align:right;padding:5px;">
+                                    <t t-if="total_cost_qty">
+                                        <t t-esc="round(total_cost_qty)"></t>
+                                    </t>
+                                </td>
+                                <td style="border:1px solid black; border-collapse: collapse;text-align:right;padding:5px;">
+                                    <t t-if="cost_per_line">
+                                        <t t-esc="round(cost_per_line)"></t>
+                                    </t>
+                                </td>
+                                <td style="border:1px solid black; border-collapse: collapse;text-align:right;padding:5px;">
+                                    <t t-if="total_cost">
+                                        <t t-esc="total_cost"></t>
+                                    </t>
+                                </td>
+                            </tr>
+                            <tr style="width:100%;border:1px solid black; border-collapse: collapse;">
+                                <td style="border:1px solid black; border-collapse: collapse;text-align:center;padding:5px;">
+                                    Additional Cost
+                                </td>
+                                <td style="border:1px solid black; border-collapse: collapse;text-align:right;padding:5px;">
+
+                                    <t t-if="total_additional_cost_qty">
+                                        <t t-esc="round(total_additional_cost_qty)"></t>
+                                    </t>
+                                </td>
+                                <td style="border:1px solid black; border-collapse: collapse;text-align:right;padding:5px;">
+                                    <t t-if="additional_cost_per_line">
+                                        <t t-esc="round(additional_cost_per_line)"></t>
+                                    </t>
+                                </td>
+                                <td style="border:1px solid black; border-collapse: collapse;text-align:right;padding:5px;">
+                                    <t t-if="total_additional_cost">
+                                        <t t-esc="total_additional_cost"></t>
+                                    </t>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                <!-- </t> -->
+            </t>
+        </template>
+    </data>
+</odoo>

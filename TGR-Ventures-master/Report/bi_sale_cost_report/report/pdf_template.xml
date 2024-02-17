@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="report_sale_dynamic_pdf">
+            <t t-call="web.html_container">
+                <t t-call="bi_dynamic_sale_report.potrait_header">
+                    <div class="page">
+                        <table width="100%" style="page-break-inside: avoid !important;">
+                            <tr>
+                                <td style="text-align:center;border:1px solid black;padding:5px;vertical-align:middle;"> <b>Type </b></td>
+                                <td style="text-align:center;border:1px solid black;padding:5px;vertical-align:middle;"> <b>Ref.Nbr.</b></td>
+                                <td style="text-align:center;border:1px solid black;padding:5px;vertical-align:middle;"> <b>Order Date</b></td>
+                                <td style="text-align:center;border:1px solid black;padding:5px;vertical-align:middle;"> <b>Status Amount</b></td>
+                                <td style="text-align:center;border:1px solid black;padding:5px;vertical-align:middle;"> <b>Currency</b></td>
+                                <td style="text-align:center;border:1px solid black;padding:5px;vertical-align:middle;"> <b>Customer ID </b></td>
+                                <td style="text-align:center;border:1px solid black;padding:5px;vertical-align:middle;"> <b>Customer Name</b></td>
+                                <td style="text-align:center;border:1px solid black;padding:5px;vertical-align:middle;"> <b>Payment Method </b></td>
+                                <td style="text-align:center;border:1px solid black;padding:5px;vertical-align:middle;"> <b>Warehouse </b></td>
+                                <td style="text-align:center;border:1px solid black;padding:5px;vertical-align:middle;"> <b>Order Qty. </b></td>
+                                <td style="text-align:center;border:1px solid black;padding:5px;vertical-align:middle;"> <b>Open Qty. </b></td>
+                                <td style="text-align:center;border:1px solid black;padding:5px;vertical-align:middle;"> <b>Line Total</b></td>
+                                <td style="text-align:center;border:1px solid black;padding:5px;vertical-align:middle;"> <b>Open Amount</b> </td>
+                            </tr>
+                            <t t-foreach="lines" t-as="doc">
+                                <tr>
+                                    <td style="text-align:center;border:1px solid black;padding:5px;vertical-align:middle;"> <t t-esc="doc['type']"/> </td>
+                                    <td style="text-align:center;border:1px solid black;padding:5px;vertical-align:middle;"> <t t-esc="doc['ref']"/> </td>
+                                    <td style="text-align:center;border:1px solid black;padding:5px;vertical-align:middle;"> <t t-esc="doc['order_date']"/> </td>
+                                    <td style="text-align:center;border:1px solid black;padding:5px;vertical-align:middle;"> <t t-esc="doc['status']"/> </td>
+                                    <td style="text-align:center;border:1px solid black;padding:5px;vertical-align:middle;"> <t t-esc="doc['currency']"/> </td>
+                                    <td style="text-align:center;border:1px solid black;padding:5px;vertical-align:middle;"> <t t-esc="doc['cus_id']"/> </td>
+                                    <td style="text-align:center;border:1px solid black;padding:5px;vertical-align:middle;"> <t t-esc="doc['cus_name']"/> </td>
+                                    <td style="text-align:center;border:1px solid black;padding:5px;vertical-align:middle;"> <t t-esc="doc['payment_method']"/> </td>
+                                    <td style="text-align:center;border:1px solid black;padding:5px;vertical-align:middle;"> <t t-esc="doc['warehouse']"/> </td>
+                                    <td style="text-align:center;border:1px solid black;padding:5px;vertical-align:middle;"> <t t-esc="doc['order_qty']"/> </td>
+                                    <td style="text-align:center;border:1px solid black;padding:5px;vertical-align:middle;"> <t t-esc="doc['open_qty']"/> </td>
+                                    <td style="text-align:center;border:1px solid black;padding:5px;vertical-align:middle;"> <t t-esc="doc['line_total']"/> </td>
+                                    <td style="text-align:center;border:1px solid black;padding:5px;vertical-align:middle;"> <t t-esc="doc['open_amount']"/> </td>
+                                </tr>
+                            </t>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

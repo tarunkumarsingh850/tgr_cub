@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="account_account_tag_view_form_inherit" model="ir.ui.view">
+        <field name="name">account.account.tag.view.form.inherit</field>
+        <field name="model">account.account.tag</field>
+        <field name="inherit_id" ref="account.account_tag_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='tax_negate']" position="after">
+                <field name="is_intrastat" />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

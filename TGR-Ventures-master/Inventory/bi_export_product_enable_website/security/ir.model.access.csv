@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_magento_product_configurable_user,bi_export_product_enable_website.magento.product.configurable,model_magento_product_configurable,base.group_user,1,1,1,1
+access_product_website_export_import_user,bi_export_product_enable_website.product.website.export.import,model_product_website_export_import,base.group_user,1,1,1,1
+access_update_product_disable_user,bi_export_product_enable_website.update.product.disable,model_update_product_disable,base.group_user,1,1,1,1
+access_pack_size_configurable_user,bi_export_product_enable_website.pack.size.configurable,model_pack_size_configurable,base.group_user,1,1,1,1

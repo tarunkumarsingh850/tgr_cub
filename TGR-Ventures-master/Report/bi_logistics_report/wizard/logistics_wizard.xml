@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="logistics_wizard_export_wizard" model="ir.ui.view">
+      <field name="name">logistics.wizard.view</field>
+      <field name="model">logistics.wizard</field>
+      <field name="arch" type="xml">
+        <form string="Export">
+          <group>
+            <group>
+                <field name="start_date"/>
+                <field name="logistics_id"/>
+            </group>
+            <group>
+                <field name="end_date"/>
+            </group>
+          </group>
+          <footer>
+            <button name="export_logistics_report" string="Export" type="object" class="btn-primary"/>
+            <button name="pdf_logistics_report" string="PDF" type="object" class="btn-primary"/>
+            <button string="Cancel" class="btn-default" special="cancel"/>
+          </footer>
+        </form>
+      </field>
+    </record>
+
+    <record id="logistics_wizard_action" model="ir.actions.act_window">
+      <field name="name">Logistics Sales Report</field>
+      <field name="res_model">logistics.wizard</field>
+      <field name="view_mode">form</field>
+      <field name="target">new</field>
+  </record>
+
+    <menuitem
+        id="menu_logistics_report"
+        name="Logistics Sales Report"
+        action="logistics_wizard_action"
+        parent="sale.menu_sale_report"
+         sequence="100"
+        />
+
+</odoo>

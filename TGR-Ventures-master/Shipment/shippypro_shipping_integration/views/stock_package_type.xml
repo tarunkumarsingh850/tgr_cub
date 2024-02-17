@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_stock_package_type_inherit" model="ir.ui.view">
+        <field name="model">stock.package.type</field>
+        <field name="inherit_id" ref="stock.stock_package_type_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='shipper_package_code']" position="after">
+                <field name="shippypro_carrier_id"/>
+            </xpath>
+            <xpath expr="//field[@name='barcode']" position="before">
+                <field name="weight_in_gram"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

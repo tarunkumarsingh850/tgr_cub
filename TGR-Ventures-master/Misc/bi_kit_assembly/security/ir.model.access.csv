@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_bom,bom,model_bill_material,base.group_user,1,1,1,1
+access_bom_line,bom_line,model_bill_material_line,base.group_user,1,1,1,1
+access_bi_kit_assembly,bi_kit_assembly,model_kit_assembly,base.group_user,1,1,1,1
+access_bi_kit_assembly_line,bi_kit_assembly_line,model_kit_assembly_lines,base.group_user,1,1,1,1
+access_kit_assembly_serial,kit_assembly_serial,model_kit_serial,base.group_user,1,1,1,1

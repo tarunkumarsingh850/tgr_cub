@@ -1,0 +1,273 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <data>
+
+        <template id="invoice_memo_temp">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="bi_ticket_ticket.ticket_invoice_memo_report_header">
+                        <div class="page">
+                            <div class="row" >
+                                <div class="col-4" style="color:grey">
+                                   <b> Ticket No.:<![CDATA[&nbsp;]]><![CDATA[&nbsp;]]><t t-esc="o.name"></t><br/></b>
+                                   <b> Dispatch Date:<![CDATA[&nbsp;]]><![CDATA[&nbsp;]]></b>
+                                </div>
+                                <div class="col-4" style="color:grey">
+                                    <!-- <b>SOBatch Nbr:<![CDATA[&nbsp;]]><![CDATA[&nbsp;]]></b> -->
+                                    <!-- <t t-esc="o.name"></t><br/> -->
+                                </div>
+                                <div class="col-4" style="color:grey">
+                                    <b>VAT Number:<![CDATA[&nbsp;]]><![CDATA[&nbsp;]]>
+                                    <t t-esc="o.partner_id.vat"></t>
+                                    <br/></b>
+                                   <b> Ticket Date:</b><![CDATA[&nbsp;]]><![CDATA[&nbsp;]]>
+                                    <t t-esc="o.date"></t><br/>
+                                   <b>Currency:</b> <![CDATA[&nbsp;]]><![CDATA[&nbsp;]]>
+                                    <t t-esc="o.currency_id.name"></t>
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="row" style="border:1px solid black;min-height:25px;width:100%;border-bottom:none;">
+                                <div class="col-6" style="border-right:1px solid black;">
+                                    <b>SOLD TO:</b>
+                                </div>
+                                <div class="col-6">
+                                   <b> DELIVER TO:</b>
+                                </div>
+                            </div>
+                            <div class="row" style="border:1px solid black;min-height:150px;min-height:25px;width:100%;border-bottom:none;">
+                                <div class="col-6">
+                                    <t t-if="o.partner_id.name">
+                                        <t t-esc="o.partner_id.name"></t>
+                                        <br/>
+                                    </t>
+                                    <t t-if="o.partner_id.parent_id">
+                                        <t t-esc="o.partner_id.parent_id.name"></t>
+                                        <br/>
+                                    </t>
+                                    <t t-if="o.partner_id.street">
+                                        <t t-esc="o.partner_id.street"></t>
+                                    </t><br/>
+                                    <t t-if="o.partner_id.street2">
+                                        <t t-esc="o.partner_id.street2">
+                                            ,
+                                        </t>
+                                    </t>
+                                    <t t-if="o.partner_id.city">
+                                        <t t-esc="o.partner_id.city"></t>
+                                    </t><br/>
+                                    <t t-if="o.partner_id.state_id.name">
+                                        <t t-esc="o.partner_id.state_id.name">,</t>
+                                    </t><t t-if="o.partner_id.zip">
+                                        <t t-esc="o.partner_id.zip"></t>
+                                    </t><br/>
+                                    <t t-if="o.partner_id.country_id.name">
+                                        <t t-esc="o.partner_id.country_id.name"></t>
+                                    </t><br/>
+                                </div>
+                                <div class="col-6">
+                                    <t t-if="o.partner_shipping_id.name">
+                                        <t t-esc="o.partner_shipping_id.name"></t>
+                                        <br/>
+                                    </t>
+                                    <t t-if="o.partner_shipping_id.parent_id">
+                                        <t t-esc="o.partner_shipping_id.parent_id.name"></t>
+                                        <br/>
+                                    </t>
+                                    <t t-if="o.partner_shipping_id.street">
+                                        <t t-esc="o.partner_shipping_id.street"></t>
+                                    </t><br/>
+                                    <t t-if="o.partner_shipping_id.street2">
+                                        <t t-esc="o.partner_shipping_id.street2"/>,
+                                    </t>
+                                    <t t-if="o.partner_shipping_id.city">
+                                        <t t-esc="o.partner_shipping_id.city"></t>
+                                    </t><br/>
+                                    <t t-if="o.partner_shipping_id.state_id.name">
+                                        <t t-esc="o.partner_shipping_id.state_id.name">,</t>
+                                    </t><t t-if="o.partner_shipping_id.zip">
+                                        <t t-esc="o.partner_shipping_id.zip"></t>
+                                    </t><br/>
+                                    <t t-if="o.partner_shipping_id.country_id.name">
+                                        <t t-esc="o.partner_shipping_id.country_id.name"></t>
+                                    </t><br/>
+                                </div>
+                            </div>
+                            <div class="row" style="border:1px solid black;min-height:25px;width:100%;border-bottom:none;">
+                                <div class="col-4" style="border-right:1px solid black;">
+                                    <b>ORDER #</b>
+                                </div>
+                                <div class="col-4" style="border-right:1px solid black;">
+                                   <b> TERMS</b>
+                                </div>
+                                <div class="col-4">
+                                    <b>CONTACT</b>
+                                </div>
+                            </div>
+                            <div class="row" style="border:1px solid black;min-height:25px;width:100%;border-bottom:none;">
+                                <div class="col-4" style="border-right:1px solid black;">
+                                    <!-- <t t-if="o.invoice_origin">
+                                        <t t-esc="o.invoice_origin"></t>
+                                    </t> -->
+                                </div>
+                                <div class="col-4" style="border-right:1px solid black;">
+
+                                </div>
+                                <div class="col-4">
+
+                                </div>
+                            </div>
+                            <div class="row" style="border:1px solid black;min-height:25px;width:100%;border-bottom:none;">
+                                <div class="col-6" style="border-right:1px solid black;">
+                                    <b>Payment Method</b>
+
+                                </div>
+                                <div class="col-6" >
+                                    <b>Delivery Method</b>
+                                </div>
+                            </div>
+                            <div class="row" style="border:1px solid black;min-height:25px;width:100%;">
+                                <div class="col-6" style="border-right:1px solid black;">
+                                    <t t-if="o.journal_id.name">
+                                        <t t-esc="o.journal_id.name"></t>
+                                    </t>
+                                </div>
+                                <div class="col-6" >
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="row" style="border:1px solid black;width:100%;min-height:25px;">
+                                <div style="width:23%;border-right:1px solid black;padding-left:3px;padding-right:3px;text-align:center;">
+                                    <b>SKU</b>
+                                </div>
+                                <div style="width:32%;border-right:1px solid black;padding-left:3px;padding-right:3px;text-align:center;">
+                                    <b>Products</b>
+                                </div>
+                                <div style="width:12%;border-right:1px solid black;padding-left:3px;padding-right:3px;text-align:center;">
+                                   <b> Pack Size</b>
+                                </div>
+                                <div style="width:10%;border-right:1px solid black;padding-left:3px;padding-right:3px;text-align:center;">
+                                    <b>QTY</b>
+                                </div>
+                                <div style="width:8%;border-right:1px solid black;padding-left:3px;padding-right:3px;text-align:center;">
+                                    <b>Price</b>
+                                </div>
+
+                                <div style="width:15%;padding-left:3px;padding-right:3px;text-align:center;">
+                                    <b>Subtotal</b>
+                                </div>
+                            </div>
+                            <t t-set="totaldiscount" t-value="0" />
+                            <t t-set="amount" t-value="0" />
+                            <t t-set="discount" t-value="0" />
+                            <t t-foreach="o.line_ids" t-as="line">
+                            <div class="row" style="border:1px solid black;width:100%;min-height:25px;page-break-inside: avoid !important;">
+                                <div style="width:23%;border-right:1px solid black;padding-left:3px;padding-right:3px;">
+                                    <t t-if="line.product_id.product_tmpl_id.default_code">
+                                        <t t-esc="line.product_id.product_tmpl_id.default_code"></t>
+                                    </t>
+                                </div>
+                                <div style="width:32%;border-right:1px solid black;padding-left:3px;padding-right:3px;">
+                                    <t t-if="line.product_id.product_tmpl_id.name">
+                                        <t t-esc="line.product_id.product_tmpl_id.name"></t>
+                                    </t>
+                                </div>
+                                <div style="width:12%;border-right:1px solid black;padding-left:3px;padding-right:3px;">
+                                    <t t-if="line.product_id.product_tmpl_id.pack_size_desc">
+                                        <t t-esc="line.product_id.product_tmpl_id.pack_size_desc"></t>
+                                    </t>
+                                </div>
+                                <div style="width:10%;border-right:1px solid black;text-align:center;">
+                                    <t t-if="line.quantity">
+                                        <t t-esc="line.quantity"></t>
+                                    </t>
+                                </div>
+                                <div style="width:8%;border-right:1px solid black;text-align:center;">
+                                    <t t-if="line.price_unit">
+                                        <t t-esc="line.price_unit"></t>
+                                    </t>
+                                </div>
+                                <div style="width:15%;text-align:center;">
+                                    <t t-if="line.price_subtotal">
+                                        <t t-esc="line.price_subtotal"></t>
+                                    </t>
+                                </div>
+                                <t t-set="amount" t-value="amount+(line.quantity*line.price_unit)" />
+                            </div>
+                            </t>
+                            <br/>
+                            <br/>
+                            <table width="100%">
+                                <tr width="100%">
+                                    <td width="73%" rowspan="4">
+                                        <b>NOTES:</b><br/>
+                                        The grand total are tax inclusive.
+                                    </td>
+                                    <td width="13%" >
+                                        <b>Total Net</b>
+                                    </td>
+                                    <td width="1%">
+                                        <b>:</b>
+                                    </td>
+                                    <td width="13%">
+                                        <t t-if="amount">
+                                            <t t-esc="'%.2f'%amount"></t>
+                                            <t t-esc="o.currency_id.symbol"></t>
+                                        </t>
+                                    </td>
+                                </tr>
+
+                                <tr width="100%">
+                                    <td>
+                                        <b>Taxable amount</b>
+                                    </td>
+                                    <td>
+                                        <b>:</b>
+                                    </td>
+                                    <td>
+                                       <t t-if="o.amount_untaxed">
+                                            <t t-esc="'%.2f'%o.amount_untaxed"></t>
+                                            <t t-esc="o.currency_id.symbol"></t>
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr width="100%">
+                                    <td>
+                                      <b>Tax Total</b>
+                                    </td>
+                                    <td>
+                                        <b>:</b>
+                                    </td>
+                                    <td>
+                                        <t t-if="o.amount_tax">
+                                            <t t-esc="'%.2f'%o.amount_tax"></t>
+                                            <t t-esc="o.currency_id.symbol"></t>
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr width="100%">
+                                    <td>
+                                      <b>Grand Total</b>
+                                    </td>
+                                    <td>
+                                        <b>:</b>
+                                    </td>
+                                    <td>
+                                        <t t-if="o.amount_total">
+                                            <t t-esc="'%.2f'%o.amount_total"></t>
+                                            <t t-esc="o.currency_id.symbol"></t>
+                                        </t>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+
+</odoo>

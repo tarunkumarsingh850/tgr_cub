@@ -1,0 +1,334 @@
+<odoo>
+    <data>
+        <record id="sale_report_main" model="report.paperformat">
+            <field name="name">Sale Paper Format</field>
+            <field name="default" eval="True" />
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">55</field>
+            <field name="margin_bottom">30</field>
+            <field name="margin_left">4</field>
+            <field name="margin_right">4</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">45</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <template id="order_sale_template">
+            <div class="header">
+                <div class="row">
+                    <div class="col-6">
+                        <table width="100%">
+                            <tr width="100%">
+                                <td width="50%" align="left" style="text-align:left;font-size:16px; padding:7px;word-break:break-word;">
+                                    <span t-field="o.company_id.name"/><br/>
+                                    <span t-field="o.company_id.street2"/><br/>
+                                    <span t-field="o.company_id.city"/><br/>
+                                    <span t-field="o.company_id.country_id"/><br/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-6" style="text-align:right;">
+                        <t t-if="o.magento_website_id.website_logo">
+                            <img t-if="o.magento_website_id.website_logo" t-att-src="image_data_uri(o.magento_website_id.website_logo)" style="max-height:70px;max-width:90%" alt="Website Logo"/>
+                        </t>
+                        <t t-else="">
+                            <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" style="max-height:70px;max-width:90%" alt="Company Logo"/>
+                        </t>
+                    </div>
+                </div>
+            </div>
+                <div class="page">
+                   <br/>
+                   <div class="oe_structure"/>
+                   <div class="row">
+                       <div class="col-12">
+                        <table width="100%">
+                            <tr>
+                            <td width="60%">
+                            </td>
+
+                            <td style="background:#00008B;text-align:center;" width="40%">
+                           <b style="font-size:25px;color:#FAF9F6;">Sales Order</b>
+                            </td>
+                            </tr>
+                            </table>
+
+                        <table width="100%" style="font-size: 18px;">
+                        <tr>
+                            <td width="60%"></td>
+                            <td width="20%" align="right" style="text-align:left;font-size:16px; padding:7px;">
+                                <b>Order No.</b><br/>
+                                <b>Order Date: </b><br/>
+                                <b>Delivery Date:</b><br/>
+                                <b>Customer ID: </b><br/>
+                                <b>Currency: </b>
+                            </td>
+                            <td width="20%" align="right" style="text-align:right;font-size:16px; padding:7px;">
+                                <span t-field="docs.name"/><br/>
+                                <span t-field="docs.date_order" t-options='{"format": "dd/MM/yyyy"}'/><br/>
+                                <span t-field="docs.commitment_date" t-options='{"format": "dd/MM/yyyy"}'/><br/>
+                                <span t-field="docs.partner_id.vendor_code"/><br/>
+                                <span t-field="docs.currency_id.name"/>
+                            </td>
+
+                        </tr>
+                        </table>
+                        <br/><br/>
+                        <table width="100%" style="font-size: 18px;border-collapse: separate;border-collapse: collapse;border: 1px solid black;">
+                            <tr width="100%" style="border-right:1px solid black;background:#00008B;">
+                            <td width="50%" align="left" style="vertical-align: middle;font-size:16px; padding:10px;border:1px solid black;border-right:none;">
+                                <b style="color:#FAF9F6;">BILL TO: </b>
+                            </td>
+                            <td width="50%" align="left" style="vertical-align: middle;font-size:16px; padding:10px;border:1px solid black;">
+                                <b style="color:#FAF9F6;">SHIP TO:</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left" style="text-align:left;font-size:16px; padding:7px;border:1px solid black;border-right:none;">
+                                <t t-if="docs.partner_id.name"><span t-field="docs.partner_id.name"/></t>
+                                <t t-if="docs.partner_id.street"><br/><span t-field="docs.partner_id.street"/></t>
+                                <t t-if="docs.partner_id.city"><br/><span t-field="docs.partner_id.city"/></t>
+                                <t t-if="docs.partner_id.zip"><br/><span t-field="docs.partner_id.zip"/></t>
+                                <t t-if="docs.partner_id.country_id.name"><br/><span style="padding-left:1px;" t-field="docs.partner_id.country_id.name"/></t><br/>
+                            </td>
+                            <td align="left" style="text-align:left;font-size:16px; padding:7px;border:1px solid black;">
+                                <t t-if="docs.partner_id.name"><span t-field="docs.partner_id.name"/></t>
+                                <t t-if="docs.partner_id.street"><br/><span t-field="docs.partner_id.street"/></t>
+                                <t t-if="docs.partner_id.city"><br/><span t-field="docs.partner_id.city"/></t>
+                                <t t-if="docs.partner_id.zip"><br/><span t-field="docs.partner_id.zip"/></t>
+                                <t t-if="docs.partner_id.country_id.name"><br/><span style="padding-left:1px;" t-field="docs.partner_id.country_id.name"/></t><br/>
+                            </td>
+                        </tr>
+                        </table>
+
+                        <table width="100%" style="font-size: 18px;border-collapse: separate;border-collapse: collapse;border: 1px solid black;">
+                            <tr width="100%" style="border-right:1px solid black;background:#00008B;">
+                            <td width="25%" align="left" style="vertical-align: middle;font-size:16px; padding:10px;border:1px solid black;border-right:none;">
+                                <b style="color:#FAF9F6;">CUSTOMER P.O. NO.</b>
+                            </td>
+                            <td width="25%" align="left" style="vertical-align: middle;font-size:16px; padding:10px;border:1px solid black;border-right:none;">
+                                <b style="color:#FAF9F6;">TERMS </b>
+                            </td>
+                            <td width="25%" align="left" style="vertical-align: middle;font-size:16px; padding:10px;border:1px solid black;">
+                                <b style="color:#FAF9F6;">CONTACT</b>
+                            </td>
+                        </tr>
+                        <tr style="min-height:120px;">
+                            <td align="left" style="text-align:left;font-size:16px; padding:7px;border:1px solid black;border-right:none;">
+
+                            </td>
+                            <td align="left" style="text-align:left;font-size:16px; padding:7px;border:1px solid black;border-right:none;border-left:none;">
+                                <span t-field="docs.payment_term_id"/>
+                            </td>
+                            <td align="left" style="text-align:left;font-size:16px; padding:7px;border:1px solid black;border-left:none;">
+                            </td>
+                        </tr>
+                        </table>
+                        <table width="100%" style="font-size: 18px;border-collapse: separate;border-collapse: collapse;border: 1px solid black;">
+                            <tr width="100%" style="border-right:1px solid black;background:#00008B;">
+                            <td width="25%" align="left" style="vertical-align: middle;font-size:16px; padding:10px;border:1px solid black;border-right:none;">
+                                <b style="color:#FAF9F6;">FOB POINT</b>
+                            </td>
+                            <td width="25%" align="left" style="vertical-align: middle;font-size:16px; padding:10px;border:1px solid black;border-right:none;">
+                                <b style="color:#FAF9F6;">SHIPPING TERMS </b>
+                            </td>
+                            <td width="25%" align="left" style="vertical-align: middle;font-size:16px; padding:10px;border:1px solid black;">
+                                <b style="color:#FAF9F6;">SHIP VIA</b>
+                            </td>
+                        </tr>
+                        <tr style="min-height:80px;">
+                            <td align="left" style="text-align:left;font-size:16px; padding:7px;border:1px solid black;border-right:none;">
+
+                            </td>
+                            <td align="left" style="text-align:left;font-size:16px; padding:7px;border:1px solid black;border-right:none;border-left:none;">
+
+                            </td>
+                            <td align="left" style="text-align:left;font-size:16px; padding:7px;border:1px solid black;border-left:none;">
+                            </td>
+                        </tr>
+                        </table>
+
+                        <table width="100%" style="font-size: 18px;border-collapse: separate;border-collapse: collapse;">
+                            <thead>
+                            <tr width="100%" style="border-right:1px solid black;background:#00008B;">
+                            <td width="10%" align="left" style="vertical-align: middle;font-size:16px; padding:10px;border-right:1px solid black;border-top:1px solid black;border-left:1px solid black;border-bottom:1px solid black;">
+                                <b style="color:#FAF9F6;">NO.</b>
+                            </td>
+                            <td width="30%" align="left" style="vertical-align: middle;font-size:16px; padding:10px;border-right:1px solid black;border-top:1px solid black;border-left:1px solid black;border-bottom:1px solid black;">
+                                <b style="color:#FAF9F6;">ITEM</b>
+                            </td>
+                            <td width="10%" align="left" style="vertical-align: middle;font-size:16px; padding:10px;border-right:1px solid black;border-top:1px solid black;border-left:1px solid black;border-bottom:1px solid black;">
+                                <b style="color:#FAF9F6;">QTY</b>
+                            </td>
+                            <td width="10%" align="left" style="vertical-align: middle;font-size:16px; padding:10px;border-right:1px solid black;border-top:1px solid black;border-left:1px solid black;border-bottom:1px solid black;">
+                                <b style="color:#FAF9F6;">UOM</b>
+                            </td>
+                            <td width="10%" align="left" style="vertical-align: middle;font-size:16px; padding:10px;border-right:1px solid black;border-top:1px solid black;border-left:1px solid black;border-bottom:1px solid black;">
+                                <b style="color:#FAF9F6;">Price</b>
+                            </td>
+                            <td width="10%" align="left" style="vertical-align: middle;font-size:16px; padding:10px;border-right:1px solid black;border-top:1px solid black;border-left:1px solid black;border-bottom:1px solid black;">
+                                <b style="color:#FAF9F6;">Discount</b>
+                            </td>
+                            <td width="20%" align="left" style="vertical-align: middle;font-size:16px; padding:10px;border-right:1px solid black;border-top:1px solid black;border-left:1px solid black;border-bottom:1px solid black;">
+                                <b style="color:#FAF9F6;" >EXTENDED PRICE</b>
+                            </td>
+                        </tr>
+                        </thead>
+                        <t t-set="Sl_No" t-value="1"/>
+                        <t t-set="last_amount" t-value="0"/>
+                        <t t-set="total_unit_total" t-value="0"/>
+                        <t t-foreach="docs.order_line" t-as="o">
+                        <tr >
+                            <td align="left" style="text-align:left;font-size:16px; padding:7px;">
+                                <span t-esc="Sl_No" />
+                                <t t-set="Sl_No" t-value="Sl_No+1" />
+                            </td>
+                            <td align="left" style="text-align:left;font-size:16px; padding:7px;">
+                                <span t-field="o.product_id.name"/>
+                            </td>
+                            <td align="left" style="text-align:left;font-size:16px; padding:7px;">
+                                <span t-field="o.product_uom_qty"/>
+                            </td>
+                            <td align="left" style="text-align:left;font-size:16px; padding:7px;">
+                                <span t-field="o.product_uom.name"/>
+                            </td>
+                            <td align="left" style="text-align:left;font-size:16px; padding:7px;">
+                                <span t-field="o.price_unit"/>
+                            </td>
+                            <td align="left" style="text-align:left;font-size:16px; padding:7px;">
+                                <span t-field="o.discount"/>
+                            </td>
+                            <td align="left" style="text-align:left;font-size:16px; padding:7px;">
+                                <t t-esc="o.price_subtotal"/>
+                            </td>
+                            <t t-set="last_amount" t-value="last_amount+o.price_subtotal" />
+                            <t t-set="unit_total" t-value="o.price_unit*o.product_uom_qty" />
+                            <t t-set="total_unit_total" t-value="total_unit_total+unit_total" />
+                        </tr>
+                        </t>
+                        </table>
+                       </div>
+                    </div>
+                    <br/><br/><br/><br/><br/><br/><br/>
+
+                    <table width="100%" style="font-size:15px;border: 1px solid blue;">
+                        <tr style="border-bottom:none;padding-left:5px">
+                            <td style="width:45%;border-bottom:none;padding-left:5px;">
+                            </td>
+                            <td style="width:15%;border-bottom:none;padding-left:5px;">
+                                <b>Total Weight (EA):</b>
+                            </td>
+                            <td style="width:10%;border-bottom:none;padding-left:5px;">
+                                <t t-esc="discount_amount"/>
+                            </td>
+                            <td style="width:15%;border-bottom:none;padding-left:5px;">
+                                <b>Sales Total: </b>
+                            </td>
+                            <td align="right" style="width:15%;border-bottom:none;padding-left:5px;">
+                                <t t-esc="total_unit_total"/>
+                            </td>
+                        </tr>
+                        <tr style="border-bottom:none;padding-left:5px">
+                            <td style="width:45%;border-bottom:none;padding-left:5px;">
+                            </td>
+                            <td style="width:15%;border-bottom:none;padding-left:5px;">
+                                <b>Total Volume (EA): </b>
+                            </td>
+                            <td style="width:10%;border-bottom:none;padding-left:5px;">
+                                <t t-esc="discount_amount"/>
+                            </td>
+                            <t t-set="discount_amount" t-value="total_unit_total - docs.amount_untaxed"/>
+                            <td style="width:15%;border-bottom:none;padding-left:5px;">
+                                <b>Freight &amp; Misc.: </b>
+                            </td>
+                            <td align="right" style="width:15%;border-bottom:none;padding-left:5px;">
+                            </td>
+                        </tr>
+                        <tr style="border-bottom:none;padding-left:5px">
+                            <td style="width:45%;border-bottom:none;padding-left:5px;">
+                            </td>
+                            <td style="width:15%;border-bottom:none;padding-left:5px;">
+                            </td>
+                            <td style="width:10%;border-bottom:none;padding-left:5px;">
+                            </td>
+                            <td style="width:15%;border-bottom:none;padding-left:5px;">
+                            <b>Less Discount:</b>
+                            </td>
+                            <td align="right" style="width:15%;border-bottom:none;padding-left:5px;">
+                            <t t-esc="discount_amount"/>
+                            </td>
+                        </tr>
+                        <tr style="border-bottom:none;padding-left:5px">
+                            <td style="width:45%;border-bottom:none;padding-left:5px;">
+                            </td>
+                            <td style="width:15%;border-bottom:none;padding-left:5px;">
+                            </td>
+                            <td style="width:10%;border-bottom:none;padding-left:5px;">
+                            </td>
+                            <td style="width:15%;border-bottom:none;padding-left:5px;">
+                            <b>Tax Total (0%):</b>
+                            </td>
+                            <td align="right" style="width:15%;border-bottom:none;padding-left:5px;">
+                                <t t-esc="docs.amount_tax"/>
+                            </td>
+                        </tr>
+                        <tr style="border-bottom:none;padding-left:5px">
+                            <td style="width:45%;border-bottom:none;padding-left:5px;">
+                            </td>
+                            <td style="width:15%;border-bottom:none;padding-left:5px;">
+                            </td>
+                            <td style="width:10%;border-bottom:none;padding-left:5px;">
+                            </td>
+                            <td style="width:15%;border-bottom:none;padding-left:5px;">
+                            <b>Total (EUR):</b>
+                            </td>
+                            <td align="right" style="width:15%;border-bottom:none;padding-left:5px;">
+                                <t t-esc="docs.amount_total"/>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="footer">
+                    <div class="row">
+                        <div class="col-12" style="border-bottom:2px solid black;">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                        </div>
+                        <div class="col-4" align="right" style="font-size:13px">
+                            Page:
+                            <span class="page" />
+                            of
+                            <span class="topage" />
+                        </div>
+                    </div>
+                </div>
+        </template>
+
+        <template id="order_bi_sale_temp_view">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="bi_sale_printout.order_sale_template"/>
+                </t>
+            </t>
+        </template>
+
+        <report
+            id="sale_order_temp"
+            model="sale.order"
+            string="Sale Order"
+            report_type="qweb-pdf"
+            name="bi_sale_printout.order_bi_sale_temp_view"
+            file="bi_sale_printout.order_bi_sale_temp_view"
+            paperformat ="bi_sale_printout.sale_report_main"/>
+
+        <record id="sale.action_report_saleorder" model="ir.actions.report">
+            <field name="binding_model_id" eval="False"/>
+        </record>
+    </data>
+</odoo>

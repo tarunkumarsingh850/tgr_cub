@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data noupdate="0">
+        <record id="view_update_warehouse" model="ir.ui.view">
+            <field name="name">Switch Warehouse</field>
+            <field name="model">update.warehouse.wizard</field>
+            <field name="arch" type="xml">
+             <form string="Stock Warehouse">
+                <group>
+                    <group>
+                        <field name="location_id"/>
+                    </group>
+                    <group>
+                        <field name="current_location_id" widget="many2many_tags" readonly="1"/>
+                        <field name="stock_picking_ids" invisible="1"/>
+                    </group>
+                </group>
+                <footer>
+                    <button string="Confirm" name="confirm" type="object" class="oe_highlight"/>
+                    <button string="Cancel" class="btn btn-default" special="cancel"/>
+                </footer>
+            </form>
+            </field>
+        </record>
+
+        <record id="action_update_warehouse_stock" model="ir.actions.act_window">
+            <field name="name">Switch Warehouse</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">update.warehouse.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_update_warehouse"/>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>

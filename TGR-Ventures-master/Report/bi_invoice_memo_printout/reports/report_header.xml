@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="invoice_memo_report_header">
+            <div class="header">
+                <div class="row" style="padding-left:400px;">
+                    <span t-if="o.move_type == 'out_invoice'">
+                        Invoice
+                    </span>
+
+                    <span t-if="o.move_type == 'out_refund'">
+                        Credit Memo
+                    </span>
+
+                </div>
+                <div class="row">
+                    <div class="col-2" style="display: flex;justify-content: center;align-items: center;">
+                        <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)"  style="width:150px;height:130px;padding-bottom:30px"/>
+                    </div>
+                    <div class="col-6" style="font-size:10px;padding-left:50px;">
+                        <div >
+                            <t t-if="o.warehouse_id.partner_id.name">
+                                <t t-esc="o.warehouse_id.partner_id.name"/><br/>
+                            </t>
+                            <t t-if="o.warehouse_id.partner_id.street">
+                                <t t-esc="o.warehouse_id.partner_id.street"></t><br/>
+                            </t>
+                            <t t-if="o.warehouse_id.partner_id.street2">
+                                <t t-esc="o.warehouse_id.partner_id.street2"></t><br/>
+                            </t>
+                            <t t-if="o.warehouse_id.partner_id.state_id.name">
+                                <t t-esc="o.warehouse_id.partner_id.state_id.name"></t><br/>
+                            </t>
+                            Phone:
+                            <t t-if="o.warehouse_id.partner_id.phone">
+                                <t t-esc="o.warehouse_id.partner_id.phone"></t>
+                            </t><br/>
+                            VAT Number:
+                            <t t-if="o.warehouse_id.partner_id.vat">
+                                <t t-esc="o.warehouse_id.partner_id.vat"></t><br/>
+                            </t>
+                        </div>
+                    </div>
+                    <div class="col-4" style="padding-left:50px;">
+                        <t t-if="o.company_id.id == 10">
+                            <div class="row" style="font-size:9px;">
+                                Account Holder: Tigre Uno Distribucion S.L
+                            </div>
+                            <div class="row" style="font-size:9px;padding-bottom:1px;">
+                                Bank Name: Caja Rural de Extremadura
+                            </div>
+                            <div class="row" style="font-size:9px;padding-bottom:1px;">
+                                Bank Address:
+                                    Avda Santa Marina, 15 – 06005
+                                    BADAJOZ
+                            </div>
+                            <div class="row" style="font-size:9px;padding-bottom:1px;">
+                                IBAN:
+
+                                    ES67 3009 0095 6927 1270 3327
+                            </div>
+                            <div class="row" style="font-size:9px;padding-bottom:1px;">
+                                BIC:
+
+                                    BCOEESMM009
+                            </div>
+                            <div class="row" style="font-size:9px;padding-bottom:1px;">
+                                Currency:
+                                    Euro
+                            </div>
+                        </t>
+                        <t t-if="o.company_id.id == 11">
+                            <div class="row" style="font-size:9px;">
+                                Account Holder: TGR VENTURES CORPORATION OPERATING
+                                    <span style="padding-left:65px;">
+                                        ACCOUNT
+                                    </span>
+                            </div>
+                            <div class="row" style="font-size:9px;">
+                                Beneficiary Account Number: 009020169066
+                            </div>
+                            <div class="row" style="font-size:9px;padding-bottom:1px;">
+                                Bank Name: First Citizens Bank
+                            </div>
+                            <div class="row" style="font-size:9px;padding-bottom:1px;">
+                                Bank Address:
+                                    1516 16th Ave South,Nashville, TN 37212 <br/>
+                            </div>
+                            <div class="row" style="font-size:9px;padding-bottom:1px;">
+                                615-744-4800 (Branch)
+                            </div>
+                            <div class="row" style="font-size:9px;padding-bottom:1px;">
+                                ABA Routing #: 053100300
+                            </div>
+                            <div class="row" style="font-size:9px;padding-bottom:1px;">
+                                Currency:
+                                    USD
+                            </div>
+
+                        </t>
+                    </div>
+                </div>
+            </div>
+            <div class="article o_report_layout_standard" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+                <t t-call="web.address_layout" />
+                <t t-raw="0" />
+            </div>
+            <div class="footer">
+                <div class="row" style="padding-right:1px;padding-top:1px;font-size:13px">
+                    <div class="col-11"></div>
+                    <div class="col-1" align="center" style="font-size:13px">
+                        <span class="page" />/<span class="topage" />
+                    </div>
+                </div>
+            </div>
+        </template>
+    </data>
+</odoo>

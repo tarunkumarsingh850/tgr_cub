@@ -1,0 +1,11 @@
+<data >
+    <!-- Multi - Company Rules -->
+
+    <record model="ir.rule" id="zone_multi_company_rule">
+        <field name="name">Zone Multi Company Rule</field>
+        <field name="model_id" ref="model_zone_master"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">[('company_id','in',company_ids)]</field>
+    </record>
+
+</data>

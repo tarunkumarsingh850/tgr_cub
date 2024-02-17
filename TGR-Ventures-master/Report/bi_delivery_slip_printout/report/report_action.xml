@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report id="delivery_note_report_action"
+        model="stock.picking"
+        string="Delivery Slip"
+        report_type="qweb-pdf"
+        name="bi_delivery_slip_printout.delivery_slip_report_template_id"
+        file="bi_delivery_slip_printout.delivery_slip_report_template_id"
+        paperformat="bi_delivery_slip_printout.delivery_slip_paperformat"
+       />
+    </data>
+</odoo>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+
+        <record id="report_replenishment_xlsx" model="ir.actions.report">
+            <field name="name">Replenishment Report</field>
+            <field name="model">replenishment.report</field>
+            <field name="report_type">xlsx</field>
+            <field name="report_name">bi_replenishment_report.report_replenishment_xlsx</field>
+            <field name="report_file">bi_replenishment_report.report_replenishment_xlsx</field>
+            <field name="binding_model_id" ref="model_replenishment_report"/>
+            <field name="binding_type">report</field>
+            <field name="print_report_name">Replenishment Report</field>
+        </record>
+
+
+    </data>
+
+</odoo>

@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_user1,material.request,model_material_request,bi_material_request_form.group_location,1,1,1,1
+access_user2,material.request.line,model_material_request_line,bi_material_request_form.group_location,1,1,1,1
+access_user_material_transfer_import,material.transfer.import,model_material_transfer_import,base.group_user,1,1,1,1

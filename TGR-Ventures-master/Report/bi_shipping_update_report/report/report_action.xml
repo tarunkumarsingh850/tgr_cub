@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_export_template" model="ir.actions.report">
+            <field name="name">Export Tracking Reference</field>
+            <field name="model">stock.picking</field>
+            <field name="report_type">xlsx</field>
+            <field name="report_name">bi_shipping_update_report.export_template_xlsx</field>
+            <field name="report_file">bi_shipping_update_report.export_template_xlsx</field>
+            <field name="print_report_name">"Export Shipping Template"</field>
+        </record>
+    </data>
+</odoo>

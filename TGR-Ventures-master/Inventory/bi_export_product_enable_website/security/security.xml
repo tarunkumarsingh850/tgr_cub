@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="0">
+    <data>
+        <!-- Update Product Enable/Disable -->
+        <record model="res.groups" id="update_product_enable_disable_menu_group">
+            <field name="name">Product Enable/Disable Access</field>
+        </record>
+
+    </data>
+</odoo>

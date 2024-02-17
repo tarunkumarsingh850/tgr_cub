@@ -1,0 +1,16 @@
+<odoo>
+
+    <record id="payment_method_code_tree_view_inherit" model="ir.ui.view">
+        <field name="name">payment.method.code.tree.view.inherit</field>
+        <field name="model">payment.method.code</field>
+        <field name="inherit_id" ref="odoo_magento2_ept.payment_method_code_view_tree"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='workflow_id']" position="after">
+                <field name="payment_charge"/>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

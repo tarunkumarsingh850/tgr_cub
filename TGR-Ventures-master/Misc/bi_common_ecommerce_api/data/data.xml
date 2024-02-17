@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!--Cron for create sale orders from xml file-->
+        <record id="ir_cron_create_dutch_sale_orders_from_xml" model="ir.cron">
+            <field name="name">Dutch E-Commerce API: Create sale orders from xml file</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="state">code</field>
+            <field name="code">model.cron_create_dutch_sale_orders()</field>
+            <field name="active" eval="True"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="True"/>
+        </record>
+
+        <!--Config parameter for store xml file folder path-->
+        <record model="ir.config_parameter" id="dutch_ecommerce_api_xml_folder">
+            <field name="key">bi_common_ecommerce_api.dutch_files_folder_path</field>
+            <field name="value">/</field>
+        </record>
+
+        <record id="dutch_customer_seq" model="ir.sequence">
+            <field name="name">Dutch Customer Sequence</field>
+            <field name="code">dutch.customer</field>
+            <field name="prefix">DUTCH</field>
+            <field name="padding">5</field>
+        </record>
+
+    </data>
+
+    <!--Cron for send tracking ref to dutch-->
+    <record id="ir_cron_send_tracking_info" model="ir.cron">
+        <field name="name">Dutch E-Commerce API: Send Shipment Tracking Info</field>
+        <field name="model_id" ref="stock.model_stock_picking"/>
+        <field name="state">code</field>
+        <field name="code">model.send_picking_shipment_cron()</field>
+        <field name="active" eval="False"/>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="True"/>
+    </record>
+
+</odoo>

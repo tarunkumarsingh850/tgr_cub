@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="potrait_customer_header">
+            <!-- <t t-foreach="docs" t-as="doc"> -->
+            <div class="header">
+                <div style="text-align:left">
+                    <div class="row">
+                        <div class="col-4">
+                            <div style="width:18%;text-align:left;font-size:16px;">
+                                <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 100px;" alt="Logo"/>
+                            </div>
+                        </div>
+                        <div class="col-4">
+
+                        </div>
+                        <div class="col-4">
+                            <p style="font-size: 14px;">
+                                <span t-field="company.name"/> <br/>
+                                <span t-field="company.street"/><br/>
+                                <span t-field="company.city"/><br/>
+                                <span t-field="company.country_id.name"/>
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row" style="border: 1px solid black;"></div>
+            </div>
+            <div class="article o_report_layout_standard"  t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+                <t t-call="web.address_layout"/>
+                <t t-raw="0"/>
+            </div>
+            <div class="footer" width="100%" height="100%">
+            </div>
+            <!-- </t> -->
+        </template>
+        </data>
+</odoo>

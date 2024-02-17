@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_bi_consignment_wizard_user,bi_consignment_report.bi.consignment.wizard,model_bi_consignment_wizard,base.group_user,1,1,1,1

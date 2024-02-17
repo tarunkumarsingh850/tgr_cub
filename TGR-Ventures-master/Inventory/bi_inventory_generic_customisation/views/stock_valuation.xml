@@ -1,0 +1,30 @@
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="stock_valuation_layer1_view_inherit_form">
+        <field name="name">stock.valuation.layer1.view.inherit.form</field>
+        <field name="model">stock.valuation.layer</field>
+        <field name="inherit_id" ref="stock_account.stock_valuation_layer_tree"/>
+        <field name="arch" type="xml">
+          <xpath expr="///field[@name='product_id']" position="after">
+              <field name="brand_id"/>
+          </xpath>
+          <xpath expr="///field[@name='uom_id']" position="after">
+              <field name="unit_cost"/>
+          </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="stock_valuation_layer1_view_inherit_filter_form">
+      <field name="name">stock.valuation.layer1.view.inherit.filter.form</field>
+      <field name="model">stock.valuation.layer</field>
+      <field name="inherit_id" ref="stock_account.view_inventory_valuation_search"/>
+      <field name="arch" type="xml">
+          <xpath expr="///field[@name='product_id']" position="after">
+            <field name="brand_id"/>
+        </xpath>
+      </field>
+  </record>
+
+
+  </data>
+</odoo>

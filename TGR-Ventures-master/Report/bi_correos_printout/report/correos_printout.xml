@@ -1,0 +1,290 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <template id="correos_pdf_report">
+            <t t-call="web.html_container">
+                <t t-call="bi_correos_printout.correos_report_header">
+                <!-- <div class="header">
+                    <table style="width:100%;border:1px solid black;">
+                        <tr style="width:100%;height:20px;">
+                            <td style="width:100%;height:20px;font-size:12px;" colspan="4">
+                                <center>
+                                    MANIFIESTO DETALLADO - OFICINA VIRTUAL: Carta certificada Internacional
+                                </center>
+                            </td>
+                        </tr>
+                        <tr style="width:100%;">
+                            <td style="width:30%;vertical-align:middle;" rowspan="6">
+                                <center>
+                                    <img t-if="logo_carried_id" t-att-src="image_data_uri(logo_carried_id)" style="width:100px;height:60px;" alt="Logo"/>
+                                </center>
+                            </td>
+                            <td style="width:18%;border-left:1px solid black;border-top:1px solid black;font-size:12px;">
+
+                                <span style="padding-top:5px;padding-left:5px;">
+                                    <b>CLIENTE:</b>
+                                </span>
+                            </td>
+                            <td style="width:22%;border-right:1px solid black;border-top:1px solid black;font-size:10px;">
+                                <t t-esc="carrier"/>
+                            </td>
+                            <td style="width:30%;vertical-align:middle;border:1px solid black;" rowspan="5">
+                                <t t-esc="barcode" t-options="{'widget': 'barcode','width':300,'height':60}"/>
+                            </td>
+                        </tr>
+                        <tr style="width:100%;">
+                            <td style="font-size:12px;border-left:1px solid black;">
+
+                                <span style="padding-top:5px;padding-left:5px;">
+                                    <b>EXPEDIENTE:</b>
+                                </span>
+                            </td>
+                            <td style="width:20%;border-right:1px solid black;">
+                            </td>
+
+                        </tr>
+                        <tr style="width:100%;">
+                            <td style="font-size:12px;border-left:1px solid black;">
+
+                                <span style="padding-top:5px;padding-left:5px;">
+                                    <b>CÓDIGO ETIQUETADOR:</b>
+                                </span>
+                            </td>
+                            <td style="width:20%;border-right:1px solid black;">
+                            </td>
+
+                        </tr>
+                        <tr style="width:100%;">
+                            <td style="font-size:12px;border-left:1px solid black;">
+
+                                <span style="padding-top:5px;padding-left:5px;">
+                                    <b>FECHA DE GENERACIÓN:</b>
+                                </span>
+                            </td>
+                            <td style="width:20%;border-right:1px solid black;font-size:12px;">
+                                <t t-esc="start_date"/>
+                            </td>
+                        </tr>
+                        <tr >
+                            <td style="font-size:12px;border-left:1px solid black;">
+
+                                <span style="padding-left:5px;">
+                                    <b>FECHA DE IMPRESIÓN:</b>
+                                </span>
+                            </td>
+                            <td style="width:20%;border-right:1px solid black;font-size:12px;">
+                                <t t-esc="end_date"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border-left:1px solid black;border-top:1px solid black;font-size:12px;">
+
+                                <span style="padding-top:5px;padding-left:5px;">
+                                    FORMA DE PAGO:
+                                </span>
+
+                            </td>
+                            <td style="border-right:1px solid black;border-top:1px solid black;font-size:12px;">
+                                <span style="padding-top:5px;padding-left:5px;">
+                                    Pagado por contrato
+                                </span>
+
+                            </td>
+                            <td style="border:1px solid black;font-size:12px;">
+                                <center>
+                                    <span style="padding-top:2px;padding-left:5px;">
+                                        <b>
+                                            CÓDIGO DE MANIFIESTO:
+                                        </b>
+                                    </span>
+                                    <span style="padding-top:25px;padding-left:5px;text-align:center;">
+                                        <b>
+                                            <t t-esc="barcode"/>
+                                        </b>
+                                    </span>
+                                </center>
+                            </td>
+                        </tr>
+                    </table>
+                </div> -->
+                <div class="page">
+                    <div style="padding-left:2px;padding-right:2px;">
+                        <table style="border-collapse: separate;width:100%,border:1px solid black;border-collapse:collapse;">
+                            <tr style="border-collapse: separate;width:100%,border:1px solid black;font-size:12px;">
+                                <td style="width:20%;border-top:1px solid black;border-bottom:1px solid black;border-left:1px solid black;">
+                                    <b>No ENVIO</b>
+                                </td>
+                                <td style="width:10%;border-top:1px solid black;border-bottom:1px solid black;">
+
+                                </td>
+                                <td style="width:20%;border-top:1px solid black;border-bottom:1px solid black;">
+                                    <b>DEST./CONSIG.</b>
+                                </td>
+                                <td style="width:10%;border-top:1px solid black;border-bottom:1px solid black;">
+                                    <b>BULTOS</b>
+                                </td>
+                                <td style="width:6%;border-top:1px solid black;border-bottom:1px solid black;">
+                                    <b>KILOS</b>
+                                </td>
+                                <td style="width:6%;border-top:1px solid black;border-bottom:1px solid black;">
+                                    <b>PVP *</b>
+                                </td>
+                                <td style="width:6%;border-top:1px solid black;border-bottom:1px solid black;">
+                                    <b>REEMB.</b>
+                                </td>
+
+                                <td style="width:10%;border-top:1px solid black;border-bottom:1px solid black;">
+                                    <b>VALOR DECLARAD</b>
+                                </td>
+                                <td style="width:10%;border-top:1px solid black;border-bottom:1px solid black;border-right:1px solid black;">
+                                    <b>VALORES AÑADIDOS</b>
+                                </td>
+                            </tr>
+                            <t t-set="total_qty" t-value="0"/>
+                            <t t-set="total_weight" t-value="0"/>
+                            <t t-foreach="vals" t-as="picking">
+                                <tr style="height:5px;">
+                                    <td colspan="8" style="height:5px;">
+                                    </td>
+                                </tr>
+                                <tr style="border-collapse: separate;font-size:10px;">
+                                    <td style="border-top:1px solid black;border-left:1px solid black;">
+                                        <t t-esc="picking['tracking_ref']"/>
+                                    </td>
+                                    <td style="border-top:1px solid black;">
+                                        <t t-esc="picking['partner']"/>
+
+                                    </td>
+                                    <td style="border-top:1px solid black;">
+                                        <t t-if="picking['street']">
+                                            <t t-esc="picking['street']"/>,
+                                        </t>
+                                        <t t-if="picking['city']">
+                                            <t t-esc="picking['city']"/>,
+                                        </t>
+                                    </td>
+                                    <td style="border-top:1px solid black;">
+                                       1
+                                    </td>
+                                    <t t-set="total_qty" t-value="total_qty+1"/>
+                                    <td style="border-top:1px solid black;">
+                                        0.045
+                                    </td>
+                                    <t t-set="total_weight" t-value="total_weight+0.045"/>
+                                    <td style="border-top:1px solid black;">
+                                        <!-- <b>PVP *</b> -->
+                                    </td>
+                                    <td style="border-top:1px solid black;">
+                                       <!-- REEMB -->
+                                    </td>
+                                    <td style="border-top:1px solid black;">
+                                       <!-- SEGURO -->
+                                    </td>
+                                    <td style="border-top:1px solid black;border-right:1px solid black;">
+                                       <!-- VALORES AÑADID -->
+                                    </td>
+                                </tr>
+                                <tr style="border-collapse: separate;font-size:10px;height:10px;">
+                                    <td style="border-left:1px solid black;">
+                                        <b>
+                                            REF.:
+                                        </b>
+                                        <t t-esc="picking['origin']"/>
+                                    </td>
+                                    <td>
+
+                                    </td>
+                                    <td>
+                                        <t t-if="picking['state']">
+                                            <t t-esc="picking['state']"/>
+                                        </t>
+                                    </td>
+                                    <td>
+                                       <!-- BULTOS -->
+                                    </td>
+                                    <td>
+                                       <!-- KILOS -->
+                                    </td>
+                                    <td>
+                                        <!-- <b>PVP *</b> -->
+                                    </td>
+                                    <td>
+                                       <!-- REEMB -->
+                                    </td>
+                                    <td>
+                                       <!-- SEGURO -->
+                                    </td>
+                                    <td style="border-right:1px solid black;">
+                                       <!-- VALORES AÑADID -->
+                                    </td>
+                                </tr>
+                                <tr style="border-collapse: separate;font-size:10px;height:10px;">
+                                    <td style="border-bottom:1px solid black;border-left:1px solid black;">
+                                        <b>
+                                            Observaciones:
+                                        </b>
+                                        <t t-esc="picking['origin']"/>
+                                    </td>
+                                    <td style="border-bottom:1px solid black;">
+
+                                    </td>
+                                    <td style="border-bottom:1px solid black;">
+                                        <t t-if="picking['country']">
+                                            <t t-esc="picking['country']"/>
+                                        </t>
+                                    </td>
+                                    <td style="border-bottom:1px solid black;">
+                                       <!-- BULTOS -->
+                                    </td>
+                                    <td style="border-bottom:1px solid black;;">
+                                       <!-- KILOS -->
+                                    </td>
+                                    <td style="border-bottom:1px solid black;">
+                                        <!-- <b>PVP *</b> -->
+                                    </td>
+                                    <td style="border-bottom:1px solid black;">
+                                       <!-- REEMB -->
+                                    </td>
+                                    <td style="border-bottom:1px solid black;">
+                                       <!-- SEGURO -->
+                                    </td>
+                                    <td style="border-bottom:1px solid black;border-right:1px solid black;">
+                                       <!-- VALORES AÑADID -->
+                                    </td>
+                                </tr>
+                            </t>
+                            <tr style="height:5px;">
+                                <td colspan="8" style="height:5px;">
+                                </td>
+                            </tr>
+                            <tr style="padding-top:40px;border:1px solid black;background:#D3D3D3;">
+                                <td style="padding-left:160px;background:#D3D3D3;border-top:1px solid black;border-bottom:1px solid black;border-left:1px solid black;" colspan="3">
+                                    <b>TOTALES</b>
+                                </td>
+                                <td style="background:#D3D3D3;border-top:1px solid black;border-bottom:1px solid black;">
+                                    <t t-esc="round(total_qty)"/>
+                                </td>
+                                <td style="background:#D3D3D3;border-top:1px solid black;border-bottom:1px solid black;">
+                                    <t t-esc="round(total_weight, 3)"/>
+                                </td>
+                                 <td style="background:#D3D3D3;border-top:1px solid black;border-bottom:1px solid black;border-right:1px solid black;" colspan="4">
+
+                                </td>
+
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                </t>
+                <!-- <div class="footer">
+                    <div class="row" style="padding-right:1px;font-size:13px">
+                        <div class="col-11"></div>
+                        <div class="col-1" align="center" style="font-size:13px">
+                            <span class="page" />/<span class="topage" />
+                        </div>
+                    </div>
+                </div> -->
+            </t>
+        </template>
+    </data>
+</odoo>

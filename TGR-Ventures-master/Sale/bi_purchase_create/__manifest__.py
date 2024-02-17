@@ -1,0 +1,22 @@
+{
+    "name": "Bi Picking Batch",
+    "version": "15.0.0.0.0",
+    "summary": "Bi Picking Batch",
+    "category": "Tools",
+    "author": "Bassam",
+    "maintainer": "Bassam",
+    "company": "Bassam",
+    "website": "https://www.bassaminfotech.com",
+    "depends": ["base", "purchase", "sale", "partner_manual_rank"],
+    "data": [
+        "security/ir.model.access.csv",
+        "security/purchase_create.xml",
+        "security/pytonation_security.xml",
+        "views/sale_line_view.xml",
+        "views/purchase_order.xml",
+        "wizard/purchase_wizard.xml",
+    ],
+    "images": [],
+    "license": "AGPL-3",
+    "installable": True,
+}

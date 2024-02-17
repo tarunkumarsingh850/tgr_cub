@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--Ecommerce api log view form-->
+    <record id="ecommerce_api_log_view_form" model="ir.ui.view">
+        <field name="name">ecommerce.api.log.view.form</field>
+        <field name="model">ecommerce.api.log</field>
+        <field name="inherit_id" ref="odoo_ecommerce_api.ecommerce_api_log_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='type']" position="after">
+                <field name="is_dutch" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

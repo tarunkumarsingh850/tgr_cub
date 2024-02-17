@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="journal_entry_sequence_service" model="ir.sequence">
+          <field name="name">Journal Sequence</field>
+          <field name="code">journal.sequence</field>
+          <field name="prefix">-For Processed Journal-</field>
+          <field name="padding">4</field>
+          <field name="implementation">standard</field>
+        </record>
+
+    </data>
+
+</odoo>

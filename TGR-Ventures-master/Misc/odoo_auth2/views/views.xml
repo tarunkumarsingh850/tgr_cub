@@ -1,0 +1,91 @@
+<odoo>
+    <record model="ir.ui.view" id="auth_auth_form">
+        <field name="name">Authentication Token </field>
+        <field name="model">auth.auth</field>
+        <field name="arch" type="xml">
+        <form>
+            <sheet>
+              <h1 class="oe_title">
+              <field name="name" placeholder="Name"/>
+            </h1>
+            <group>
+                <group>
+                    <field name="user_id" readonly="1"/>
+                    <field name="auth_code" invisible="1"/>
+                    <field name="description" placeholder="Descriptions..."/>
+                </group>
+                <group col="4" colspan="4" string="Endpoints">
+                        <newline/>
+                        <label align="0.0" for="name" string="/oauth2/auth"/>
+                        <newline/>
+                        <label align="0.0" for="name" string="/oauth2/access_token"/>
+                </group>
+            </group>
+            <notebook>
+                <page string="Key and Secret">
+                    <group>
+                        <group>
+                            <field name="consumer_key" readonly="1" string="Consumer Key(API"/>
+                            <field name="consumer_secret" readonly="1" string="Consumer Secret(API)"/>
+                        </group>
+                    </group>
+                    <button name="update_key_secret" type="object" string="Regenerate Consumer key and Secret" class="oe_highlight"/>
+                    <separator/>
+                </page>
+                <page string="OAuth2 Access Token">
+                    <group>
+                        <field name="refresh_token" readonly="1"/>
+                    </group>
+                    <button string="Regenerate Refresh Token" type="object" name="generate_refresh" class="oe_highlight"/>
+                    <button string="Revoke Refresh Token" type="object" name="revoke_refresh"/>
+                    <group string="CallBack Redirect URLs">
+                        <field name="redirect_uri" nolabel="1">
+                            <tree editable="true">
+                                <field name="url"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <group string="Generate Access Tokens">
+                        <field name="access_token_ids" nolabel="1" readonly="1">
+                            <tree editable="true">
+                                <field name="access_token"/>
+                                <field name="access_token_validity"/>
+                            </tree>
+                                <form>
+                                    <group>
+                                        <group>
+                                            <field name="access_token"/>
+                                        </group>
+                                        <group>
+                                            <field name="access_token_validity"/>
+                                       </group>
+                                    </group>
+                                </form>
+                        </field>
+                    </group>
+                </page>
+            </notebook>
+         </sheet>
+        </form>
+    </field>
+    </record>
+        <record model="ir.ui.view" id="auth_auth_tree_view">
+          <field name="name">auth.auth.tree</field>
+          <field name="model">auth.auth</field>
+          <field name="arch" type="xml">
+           <tree string="Auth">
+                <field name="name"/>
+                <field name="description"/>
+                <field name="user_id"/>
+                <field name="consumer_key" invisible="1"/>
+            </tree>
+          </field>
+        </record>
+        <record model="ir.actions.act_window" id="action_auth_auth">
+          <field name="name">Auth2 </field>
+          <field name="res_model">auth.auth</field>
+          <field name="view_mode">tree,form</field>
+          <field name="domain">[('user_id', '=', context.get('user_id'))] </field>
+          <field name="context">{'default_user_id': context.get('user_id')}</field>
+        </record>
+</odoo>

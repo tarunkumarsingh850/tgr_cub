@@ -1,0 +1,14 @@
+<odoo>
+    <data>
+        <report
+            id="action_view_invoice_excel1"
+            model="account.move"
+            string="Invoice Excel Report"
+            report_type="xlsx"
+            name="bi_invoice_excel_report.invoice_excel_rpt"
+            file="bi_invoice_excel_report.invoice_excel_rpt"
+            print_report_name="Invoice Excel Report"
+            menu='False'
+        />
+    </data>
+</odoo>

@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <data>
+
+        <report
+            id="action_report_ticket_invoice"
+            model="ticket.ticket"
+            string="Ticket Sale"
+            report_type="qweb-pdf"
+            name="bi_ticket_ticket.invoice_memo_temp"
+            paperformat="bi_invoice_memo_printout.invoice_paperformat"
+            file="Ticket Sale"
+        />
+
+    </data>
+
+</odoo>

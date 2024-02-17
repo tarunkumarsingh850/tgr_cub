@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+<record id="view_wizard_consignment_report" model="ir.ui.view">
+    <field name="name">consignment.wizard.form</field>
+    <field name="model">bi.consignment.wizard</field>
+    <field name="arch" type="xml">
+        <form string="Choose your details">
+            <group>
+                <group>
+                    <field name="start_date" required='1'/>
+                    <field name="end_date" required='1'/>
+                </group>
+                <group>
+                    <field name="po_ids" widget='many2many_tags'/>
+                    <field name="cost_percentage"/>
+                </group>
+            </group>
+            <footer>
+                <button name="export_xls_report" string="Export" type="object" class="oe_highlight"/>
+                    or
+                <button string="Cancel" class="oe_link" special="cancel"/>
+            </footer>
+        </form>
+    </field>
+</record>
+
+    <!-- Action Consignment form-->
+    <record id="action_consignment_report_wizard" model='ir.actions.act_window'>
+        <field name="name">Consignment Report</field>
+        <field name="res_model">bi.consignment.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+
+    <!-- Menu Generate Report Wizard -->
+    <menuitem id="consignment_report_menu_root"
+        name="Consignment Order Report"
+        parent='purchase.purchase_report_main'
+        action='action_consignment_report_wizard'
+    />
+
+</odoo>

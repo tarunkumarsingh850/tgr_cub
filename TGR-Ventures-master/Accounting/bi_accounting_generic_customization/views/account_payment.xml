@@ -1,0 +1,32 @@
+<odoo>
+  <data>
+
+    <record model="ir.ui.view" id="account_payment_inherit_field_type">
+      <field name="model">account.payment</field>
+      <field name="name">account.payment.type.field.form</field>
+      <field name="inherit_id" ref="account.view_account_payment_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='payment_type']" position="after">
+          <field name="account_type"/>
+        </xpath>
+      </field>
+    </record>
+
+    <record id="action_cancel_payment" model="ir.actions.server">
+      <field name="name">Cancel Payment</field>
+      <field name="model_id" ref="account.model_account_payment"/>
+      <field name="binding_model_id" ref="account.model_account_payment"/>
+      <field name="state">code</field>
+      <field name="code">records._action_cancel_payment()</field>
+    </record>
+
+  <record id="account.action_account_payments" model="ir.actions.act_window">
+    <field name="domain">[('partner_id.company_type','=', 'company')]</field>
+  </record>
+
+  <record id="account.action_account_payments_payable" model="ir.actions.act_window">
+    <field name="domain">[('partner_id.company_type','=', 'company')]</field>
+  </record>
+
+  </data>
+</odoo>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+    <record id="view_reminder_user_form" model="ir.ui.view">
+        <field name="name">reminder.user.form</field>
+        <field name="model">reminder.user</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                    <group>
+                    </group>
+                    </group>
+                    <notebook>
+                        <page string="Users">
+                            <field name="reminder_user_line_ids">
+                                <tree string="Users" editable="bottom">
+                                    <field name="users_id"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_reminder_user_list" model="ir.ui.view">
+        <field name="name">reminder.user.list</field>
+        <field name="model">reminder.user</field>
+        <field name="arch" type="xml">
+            <tree>
+            <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="reminder_user_view_form" model="ir.actions.act_window">
+        <field name="name">User Reminder</field>
+        <field name="res_model">reminder.user</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+            id="reminder_user_form"
+            name="User Reminder"
+            action="reminder_user_view_form"
+            parent="sale.menu_sale_config"
+            sequence="30"
+            />
+</odoo>

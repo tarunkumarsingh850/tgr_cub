@@ -1,0 +1,57 @@
+<odoo>
+  <data>
+    <record id="view_vendor_class_form_view" model="ir.ui.view">
+        <field name="name">vendor.class.form</field>
+        <field name="model">vendor.class</field>
+        <field name="arch" type="xml">
+            <form string="Vendor Class">
+                <group name="main_group">
+                    <field name="name" />
+                    <field name="description"/>
+                    <field name="country_id" />
+                    <field name="payment_term_id"/>
+                    <field name="journal_id" />
+                </group>
+            </form>
+        </field>
+    </record>
+    <record id="view_vendor_class_tree" model="ir.ui.view">
+        <field name="name">vendor.class.tree</field>
+        <field name="model">vendor.class</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="description"/>
+                <field name="country_id" />
+                <field name="payment_term_id"/>
+                <field name="journal_id" />
+            </tree>
+        </field>
+    </record>
+    <record id="view_vendor_class_search" model="ir.ui.view">
+        <field name="name">vendor.class.search</field>
+        <field name="model">vendor.class</field>
+        <field name="arch" type="xml">
+            <search string="Search Vendor Class">
+                <field name="name" string="Vendor Class Name"/>
+                <field name="description" string="Description"/>
+            </search>
+        </field>
+    </record>
+    <record id="action_vendor_class_tree" model="ir.actions.act_window">
+        <field name="name">Vendor Class</field>
+        <field name="res_model">vendor.class</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Click to Create a Vendor Class.</p>
+        </field>
+    </record>
+    <menuitem
+        action="action_vendor_class_tree"
+        id="menu_action_vendor_class_tree"
+        parent="purchase.menu_purchase_config"
+    />
+
+
+    </data>
+</odoo>

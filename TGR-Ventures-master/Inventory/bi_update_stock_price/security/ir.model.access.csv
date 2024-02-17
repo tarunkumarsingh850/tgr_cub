@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_update_price_wizard_user,bi_update_stock_price.update.price.wizard,model_update_price_wizard,base.group_user,1,1,1,1
+access_update_quantity_wizard_user,bi_update_stock_price.update.quantity.wizard,model_update_quantity_wizard,base.group_user,1,1,1,1
+access_product_price_history,product.price.history,model_product_price_history,base.group_user,1,1,1,1

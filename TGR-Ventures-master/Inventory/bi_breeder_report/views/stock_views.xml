@@ -1,0 +1,15 @@
+<odoo>
+
+    <record id="action_breeder_report_wizard" model="ir.actions.act_window">
+        <field name="name">Breeder Report Wizard</field>
+        <field name="res_model">breeder.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="bi_breeder_report.breeder_report_wizard_views"/>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem action="action_breeder_report_wizard"
+              name="Breeder Report"
+              id="menu_breeder_report"
+              parent="stock.menu_warehouse_report"/>
+</odoo>

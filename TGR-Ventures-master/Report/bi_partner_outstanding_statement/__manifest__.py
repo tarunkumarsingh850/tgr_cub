@@ -1,0 +1,22 @@
+{
+    "name": "Partner Outstanding Statement Report",
+    "version": "1.0",
+    "category": "Module  Installation",
+    "summary": "Module  Installation",
+    "description": """Module  Installation""",
+    "author": "Bassam Infotech LLP",
+    "license": "OPL-1",
+    "website": "http://www.bassaminfotech.com",
+    "depends": ["base", "report_xlsx", "mail", "partner_statement"],
+    "data": [
+        "security/ir.model.access.csv",
+        "data/scheduler.xml",
+        "data/email_template.xml",
+        "reports/statement_report.xml",
+        "reports/header.xml",
+        "reports/aging_buckets.xml",
+        "wizards/outstanding_statement_report_wiz.xml",
+        "views/res_partner.xml",
+        "views/ir_mail_server.xml",
+    ],
+}

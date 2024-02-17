@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="action_export_inventory_logistic_report" model="ir.actions.report">
+        <field name="name">Logistic Inventory Report</field>
+        <field name="model">inventory.logistic.wizard</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">bi_inventory_logistic_report.inventory_report_xlsx</field>
+        <field name="report_file">bi_inventory_logistic_report.inventory_report_xlsx</field>
+        <field name="print_report_name">"Logistics Inventory Report"</field>
+    </record>
+    </data>
+</odoo>

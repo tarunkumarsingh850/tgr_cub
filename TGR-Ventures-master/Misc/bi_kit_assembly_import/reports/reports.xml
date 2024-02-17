@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="kit_import_template_action" model="ir.actions.report">
+        <field name="name">Kit Import Template</field>
+        <field name="model">kit.assembly.import</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">bi_kit_assembly_import.kit_assembly_template</field>
+        <field name="report_file">bi_kit_assembly_import.kit_assembly_template</field>
+    </record>
+
+</odoo>

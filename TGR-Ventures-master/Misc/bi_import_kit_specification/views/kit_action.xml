@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_export_template" model="ir.actions.report">
+        <field name="name">Kit Import Template</field>
+        <field name="model">bill.material</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">bi_import_kit_specification.export_kit_template_xlsx</field>
+        <field name="report_file">bi_import_kit_specification.export_kit_template_xlsx</field>
+        <field name="print_report_name">"Kit Specification Export Import Template"</field>
+    </record>
+</odoo>

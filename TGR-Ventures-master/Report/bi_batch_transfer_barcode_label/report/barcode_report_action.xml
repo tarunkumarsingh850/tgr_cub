@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <!--batch transfer barcode label action-->
+        <record id="batch_transfer_barcode_label_action" model="ir.actions.report">
+            <field name="name">Batch Transfer Barcode (ZPL)</field>
+            <field name="model">stock.picking.batch</field>
+            <field name="report_type">qweb-text</field>
+            <field name="report_name">bi_batch_transfer_barcode_label.batch_barcode_label_template_id</field>
+            <field name="report_file">bi_batch_transfer_barcode_label.batch_barcode_label_template_id</field>
+            <field name="print_report_name">'Batch Barcode - %s' % object.name</field>
+            <field name="binding_model_id" eval="ref('stock_picking_batch.model_stock_picking_batch')"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>
